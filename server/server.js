@@ -17,7 +17,7 @@ app.use(middlewares)
 
 app.use('/auth', authRoutes)
 
-console.log(http.STATUS_CODES); 
+//console.log(http.STATUS_CODES); 
  
 app.listen(port, _=> {
     console.log('====================================');
