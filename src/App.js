@@ -30,17 +30,17 @@ function App() {
       element : 'input',
       elementConfig : {
         type : 'password',
-        placeholder : '6-7 characters'
+        placeholder : '6-7 characters',
+        name : 'password'
       },
-      value : '',
-      className: 'w-full'
+      value : ''
     },
-    price : {
+    description : {
       element : 'textarea',
       elementConfig : {
         rows : '6',
-        placeholder : '$21.56',
-        name : 'price'
+        placeholder : 'Add the description...',
+        name : 'description'
       },
       value : ''
     }
@@ -63,7 +63,12 @@ function App() {
     })
   }
   
-  console.log(formArray)
+  const handleChange = eve => {
+    const { name, value } = eve.target;
+
+    console.log(name);
+  }
+  
   return (
     <div>
       <div className="bg-red-400">Heeelooo</div>
@@ -79,7 +84,8 @@ function App() {
                     data.map(({ id, info }) => (
                       <FormField 
                         key={id}
-                        {...info}
+                        {...info} 
+                        onChange={handleChange}
                       />
                     )
                   )
@@ -87,7 +93,7 @@ function App() {
                 </>
               )
             }
-            else ele = <FormField {...data} />
+            else ele = <FormField {...data} onChange={handleChange} />
             return (
               <div key={key} className={`flex w-full m-4`}>
                 {ele}
