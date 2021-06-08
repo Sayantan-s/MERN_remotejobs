@@ -1,5 +1,5 @@
 require('dotenv').config()
 
-const { PORT } = process.env;
+const { PORT, MONGO_URI } = process.env;
 
-module.exports = { PORT }
+module.exports = { PORT, MONGO_URI }

@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+import http from "utils/http";
+
 function App() {
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await http.get('/api/jobs/available-jobs');
+      console.log(data)
+    })()
+  },[])
 
   return (
     <div>

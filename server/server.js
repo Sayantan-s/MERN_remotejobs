@@ -5,6 +5,7 @@ const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 
 const accessControl = require("./middlewares/helpers");
+const { connectDb } = require("./helpers/connectToDatabase");
 
 const app = express();
 const port = PORT || 8000;
@@ -21,8 +22,11 @@ app.use(middlewares)
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
  
-app.listen(port, _=> {
-    console.log('====================================');
-    console.log(`we are live on port ${port}`.toUpperCase());
-    console.log('====================================');
-})
+
+connectDb('jobs',() => {
+    app.listen(port, _=> {
+        console.log('====================================');
+        console.log(`we are live on port ${port}`.toUpperCase());
+        console.log('====================================');
+    }) 
+}) 
