@@ -18,8 +18,8 @@ const middlewares = [
 
 app.use(middlewares)
 
-app.use('/auth', authRoutes);
-app.use(jobsRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobsRoutes);
  
 app.listen(port, _=> {
     console.log('====================================');
