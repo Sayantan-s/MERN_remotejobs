@@ -4,7 +4,7 @@ const { PORT } = require("./config/index");
 const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 
-const accessControl = require("./middlewares/helpers");
+const cors = require("./middlewares/helpers");
 const { connectDb } = require("./helpers/connectToDatabase");
 
 const app = express();
@@ -14,7 +14,7 @@ const middlewares = [
     morgan('dev'),
     express.urlencoded({ extended : true }),
     express.json(),
-    accessControl
+    cors
 ]
 
 app.use(middlewares)
@@ -29,4 +29,4 @@ connectDb('jobs',() => {
         console.log(`we are live on port ${port}`.toUpperCase());
         console.log('====================================');
     }) 
-}) 
+})  
