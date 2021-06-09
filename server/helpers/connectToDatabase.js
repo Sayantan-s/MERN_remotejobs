@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const { MONGO_URI } = require('../config/index');
 
-let db;
+let _db;
 
 const client = new MongoClient(MONGO_URI,{
     useNewUrlParser : true,
@@ -12,13 +12,13 @@ const connectDb = async(dbName,cb) => {
     try {
         await client.connect();
 
-        db = await client.db(dbName);
+        _db = await client.db(dbName);
 
         console.log('====================================');
         console.log(`Connected to mongodb database --> ${dbName}`);
         console.log('====================================');
 
-        cb();
+        return cb();
 
     } catch (error) {
         console.log(error);
@@ -31,11 +31,11 @@ const connectDb = async(dbName,cb) => {
     }
 }
 
-const getDb = () => {
-    if(db){
-        return db;
+const db = () => {
+    if(_db){
+        return _db;
     }
     return new Error('Error connecting to the db...')
 }
 
-module.exports = { connectDb, getDb }
+module.exports = { connectDb, db }

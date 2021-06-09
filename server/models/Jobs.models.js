@@ -1,9 +1,11 @@
 class Jobs{
-    constructor(company, role, exp, perks){
-        this.company = company;
+    constructor(role, ctc, exp, perks, roleDescription, jobDescription){
         this.role = role;
+        this.ctc = ctc;
         this.exp = exp;
-        this.perks = perks
+        this.perks = perks;
+        this.roleDescription = roleDescription;
+        this.jobDescription = jobDescription;
     }
 
 
