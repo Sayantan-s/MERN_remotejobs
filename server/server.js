@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const { PORT } = require("./config/index");
+const { PORT, MONGODB_DB } = require("./config/index");
 const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 
@@ -23,7 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
  
 
-connectDb('jobs',() => {
+connectDb(MONGODB_DB,() => {
     app.listen(port, _=> {
         console.log('====================================');
         console.log(`we are live on port ${port}`.toUpperCase());
