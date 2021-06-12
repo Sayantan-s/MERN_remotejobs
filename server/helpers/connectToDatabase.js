@@ -32,9 +32,9 @@ const connectDb = async(dbName,cb) => {
     }
 }
 
-const db = () => {
+const db = (collection) => {
     if(_db){
-        return _db;
+        return _db.collection(collection);
     }
     return new Error('Error connecting to the db...')
 }
