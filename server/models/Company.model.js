@@ -7,3 +7,5 @@ class Company {
         this.companyAddress = companyAddress;
     }
 }
+
+module.exports = Company;

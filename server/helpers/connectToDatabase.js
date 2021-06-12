@@ -27,6 +27,7 @@ const connectDb = async(dbName,cb) => {
         process.on('SIGINT', async() => {
             await client.close();
             console.log(`Disconnected from mongodb database --> ${dbName}`);
+            process.exit(0);
         })
     }
 }

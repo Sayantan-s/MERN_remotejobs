@@ -1,5 +1,8 @@
-class Jobs{
+const Company  =  require("./Company.model");
+
+class Jobs extends Company{
     constructor(role, ctc, exp, perks, roleDescription, jobDescription){
+        super();
         this.role = role;
         this.ctc = ctc;
         this.exp = exp;
@@ -8,5 +11,10 @@ class Jobs{
         this.jobDescription = jobDescription;
     }
 
+    save(){
+        
+    }
 
 }
+
+module.exports = Jobs

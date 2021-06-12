@@ -1,13 +1,24 @@
+const { db } = require('../helpers/connectToDatabase');
+
 const router = require('express').Router();
 
 router
-.get('/available-jobs',async (req, res, next) => {
+.route('/')
+.get(async (req, res, next) => {
     return res.status(200).send({
         data : [
             {
                 role : 'UI/UX designer'
             }
         ]
+    })
+})
+.post(async(req,res, next) => {
+
+    const post = await db().collection('jobs').insertOne({ name : 'Sayantan' })
+
+    res.send({
+        response : post
     })
 })
 
