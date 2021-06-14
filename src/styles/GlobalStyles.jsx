@@ -16,7 +16,7 @@ body{
     color: ${props => props.theme.color.font};
     background-color: ${props => props.theme.color.backgroundColor};
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 400;
     #root{
         overflow-x : inherit;
         max-width: inherit;

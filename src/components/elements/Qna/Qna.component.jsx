@@ -1,17 +1,17 @@
 import { Typography as Question } from 'components'
 import React from 'react'
 
-const Qna = ({ question, answerType }) => {
+const Qna = ({ question, answerType, answer }) => {
 
-    let answer;
+    let ele;
 
     switch (answerType){
         case 'Explain the following':
-            answer = '';
+            ele = '';
         case 'Mcq':
-            answer = '';
+            ele = '';
         case 'Choose only one':
-            answer = '';
+            ele = '';
     }
     
 

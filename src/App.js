@@ -4,9 +4,11 @@ import { Layout } from "components";
 import Styles from "styles/Styles";
 import { themeDark, themeLight } from "styles/theme";
 import { useToggle } from "hooks";
+import Checkbox from "components/elements/FormFields/OptionField/Element/Checkbox.component";
+
 function App() {
 
-  const [ toggle, handleToggle ] = useToggle()
+  const [ toggle, handleToggle ] = useToggle();
 
   useEffect(() => {
     (async () => {
@@ -18,7 +20,7 @@ function App() {
   return (
     <Styles theme={toggle ? themeDark : themeLight}>
       <Layout>
-        <button onClick={handleToggle}>Change</button>
+        <Checkbox />
       </Layout>
     </Styles>
   );
