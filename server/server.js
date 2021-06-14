@@ -1,6 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
+
 const { PORT, MONGODB_DB } = require("./config/index");
+
 const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 const companyRoutes = require("./routes/company.routes");
