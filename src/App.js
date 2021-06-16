@@ -17,6 +17,8 @@ function App() {
     })()
   },[])
 
+  console.log(process.env)
+
   return (
     <Styles theme={toggle ? themeDark : themeLight}>
       <Layout>
