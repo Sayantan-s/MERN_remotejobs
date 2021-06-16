@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Box = ({ children,...otherProps },ref) => {
     return (
@@ -12,5 +12,9 @@ const Box = ({ children,...otherProps },ref) => {
 export default forwardRef(Box)
 
 const Container = styled.div`
-
+${props => props.isLayout && css`
+    max-width: 160rem;
+    margin : 0 auto;
+    padding : 0 3rem;
+`}
 `

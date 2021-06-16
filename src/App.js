@@ -5,6 +5,9 @@ import Styles from "styles/Styles";
 import { themeDark, themeLight } from "styles/theme";
 import { useToggle } from "hooks";
 import Checkbox from "components/elements/FormFields/OptionField/Element/Checkbox.component";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from "pages/Home";
+import Jobs from "pages/Jobs";
 
 function App() {
 
@@ -21,9 +24,14 @@ function App() {
 
   return (
     <Styles theme={toggle ? themeDark : themeLight}>
-      <Layout>
-        <Checkbox />
-      </Layout>
+      <Router>
+        <Layout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/jobs" component={Jobs} />
+            </Switch>
+        </Layout>
+      </Router>
     </Styles>
   );
 }
