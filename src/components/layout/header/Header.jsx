@@ -1,35 +1,61 @@
 import React from 'react'
 import { Box as Head } from 'components'
-import { Box as Navbar } from 'components'
-import { Logo, Box } from 'components'
-import { NavLink } from 'react-router-dom'
+import { Logo, Box, Link } from 'components'
+import styled from 'styled-components'
 
 const Header = () => {
     return (
        <Head as="header">
-          <Box isLayout>
-            <NavLink to="/">
+          <Wrapper isLayout flex>
+            <Link to="/">
                 <Logo />
-            </NavLink>
-            <Navbar>
-               <Box>
-                    <NavLink to="/">
+            </Link>
+            <Navbar flex>
+               <Box className="nav_links">
+                    <Link to="/">
                         Home
-                    </NavLink>
-                    <NavLink to="/find-jobs">
+                    </Link>
+                    <Link to="/find-jobs">
                         Find jobs
-                    </NavLink>
-                    <NavLink to="/applied-jobs">
+                    </Link>
+                    <Link to="/applied-jobs">
                         Applied jobs
-                    </NavLink>
+                    </Link>
                </Box>
-               <Box>
-                   
+               <Box className="nav_auth">
+                    <Link to="/auth/login">
+                        Login
+                    </Link>
+                    <Link to="/auth/register">
+                        Register
+                    </Link>
                </Box>
             </Navbar>
-          </Box>
+          </Wrapper>
        </Head>
     )
 }
 
 export default Header
+
+const Wrapper = styled(Box)`
+align-items: center;
+padding: 2rem 0;
+`
+const Navbar = styled(Box)`
+width: 100%;
+justify-content: space-between;
+margin-left : 2rem;
+.nav{
+    &_links{
+        a:not(:first-child){
+            margin-left : 2rem;
+        }
+    }
+    &_auth{
+        a:not(:first-child){
+            margin-left : 2rem;
+        }
+    }
+}
+`

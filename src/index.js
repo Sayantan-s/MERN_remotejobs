@@ -1,3 +1,4 @@
+import { AuthenticationContext } from 'context';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -5,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AuthenticationContext>
+      <App />
+    </AuthenticationContext>
   </React.StrictMode>,
   document.getElementById('root')
 );

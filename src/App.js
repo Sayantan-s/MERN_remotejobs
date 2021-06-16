@@ -8,6 +8,7 @@ import Checkbox from "components/elements/FormFields/OptionField/Element/Checkbo
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "pages/Home";
 import Jobs from "pages/Jobs";
+import AppliedJobs from "pages/AppliedJobs";
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
         <Layout>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/jobs" component={Jobs} />
+              <Route path="/find-jobs" component={Jobs} />
+              <Route path="/applied-jobs" component={AppliedJobs} />
             </Switch>
         </Layout>
       </Router>

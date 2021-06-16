@@ -15,6 +15,9 @@ const Container = styled.div`
 ${props => props.isLayout && css`
     max-width: 160rem;
     margin : 0 auto;
-    padding : 0 3rem;
+`}
+
+${props => props.flex && css`
+    display: flex;
 `}
 `
