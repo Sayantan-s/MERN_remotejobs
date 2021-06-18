@@ -1,3 +1,4 @@
+
 class Helper{ 
     static checkDataType(eletype, element){
         let type = eletype.toLowerCase();
@@ -16,4 +17,4 @@ class Helper{
     }
 }
 
-export default Helper;
+module.exports = Helper;

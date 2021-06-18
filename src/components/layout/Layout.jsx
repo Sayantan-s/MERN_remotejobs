@@ -1,13 +1,13 @@
 import React from 'react'
-import { Header, Footer } from 'components'
+import { Header, Footer, Page } from 'components'
 
 const Layout = ({ children }) => {
     return (
         <>
             <Header />
-                <main>
+                <Page as={"main"} isLayout>
                     {children}
-                </main>
+                </Page>
             <Footer />
         </>
     )

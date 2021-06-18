@@ -1,12 +1,14 @@
 import { css } from "styled-components";
 
 const H1Styles = css`
-font-size: ${({ fontSize }) => fontSize || '5'}rem;
+font-size: ${({ fontSize }) => fontSize || '6'}rem;
+color : ${props => props.color || props.theme.color.grey['500']};
 line-height: 1;
 `
 
 const H2Styles = css`
 font-size: ${({ fontSize }) => fontSize || '4.5'}rem;
+color : ${props => props.color || props.theme.color.grey['500']};
 line-height: 1;
 `
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 import { defaultStyles, H1Styles, H2Styles, H3Styles, H4Styles, H5Styles, H6Styles, PreStyles } from './TypographyStyles'
 
@@ -10,7 +10,7 @@ const Typography = ({ children, ...otherProps }, ref) => {
     )
 }
 
-export default Typography
+export default forwardRef(Typography)
 
 const Text = styled.p`
 ${({ as }) => {

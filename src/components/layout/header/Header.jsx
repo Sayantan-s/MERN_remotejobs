@@ -12,7 +12,7 @@ const Header = () => {
             </Link>
             <Navbar flex>
                <Box className="nav_links">
-                    <Link to="/">
+                    <Link to="/" type="underline">
                         Home
                     </Link>
                     <Link to="/find-jobs">
@@ -26,8 +26,8 @@ const Header = () => {
                     <Link to="/auth/login">
                         Login
                     </Link>
-                    <Link to="/auth/register">
-                        Register
+                    <Link to="/auth/register" type="outline" rounded="md">
+                        Register Now
                     </Link>
                </Box>
             </Navbar>
@@ -40,7 +40,7 @@ export default Header
 
 const Wrapper = styled(Box)`
 align-items: center;
-padding: 2rem 0;
+padding: 2rem;
 `
 const Navbar = styled(Box)`
 width: 100%;

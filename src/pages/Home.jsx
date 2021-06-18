@@ -1,14 +1,20 @@
+import { Box, Typography } from 'components'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import styled from 'styled-components';
+import { color } from 'styled-system';
 
 const Home = () => {
     return (
-        <div>
-             <NavLink to="/jobs">
-                JObs
-            </NavLink>
-        </div>
+       <Box as={"section"}>
+          <Typography as={'h1'} backgroundColor="red">
+              Get the right job <br/> you deserve
+          </Typography>
+       </Box>
     )
 }
 
 export default Home
+
+const Text = styled(Typography)`
+${color}
+`

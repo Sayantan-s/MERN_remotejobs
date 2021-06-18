@@ -1,6 +1,6 @@
 const commonProperties = {
     font : {
-        family : 'Euclid Circular A',
+        family : 'Gilroy',
         weight : {
             300: 300,
             400: 400,
@@ -25,9 +25,13 @@ const themeLight = {
             '400': '#7780ff', 
             '500': '#3d4aff', 
             '600': '#3743e6', 
-            '700': '#2e38bf', 
-            '800': '#252c99', 
-            '900': '#1e247d'
+        },
+        grey : {
+            '100': '#ededed', 
+            '200': '#b9b9b9', 
+            '300': '#848484', 
+            '400': '#3b3b3b', 
+            '500': '#272727'
         }
     }
 }

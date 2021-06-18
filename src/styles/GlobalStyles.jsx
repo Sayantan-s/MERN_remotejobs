@@ -13,10 +13,10 @@ body{
     font-family: ${props => props.theme.font.family};
     overflow-x : hidden;
     max-width: 100vw;
-    color: ${props => props.theme.color.font};
+    color: ${props => props.theme.color.grey["300"]};
     background-color: ${props => props.theme.color.backgroundColor};
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 500;
     #root{
         overflow-x : inherit;
         max-width: inherit;
