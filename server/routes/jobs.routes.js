@@ -15,7 +15,7 @@ router
 })
 .post(async(req,res, next) => {
 
-    const post = await db().collection('jobs').insertOne({ name : 'Sayantan' })
+    const post = await db('jobs').insertOne({ name : 'Sayantan' })
 
     res.send({
         response : post
