@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Page = ({children}, ref) => {
     return (
-       <PageLayout isLayout ref={ref}>
+       <PageLayout as={'section'} isLayout ref={ref}>
            {children}
        </PageLayout>
     )

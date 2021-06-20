@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
 import styled, { css } from 'styled-components'
-import { color, letterSpacing, margin, padding } from 'styled-system'
 
 const Box = ({ children,...otherProps },ref) => {
     return (
@@ -13,10 +12,6 @@ const Box = ({ children,...otherProps },ref) => {
 export default forwardRef(Box)
 
 const Container = styled.div`
-${color}
-${margin}
-${padding}
-${letterSpacing}
 
 ${props => props.isLayout && css`
     max-width: 160rem;
@@ -26,5 +21,9 @@ ${props => props.isLayout && css`
 
 ${props => props.flex && css`
     display: flex;
+    justify-content: ${props => props.justifyContent};
+    align-content: ${props => props.alignContent};
+    align-items: ${props => props.alignItems};
+    justify-items: ${props => props.justifyItems};
 `}
 `

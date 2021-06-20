@@ -14,7 +14,7 @@ body{
     overflow-x : hidden;
     max-width: 100vw;
     color: ${props => props.theme.color.grey["300"]};
-    background-color: ${props => props.theme.color.backgroundColor};
+    background-color: ${props => props.theme.color.blue['50']};
     font-size: 1.6rem;
     font-weight: 500;
     #root{

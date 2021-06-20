@@ -1,20 +1,42 @@
-import { Box, Typography } from 'components'
+import { Box, Typography, JobSearch } from 'components'
 import React from 'react'
 import styled from 'styled-components';
-import { color } from 'styled-system';
 
 const Home = () => {
     return (
-       <Box as={"section"}>
-          <Typography as={'h1'} backgroundColor="red">
-              Get the right job <br/> you deserve
-          </Typography>
-       </Box>
+       <Container>
+          <Header>
+            <Typography as={'h1'} className="header_text">
+                Get the <span className="header_text--highlight">right job</span> <br/> you deserve
+            </Typography>
+            <Typography as={'pre'} className="header_subtext">
+                    1,80,570 job listed here! Your dream job is waiting 
+            </Typography>
+            <JobSearch />
+          </Header>
+       </Container>
     )
 }
 
 export default Home
 
-const Text = styled(Typography)`
-${color}
+const Container = styled(Box)`
+`
+const Header = styled(Box)`
+min-height: 55vh;
+display: flex;
+justify-content: center;
+flex-direction: column;
+text-align: center;
+.header{
+    &_text{
+        text-align: center;
+        &--highlight{
+            color : ${props => props.theme.color.blue['600']}
+        }
+    }
+    &_subtext{
+        margin-top : 3rem;
+    }
+}
 `
