@@ -4,7 +4,6 @@ import { Layout } from "components";
 import Styles from "styles/Styles";
 import { themeDark, themeLight } from "styles/theme";
 import { useToggle } from "hooks";
-import Checkbox from "components/elements/FormFields/OptionField/Element/Checkbox.component";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "pages/Home";
 import Jobs from "pages/Jobs";
