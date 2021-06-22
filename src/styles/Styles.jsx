@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from './GlobalStyles'
-import '../font/fonts.css'
+import '../fonts/fonts.css'
 
 const Styles = ({ theme, children }) => {
 

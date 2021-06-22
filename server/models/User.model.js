@@ -13,10 +13,14 @@ class User{
     }
 
     async save(){
-        if(!this._id){
+
+        console.log(this)
+
+        /*if(!this._id){
             this.password = await AuthUtils.hashPassword(this.password);
+            console.log(this)
             const { _id, ...rest } = this;
-        }
+        }*/
     }
 } 
 

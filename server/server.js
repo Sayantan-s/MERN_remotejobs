@@ -10,14 +10,12 @@ const companyRoutes = require("./routes/company.routes");
 const cors = require("./middlewares/helpers");
 const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
-const User = require("./models/User.model");
 
 const app = express();
 const port = PORT || 8000;
 
 const middlewares = [
     morgan('dev'),
-    express.urlencoded({ extended : true }),
     express.json(),
     cors
 ]
@@ -31,7 +29,6 @@ app.use('/api/companies', companyRoutes);
 app.use(PageNotFoundError);
 app.use(PageError);
  
-new User('Sayantan','sssamanta789@gmail.com', 'samanta123', '916346288').save()
 
 connectDb(MONGODB_DB,() => {
     app.listen(port, _=> {

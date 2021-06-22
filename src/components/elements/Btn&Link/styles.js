@@ -25,6 +25,9 @@ ${props => props.as === 'button' && css`
     font-weight: 600;
     font-size: 2rem;
     cursor : pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     min-width : ${({ width }) => {
         switch(width){
             case 'sm': 

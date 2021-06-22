@@ -1,6 +1,6 @@
 const commonProperties = {
     font : {
-        family : 'Gilroy',
+        family : 'Cadiz',
         weight : {
             300: 300,
             400: 400,

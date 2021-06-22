@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "pages/Home";
 import Jobs from "pages/Jobs";
 import AppliedJobs from "pages/AppliedJobs";
+import Register from "pages/auth/Register";
+import Login from "pages/auth/Login";
 
 function App() {
 
@@ -30,6 +32,8 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/find-jobs" component={Jobs} />
               <Route path="/applied-jobs" component={AppliedJobs} />
+              <Route path="/auth/register" component={Register} />
+              <Route path="/auth/login" component={Login} />
             </Switch>
         </Layout>
       </Router>

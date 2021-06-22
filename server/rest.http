@@ -13,3 +13,14 @@ Content-Type: application/json
     "companyAddress" : "3500 Deer Creek Road Palo Alto, CA 94304, United States of America", 
     "raised" : "721000000"
 }
+
+###
+POST http://localhost:7200/api/auth/register
+
+Content-Type: application/application/json
+{
+    "name" : "Sayantan Samanta",
+    "email" : "sssamanta789@gmail.com",
+    "password" : "fghli",
+    "phone" : "9163456288"
+}
