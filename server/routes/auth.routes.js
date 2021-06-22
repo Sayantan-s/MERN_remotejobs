@@ -1,4 +1,4 @@
-const { default: User } = require('../models/User.model');
+const User = require('../models/User.model');
 const { registerValidator } = require('../validator/auth.validator');
 
 const router = require('express').Router();
@@ -8,17 +8,22 @@ router.post('/register',async(req, res, next) => {
 
         const { error,name, email, password, phone } = await registerValidator.validateAsync(req.body);
 
-        //console.log(error);
-
         if(error){
             return next(error);
         }
 
         const user = new User(name, email, password, phone);
 
-        await user.save();
+        const res = await user.save(); 
+
+        if(res.CommandResult.result.ok === 1){                //check 1
+
+            return res.send({ message: "Hello register" });
         
-        return res.send({ message: "Hello register" });
+        }
+
+        else return next(error); //check 2
+    
 
     } catch (error) {
         console.log(error);

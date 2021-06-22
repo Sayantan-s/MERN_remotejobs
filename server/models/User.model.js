@@ -14,13 +14,15 @@ class User{
 
     async save(){
 
-        console.log(this)
-
-        /*if(!this._id){
+        if(!this._id){
             this.password = await AuthUtils.hashPassword(this.password);
-            console.log(this)
+
             const { _id, ...rest } = this;
-        }*/
+
+            const res = await db('user').insertOne(rest);
+
+            return res;
+        }
     }
 } 
 
