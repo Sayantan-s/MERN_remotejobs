@@ -8,6 +8,13 @@ const registerValidator = Joi.object({
     password : Joi.string().required(),
 
     phone : Joi.string().required()
+});
+
+const loginValidator = Joi.object({
+
+    email : Joi.string().email().required(),
+
+    password : Joi.string().required()
 })
 
-module.exports =  { registerValidator } 
+module.exports =  { registerValidator, loginValidator } 

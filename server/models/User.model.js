@@ -22,6 +22,25 @@ class User{
             return res;
         }
     }
+
+    static async findOne(options,{
+        projections
+    }){
+        const res = await db('user').find(options).project(projections).toArray()
+
+        console.log(res);
+
+        return res;
+    }
+
+    static async exists(options){
+
+        const res = await db('user').find(options).project({ email : 1 }).toArray()
+        console.log(res[0])
+
+        return res
+    }
+
 } 
 
 module.exports = User;  
