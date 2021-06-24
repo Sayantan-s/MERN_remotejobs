@@ -1,3 +1,6 @@
+const { ObjectID } = require('mongodb');
+const { REFRESH_TOKEN } = require('../config/index');
+const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/User.model');
 const { registerValidator } = require('../validator/auth.validator');
 
@@ -12,13 +15,29 @@ router.post('/register',async(req, res, next) => {
             return next(error);
         }
 
-        const user = new User(name, email, password, phone);
+        const user = await new User(name, email, password, phone).save();
 
-        const res = await user.save(); 
+        if(user.result.ok === 1){   //check 1
+            
+            const { type, _id } = user.ops[0];
 
-        if(res.CommandResult.result.ok === 1){                //check 1
+            const access_token = await AuthUtils.generate_JWT({
+                payload : {
+                    _id : ObjectID(_id),
+                    role : type
+                }
+            })
 
-            return res.send({ message: "Hello register" });
+            const refreshToken = await AuthUtils.generate_JWT({
+                payload : {
+                    _id : ObjectID(_id),
+                    role : type
+                },
+                expiry : '1yr',
+                SECRET : REFRESH_TOKEN
+            })
+
+            return res.send({ access_token, refreshToken });
         
         }
 
@@ -26,7 +45,6 @@ router.post('/register',async(req, res, next) => {
     
 
     } catch (error) {
-        console.log(error);
         next(error);
     }
 })
