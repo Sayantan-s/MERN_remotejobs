@@ -1,5 +1,4 @@
 const { ObjectID } = require("mongodb");
-const AuthUtils = require("../helpers/AuthUtils");
 const { db } = require("../helpers/connectToDatabase");
 
 class User{
@@ -15,7 +14,6 @@ class User{
     async save(){
 
         if(!this._id){
-            this.password = await AuthUtils.hashPassword(this.password);
 
             const { _id, ...rest } = this;
 

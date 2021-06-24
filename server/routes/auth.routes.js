@@ -15,7 +15,9 @@ router.post('/register',async(req, res, next) => {
             return next(error);
         }
 
-        const user = await new User(name, email, password, phone).save();
+        const hashPassword = await AuthUtils.hashPassword(password);
+
+        const user = await new User(name, email, hashPassword, phone).save();
 
         if(user.result.ok === 1){   //check 1
             
@@ -50,6 +52,11 @@ router.post('/register',async(req, res, next) => {
 })
 
 router.post('/login',async(req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error);
+    }
     return res.send({ message: "Hello login" });
 })
 
