@@ -1,5 +1,6 @@
 const { ObjectID } = require('mongodb');
 const { REFRESH_TOKEN } = require('../config/index');
+const { default: ApiError } = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/User.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
@@ -59,11 +60,31 @@ router.post('/login',async(req, res, next) => {
         if(error)
             return next(error);
 
-        const user = await User.findOne({ email }, { projections : { email : 1, _id : 0, password : 1 } });
+        const user = await User.findOne({ email }, { projections : { password : 1, type : 1 } });
 
         console.log(user);
 
-        return res.send({ message: "Hello login" });   
+        const isPasswordValid = await AuthUtils.verifyPassword(password, user.password);
+
+        if(!isPasswordValid) return next(ApiError.customError(422, 'Invalid email or password!'));
+
+        const access_token = await AuthUtils.generate_JWT({
+            payload : {
+                _id : ObjectID(user._id),
+                role : user.type
+            }
+        })
+
+        const refreshToken = await AuthUtils.generate_JWT({
+            payload : {
+                _id : ObjectID(user._id),
+                role : user.type
+            },
+            expiry : '1yr',
+            SECRET : REFRESH_TOKEN
+        })
+
+        return res.send({ access_token, refreshToken });   
     } catch (error) {
         next(error);
     }

@@ -31,9 +31,7 @@ class User{
 
         const res = projections ? await mainQuery.project(projections).toArray() : await mainQuery.toArray() 
 
-        console.log(res);
-
-        return res;
+        return res[0];
     }
 
     static async exists(options){
