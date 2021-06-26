@@ -24,9 +24,12 @@ class User{
     }
 
     static async findOne(options,{
-        projections
+        projections = null
     }){
-        const res = await db('user').find(options).project(projections).toArray()
+
+        const mainQuery = db('user').find(options)
+
+        const res = projections ? await mainQuery.project(projections).toArray() : await mainQuery.toArray() 
 
         console.log(res);
 

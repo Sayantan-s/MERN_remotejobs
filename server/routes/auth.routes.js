@@ -59,7 +59,7 @@ router.post('/login',async(req, res, next) => {
         if(error)
             return next(error);
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }, { projections : { email : 1, _id : 0, password : 1 } });
 
         console.log(user);
 
