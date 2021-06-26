@@ -61,6 +61,8 @@ router.post('/login',async(req, res, next) => {
 
         const user = await User.findOne({ email });
 
+        console.log(user);
+
         return res.send({ message: "Hello login" });   
     } catch (error) {
         next(error);
