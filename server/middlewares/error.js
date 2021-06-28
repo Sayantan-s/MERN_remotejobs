@@ -1,8 +1,8 @@
 const ApiError = require("../helpers/ApiError")
 
 const PageError = (err,req, res, next) => {
-    const { message, code } = ApiError.customError();
-    return res.send({ message, status : code })
+    const status = err.status || 500; 
+    return res.send({ message : err.message || 'Internal Server Error', status })
 }
 
 const PageNotFoundError = (req, res, next) => {

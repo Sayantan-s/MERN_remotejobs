@@ -3,6 +3,7 @@ const { REFRESH_TOKEN } = require('../config/index');
 const { default: ApiError } = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/User.model');
+const RefreshToken = require('../models/utility models/RefreshToken.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
 
 const router = require('express').Router();
@@ -40,11 +41,13 @@ router.post('/register',async(req, res, next) => {
                 SECRET : REFRESH_TOKEN
             })
 
+            await RefreshToken.create({ token : refreshToken });
+
             return res.send({ access_token, refreshToken });
         
         }
 
-        else return next(error); //check 2
+        else return next(ApiError.customError(400, 'Failed to create your account!')); //check 2
     
 
     } catch (error) {
@@ -83,6 +86,8 @@ router.post('/login',async(req, res, next) => {
             expiry : '1yr',
             SECRET : REFRESH_TOKEN
         })
+
+        await RefreshToken.create({ token : refreshToken });
 
         return res.send({ access_token, refreshToken });   
     } catch (error) {
