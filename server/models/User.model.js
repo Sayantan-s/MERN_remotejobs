@@ -29,17 +29,16 @@ class User{
 
         const mainQuery = db('user').find(options)
 
-        const res = projections ? await mainQuery.project(projections).toArray() : await mainQuery.toArray() 
+        const res = !projections || projections === {} ? await mainQuery.toArray() : await mainQuery.project(projections).toArray();
 
         return res[0];
     }
 
     static async exists(options){
 
-        const res = await db('user').find(options).project({ email : 1 }).toArray()
-        console.log(res[0])
+        const res = await User.findOne(options, { projections : null });
 
-        return res
+        return !!res
     }
 
 } 

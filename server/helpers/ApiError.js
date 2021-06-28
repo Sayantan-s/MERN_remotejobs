@@ -6,7 +6,7 @@ class ApiError extends Error{
     }
 
     static customError(status = 500, message){
-        const error = new ApiError(status, 'Something went wrong!' || message);
+        const error = new ApiError(status, message || 'Something went wrong!' );
         return error;
     }
 
