@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require('cors')
 
 const { PORT, MONGODB_DB } = require("./config/index");
 
@@ -7,7 +8,6 @@ const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 const companyRoutes = require("./routes/company.routes");
 
-const cors = require("./middlewares/helpers");
 const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
 
@@ -17,7 +17,7 @@ const port = PORT || 8000;
 const middlewares = [
     morgan('dev'),
     express.json(),
-    cors
+    cors({ origin : 'http://localhost:3000' })
 ]
 
 app.use(middlewares)
