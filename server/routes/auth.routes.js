@@ -34,6 +34,10 @@ router.post('/register',async(req, res, next) => {
                 }
             })
 
+            const expiry = await AuthUtils.decode_JWT(access_token);
+
+            console.log(expiry);
+
             return res.status(201).send({ 
                 message : 'user created',
                 access_token, 
