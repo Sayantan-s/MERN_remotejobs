@@ -1,27 +1,59 @@
-import React, { useState } from 'react'
+import { AuthContext } from 'context';
+import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
+import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router';
+import http from 'utils/http';
 
 const Register = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('')
     const [confPassword, setConfPassword] = useState('')
-    const [phone, setPhone] = useState('')
+    const [phone, setPhone] = useState('');
 
-    const onSubmitHanlder = eve => {
-        eve.preventDefault()
-        const data = new FormData(eve.target);
-        for(let i of data.entries()){
-            console.log(i);
+    const authState = useContext(AuthContext)
+
+    const history = useHistory();
+
+    const onSubmitHanlder = async eve => {
+        eve.preventDefault();
+        let data = {};
+        const formData = new FormData(eve.target);
+        for (let [key, value] of formData.entries()) {
+            data = {
+                ...data,
+                [key]: value
+            };
         }
+        const res = await http({
+            url: '/auth/register',
+            method : 'POST',
+            data
+        })
+
+        if(res.status === 201){
+            authState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                isAuth : true,
+                token : {
+                    access : data.access_token,
+                    refresh: data.refresh_token
+                }
+            }})
+            history.push('/');
+        }
+
+        console.log(authState.state)
+
+        console.log(res);
     } 
     return (
         <div>
            <form onSubmit={onSubmitHanlder}>
-                <input type="text" placeholder="name" value={name} onChange={eve => setName(eve.target.value)} />
-                <input type="email" placeholder="email" value={email} onChange={eve => setEmail(eve.target.value)} />
-                <input type="numeric" placeholder="phone" value={phone} onChange={eve => setPhone(eve.target.value)} />
-                <input type="password" placeholder="password" value={password} onChange={eve => setPassword(eve.target.value)} />
-                <input type="password" placeholder="confirm password" value={confPassword} onChange={eve => setConfPassword(eve.target.value)} />
+                <input type="text" placeholder="name" name="name" value={name} onChange={eve => setName(eve.target.value)} />
+                <input type="email" placeholder="email" name="email" value={email} onChange={eve => setEmail(eve.target.value)} />
+                <input type="numeric" placeholder="phone" name="phone" value={phone} onChange={eve => setPhone(eve.target.value)} />
+                <input type="password" placeholder="password" name="password" value={password} onChange={eve => setPassword(eve.target.value)} />
+                <input type="password" placeholder="confirm password" name="confirm_password" value={confPassword} onChange={eve => setConfPassword(eve.target.value)} />
                 <button type="submit">Submit</button>
            </form>
         </div>

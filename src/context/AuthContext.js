@@ -5,24 +5,24 @@ export const AuthContext = createContext();
 
 const authState = {
     loading : false,
-    isAuth : false,
+    data : null,
     error : ''
 }
 
 const reducer = (state = authState, { type, payload }) => {
     switch(type){
-        case "LOADING":
+        case "AUTHENTICATING":
             return {
                 ...state,
                 loading : true,
-                isAuth : false,
+                data : null,
                 error : ''
             };
         case "AUTHENTICATION_SUCESSFULL":
             return {
                 ...state,
                 loading : false,
-                isAuth : true,
+                data : payload,
                 error : ''
             };
         case "AUTHENTICATION_FAILED":
