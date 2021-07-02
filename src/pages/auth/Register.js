@@ -11,7 +11,7 @@ const Register = () => {
     const [confPassword, setConfPassword] = useState('')
     const [phone, setPhone] = useState('');
 
-    const authState = useContext(AuthContext)
+    const AuthState = useContext(AuthContext)
 
     const history = useHistory();
 
@@ -32,17 +32,17 @@ const Register = () => {
         })
 
         if(res.status === 201){
-            authState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+            AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
                 isAuth : true,
                 token : {
-                    access : data.access_token,
-                    refresh: data.refresh_token
+                    access : res.data.access_token,
+                    refresh: res.data.refresh_token
                 }
             }})
             history.push('/');
         }
 
-        console.log(authState.state)
+        console.log(AuthState.state)
 
         console.log(res);
     } 
