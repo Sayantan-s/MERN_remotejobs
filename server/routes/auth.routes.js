@@ -7,6 +7,7 @@ const { registerValidator, loginValidator } = require('../validator/auth.validat
 const router = require('express').Router();
 
 router.post('/register',async(req, res, next) => {
+    console.log(req.body)
     try {
 
         const { error,name, email, password, phone } = await registerValidator.validateAsync(req.body);
@@ -33,10 +34,6 @@ router.post('/register',async(req, res, next) => {
                     role : type
                 }
             })
-
-            const expiry = await AuthUtils.decode_JWT(access_token);
-
-            console.log(expiry);
 
             return res.status(201).send({ 
                 message : 'user created',
