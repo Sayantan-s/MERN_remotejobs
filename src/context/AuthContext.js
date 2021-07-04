@@ -4,9 +4,11 @@ import { AUTHENTICATION_SUCESSFULL } from "./types/Auth.types";
 
 export const AuthContext = createContext();
 
+const userMetaData = JSON.parse(localStorage.getItem('user_meta'));
+
 const authState = {
     loading : false,
-    data : null,
+    data : userMetaData,
     error : ''
 }
 
@@ -20,11 +22,10 @@ const reducer = (state = authState, { type, payload }) => {
                 error : ''
             };
         case "AUTHENTICATION_SUCESSFULL":
-            const { token } = payload;
 
             console.log(payload);
-            localStorage.setItem('access_token', token.access);
-            localStorage.setItem('refresh_token', token.refresh)
+    
+            localStorage.setItem('user_meta', JSON.stringify(payload));
 
             return {
                 ...state,
@@ -36,7 +37,7 @@ const reducer = (state = authState, { type, payload }) => {
             return {
                 ...state,
                 loading : false,
-                isAuth : false,
+                data : null,
                 error : payload
             }
         default : return state;
@@ -44,20 +45,17 @@ const reducer = (state = authState, { type, payload }) => {
 }
 
 const AuthenticationContext = ({ children }) => {
-    const [ state, dispatch ] = useReducer(reducer, authState)
+    const [ state, dispatch ] = useReducer(reducer, authState);
 
-    useEffect(() => {
-        dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                token : {
-                    access : localStorage.getItem('access_token'),
-                    refresh : localStorage.getItem('refresh_token')
-                }
-            }   
-        })
-    },[])
+    const isAuthenticated = () => {
+        if(!state.data || (!state.data.token.access || !state.data.expiry)) return false;
+        return new Date().getTime() / 1000 < state.data.expiry;
+    }
+
+    console.log(isAuthenticated());
 
     return (
-       <AuthContext.Provider value={{ state, dispatch }}>
+       <AuthContext.Provider value={{ state, dispatch, isAuthenticated }}>
            {children}
        </AuthContext.Provider>
     )

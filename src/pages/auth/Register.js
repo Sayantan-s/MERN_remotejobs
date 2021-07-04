@@ -25,18 +25,19 @@ const Register = () => {
                 [key]: value
             };
         }
-        const { data : { access_token, refresh_token, expiry, role }, status } = await http({
+        const res = await http({
             url: '/auth/register',
             method : 'POST',
             data
         })
 
-        if(status === 201){
+        if(res.status === 201){
             AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                expiry, role,
+                expiry: res.data.expiry,
+                role : res.data.role,
                 token : {
-                    access : access_token,
-                    refresh: refresh_token
+                    access : res.data.access_token,
+                    refresh: res.data.refresh_token
                 }
             }})
             history.push('/');
