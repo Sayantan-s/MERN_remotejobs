@@ -25,7 +25,7 @@ const Login = () => {
         })
 
         if(res.data.message === "user successfully logged in!"){
-            history.push('/');
+            history.push('/find-jobs');
         }
 
         console.log(res);

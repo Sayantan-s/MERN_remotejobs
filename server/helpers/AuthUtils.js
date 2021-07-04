@@ -32,7 +32,6 @@ class AuthUtils extends RefreshToken {
         token,
         SECRET = ACCESS_TOKEN
     }){
-        console.log(token);
         return jwt.verify(token, SECRET);
     }
 

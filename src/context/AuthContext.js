@@ -21,8 +21,6 @@ const reducer = (state = authState, { type, payload }) => {
                 error : ''
             };
         case "AUTHENTICATION_SUCESSFULL":
-
-            console.log(payload);
     
             localStorage.setItem('user_meta', JSON.stringify(payload));
 
@@ -50,9 +48,7 @@ const AuthenticationContext = ({ children }) => {
         if(!state.data || (!state.data.token.access || !state.data.expiry)) return false;
         return new Date().getTime() / 1000 < state.data.expiry;
     }
-
-    console.log(isAuthenticated());
-
+    
     return (
        <AuthContext.Provider value={{ state, dispatch, isAuthenticated }}>
            {children}

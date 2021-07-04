@@ -40,8 +40,9 @@ const Register = () => {
                     refresh: res.data.refresh_token
                 }
             }})
-            history.push('/');
+            history.push('/find-jobs');
         }
+        console.log(res)
         console.log(AuthState.state)
     } 
     return (
