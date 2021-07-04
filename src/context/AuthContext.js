@@ -20,13 +20,11 @@ const reducer = (state = authState, { type, payload }) => {
                 error : ''
             };
         case "AUTHENTICATION_SUCESSFULL":
-            const { isAuth, token } = payload;
+            const { token } = payload;
 
-            if(!isAuth){
-                localStorage.setItem('isAuthenticated', isAuth);
-                localStorage.setItem('access_token', token.access);
-                localStorage.setItem('refresh_token', token.refresh)
-            }
+            console.log(payload);
+            localStorage.setItem('access_token', token.access);
+            localStorage.setItem('refresh_token', token.refresh)
 
             return {
                 ...state,
@@ -49,16 +47,13 @@ const AuthenticationContext = ({ children }) => {
     const [ state, dispatch ] = useReducer(reducer, authState)
 
     useEffect(() => {
-        if(state.data){
-                return dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                    isAuth : localStorage.getItem('isAuthenticated'),
-                    token : {
-                        access : localStorage.getItem('access_token'),
-                        refresh : localStorage.getItem('refresh_token')
-                    }
-                }   
-            })
-        }
+        dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                token : {
+                    access : localStorage.getItem('access_token'),
+                    refresh : localStorage.getItem('refresh_token')
+                }
+            }   
+        })
     },[])
 
     return (

@@ -35,10 +35,14 @@ router.post('/register',async(req, res, next) => {
                 }
             })
 
+            const { exp, role } = AuthUtils.decode_JWT({ token : access_token });
+
             return res.status(201).send({ 
                 message : 'user created',
                 access_token, 
-                refresh_token 
+                refresh_token,
+                expiry : exp,
+                role 
             });
         
         }
