@@ -1,6 +1,5 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import React from 'react'
-import { AUTHENTICATION_SUCESSFULL } from "./types/Auth.types";
 
 export const AuthContext = createContext();
 
