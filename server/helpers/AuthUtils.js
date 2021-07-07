@@ -16,7 +16,7 @@ class AuthUtils extends RefreshToken {
 
     static generate_JWT({
         payload,
-        expiry = '120s',
+        expiry = '10h',
         SECRET = ACCESS_TOKEN
     }){
         return jwt.sign(

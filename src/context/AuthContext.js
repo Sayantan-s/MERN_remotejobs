@@ -36,6 +36,15 @@ const reducer = (state = authState, { type, payload }) => {
                 loading : false,
                 data : null,
                 error : payload
+            };
+        case 'LOGOUT_USER':
+            localStorage.removeItem('user_meta')
+            
+            return {
+                ...state,
+                loading : false,
+                data : null,
+                error : ''
             }
         default : return state;
     }

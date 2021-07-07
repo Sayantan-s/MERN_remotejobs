@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { AuthContext } from 'context';
+import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
+import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router';
 import http from 'utils/http';
 
@@ -7,6 +9,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const history = useHistory();
+
+    const AuthState = useContext(AuthContext);
 
     const onSubmitHanlder = async eve => {
         eve.preventDefault();
@@ -24,7 +28,15 @@ const Login = () => {
             data
         })
 
-        if(res.data.message === "user successfully logged in!"){
+        if(res.status === 200){
+            AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                expiry: res.data.expiry,
+                role : res.data.role,
+                token : {
+                    access : res.data.access_token,
+                    refresh: res.data.refresh_token
+                }
+            }})
             history.push('/find-jobs');
         }
 

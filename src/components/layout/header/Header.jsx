@@ -4,10 +4,19 @@ import { Logo, Box, Link } from 'components'
 import styled from 'styled-components'
 import { AuthContext } from 'context'
 import { UserProfileButton } from 'components'
+import { LOGOUT_USER } from 'context/types/Auth.types'
+import { useHistory } from 'react-router-dom'
 
 const Header = () => {
 
-    const { isAuthenticated } = useContext(AuthContext)
+    const { dispatch, isAuthenticated } = useContext(AuthContext);
+
+    const history = useHistory();
+
+    const logoutUsers = async _ => {
+        await dispatch({ type : LOGOUT_USER });
+        history.push('/');
+    }
 
     console.log(isAuthenticated());
 
@@ -40,7 +49,7 @@ const Header = () => {
                                 Register Now
                             </Link>
                         </>
-                        : <UserProfileButton />
+                        : <UserProfileButton onClick={logoutUsers}/>
                     }
                </Box>
             </Navbar>

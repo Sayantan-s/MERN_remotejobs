@@ -2,10 +2,10 @@ import { Box, Avatar, Typography } from 'components'
 import React from 'react'
 import styled, { useTheme } from 'styled-components'
 
-const UserProfileButton = ({ name, status }) => {
+const UserProfileButton = ({ name, status, onClick }) => {
     const theme = useTheme();
     return (
-       <Profile flex alignItems="center">
+       <Profile flex alignItems="center" onClick={onClick}>
            <Avatar />
            <Box className="content">
                <Typography as={"h5"} color={theme.color.grey['500']}>
