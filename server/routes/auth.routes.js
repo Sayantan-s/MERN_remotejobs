@@ -80,7 +80,7 @@ router.post('/login',async(req, res, next) => {
             }
         })
 
-        const { exp, role } = AuthUtils.decode_JWT({ token : access_token });
+        const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
 
         return res.send({
             message : 'user successfully logged in!', 
