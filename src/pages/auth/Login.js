@@ -22,25 +22,29 @@ const Login = () => {
                 [key]: value
             };
         }
-        const res = await http({
-            url: '/auth/login',
-            method : 'POST',
-            data
-        })
-
-        if(res.status === 200){
-            AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                expiry: res.data.expiry,
-                role : res.data.role,
-                token : {
-                    access : res.data.access_token,
-                    refresh: res.data.refresh_token
-                }
-            }})
-            history.push('/find-jobs');
+        try {
+            const res = await http({
+                url: '/auth/login',
+                method : 'POST',
+                data
+            })
+    
+            if(res.status === 200){
+                AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                    expiry: res.data.expiry,
+                    role : res.data.role,
+                    token : {
+                        access : res.data.access_token,
+                        refresh: res.data.refresh_token
+                    }
+                }})
+                history.push('/find-jobs');
+            }
+    
+            console.log(res);
+        } catch (error) {
+            console.log(error.response.data)
         }
-
-        console.log(res);
     } 
 
     return (

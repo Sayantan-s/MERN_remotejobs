@@ -11,6 +11,7 @@ import TextField from "./elements/FormFields/TextField/TextField.component";
 import Button from "./elements/Btn&Link/Button.component";
 import Avatar from "./library/Avatar/Avatar.component";
 import UserProfileButton from "./elements/UserProfileButton/UserProfileButton.component";
+import PrivateRoute from "./utils/PrivateRoute.component";
 
 
-export { Box, Page, Typography, Header, Footer, Layout, Logo, Link, JobSearch, TextField, Button, Avatar, UserProfileButton }
+export { Box, Page, Typography, Header, Footer, Layout, Logo, Link, JobSearch, TextField, Button, Avatar, UserProfileButton, PrivateRoute }

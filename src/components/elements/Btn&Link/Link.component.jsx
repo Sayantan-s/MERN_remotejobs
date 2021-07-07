@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { commonStyles, outlineStyles, primaryStyles, secondaryStyles, underlineStyles } from './styles'
 const Link = ({ children, ...otherProps }, ref) => {
     return (
-       <Anchor {...otherProps} ref={ref}>
+       <Anchor {...otherProps} ref={ref} exact={true}>
            {children}
        </Anchor>
     )
