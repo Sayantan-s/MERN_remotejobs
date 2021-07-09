@@ -4,14 +4,14 @@ import styled from 'styled-components'
 
 const Page = ({children}, ref) => {
     return (
-       <PageLayout as={'section'} isLayout ref={ref}>
+       <Box as={'section'} isLayout ref={ref}>
            {children}
-       </PageLayout>
+       </Box>
     )
 }
 
 export default forwardRef(Page)
 
 const PageLayout = styled(Box)`
-    min-height: 100vh;
+min-height: 100vh;
 `

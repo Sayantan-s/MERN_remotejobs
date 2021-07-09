@@ -1,4 +1,5 @@
 import { Box, Typography, JobSearch } from 'components'
+import FeaturedCompanies from 'components/page section/home/FeaturedCompanies.component';
 import React from 'react'
 import styled from 'styled-components';
 
@@ -14,6 +15,7 @@ const Home = () => {
             </Typography>
             <JobSearch />
           </Header>
+          <FeaturedCompanies />
        </Container>
     )
 }

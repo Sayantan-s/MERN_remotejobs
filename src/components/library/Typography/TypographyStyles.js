@@ -20,7 +20,7 @@ line-height: 1;
 `
 
 const H4Styles = css`
-font-size: ${({ fontSize }) => fontSize || '4'}rem;
+font-size: ${({ fontSize }) => fontSize || '3'}rem;
 color : ${props => props.color || props.theme.color.grey['300']};
 
 line-height: 1;
