@@ -1,13 +1,16 @@
 import { AuthenticationContext } from 'context';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Styles from 'styles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthenticationContext>
-      <App />
+      <Styles>
+        <App />
+      </Styles>
     </AuthenticationContext>
   </React.StrictMode>,
   document.getElementById('root')

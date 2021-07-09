@@ -2,8 +2,9 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from './GlobalStyles'
 import '../fonts/fonts.css'
+import theme from './theme';
 
-const Styles = ({ theme, children }) => {
+const Styles = ({ children }) => {
 
     return (
        <ThemeProvider theme={theme}>

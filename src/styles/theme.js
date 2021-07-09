@@ -1,47 +1,33 @@
-const commonProperties = {
-    font : {
-        family : 'Cadiz',
-        weight : {
-            300: 300,
-            400: 400,
-            500: 500,
-            600: 600,
-            700: 700
-        }
+const theme = {
+    space: [ 4, 8, 12, 16, 32, 64, 128 ],
+    fontSizes: [ 16, 18, 24, 28 ],
+    fontWeights: [ 300, 400, 500, 600, 700 ],
+    fonts : ['Cadiz', 'sans-serif'],
+    lineHeights: [ 1.5, 1.8, 2, 2.5 ],
+    borders: ['2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
+    radii: [ 0, 2, 4, 6, 8, 10, 12, 16 ],
+    colors : {
+        text: [
+            '#ededed', 
+            '#b9b9b9', 
+            '#848484', 
+            '#3b3b3b', 
+            '#272727'
+        ],
+        background: '#f5f6ff',
+        blue: [
+            '#f5f6ff', 
+            '#ecedff', 
+            '#cfd2ff', 
+            '#b1b7ff', 
+            '#7780ff', 
+            '#3d4aff', 
+            '#3743e6' 
+        ]
+    },
+    buttons : {
+
     }
 }
 
-
-const themeLight = {
-    ...commonProperties,
-    color : {
-        font : '#000',
-        backgroundColor : '#f5f6ff',
-        blue: {
-            '50': '#f5f6ff', 
-            '100': '#ecedff', 
-            '200': '#cfd2ff', 
-            '300': '#b1b7ff', 
-            '400': '#7780ff', 
-            '500': '#3d4aff', 
-            '600': '#3743e6', 
-        },
-        grey : {
-            '100': '#ededed', 
-            '200': '#b9b9b9', 
-            '300': '#848484', 
-            '400': '#3b3b3b', 
-            '500': '#272727'
-        }
-    }
-}
-
-const themeDark = {
-    ...commonProperties,
-    color : {
-        font : '#fff',
-        backgroundColor : '#000'
-    }
-}
-
-export { themeLight, themeDark };
+export default theme;

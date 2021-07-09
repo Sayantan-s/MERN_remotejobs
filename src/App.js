@@ -1,9 +1,6 @@
 import { useContext, useEffect } from "react";
 import http from "utils/http";
 import { Layout, PrivateRoute } from "components";
-import Styles from "styles/Styles";
-import { themeDark, themeLight } from "styles/theme";
-import { useToggle } from "hooks";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "pages/Home";
 import Jobs from "pages/Jobs";
@@ -14,8 +11,6 @@ import { AuthContext } from 'context'
 
 function App() {
 
-  const [ toggle ] = useToggle();
-
   const { isAuthenticated } = useContext(AuthContext)
 
   useEffect(() => {
@@ -24,11 +19,8 @@ function App() {
       console.log(data)
     })()
   },[])
-
-  console.log(process.env)
-
+ 
   return (
-    <Styles theme={toggle ? themeDark : themeLight}>
       <Router>
         <Layout>
             <Switch>
@@ -42,7 +34,6 @@ function App() {
             </Switch>
         </Layout>
       </Router>
-    </Styles>
   );
 }
 
