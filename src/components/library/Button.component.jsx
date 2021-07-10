@@ -3,7 +3,9 @@ import { variant } from 'styled-system'
 
 const Button = styled('button')(
   {
-    appearance: 'none',
+    appearance: 'button',
+    border: 0,
+    outline: 0,
     fontFamily: 'inherit',
   },
   variant({

@@ -1,13 +1,18 @@
-import React, { forwardRef } from 'react'
 import styled from 'styled-components';
-import { compose, flexbox, space, color, layout, shadow, position } from 'styled-system';
+import { flexbox, border, space, color, layout, shadow, position, background } from 'styled-system';
 
-const View = ({...rest}, ref) => {
-    return (
-      <Container {...rest} ref={ref} />
-    )
-}
+const View = styled.div(
+  {
+    boxSizing : 'border-box'
+  },
+  flexbox,
+  border,
+  space,
+  color, 
+  layout, 
+  shadow, 
+  position,
+  background
+)
 
-export default forwardRef(View)
-
-const Container = styled("div")(compose(flexbox, space, color, layout, shadow, position ));
+export default View;

@@ -1,8 +1,10 @@
 const theme = {
     space: [ 4, 8, 12, 16, 32, 64, 128 ],
-    fontSizes: [ 16, 18, 24, 28 ],
+    fontSizes: [ 14, 16, 18, 24, 28 ],
     fontWeights: [ 300, 400, 500, 600, 700 ],
-    fonts : ['Cadiz', 'sans-serif'],
+    fonts : {
+        body : ['Cadiz', 'sans-serif']
+    },
     lineHeights: [ 1.5, 1.8, 2, 2.5 ],
     borders: ['2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
     radii: [ 0, 2, 4, 6, 8, 10, 12, 16 ],
@@ -24,9 +26,6 @@ const theme = {
             '#3d4aff', 
             '#3743e6' 
         ]
-    },
-    buttons : {
-
     }
 }
 
