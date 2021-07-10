@@ -1,12 +1,36 @@
 const theme = {
-    space: [ 4, 8, 12, 16, 32, 64, 128 ],
-    fontSizes: [ 14, 16, 18, 24, 28 ],
-    fontWeights: [ 300, 400, 500, 600, 700 ],
+    space: [
+		0,
+		'0.125rem',
+		'0.25rem',
+		'0.5rem',
+		'1rem',
+		'2rem',
+		'4rem',
+		'8rem',
+		'16rem',
+	],
+    fontSizes: {
+        xxl: '7rem',
+        xl : '5rem',
+        l: '3rem',
+		m: '2rem',
+		base: '1.6rem',
+		s: '1.2rem',
+		xs: '1rem',
+    },
+    fontWeights: {
+        light : 300,
+        normal : 400,
+        regular : 500,
+        semibold : 600,
+        bold : 700 
+    },
     fonts : {
         body : ['Cadiz', 'sans-serif']
     },
     lineHeights: [ 1.5, 1.8, 2, 2.5 ],
-    borders: ['2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
+    borders: ['1px solid', '2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
     radii: [ 0, 2, 4, 6, 8, 10, 12, 16 ],
     colors : {
         text: [

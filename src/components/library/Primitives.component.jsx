@@ -1,46 +1,31 @@
+import styled from 'styled-components';
+import { flexbox, border, space, color, layout, shadow, position, background, system } from 'styled-system';
 
+const View = styled.div(
+    {
+      boxSizing : 'border-box'
+    },
+    flexbox,
+    border,
+    space,
+    color, 
+    layout, 
+    shadow, 
+    position,
+    background
+)
 
-export const Box = system(
-    // core
-    'space',
-    'width',
-    'color',
-    'fontSize',
-    // borders
-    'borders',
-    'borderColor',
-    'borderRadius',
-    // typography
-    'textAlign',
-    // layout
-    'display',
-    'maxWidth',
-    'minWidth',
-    'height',
-    'maxHeight',
-    'minHeight',
-    // flexbox
-    'alignItems',
-    'alignContent',
-    'justifyContent',
-    'flexWrap',
-    'flexDirection',
-    'flex',
-    'flexBasis',
-    'justifySelf',
-    'alignSelf',
-    'order',
-    // position
-    'position',
-    'zIndex',
-    'top',
-    'right',
-    'bottom',
-    'left',
-  );
-  Box.displayName = 'Box';
+const Flex = styled(View)({
+    display: 'flex'
+})
+
+const Page = styled(View)(
+    {
+        minHeight : '100vh'
+    }
+)
   
-  export const Text = system(
+export const Text = system(
     {
       is: 'p',
       fontSize: 2,

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { color, layout, space, typography, variant, system  } from 'styled-system'
+import { color, layout, space, typography, variant } from 'styled-system'
 
 const variants = {
     body: {
 		fontFamily: 'body',
-		fontSize: 'm',
-		fontWeight: 'normal',
+		fontSize: 'base',
+		fontWeight: 'regular',
 		lineHeight: 'body',
-		color: 'text',
+		color: 'text.0',
 	},
 	disclaimer: {
 		fontFamily: 'body',
