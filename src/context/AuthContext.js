@@ -21,8 +21,10 @@ const reducer = (state = authState, { type, payload }) => {
                 error : ''
             };
         case "AUTHENTICATION_SUCESSFULL":
+
+            const { expiry, role } = payload;
     
-            localStorage.setItem('user_meta', JSON.stringify(payload));
+            localStorage.setItem('user_meta', JSON.stringify({  expiry, role }));
 
             return {
                 ...state,
@@ -54,7 +56,7 @@ const AuthenticationContext = ({ children }) => {
     const [ state, dispatch ] = useReducer(reducer, authState);
 
     const isAuthenticated = () => {
-        if(!state.data || (!state.data.token.access || !state.data.expiry)) return false;
+        if(!state.data || (!state.data.expiry)) return false;
         return new Date().getTime() / 1000 < state.data.expiry;
     }
     

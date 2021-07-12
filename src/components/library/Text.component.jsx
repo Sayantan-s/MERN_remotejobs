@@ -7,7 +7,7 @@ const variants = {
 		fontSize: 'base',
 		fontWeight: 'regular',
 		lineHeight: 'body',
-		color: 'text.0',
+		color: 'text.2',
 	},
 	disclaimer: {
 		fontFamily: 'body',
@@ -21,7 +21,7 @@ const variants = {
 		fontSize: 'm',
 		fontWeight: 'normal',
 		lineHeight: 'body',
-		color: 'error',
+		color: 'danger.4',
 	}
 }
 

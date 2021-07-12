@@ -1,9 +1,6 @@
 import React, { useContext } from 'react'
-import { View as Head } from 'components'
-import { Logo, View, Link } from 'components'
-import styled from 'styled-components'
+import { Logo, View, Flex, Link } from 'components'
 import { AuthContext } from 'context'
-import { UserProfileButton } from 'components'
 import { LOGOUT_USER } from 'context/types/Auth.types'
 import { useHistory } from 'react-router-dom'
 
@@ -21,13 +18,13 @@ const Header = () => {
     console.log(isAuthenticated());
 
     return (
-       <Head as="header">
-          <Wrapper isLayout flex>
+       <View as="header"> 
+          <Flex>
             <Link to="/">
                 <Logo />
             </Link>
-            <Navbar flex alignItems="center" justifyContent="space-between">
-               <Box className="nav_links">
+            <Flex alignItems="center" justifyContent="space-between" width="100%">
+               <View>
                     <Link to="/" type="underline">
                         Home
                     </Link>
@@ -37,8 +34,8 @@ const Header = () => {
                     <Link to="/applied-jobs">
                         Applied jobs
                     </Link>
-               </Box>
-               <Box className="nav_auth">
+               </View>
+               <View>
                     {
                         !isAuthenticated() ?
                         <>
@@ -49,12 +46,12 @@ const Header = () => {
                                 Register Now
                             </Link>
                         </>
-                        : <UserProfileButton onClick={logoutUsers}/>
+                        : <button onClick={logoutUsers}> USER </button>
                     }
-               </Box>
-            </Navbar>
-          </Wrapper>
-       </Head>
+               </View>
+            </Flex>
+          </Flex>
+       </View>
     )
 }
 

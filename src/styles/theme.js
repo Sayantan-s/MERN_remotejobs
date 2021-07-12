@@ -27,7 +27,7 @@ const theme = {
         bold : 700 
     },
     fonts : {
-        body : ['Cadiz', 'sans-serif']
+        body : 'Cadiz, sans-serif'
     },
     lineHeights: [ 1.5, 1.8, 2, 2.5 ],
     borders: ['1px solid', '2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
@@ -41,6 +41,20 @@ const theme = {
             '#272727'
         ],
         background: '#f5f6ff',
+        danger : [
+            '#ffe6e6', 
+            '#ffbfbf', 
+            '#ff9999', 
+            '#ff4d4d', 
+            '#ff0000'
+        ],
+        success : [
+            '#effce7', 
+            '#d6f8c4', 
+            '#bdf3a0', 
+            '#8ceb59', 
+            '#5be212'
+        ],
         blue: [
             '#f5f6ff', 
             '#ecedff', 
