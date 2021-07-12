@@ -1,5 +1,3 @@
-import { Box, Typography, JobSearch } from 'components'
-import FeaturedCompanies from 'components/page section/home/FeaturedCompanies.component';
 import React from 'react'
 import styled from 'styled-components';
 
@@ -21,24 +19,3 @@ const Home = () => {
 }
 
 export default Home
-
-const Container = styled(Box)`
-`
-const Header = styled(Box)`
-min-height: 55vh;
-display: flex;
-justify-content: center;
-flex-direction: column;
-text-align: center;
-.header{
-    &_text{
-        text-align: center;
-        &--highlight{
-            color : ${props => props.theme.color.blue['600']}
-        }
-    }
-    &_subtext{
-        margin-top : 3rem;
-    }
-}
-`

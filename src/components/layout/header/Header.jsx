@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Box as Head } from 'components'
-import { Logo, Box, Link } from 'components'
+import { View as Head } from 'components'
+import { Logo, View, Link } from 'components'
 import styled from 'styled-components'
 import { AuthContext } from 'context'
 import { UserProfileButton } from 'components'
@@ -59,24 +59,3 @@ const Header = () => {
 }
 
 export default Header
-
-const Wrapper = styled(Box)`
-align-items: center;
-padding: 2rem;
-`
-const Navbar = styled(Box)`
-width: 100%;
-margin-left : 2rem;
-.nav{
-    &_links{
-        a:not(:first-child){
-            margin-left : 2rem;
-        }
-    }
-    &_auth{
-        a:not(:first-child){
-            margin-left : 2rem;
-        }
-    }
-}
-`

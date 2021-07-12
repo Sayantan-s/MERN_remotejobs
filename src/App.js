@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import http from "utils/http";
-import { Layout, PrivateRoute } from "components";
+import { PrivateRoute } from "components";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from "pages/Home";
 import Jobs from "pages/Jobs";
@@ -22,8 +22,7 @@ function App() {
  
   return (
       <Router>
-        <Layout>
-            <Switch>
+          <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/find-jobs" component={Jobs} />
               <Route path="/applied-jobs" component={AppliedJobs} />
@@ -32,7 +31,6 @@ function App() {
               </PrivateRoute>
               <Route path="/auth/login" component={Login} />
             </Switch>
-        </Layout>
       </Router>
   );
 }

@@ -10,13 +10,13 @@ html{
     font-size: 62.5%;
 }
 body{
-    font-family: ${props => props.theme.font.family};
+    font-family: ${props => props.theme.fonts.body};
     overflow-x : hidden;
     max-width: 100vw;
-    color: ${props => props.theme.color.grey["300"]};
-    background-color: ${props => props.theme.color.blue['50']};
-    font-size: 1.6rem;
-    font-weight: 500;
+    color: ${props => props.theme.colors.text[0]};
+    background-color: ${props => props.theme.colors.background};
+    font-size:${props => props.theme.fontSizes.base};
+    font-weight:${props => props.theme.fontWeights.regular};
     #root{
         overflow-x : inherit;
         max-width: inherit;
