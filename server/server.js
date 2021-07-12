@@ -1,6 +1,8 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require('cors')
+const cookieParser= require("cookie-parser");
+
 
 const { PORT, MONGODB_DB } = require("./config/index");
 
@@ -10,6 +12,8 @@ const companyRoutes = require("./routes/company.routes");
 
 const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
+const AuthUtils = require("./helpers/AuthUtils");
+const ApiError = require("./helpers/ApiError");
 
 const app = express();
 const port = PORT || 8000;
@@ -17,10 +21,22 @@ const port = PORT || 8000;
 const middlewares = [
     morgan('dev'),
     express.json(),
-    cors({ origin : 'http://localhost:3000' })
+    cors({ origin : 'http://localhost:3000' }),
+    cookieParser()
 ]
 
 app.use(middlewares)
+
+app.use(async (req, res, next) => {
+    console.log(req.cookies.token)
+    const { token } = req.cookies;
+    const metaData = await AuthUtils.decode_JWT({ token })
+    if(!metaData){
+        return next(ApiError.customError(401, 'User unAuthorized!'))
+    }
+    req.user = metaData;
+    next();
+})
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);

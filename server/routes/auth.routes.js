@@ -36,6 +36,10 @@ router.post('/register',async(req, res, next) => {
             })
 
             const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
+
+            res.cookie('token', access_token, {
+                httpOnly : true
+            })
             
             return res.status(201).send({ 
                 message : 'user created',
@@ -81,6 +85,10 @@ router.post('/login',async(req, res, next) => {
         })
 
         const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
+
+        res.cookie('token', access_token, {
+            httpOnly : true
+        })
 
         return res.send({
             message : 'user successfully logged in!', 
