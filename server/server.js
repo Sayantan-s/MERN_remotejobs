@@ -14,6 +14,7 @@ const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
 const AuthUtils = require("./helpers/AuthUtils");
 const ApiError = require("./helpers/ApiError");
+const csrf= require("csurf");
 
 const app = express();
 const port = PORT || 8000;
@@ -22,7 +23,10 @@ const middlewares = [
     morgan('dev'),
     express.json(),
     cors({ origin : 'http://localhost:3000' }),
-    cookieParser()
+    cookieParser(),
+    csrf({
+        cookie : true
+    })
 ]
 
 app.use(middlewares)
@@ -36,6 +40,10 @@ app.use(async (req, res, next) => {
     }
     req.user = metaData;
     next();
+})
+
+app.get('/api/csrf', (req, res ) => {
+    res.send({ csrfToken : req.csrfToken() });
 })
 
 app.use('/api/auth', authRoutes);
