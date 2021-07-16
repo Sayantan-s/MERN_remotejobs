@@ -1,11 +1,16 @@
 import styled from 'styled-components';
-import { View, Button }from 'components';
-import { Link as Anchor } from 'react-router-dom';
+import { View }from 'components';
+import { system } from 'styled-system';
 
 
+// FLEX
 const Flex = styled(View)({
     display: 'flex'
 })
+
+
+
+//PAGE
 
 const Page = styled(View)(
     {
@@ -13,10 +18,25 @@ const Page = styled(View)(
     }
 )
 
-const Link = ({ ...rest  }) => <Button as={Anchor} {...rest} />
-
-Link.defaultProps = {
-    variant : "secondary.normal"
+Page.defaultProps = {
+    width : [10/12],
+    m : '0 auto'
 }
 
-export { Flex, Page, Link }
+//STACK
+
+const Stack = styled(View)(
+	system({
+		gap: {
+			property: '&& > * + *',
+			scale: 'space',
+			transform: (value, scale) => ({ marginLeft: scale[value] }),
+		},
+	})
+);
+
+Stack.defaultProps = {
+    display: 'flex'
+}
+
+export { Flex, Page, Stack }

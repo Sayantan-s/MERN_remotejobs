@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { ACCESS_TOKEN, REFRESH_TOKEN } = require('../config/index');
 const jwt = require('jsonwebtoken');
 const RefreshToken = require('../models/utility models/RefreshToken.model');
+const crypto = require('crypto');
 
 
 class AuthUtils extends RefreshToken {
@@ -33,6 +34,10 @@ class AuthUtils extends RefreshToken {
         SECRET = ACCESS_TOKEN
     }){
         return jwt.verify(token, SECRET);
+    }
+
+    static generate_refreshToken(){
+        return crypto.randomBytes(64).toString("hex");
     }
 
     static async createAuthTokens({ payload }){

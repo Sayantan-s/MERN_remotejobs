@@ -4,42 +4,42 @@ import { color, space, typography, variant } from 'styled-system';
 
 const variants = {
     1 : {
-        color : 'text',
+        color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
         fontSize : 'xl'
     },
     2 : {
-        color : 'text',
+        color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
         fontSize : 'l'
     },
     3 : {
-        color : 'text',
+        color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
         fontSize : 'm'
     },
     4 : {
-        color : 'text',
+        color : 'text.3',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
         fontSize : 'm'
     },
     5 : {
-        color : 'text',
+        color : 'text.2',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
         fontSize : 'm'
     },
     6 : {
-        color : 'text',
+        color : 'text.2',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',

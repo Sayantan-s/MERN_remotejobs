@@ -28,7 +28,7 @@ router.post('/register',async(req, res, next) => {
             
             const { type, _id } = user.ops[0];
 
-            const { access_token, refresh_token } = await AuthUtils.createAuthTokens({
+            const { access_token } = await AuthUtils.createAuthTokens({
                 payload : {
                     _id : ObjectID(_id),
                     role : type
@@ -44,7 +44,6 @@ router.post('/register',async(req, res, next) => {
             return res.status(201).send({ 
                 message : 'user created',
                 access_token, 
-                refresh_token,
                 expiry : exp,
                 role 
             });
@@ -93,7 +92,6 @@ router.post('/login',async(req, res, next) => {
         return res.send({
             message : 'user successfully logged in!', 
             access_token, 
-            refresh_token,
             expiry : exp,
             role 
         });   
@@ -102,12 +100,8 @@ router.post('/login',async(req, res, next) => {
     }
 })
 
-router.post('/refresh',async(req, res, next) => {
-    return res.send({ message: "Hello refresh" });
-})
-
 router.post('/logout',async(req, res, next) => {
     return res.send({ message: "Hello logout" });
 })
 
-module.exports = router
+module.exports = router 

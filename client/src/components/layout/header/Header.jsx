@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Logo, View, Flex, Link } from 'components'
+import { Logo, View, Flex, Link, Stack } from 'components'
 import { AuthContext } from 'context'
 import { LOGOUT_USER } from 'context/types/Auth.types'
 import { useHistory } from 'react-router-dom'
@@ -18,24 +18,24 @@ const Header = () => {
     console.log(isAuthenticated());
 
     return (
-       <View as="header"> 
+       <View as="header" width={[10/12]} m="0 auto"> 
           <Flex>
             <Link to="/">
                 <Logo />
             </Link>
             <Flex alignItems="center" justifyContent="space-between" width="100%">
-               <View>
-                    <Link to="/" type="underline">
+                <Stack gap={5} ml={4}>
+                    <Link to="/" color={"text.3"}>
                         Home
                     </Link>
-                    <Link to="/find-jobs">
+                    <Link to="/find-jobs" color={"text.3"}>
                         Find jobs
                     </Link>
-                    <Link to="/applied-jobs">
+                    <Link to="/applied-jobs" color={"text.3"}>
                         Applied jobs
                     </Link>
-               </View>
-               <View>
+                </Stack>
+               <Stack gap={5}>
                     {
                         !isAuthenticated() ?
                         <>
@@ -48,7 +48,7 @@ const Header = () => {
                         </>
                         : <button onClick={logoutUsers}> USER </button>
                     }
-               </View>
+               </Stack>
             </Flex>
           </Flex>
        </View>

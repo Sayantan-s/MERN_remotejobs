@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { flexbox, border, space, color, layout, shadow, position, background, compose } from 'styled-system';
 
 const View = styled.div(css({
-    boxSizing : 'border-box',
-    maxWidth : props => props.isLayout ? '150rem' : '100%'
+    boxSizing : 'border-box'
   }),
   compose(
     flexbox,

@@ -10,6 +10,9 @@ const theme = {
 		'8rem',
 		'16rem',
 	],
+    sizes : {
+        
+    },
     fontSizes: {
         xxl: '7rem',
         xl : '5rem',
