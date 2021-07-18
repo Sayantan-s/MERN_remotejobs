@@ -3,6 +3,7 @@ import View from "./library/View.component";
 import Button from './library/Button.component';
 import Text from './library/Text.component';
 import Link from "./library/Link.component";
+import Heading from "./library/Heading.component";
 import { Flex, Page, Stack } from './library/Primitives.component';
 import { Radio } from './library/FormItems.component';
 import Logo from "./constants/Logo";
@@ -14,4 +15,4 @@ import Layout from "./layout/Layout";
 
 import QuesAns from "./elements/QuesAns.component";
 
-export { View, Button, Text, Link, Flex, Page, Stack, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns }
+export { View, Button, Text, Link, Flex, Page, Stack, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns, Heading }

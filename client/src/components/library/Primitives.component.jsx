@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { View }from 'components';
 import { system } from 'styled-system';
+import { forwardRef } from 'react';
 
 
 // FLEX
@@ -12,11 +13,7 @@ const Flex = styled(View)({
 
 //PAGE
 
-const Page = styled(View)(
-    {
-        minHeight : '100vh'
-    }
-)
+const Page = forwardRef(({  cuttSpace = 0 , ...rest }) => <View minHeight={`calc(100vh - ${cuttSpace}px)`} {...rest} />)
 
 Page.defaultProps = {
     width : [10/12],

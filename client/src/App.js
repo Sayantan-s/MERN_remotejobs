@@ -7,7 +7,7 @@ import Jobs from "pages/Jobs";
 import AppliedJobs from "pages/AppliedJobs";
 import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
-import { AuthContext } from 'context'
+import { AuthContext, NavHeightContext } from 'context'
 import Qna from "pages/Qna";
 
 function App() {
@@ -31,18 +31,20 @@ function App() {
  
   return (
       <Router>
-         <Layout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/find-jobs" component={Jobs} />
-              <Route path="/applied-jobs" component={AppliedJobs} />
-              <Route path="/qna" component={Qna} />
-              <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
-                <Register />
-              </PrivateRoute>
-              <Route path="/auth/login" component={Login} />
-            </Switch>
-         </Layout>
+         <NavHeightContext>
+          <Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/find-jobs" component={Jobs} />
+                <Route path="/applied-jobs" component={AppliedJobs} />
+                <Route path="/qna" component={Qna} />
+                <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
+                  <Register />
+                </PrivateRoute>
+                <Route path="/auth/login" component={Login} />
+              </Switch>
+          </Layout>
+         </NavHeightContext>
       </Router>
   );
 }

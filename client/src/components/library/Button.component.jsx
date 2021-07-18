@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { variant, color, compose, space, typography } from 'styled-system'
+import { variant, color, compose, space, typography, layout } from 'styled-system'
 import css from '@styled-system/css'
 
 const variants = {
     primary : {
       normal : {
         color: 'text.0',
-        bg: 'blue.4',
+        bg: 'blue.6',
       },
       danger : {
         color: 'text.0',
@@ -98,19 +98,25 @@ const Button = styled('button')(css({
     border: "none",
     outline: 'none',
     fontFamily: 'body',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    borderRadius : '1.8rem'
   }),
   variant({ variants }),
   variant({ variants : size, prop : 'size'}),
   compose(
     color,
     space,
-    typography
+    typography,
+    layout
   )
 )
 
 Button.defaultProps = {
   variant : 'primary.normal',
-  //size : 'md'
+  size : 'md'
 }
 
 export default Button;

@@ -1,12 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { Logo, View, Flex, Link, Stack } from 'components'
 import { AuthContext } from 'context'
 import { LOGOUT_USER } from 'context/types/Auth.types'
 import { useHistory } from 'react-router-dom'
+import { NavContext } from 'context/NavHeightContext'
 
 const Header = () => {
 
     const { dispatch, isAuthenticated } = useContext(AuthContext);
+
+    const heightRef = useRef(null);
+
+    const { setHeight } = useContext(NavContext)
 
     const history = useHistory();
 
@@ -15,10 +20,12 @@ const Header = () => {
         history.push('/');
     }
 
-    console.log(isAuthenticated());
+    useEffect(() => {
+        setHeight(heightRef.current.offsetHeight)
+    },[])
 
     return (
-       <View as="header" width={[10/12]} m="0 auto"> 
+       <View as="header" width={[10/12]} m="0 auto" ref={heightRef}> 
           <Flex>
             <Link to="/">
                 <Logo />

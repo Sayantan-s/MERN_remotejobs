@@ -12,7 +12,8 @@ const Link = styled(Navigator)(
 )
 
 Link.defaultProps = {
-    variant : 'transparent.normal'
+    variant : 'transparent.normal',
+    size : 'none'
 }
 
 export default Link

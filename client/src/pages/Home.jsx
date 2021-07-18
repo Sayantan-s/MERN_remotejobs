@@ -1,4 +1,5 @@
 import { View, Text } from 'components';
+import { Heading } from 'components/index';
 import React from 'react'
 
 const Home = () => {
@@ -7,6 +8,9 @@ const Home = () => {
           <Text>
             Hello
           </Text>
+          <Heading level={1}>
+            skdhsjdhsjdsd
+          </Heading>
       </View>
     )
 }

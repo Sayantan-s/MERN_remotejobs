@@ -47,17 +47,17 @@ const variants = {
     }
 }
 
-const Base = ({
+const Base = forwardRef(({
     level,
-    as : Component = `h${level}`,
+    as: Component = `h${level}`,
     ...rest
-}, ref) => forwardRef(
-    <Component {...rest} ref={ref} />
-);
+}, ref) => <Component {...rest} ref={ref}/>);
 
 const Heading = styled(Base)(
     {
-        margin: 0
+        margin: 0,
+        marginBlockStart : 0,
+        marginBlockEnd : 0
     },
     variant({ variants, prop : 'level' }),
     space,

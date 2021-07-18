@@ -5,9 +5,7 @@ const Layout = ({ children }) => {
     return (
         <>
             <Header />
-                <Page as={"main"} isLayout>
-                    {children}
-                </Page>
+                {children}
             <Footer />
         </>
     )
