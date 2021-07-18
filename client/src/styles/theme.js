@@ -36,7 +36,7 @@ const theme = {
         body : 'Cadiz, sans-serif'
     },
     lineHeights: [ 1.5, 1.8, 2, 2.5 ],
-    borders: ['1px solid', '2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
+    border: ['1px solid', '2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
     radii: [ 0, 2, 4, 6, 8, 10, 12, 16 ],
     colors : {
         text: [

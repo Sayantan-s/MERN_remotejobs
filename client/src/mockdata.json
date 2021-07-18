@@ -1,0 +1,35 @@
+{
+    "data" : [
+        {
+            "question" : "JavaScript _________ when there is an indefinite or an infinite value during an arithmetic computation.",
+            "correct" : "",
+            "options" : [
+                "Prints an exception error",
+                "Prints an overflow error",
+                "Displays “Infinity”",
+                "Prints the value as such"
+            ]
+        },
+        {
+            "question" : "The script tag must be placed in __________",
+            "correct" : "",
+            "options" : [
+                "the head tag",
+                "the head or body",
+                "the title or head", 
+                "after the body tag"
+            ]
+        },
+        {
+            "question" : "Which of the following is not considered as an error in JavaScript?",
+            "correct" : "",
+            "options" : [
+                "Syntax error",
+                "Missing of semicolons",
+                "Division by zero",
+                "Missing of Bracket"
+            ]
+        }
+    ]
+}
+

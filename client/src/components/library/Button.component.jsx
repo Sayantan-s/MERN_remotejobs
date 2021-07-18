@@ -50,24 +50,29 @@ const variants = {
         color: 'blue.5',
         bg: 'transparent',
         width: 'max-content',
-        py : '1.2rem'
+        
       },
       danger : {
         color: 'danger.4',
         bg: 'transparent',
         width: 'max-content',
-        py : '1.2rem'
+        
       },
       success : {
         color: 'success.4',
         bg: 'transparent',
         width: 'max-content',
-        py : '1.2rem'
+       
       }
     }
 }
 
 const size = {
+  none : {
+    minHeight : 'auto',
+    px : 0,
+    py : 0    
+  },
   sm: {
       minWidth: '5rem',
       px : '1.2rem',
@@ -102,7 +107,7 @@ const Button = styled('button')(css({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    borderRadius : '1.8rem'
+    borderRadius : '1rem'
   }),
   variant({ variants }),
   variant({ variants : size, prop : 'size'}),
