@@ -27,16 +27,29 @@ class User{
         projections = null
     }){
 
-        const mainQuery = db('user').find(options)
+        try {
 
-        const res = !projections || projections === {} ? await mainQuery.toArray() : await mainQuery.project(projections).toArray();
-
-        return res[0];
+            const res = await db('user').aggregate([
+                {
+                    $match : options
+                },
+                {
+                    ...(
+                        projections && { $projections : projections }
+                    )
+                }
+            ])
+    
+            return res[0];
+            
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 
     static async exists(options){
 
-        const res = await User.findOne(options, { projections : null });
+        const res = await User.findOne(options);
 
         return !!res
     }

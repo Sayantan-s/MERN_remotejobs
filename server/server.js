@@ -15,6 +15,7 @@ const { PageNotFoundError, PageError } = require("./middlewares/error");
 const AuthUtils = require("./helpers/AuthUtils");
 const ApiError = require("./helpers/ApiError");
 const csrf= require("csurf");
+const qnaRoute = require("./routes/qna.routes");
 
 const app = express();
 const port = PORT || 8000;
@@ -24,14 +25,14 @@ const middlewares = [
     express.json(),
     cors({ origin : 'http://localhost:3000' }),
     cookieParser(),
-    csrf({
+    /*csrf({
         cookie : true
-    })
+    })*/
 ]
 
 app.use(middlewares)
 
-app.use(async (req, res, next) => {
+/*app.use(async (req, res, next) => {
     console.log(req.cookies.token)
     const { token } = req.cookies;
     const metaData = await AuthUtils.decode_JWT({ token })
@@ -44,11 +45,12 @@ app.use(async (req, res, next) => {
 
 app.get('/api/csrf', (req, res ) => {
     res.send({ csrfToken : req.csrfToken() });
-})
+})*/
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
 app.use('/api/companies', companyRoutes);
+app.use('/api/qna', qnaRoute)
 
 app.use(PageNotFoundError);
 app.use(PageError);
