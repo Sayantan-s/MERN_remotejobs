@@ -1,34 +1,40 @@
 {
     "data" : [
-        {
+        {   
+            "type" : "mcq",
             "question" : "JavaScript _________ when there is an indefinite or an infinite value during an arithmetic computation.",
-            "correct" : "",
+            "correct" : "Displays “Infinity”",
             "options" : [
                 "Prints an exception error",
                 "Prints an overflow error",
                 "Displays “Infinity”",
                 "Prints the value as such"
-            ]
+            ],
+            "company" : "Snapchat"
         },
         {
-            "question" : "The script tag must be placed in __________",
-            "correct" : "",
+            "type" : "mcq",
+            "question" : "The type of a variable that is volatile is _______________",
+            "correct" : "Mutable variable",
             "options" : [
-                "the head tag",
-                "the head or body",
-                "the title or head", 
-                "after the body tag"
-            ]
+                "Volatile variable",
+                "Immutable variable",
+                "Mutable variable", 
+                "Dynamic variable"
+            ],
+            "company" : "Google"
         },
         {
+            "type" : "mcq",
             "question" : "Which of the following is not considered as an error in JavaScript?",
-            "correct" : "",
+            "correct" : "Division by zero",
             "options" : [
                 "Syntax error",
                 "Missing of semicolons",
                 "Division by zero",
                 "Missing of Bracket"
-            ]
+            ],
+            "company" : "Miro"
         }
     ]
 }

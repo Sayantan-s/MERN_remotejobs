@@ -14,13 +14,13 @@ function App() {
 
   const { isAuthenticated } = useContext(AuthContext)
 
-  useEffect(() => {
+  /*useEffect(() => {
     (async() => {
       const res = await http.get('/csrf');
       const { csrfToken } = res.data;
       http.defaults.headers['X-CSRF-token'] = csrfToken;
     })()
-  },[])
+  },[])*/
 
   useEffect(() => {
     (async () => {

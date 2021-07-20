@@ -3,7 +3,7 @@ import { View, Heading, Radio as RadioGroup, Flex, Text,Button } from 'component
 
 const QuesAns = forwardRef(({ question,value, options, ...rest }, ref) => {
     return (
-        <View ml="6" {...rest} ref={ref} maxWidth={'100.2rem'}> 
+        <View ml="6" {...rest} ref={ref} maxWidth={'100.2rem'} maxHeight={'40rem'} minHeight={'40rem'}> 
             <Heading level={1}>
                 {question || 'The script tag must be placed in __________'}
             </Heading>
