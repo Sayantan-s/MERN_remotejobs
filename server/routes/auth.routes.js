@@ -24,7 +24,7 @@ router.post('/register',async(req, res, next) => {
         if(!user) return next(ApiError.customError(400, 'Failed to create your account!')); 
 
         const { access_token } = await AuthUtils.createAuthTokens({
-            payload : {
+            payload : { 
                 _id : user._id,
                 role : user.type
             }
@@ -60,7 +60,7 @@ router.post('/login',async(req, res, next) => {
         
         if(!isAlreadyAUser) return next(ApiError.customError(403, "Invalid email or password!"))
 
-        const user = await User.findOne({ email }).select('password type -__v');
+        const user = await User.findOne({ email }).select('password type -__v').lean();
 
         const isPasswordValid = await AuthUtils.verifyPassword(password, user.password);
 

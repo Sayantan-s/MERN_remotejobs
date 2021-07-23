@@ -1,11 +1,10 @@
 const bcrypt = require('bcrypt');
 const { ACCESS_TOKEN, REFRESH_TOKEN } = require('../config/index');
 const jwt = require('jsonwebtoken');
-const RefreshToken = require('../models/utility models/RefreshToken.model');
 const crypto = require('crypto');
 
 
-class AuthUtils extends RefreshToken {
+class AuthUtils{
     static async hashPassword(password){
         const salt = await bcrypt.genSalt(12);
         return await bcrypt.hash(password, salt);
@@ -48,8 +47,6 @@ class AuthUtils extends RefreshToken {
             expiry : '1yr',
             SECRET : REFRESH_TOKEN
         })
-
-        await AuthUtils.create({ token : refresh_token });
 
         return { access_token, refresh_token }
     }
