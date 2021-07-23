@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { variant, color, compose, space, typography, layout } from 'styled-system'
+import { variant, color, compose, space, typography, layout, border } from 'styled-system'
 import css from '@styled-system/css'
 
 const variants = {
@@ -19,7 +19,7 @@ const variants = {
     },
     secondary : {
       normal : {
-        color: 'blue.5',
+        color: 'blue.6',
         bg: 'blue.1'
       },
       danger : {
@@ -31,23 +31,32 @@ const variants = {
         bg: 'success.0',
       }
     },
-    outlined : {
+    outline : {
       normal : {
-        color: 'blue.5',
+        color: 'blue.6',
         bg: 'transparent',
+        border : 1,
+        borderColor : 'blue.4',
+        borderRadius : 10
       },
       danger : {
         color: 'danger.4',
-        bg: 'transparent'
+        bg: 'transparent',
+        border : 1,
+        borderColor : 'danger.4',
+        borderRadius : 10
       },
       success : {
         color: 'success.4',
-        bg: 'transparent'
+        bg: 'transparent',
+        border : 1,
+        borderColor : 'success.4',
+        borderRadius : 10
       }
     },
     transparent : {
       normal : {
-        color: 'blue.5',
+        color: 'blue.6',
         bg: 'transparent',
         width: 'max-content',
         
@@ -83,17 +92,15 @@ const size = {
     px : '1.6rem',
     py : '1.2rem'
   },
-
   lg : {
     minWidth : '12rem',
     px : '1.8rem',
     py : '1.4rem'
   },
-
   xl : {
     minWidth : '16rem',
-    px : '2rem',
-    py : '1.4rem'
+    px : '1.8rem',
+    py : '1.2rem'
   }
 
 }
@@ -115,7 +122,8 @@ const Button = styled('button')(css({
     color,
     space,
     typography,
-    layout
+    layout,
+    border
   )
 )
 

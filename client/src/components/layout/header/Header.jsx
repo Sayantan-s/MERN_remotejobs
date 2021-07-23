@@ -49,7 +49,7 @@ const Header = () => {
                             <Link to="/auth/login">
                                 Login
                             </Link>
-                            <Link to="/auth/register" type="outline" rounded="md">
+                            <Link to="/auth/register" variant="outline.normal" borderRadius={10} size="lg">
                                 Register Now
                             </Link>
                         </>

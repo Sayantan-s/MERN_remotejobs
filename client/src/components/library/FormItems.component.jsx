@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex } from 'components';
 import styled, { useTheme } from 'styled-components';
+import css from '@styled-system/css';
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -38,6 +39,29 @@ const Radio = ({ options, value, ...rest }) => {
         }
     </RadioGroup>
   )
+}
+
+
+const Input = ({ icon : Icon, before, after, as, ...rest }) => {
+
+    const ElementInput = styled('input')(css({
+        p : 3,
+        outline: 'none',
+        border: 'none'
+    }))
+
+
+    return(
+        <Flex alignItems="center">
+            <ElementInput as={as} 
+                {...rest}
+            />
+        </Flex>
+    )
+}
+
+Input.defaultProps = {
+    before : true
 }
 
 const CheckBoxGroup = () => {
