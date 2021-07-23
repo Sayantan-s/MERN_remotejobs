@@ -1,7 +1,6 @@
-const { ObjectID } = require('mongodb');
 const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
-const User = require('../models/User.model');
+const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
 
 const router = require('express').Router();
@@ -20,38 +19,29 @@ router.post('/register',async(req, res, next) => {
 
         if(isAlreadyAUser) return next(ApiError.customError(409, "Someone's already using this email!"))
 
-        const hashPassword = await AuthUtils.hashPassword(password);
+        const user = await User.create({ name, email, password, phone });
 
-        const user = await new User(name, email, hashPassword, phone).save();
+        if(!user) return next(ApiError.customError(400, 'Failed to create your account!')); 
 
-        if(user.result.ok === 1){   //check 1
-            
-            const { type, _id } = user.ops[0];
+        const { access_token } = await AuthUtils.createAuthTokens({
+            payload : {
+                _id : user._id,
+                role : user.type
+            }
+        })
 
-            const { access_token } = await AuthUtils.createAuthTokens({
-                payload : {
-                    _id : ObjectID(_id),
-                    role : type
-                }
-            })
+        const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
 
-            const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
-
-            res.cookie('token', access_token, {
-                httpOnly : true
-            })
-            
-            return res.status(201).send({ 
-                message : 'user created',
-                access_token, 
-                expiry : exp,
-                role 
-            });
+        res.cookie('token', access_token, {
+            httpOnly : true
+        })
         
-        }
-
-        else return next(ApiError.customError(400, 'Failed to create your account!')); //check 2
-    
+        return res.status(201).send({ 
+            message : 'user created',
+            access_token, 
+            expiry : exp,
+            role 
+        });    
 
     } catch (error) {
         next(error);
@@ -70,15 +60,15 @@ router.post('/login',async(req, res, next) => {
         
         if(!isAlreadyAUser) return next(ApiError.customError(403, "Invalid email or password!"))
 
-        const user = await User.findOne({ email }, { projections : { password : 1, type : 1 } });
+        const user = await User.findOne({ email }).select('password type -__v');
 
         const isPasswordValid = await AuthUtils.verifyPassword(password, user.password);
 
         if(!isPasswordValid) return next(ApiError.customError(403, 'Invalid email or password!'));
 
-        const { access_token, refresh_token } = await AuthUtils.createAuthTokens({
+        const { access_token } = await AuthUtils.createAuthTokens({
             payload : {
-                _id : ObjectID(user._id),
+                _id : user._id,
                 role : user.type
             }
         })

@@ -17,6 +17,11 @@ const ApiError = require("./helpers/ApiError");
 const csrf= require("csurf");
 const qnaRoute = require("./routes/qna.routes");
 
+
+// DATABASE CONNECTION
+
+require('./helpers/init_mongo');
+
 const app = express();
 const port = PORT || 8000;
 
@@ -55,11 +60,8 @@ app.use('/api/qna', qnaRoute)
 app.use(PageNotFoundError);
 app.use(PageError);
  
-
-connectDb(MONGODB_DB,() => {
-    app.listen(port, _=> {
-        console.log('====================================');
-        console.log(`we are live on port ${port}`.toUpperCase());
-        console.log('====================================');
-    }) 
-})  
+app.listen(port, _=> {
+    console.log('====================================');
+    console.log(`we are live on port ${port}`.toUpperCase());
+    console.log('====================================');
+}) 
