@@ -82,5 +82,5 @@ const CheckBoxGroup = () => {
     )
 }
 
-export { Radio, CheckBoxGroup }
+export { Radio, CheckBoxGroup, Input }
 
