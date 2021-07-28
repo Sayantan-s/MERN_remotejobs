@@ -1,16 +1,11 @@
 import { View, Text } from 'components';
-import { Heading } from 'components/index';
+import CTA from 'components/page section/home/CTA.component.jsx';
 import React from 'react'
 
 const Home = () => {
     return (
       <View>
-          <Text>
-            Hello
-          </Text>
-          <Heading level={1}>
-            skdhsjdhsjdsd
-          </Heading>
+         <CTA />
       </View>
     )
 }

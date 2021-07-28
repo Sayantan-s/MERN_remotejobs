@@ -1,3 +1,3 @@
 import QuesAns from "./QuesAns.component";
-
-export { QuesAns }
+import HomeSearchBar  from "./HomeSearchBar.component";
+export { QuesAns, HomeSearchBar }

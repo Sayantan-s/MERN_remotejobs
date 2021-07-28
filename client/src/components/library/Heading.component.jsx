@@ -8,7 +8,7 @@ const variants = {
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'xl'
+        fontSize : 'xxl'
     },
     2 : {
         color : 'text.4',
@@ -57,7 +57,8 @@ const Heading = styled(Base)(
     {
         margin: 0,
         marginBlockStart : 0,
-        marginBlockEnd : 0
+        marginBlockEnd : 0,
+        lineHeight: 1
     },
     variant({ variants, prop : 'level' }),
     space,
