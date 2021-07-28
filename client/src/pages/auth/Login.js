@@ -1,3 +1,4 @@
+import { Input, Button } from 'components';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import React, { useContext, useState } from 'react'
@@ -50,9 +51,11 @@ const Login = () => {
     return (
         <div>
            <form onSubmit={onSubmitHanlder}>
-            <input type="email" name="email"placeholder="email" value={email} onChange={eve => setEmail(eve.target.value)} />
-            <input type="password" name="password"placeholder="password" value={password} onChange={eve => setPassword(eve.target.value)} />
-            <button type="submit">Submit</button>
+            <Input type="email" name="email"placeholder="email" value={email} onChange={eve => setEmail(eve.target.value)} />
+            <Input type="password" name="password"placeholder="password" value={password} onChange={eve => setPassword(eve.target.value)} />
+            <Button>
+                Login
+            </Button>
            </form>
         </div>
     )

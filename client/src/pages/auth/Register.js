@@ -1,3 +1,4 @@
+import { Input, Button } from 'components';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import React, { useContext, useState } from 'react'
@@ -48,12 +49,12 @@ const Register = () => {
     return (
         <div>
            <form onSubmit={onSubmitHanlder}>
-                <input type="text" placeholder="name" name="name" value={name} onChange={eve => setName(eve.target.value)} />
-                <input type="email" placeholder="email" name="email" value={email} onChange={eve => setEmail(eve.target.value)} />
-                <input type="numeric" placeholder="phone" name="phone" value={phone} onChange={eve => setPhone(eve.target.value)} />
-                <input type="password" placeholder="password" name="password" value={password} onChange={eve => setPassword(eve.target.value)} />
-                <input type="password" placeholder="confirm password" name="confirm_password" value={confPassword} onChange={eve => setConfPassword(eve.target.value)} />
-                <button type="submit">Submit</button>
+                <Input type="text" placeholder="name" name="name" value={name} onChange={eve => setName(eve.target.value)} />
+                <Input type="email" placeholder="email" name="email" value={email} onChange={eve => setEmail(eve.target.value)} />
+                <Input type="numeric" placeholder="phone" name="phone" value={phone} onChange={eve => setPhone(eve.target.value)} />
+                <Input type="password" placeholder="password" name="password" value={password} onChange={eve => setPassword(eve.target.value)} />
+                <Input type="password" placeholder="confirm password" name="confirm_password" value={confPassword} onChange={eve => setConfPassword(eve.target.value)} />
+                <Button>Register</Button>
            </form>
         </div>
     )
