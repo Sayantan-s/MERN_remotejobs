@@ -23,7 +23,7 @@ const theme = {
         l: '4rem',
 		m: '2.5rem',
 		base: '1.6rem',
-		s: '1.2rem',
+		s: '1.4rem',
 		xs: '1rem',
     },
     fontWeights: {

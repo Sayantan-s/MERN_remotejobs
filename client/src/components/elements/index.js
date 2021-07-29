@@ -1,3 +1,4 @@
 import QuesAns from "./QuesAns.component";
 import HomeSearchBar  from "./HomeSearchBar.component";
-export { QuesAns, HomeSearchBar }
+import HomeCompanyCards from "./HomeCompanyCards.component";
+export { QuesAns, HomeSearchBar, HomeCompanyCards }
