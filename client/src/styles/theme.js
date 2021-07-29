@@ -5,6 +5,7 @@ const theme = {
 		'0.25rem',
 		'0.5rem',
 		'1rem',
+        '1.5rem',
 		'2rem',
 		'4rem',
 		'8rem',
@@ -39,6 +40,7 @@ const theme = {
     borders: ['1px solid', '2px solid', '4px solid', '6px solid', '8px solid', '10px solid' ],
     radii: [ 0, 2, 4, 6, 8, 10, 12, 16, 18, 24, 28, 32, 36, 44 ],
     colors : {
+        white : '#fff',
         text: [
             '#ededed', 
             '#b9b9b9', 

@@ -43,7 +43,7 @@ const Radio = ({ options, value, ...rest }) => {
 }
 
 
-const Input = ({ icon : Icon, before, after, as, icon, name, value, onChange, placeholder, width, ...rest }) => {
+const Input = ({ icon : Icon, before, after, as, icon, width, ...rest }) => {
 
     const ElementInput = styled('input')(css(
         {
@@ -52,9 +52,10 @@ const Input = ({ icon : Icon, before, after, as, icon, name, value, onChange, pl
             border: 'none',
             fontFamily : 'body',
             fontSize : 'base',
-            //bg : 'transparent',
             width: '100%',
-            color: 'text.2'
+            color: 'text.2',
+            fontWeight: 'regular',
+            bg: 'transparent'
         }),
         compose(layout)
         )

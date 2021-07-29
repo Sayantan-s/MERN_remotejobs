@@ -30,7 +30,7 @@ const Header = () => {
             <Link to="/">
                 <Logo />
             </Link>
-            <Flex alignItems="center" justifyContent="space-between" width="100%">
+            <Flex alignItems="center" justifyContent="space-between" width="100%" ml="6">
                 <Stack gap={5} ml={4}>
                     <Link to="/" color={"text.3"}>
                         Home

@@ -1,4 +1,4 @@
-import { Flex, Input } from 'components'
+import { Flex, Input, View, Button } from 'components'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
@@ -7,13 +7,23 @@ const HomeSearchBar = () => {
     const theme = useTheme();
 
     return (
-      <Flex boxShadow={`0px 10px 20px ${theme.colors.blue[2]}40`} width="xl" m="0 auto" borderRadius={9} my="7" alignItems="center" p="2" border={1} borderColor="blue.3">
+      <Flex 
+      boxShadow={`0px 15px 20px ${theme.colors.blue[2]}30`}
+      bg="white" 
+      width="90rem" 
+      m="0 auto" 
+      borderRadius={13} 
+      mt="8" 
+      alignItems="center" 
+      p="5" 
+      overflow="hidden">
           <Input 
             type="search" 
             before 
             placeholder="Job title or keyword"
+            width={[1/2]}
             icon={
-              <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+              <svg width={'3rem'} height={'3rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <title>Iconly/Broken/Search</title>
               <g id="Iconly/Broken/Search" stroke="none" strokeWidth={1} fill={theme.colors.text[3]} fillRule="evenodd">
                 <g id="Search" transform="translate(2.000000, 2.000000)" fill={theme.colors.text[3]} fillRule="nonzero">
@@ -22,12 +32,14 @@ const HomeSearchBar = () => {
               </g>
             </svg>            
           }/>
+          <View as={'span'} bg="text.1" width="1.5px" height="30px" mx="3rem" opacity="50%"/>
           <Input 
-            type="search" 
+            width={[1/2]}
             before
-            placeholder="Job title or keyword"
+            type="search" 
+            placeholder="New York, USA"
             icon={
-              <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+              <svg width={'3rem'} height={'3rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <title>Iconly/Broken/Location</title>
                 <g id="Iconly/Broken/Location" stroke="none" strokeWidth={2} fill={theme.colors.text[3]} fillRule="evenodd">
                   <g id="Location" transform="translate(3.500000, 2.000000)" fill={theme.colors.text[3]} fillRule="nonzero">
@@ -37,6 +49,9 @@ const HomeSearchBar = () => {
               </svg>
             }
           />
+          <Button borderRadius={10} size="lg">
+            Search
+          </Button>
       </Flex>
     )
 }

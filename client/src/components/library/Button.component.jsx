@@ -114,7 +114,9 @@ const Button = styled('button')(css({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    borderRadius : '1rem'
+    borderRadius : '1rem',
+    fontSize : 'base',
+    fontWeight : 'regular'
   }),
   variant({ variants }),
   variant({ variants : size, prop : 'size'}),

@@ -6,7 +6,6 @@ const { registerValidator, loginValidator } = require('../validator/auth.validat
 const router = require('express').Router();
 
 router.post('/register',async(req, res, next) => {
-    console.log(req.body)
     try {
 
         const { error,name, email, password, phone } = await registerValidator.validateAsync(req.body);
