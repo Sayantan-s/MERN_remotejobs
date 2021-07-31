@@ -29,7 +29,7 @@ function App() {
     })()
   },[])
 
-  useEffect(() => {
+  /*useEffect(() => {
     document.addEventListener('click', () => {
       document.documentElement.requestFullscreen().catch( e => console.log(e));
     })
@@ -37,7 +37,7 @@ function App() {
     return _ => document.removeEventListener('click', () => {
       document.documentElement.requestFullscreen().catch( e => console.log(e));
     })
-  },[])
+  },[]) */
  
   return (
       <Router>

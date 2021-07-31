@@ -1,32 +1,24 @@
-import { View, Flex, Text, Link, Stack } from 'components'
-import { HomeCompanyCards } from 'components/elements';
-import React, { useEffect, useState } from 'react'
+import { Flex, Heading, Link, Text, View } from 'components/index'
+import React from 'react'
 import { useTheme } from 'styled-components'
-import http from 'utils/http';
 
-const FeaturedCompanies = () => {
+const RecentPositions = () => {
 
     const theme = useTheme();
 
-    const [ companies, setCompanies ] = useState([]); 
-
-    useEffect(() => {
-        (async() => {
-            const { data } = await http.get('/companies');
-            setCompanies(data.data);
-        })()
-    },[])
-
-
     return (
-       <View bg="blue.1" py="9">
-           <View width={['desktop']} m="0 auto">
-                <Flex justifyContent="space-between">
+        <View width="desktop" py="9" m="0 auto">
+            <Flex alignItems="center" justifyContent="space-between">
+                <Flex flexDirection="column">
                     <Text as="span" fontSize="m" color="text.4">
-                        Featured Companies
+                        Featured recent positions
                     </Text>
-                    <Link to="/jobs">
-                        <Text as="span" mr="3" fontSize="m" color="blue.6">See all companies</Text>
+                    <Text mt="2">
+                        We think these jobs might be of your interest.
+                    </Text>
+                </Flex>
+                <Link to="/jobs">
+                        <Text as="span" mr="3" fontSize="m" color="blue.6">See all positions</Text>
                             <svg width={'2.6rem'} height={'2.6rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                 <title>Iconly/Broken/Arrow - Right</title>
                                 <g id="Iconly/Broken/Arrow---Right" stroke={theme.colors.blue[4]} strokeWidth={1} fill="none" fillRule="evenodd">
@@ -36,17 +28,9 @@ const FeaturedCompanies = () => {
                                 </g>
                             </svg>
                     </Link> 
-                </Flex>
-                <Stack mt="8" gap={7}>
-                    {
-                        companies?.map(({_id, ...data}) => (
-                            <HomeCompanyCards key={_id} {...data} />
-                        ))
-                    }
-                </Stack>
-           </View>
-       </View>
+            </Flex>
+        </View>
     )
 }
 
-export default FeaturedCompanies
+export default RecentPositions

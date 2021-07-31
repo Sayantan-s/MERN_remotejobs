@@ -15,14 +15,14 @@ const variants = {
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'l'
+        fontSize : 'xl'
     },
     3 : {
         color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'm'
+        fontSize : 'l'
     },
     4 : {
         color : 'text.3',

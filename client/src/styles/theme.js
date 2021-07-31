@@ -7,6 +7,7 @@ const theme = {
 		'1rem',
         '1.5rem',
 		'2rem',
+        '3rem',
 		'4rem',
 		'8rem',
 		'16rem',
@@ -21,7 +22,7 @@ const theme = {
     fontSizes: {
         xxl: '8rem',
         xl : '6rem',
-        l: '4rem',
+        l: '3.2rem',
 		m: '2.5rem',
 		base: '1.6rem',
 		s: '1.4rem',
