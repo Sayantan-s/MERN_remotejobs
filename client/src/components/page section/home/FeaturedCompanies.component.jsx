@@ -17,6 +17,7 @@ const FeaturedCompanies = () => {
         })()
     },[])
 
+
     return (
        <View bg="blue.1" py="8">
            <View width={['desktop']} m="0 auto">

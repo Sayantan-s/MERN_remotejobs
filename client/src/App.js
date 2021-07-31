@@ -28,6 +28,16 @@ function App() {
       console.log(data)
     })()
   },[])
+
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      document.documentElement.requestFullscreen().catch( e => console.log(e));
+    })
+
+    return _ => document.removeEventListener('click', () => {
+      document.documentElement.requestFullscreen().catch( e => console.log(e));
+    })
+  },[])
  
   return (
       <Router>

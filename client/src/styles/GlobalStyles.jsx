@@ -22,5 +22,8 @@ body{
         max-width: inherit;
     }
 }
+::-webkit-scrollbar {
+    display: none;
+}
 `
 export default GlobalStyles;
