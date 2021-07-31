@@ -15,7 +15,8 @@ const theme = {
        sm : '20rem',
        m : '40rem',
        l : '60rem',
-       xl : '80rem'
+       xl : '80rem',
+       desktop : '144rem'
     },
     fontSizes: {
         xxl: '8rem',

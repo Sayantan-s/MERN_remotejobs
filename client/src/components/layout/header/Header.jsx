@@ -25,7 +25,7 @@ const Header = () => {
     },[])
 
     return (
-       <View as="header" width={[10/12]} m="0 auto" ref={heightRef} py={5}> 
+       <View as="header" width={'desktop'} m="0 auto" ref={heightRef} py={5}> 
           <Flex>
             <Link to="/">
                 <Logo />
