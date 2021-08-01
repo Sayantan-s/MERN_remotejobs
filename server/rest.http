@@ -2,20 +2,24 @@ GET http://localhost:6000/api/jobs
 
 ###
 
-POST http://localhost:6000/api/companies
+POST http://localhost:5000/api/companies
 
 Content-Type: application/json 
 {
-    "companyImageUrl" : "/tesla-motors.svg", 
-    "companyName" : "Tesla Motors", 
-    "typeOfCorporation" : "U-form", 
-    "companySize" : "10M", 
-    "companyAddress" : "3500 Deer Creek Road Palo Alto, CA 94304, United States of America", 
-    "raised" : "721000000"
+    "logo" : "https://cdn.svgporn.com/logos/twitter.svg", 
+    "name" : "Twitter", 
+    "typeOfCorporation" : "Social-networking", 
+    "info" : "Twitter is an open social network that people use to converse with each other in short messages, known as tweets. Whether it's sharing breaking news, posting updates about their company or following their favourite celebrities, people are using Twitter to connect with others and to discover new things every day.",
+    "size" : {
+        "minSize" : 200,
+        "maxSize" : 1001
+    }, 
+    "address" : "3500 Deer Creek Road Palo Alto, CA 94304, United States of America", 
+    "raised" : 721000000
 }
 
 ###
-POST http://localhost:7200/api/auth/register
+POST http://localhost:5000/api/auth/register
 
 Content-Type: application/application/json
 {

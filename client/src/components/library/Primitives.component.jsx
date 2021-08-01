@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { View }from 'components';
-import { system } from 'styled-system';
+import { background, compose, layout, system, color, space } from 'styled-system';
 import { forwardRef } from 'react';
 
 
@@ -36,4 +36,27 @@ Stack.defaultProps = {
     display: 'flex'
 }
 
-export { Flex, Page, Stack }
+
+const StackVertical = styled(View)(
+	system({
+		gap: {
+			property: '&& > * + *',
+			scale: 'space',
+			transform: (value, scale) => ({ marginTop: scale[value] }),
+		},
+	})
+);
+
+//DIVIDER
+
+
+const Divider = styled.hr(
+	compose(
+		layout,
+		color,
+		space
+	)
+)
+
+
+export { Flex, Page, Stack, StackVertical, Divider }
