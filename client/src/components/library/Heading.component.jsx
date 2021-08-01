@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components';
-import { color, space, typography, variant } from 'styled-system';
+import { color, layout, space, typography, variant, flex } from 'styled-system';
 
 const variants = {
     1 : {
@@ -63,7 +63,9 @@ const Heading = styled(Base)(
     variant({ variants, prop : 'level' }),
     space,
     typography,
-    color
+    color,
+    layout,
+    flex
 )
 
 export default Heading

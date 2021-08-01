@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { View }from 'components';
 import { background, compose, layout, system, color, space } from 'styled-system';
 import { forwardRef } from 'react';
+import css from '@styled-system/css';
 
 
 // FLEX
@@ -58,5 +59,23 @@ const Divider = styled.hr(
 	)
 )
 
+//Image 
 
-export { Flex, Page, Stack, StackVertical, Divider }
+const Image = ({ src, alt, ...rest }) => {
+	const Img = styled.img(css({
+		position: 'absolute',
+		objectFit: 'cover',
+		width: '100%',
+		height: '100%',
+		left: 0,
+		top: 0
+	}))
+	
+	return(
+	<View {...rest} position="relative" overflow="hidden">
+		<Img src={src} alt={alt} />
+ 	</View>
+)}
+
+
+export { Flex, Page, Stack, StackVertical, Divider, Image }

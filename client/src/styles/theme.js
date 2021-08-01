@@ -17,13 +17,14 @@ const theme = {
        m : '40rem',
        l : '60rem',
        xl : '80rem',
-       desktop : '144rem'
+       desktop : '130rem'
     },
     fontSizes: {
         xxl: '8rem',
         xl : '6rem',
         l: '3.2rem',
 		m: '2.5rem',
+        ms : '2rem',
 		base: '1.6rem',
 		s: '1.4rem',
 		xs: '1rem',

@@ -52,8 +52,8 @@ const Footer = () => {
                         }
                     </Flex>
                 </Flex>
-                <Divider width="100%" mt={8} color={theme.colors.text[1]}/>
-                <Text mt={6}>&copy; <Link to="/" display="block" width="max-content">Locojobs</Link> {new Date().getFullYear()}. All rights reserved </Text>
+                <Divider width="100%" mt={9} color={theme.colors.text[1]}/>
+                <Text mt={7} color="text.3">&copy;<Text as={"span"} color="blue.5">Locojobs</Text>  {new Date().getFullYear()}. All rights reserved </Text>
             </View>
        </Bottom>
     )
