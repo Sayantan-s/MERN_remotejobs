@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex } from 'components';
 import styled, { useTheme } from 'styled-components';
 import css from '@styled-system/css';
-import { border, compose, layout } from 'styled-system';
+import { compose, layout } from 'styled-system';
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -47,7 +47,7 @@ const Input = ({ icon : Icon, before, after, as, icon, width, ...rest }) => {
 
     const ElementInput = styled('input')(css(
         {
-            p : 4,
+            p : 5,
             outline: 'none',
             border: 'none',
             fontFamily : 'body',
@@ -55,18 +55,21 @@ const Input = ({ icon : Icon, before, after, as, icon, width, ...rest }) => {
             width: '100%',
             color: 'text.2',
             fontWeight: 'regular',
-            bg: 'transparent'
+            bg: 'transparent',
+            '::placeholder' : {
+                color : 'GrayText.0'
+            }
         }),
         compose(layout)
         )
 
     return(
-        <Flex alignItems="center" alignItems="center" width={width}>
-            {before && icon}
+        <Flex alignItems="center" width={width} border="1" borderColor="text.0" borderRadius={7}>
+            {before && Icon}
             <ElementInput 
               {...rest}
             />
-            {after && icon}
+            {after && Icon}
         </Flex>
     )
 }

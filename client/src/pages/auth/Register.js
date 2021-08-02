@@ -1,16 +1,25 @@
 import { Input, Button } from 'components';
+import { Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
+import {useForm} from 'hooks';
 import React, { useContext, useState } from 'react'
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import { useTheme } from 'styled-components';
 import http from 'utils/http';
 
 const Register = () => {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('')
-    const [confPassword, setConfPassword] = useState('')
-    const [phone, setPhone] = useState('');
+    const [ form, handleChange, submitHandler ] = useForm({
+            email : '',
+            name : '',
+            password : '',
+            phone : '',
+            confPassword : ''
+    })
+
+    const theme = useTheme();
+
+    const { email, name, password, phone, confPassword  } = form
 
     const AuthState = useContext(AuthContext)
 
@@ -47,16 +56,48 @@ const Register = () => {
         console.log(AuthState.state)
     } 
     return (
-        <div>
-           <form onSubmit={onSubmitHanlder}>
-                <Input type="text" placeholder="name" name="name" value={name} onChange={eve => setName(eve.target.value)} />
-                <Input type="email" placeholder="email" name="email" value={email} onChange={eve => setEmail(eve.target.value)} />
-                <Input type="numeric" placeholder="phone" name="phone" value={phone} onChange={eve => setPhone(eve.target.value)} />
-                <Input type="password" placeholder="password" name="password" value={password} onChange={eve => setPassword(eve.target.value)} />
-                <Input type="password" placeholder="confirm password" name="confirm_password" value={confPassword} onChange={eve => setConfPassword(eve.target.value)} />
-                <Button>Register</Button>
-           </form>
-        </div>
+       <Page position="relative" display="flex" 
+       alignItems="center"
+       justifyContent="center">
+            <StackVertical
+            gap={4}
+            p="5"
+            as="form" onSubmit={onSubmitHanlder} width="m"  boxShadow={`0px 10px 20px ${theme.colors.blue[2]}50`}>
+                    <Input 
+                        type="text" 
+                        placeholder="name" 
+                        name="name" 
+                        value={name} 
+                        onChange={handleChange} 
+                    />
+                    <Input 
+                        type="email" 
+                        placeholder="email" 
+                        name="email" 
+                        value={email} 
+                        onChange={handleChange} />
+                    <Input 
+                        type="numeric" 
+                        placeholder="phone" 
+                        name="phone" 
+                        value={phone} 
+                        onChange={handleChange} />
+                    <Input 
+                        type="password" 
+                        placeholder="password" 
+                        name="password" 
+                        value={password} 
+                        onChange={handleChange} />
+                    <Input 
+                        type="password" 
+                        placeholder="confirm password" 
+                        name="confPassword" 
+                        value={confPassword} 
+                        onChange={handleChange} 
+                    />
+                    <Button lay="lg" width="100%">Register</Button>
+            </StackVertical>
+       </Page>
     )
 }
 

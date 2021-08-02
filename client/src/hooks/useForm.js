@@ -1,5 +1,7 @@
-const useForm = ({ state }) => {
-    const [form, setForm] = useForm(state);
+import { useState } from "react";
+
+const useForm = (state) => {
+    const [form, setForm] = useState(state);
 
     let handleChange;
 
@@ -8,18 +10,20 @@ const useForm = ({ state }) => {
 
             const { name, value } = eve.target;
 
+            console.log(name)
+
             setForm(prevState => ({
                 ...prevState,
                 [name] : value
             }))
 
         }
-        const forSubmitHandler = (eve, cb) => {
+        const formSubmitHandler = (eve, cb) => {
             eve.preventDefault();
             return cb();
         }
 
-        return [ form, handleChange, forSubmitHandler ];
+        return [ form, handleChange, formSubmitHandler ];
     }
 
     handleChange = eve => eve.target.value;

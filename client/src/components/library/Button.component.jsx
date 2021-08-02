@@ -119,7 +119,7 @@ const Button = styled('button')(css({
     fontWeight : 'regular'
   }),
   variant({ variants }),
-  variant({ variants : size, prop : 'size'}),
+  variant({ variants : size, prop : 'lay'}),
   compose(
     color,
     space,
