@@ -22,6 +22,7 @@ const HomeSearchBar = () => {
             before 
             placeholder="Job title or keyword"
             width={[1/2]}
+            simpleInput
             icon={
               <svg width={'3rem'} height={'3rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <title>Iconly/Broken/Search</title>
@@ -34,6 +35,7 @@ const HomeSearchBar = () => {
           }/>
           <View as={'span'} bg="text.1" width="1.5px" height="30px" mx="3rem" opacity="50%"/>
           <Input 
+            simpleInput
             width={[1/2]}
             before
             type="search" 
@@ -49,7 +51,7 @@ const HomeSearchBar = () => {
               </svg>
             }
           />
-          <Button borderRadius={10} size="lg">
+          <Button borderRadius={10} lay="lg">
             Search
           </Button>
       </Flex>

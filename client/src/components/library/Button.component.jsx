@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { variant, color, compose, space, typography, layout, border } from 'styled-system'
+import { variant, color, compose, space, typography, layout, border, position } from 'styled-system'
 import css from '@styled-system/css'
 
 const variants = {
@@ -116,7 +116,7 @@ const Button = styled('button')(css({
     cursor: 'pointer',
     borderRadius : '1rem',
     fontSize : 'base',
-    fontWeight : 'regular'
+    fontWeight: 'semibold'
   }),
   variant({ variants }),
   variant({ variants : size, prop : 'lay'}),
@@ -125,13 +125,14 @@ const Button = styled('button')(css({
     space,
     typography,
     layout,
-    border
+    border,
+    position
   )
 )
 
 Button.defaultProps = {
   variant : 'primary.normal',
-  size : 'md'
+  lay : 'md'
 }
 
 export default Button;

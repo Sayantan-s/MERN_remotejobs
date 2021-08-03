@@ -17,7 +17,7 @@ const Flex = styled(View)({
 const Page = forwardRef(({  cuttSpace = 0 , ...rest }) => <View minHeight={`calc(100vh - ${cuttSpace}px)`} {...rest} />)
 
 Page.defaultProps = {
-    width : 'desktop',
+    maxWidth : 'desktop',
     m : '0 auto'
 }
 

@@ -43,7 +43,7 @@ const Radio = ({ options, value, ...rest }) => {
 }
 
 
-const Input = ({ icon : Icon, before, after, as, icon, width, ...rest }) => {
+const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,  ...rest }) => {
 
     const ElementInput = styled('input')(css(
         {
@@ -57,14 +57,14 @@ const Input = ({ icon : Icon, before, after, as, icon, width, ...rest }) => {
             fontWeight: 'regular',
             bg: 'transparent',
             '::placeholder' : {
-                color : 'GrayText.0'
+                color : 'text.1'
             }
         }),
         compose(layout)
         )
 
     return(
-        <Flex alignItems="center" width={width} border="1" borderColor="text.0" borderRadius={7}>
+        <Flex alignItems="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7}>
             {before && Icon}
             <ElementInput 
               {...rest}
