@@ -28,10 +28,16 @@ const variants = {
       danger : {
         color: 'danger.4',
         bg: 'danger.0',
+        '&:hover' : {
+          bg : 'danger.1'
+        }
       },
       success : {
         color: 'success.4',
         bg: 'success.0',
+        '&:hover' : {
+          bg : 'success.1'
+        }
       }
     },
     outline : {

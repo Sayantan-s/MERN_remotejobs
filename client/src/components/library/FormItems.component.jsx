@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { Text, View, Flex } from 'components';
+import { Text, View, Flex, Button } from 'components';
 import styled, { useTheme } from 'styled-components';
 import css from '@styled-system/css';
 import { compose, layout } from 'styled-system';
@@ -43,7 +43,7 @@ const Radio = ({ options, value, ...rest }) => {
 }
 
 
-const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,  ...rest }) => {
+const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
 
     const ElementInput = styled('input')(css(
         {
@@ -65,11 +65,11 @@ const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,  ...r
 
     return(
         <Flex alignItems="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7}>
-            {before && Icon}
+            {before && <Button onClick={onIconClickBefore}>{Icon}</Button>}
             <ElementInput 
               {...rest}
             />
-            {after && Icon}
+            {after && <Button onClick={onIconClickAfter}>{Icon}</Button>}
         </Flex>
     )
 }

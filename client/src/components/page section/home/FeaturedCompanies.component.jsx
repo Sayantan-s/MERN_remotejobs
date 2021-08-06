@@ -19,7 +19,7 @@ const FeaturedCompanies = () => {
 
 
     return (
-       <View bg="blue.1" py="9">
+       <View bg="blue.1" py={12}>
            <View width={['desktop']} m="0 auto">
                 <Flex justifyContent="space-between">
                     <Text as="span" fontSize="m" color="text.4">

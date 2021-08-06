@@ -12,14 +12,12 @@ const Register = () => {
     const [ form, handleChange, submitHandler ] = useForm({
             email : '',
             name : '',
-            password : '',
-            phone : '',
-            confPassword : ''
+            password : ''
     })
 
     const theme = useTheme();
 
-    const { email, name, password, phone, confPassword  } = form
+    const { email, name, password  } = form
 
     const AuthState = useContext(AuthContext)
 
@@ -52,8 +50,8 @@ const Register = () => {
             }})
             history.push('/find-jobs');
         }
-        console.log(res)
-        console.log(AuthState.state)
+        //console.log(res)
+        //console.log(AuthState.state)
     } 
     return (
        <Page

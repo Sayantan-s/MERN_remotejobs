@@ -11,15 +11,11 @@ import { useTheme } from 'styled-components';
 const Login = () => {
     const [ form, handleChange, submitHandler ] = useForm({
         email : '',
-        name : '',
-        password : '',
-        phone : '',
-        confPassword : ''
+        password : ''
     })
-    const { email, name, password, phone, confPassword  } = form
+    const { email, password  } = form
 
     const theme = useTheme();
-
 
     const history = useHistory();
 
