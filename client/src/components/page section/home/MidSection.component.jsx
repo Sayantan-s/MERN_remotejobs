@@ -43,7 +43,7 @@ const MidSection = () => {
                             Join our worldwide startup community.
                         </Text>
                     </View>
-                    <StackVertical gap={8} mt={9}>
+                    <StackVertical gap={9} mt={9}>
                         {
                             points.map(({ header, body }, id) => {
                                return(

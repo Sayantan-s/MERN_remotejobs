@@ -56,7 +56,9 @@ const Register = () => {
         console.log(AuthState.state)
     } 
     return (
-       <Page position="relative" display="flex" 
+       <Page
+       maxWidth="100%" 
+       position="relative" display="flex" 
        alignItems="center"
        justifyContent="center">
            <Link variant="primary.normal" lay="xl" to="/company" position="absolute" top="5" right="5">
@@ -107,30 +109,31 @@ const Register = () => {
                     <Text fontSize="ms" color="text.1" textAlign="center" my={7}>
                         OR
                     </Text>
-                    <StackVertical
-                    gap={6}
+                    <View
                     as="form" onSubmit={onSubmitHanlder} width="m"  >
-                            <Input 
-                                type="text" 
-                                placeholder="name" 
-                                name="name" 
-                                value={name} 
-                                onChange={handleChange} 
-                            />
-                            <Input 
-                                type="email" 
-                                placeholder="email" 
-                                name="email" 
-                                value={email} 
-                                onChange={handleChange} />
-                            <Input 
-                                type="password" 
-                                placeholder="password" 
-                                name="password" 
-                                value={password} 
-                                onChange={handleChange} />
-                            <Button lay="lg" width="100%">Sign Up</Button>
-                    </StackVertical>
+                            <StackVertical gap={6}>
+                                <Input 
+                                    type="text" 
+                                    placeholder="name" 
+                                    name="name" 
+                                    value={name} 
+                                    onChange={handleChange} 
+                                />
+                                <Input 
+                                    type="email" 
+                                    placeholder="email" 
+                                    name="email" 
+                                    value={email} 
+                                    onChange={handleChange} />
+                                <Input 
+                                    type="password" 
+                                    placeholder="password" 
+                                    name="password" 
+                                    value={password} 
+                                    onChange={handleChange} />
+                            </StackVertical>
+                            <Button lay="lg" width="100%" mt={8}>Sign Up</Button>
+                    </View>
                     <Flex alignItems="center" justifyContent="center" py={7}>
                         <Text color="text.1">Already have an account? &nbsp;</Text> <Link to="/auth/login" p={0} minWidth={'max-content'}>Sign In</Link>
                     </Flex>

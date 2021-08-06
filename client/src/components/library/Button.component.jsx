@@ -7,6 +7,9 @@ const variants = {
       normal : {
         color: 'text.0',
         bg: 'blue.6',
+        '&:hover' : {
+          bg : 'blue.5'
+        }
       },
       danger : {
         color: 'text.0',
