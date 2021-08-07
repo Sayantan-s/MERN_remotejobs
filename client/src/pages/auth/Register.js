@@ -128,7 +128,8 @@ const Register = () => {
                                     placeholder="password" 
                                     name="password" 
                                     value={password} 
-                                    onChange={handleChange} />
+                                    onChange={handleChange} 
+                                />
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Sign Up</Button>
                     </View>

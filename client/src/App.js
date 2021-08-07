@@ -21,23 +21,6 @@ function App() {
       http.defaults.headers['X-CSRF-token'] = csrfToken;
     })()
   },[])*/
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await http.get('/jobs');
-      console.log(data)
-    })()
-  },[])
-
-  /*useEffect(() => {
-    document.addEventListener('click', () => {
-      document.documentElement.requestFullscreen().catch( e => console.log(e));
-    })
-
-    return _ => document.removeEventListener('click', () => {
-      document.documentElement.requestFullscreen().catch( e => console.log(e));
-    })
-  },[]) */
  
   return (
       <Router>
@@ -61,3 +44,13 @@ function App() {
 
 export default App;
    
+
+  /*useEffect(() => {
+    document.addEventListener('click', () => {
+      document.documentElement.requestFullscreen().catch( e => console.log(e));
+    })
+
+    return _ => document.removeEventListener('click', () => {
+      document.documentElement.requestFullscreen().catch( e => console.log(e));
+    })
+  },[]) */

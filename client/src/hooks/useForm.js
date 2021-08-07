@@ -3,14 +3,10 @@ import { useState } from "react";
 const useForm = (state) => {
     const [form, setForm] = useState(state);
 
-    let handleChange;
-
     if(typeof form === "object"){
-        handleChange = eve => {
+        const handleChange = eve => {
 
             const { name, value } = eve.target;
-
-            console.log(name)
 
             setForm(prevState => ({
                 ...prevState,
@@ -26,7 +22,7 @@ const useForm = (state) => {
         return [ form, handleChange, formSubmitHandler ];
     }
 
-    handleChange = eve => eve.target.value;
+    const handleChange = eve => eve.target.value;
 
     return [form, handleChange];
 }

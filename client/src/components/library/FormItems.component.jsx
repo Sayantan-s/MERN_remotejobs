@@ -43,29 +43,31 @@ const Radio = ({ options, value, ...rest }) => {
 }
 
 
-const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
+//INPUT
 
-    const ElementInput = styled('input')(css(
-        {
-            p : 5,
-            outline: 'none',
-            border: 'none',
-            fontFamily : 'body',
-            fontSize : 'base',
-            width: '100%',
-            color: 'text.2',
-            fontWeight: 'regular',
-            bg: 'transparent',
-            '::placeholder' : {
-                color : 'text.1'
-            }
-        }),
-        compose(layout)
-        )
+const ElementInput = styled('input')(css(
+    {
+        p : 5,
+        outline: 'none',
+        border: 'none',
+        fontFamily : 'body',
+        fontSize : 'base',
+        width: '100%',
+        color: 'text.2',
+        fontWeight: 'regular',
+        bg: 'transparent',
+        '::placeholder' : {
+            color : 'text.1'
+        }
+    }),
+    compose(layout)
+    )
+
+const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
 
     return(
         <Flex alignItems="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7}>
-            {before && <Button onClick={onIconClickBefore}>{Icon}</Button>}
+            {before && <Button onClick={onIconClickBefore} p="0" variant="transparent.normal" minWidth="max-content">{Icon}</Button>}
             <ElementInput 
               {...rest}
             />
