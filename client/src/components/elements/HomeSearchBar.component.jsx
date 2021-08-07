@@ -23,7 +23,7 @@ const HomeSearchBar = () => {
             placeholder="Job title or keyword"
             width={[1/2]}
             simpleInput
-            icon={
+            iconBefore={
               <svg width={'3rem'} height={'3rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
               <title>Iconly/Broken/Search</title>
               <g id="Iconly/Broken/Search" stroke="none" strokeWidth={1} fill={theme.colors.text[3]} fillRule="evenodd">
@@ -40,7 +40,7 @@ const HomeSearchBar = () => {
             before
             type="search" 
             placeholder="New York, USA"
-            icon={
+            iconBefore={
               <svg width={'3rem'} height={'3rem'} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <title>Iconly/Broken/Location</title>
                 <g id="Iconly/Broken/Location" stroke="none" strokeWidth={2} fill={theme.colors.text[3]} fillRule="evenodd">

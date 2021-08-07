@@ -4,9 +4,13 @@ import { Input, Button, View, Text, Flex } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
-import {useForm} from 'hooks';
+import {useForm, useToggle} from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
+import Lock from 'assets/icons/Lock';
+import Show from 'assets/icons/Show';
+import Hide from 'assets/icons/Hide';
+import Email from 'assets/icons/Email';
 
 const Login = () => {
     const [ form, handleChange, submitHandler ] = useForm({
@@ -20,6 +24,8 @@ const Login = () => {
     const history = useHistory();
 
     const AuthState = useContext(AuthContext);
+
+    const [ toggle, handleToggle] = useToggle();
 
     const onSubmitHanlder = async eve => {
         eve.preventDefault();
@@ -115,17 +121,24 @@ const Login = () => {
                             <StackVertical gap={6}>
                                 <Input 
                                     type="email" 
-                                    placeholder="email" 
+                                    placeholder="Your email" 
                                     name="email" 
                                     value={email} 
                                     onChange={handleChange} 
+                                    before
+                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors.text[1]}/>} 
                                 />
                                 <Input 
-                                    type="password" 
-                                    placeholder="password" 
+                                    type={!toggle ? "password" : "text"} 
+                                    placeholder="Password" 
                                     name="password" 
                                     value={password} 
                                     onChange={handleChange} 
+                                    before
+                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    after
+                                    onIconClickAfter={handleToggle}
+                                    iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
                                 />
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Login</Button>

@@ -1,8 +1,13 @@
+import Email from 'assets/icons/Email';
+import Hide from 'assets/icons/Hide';
+import Lock from 'assets/icons/Lock';
+import Show from 'assets/icons/Show';
+import User from 'assets/icons/User';
 import { Input, Button, View, Text, Flex } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
-import {useForm} from 'hooks';
+import {useForm, useToggle} from 'hooks';
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -16,6 +21,8 @@ const Register = () => {
     })
 
     const theme = useTheme();
+
+    const [ toggle, handleToggle ] = useToggle();
 
     const { email, name, password  } = form
 
@@ -112,23 +119,33 @@ const Register = () => {
                             <StackVertical gap={6}>
                                 <Input 
                                     type="text" 
-                                    placeholder="name" 
+                                    placeholder="Your Name" 
                                     name="name" 
                                     value={name} 
                                     onChange={handleChange} 
+                                    before
+                                    iconBefore={<User size={'2.5rem'} fill={theme.colors.text[1]}/>} 
                                 />
                                 <Input 
                                     type="email" 
-                                    placeholder="email" 
+                                    placeholder="Your Email" 
                                     name="email" 
                                     value={email} 
-                                    onChange={handleChange} />
+                                    onChange={handleChange}
+                                    before
+                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors.text[1]}/>} 
+                                    />
                                 <Input 
-                                    type="password" 
-                                    placeholder="password" 
-                                    name="password" 
+                                    type={!toggle ? "password" : "text"} 
+                                    placeholder="Create Password" 
+                                    name={"password"} 
                                     value={password} 
                                     onChange={handleChange} 
+                                    before
+                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    after
+                                    onIconClickAfter={handleToggle}
+                                    iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
                                 />
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Sign Up</Button>

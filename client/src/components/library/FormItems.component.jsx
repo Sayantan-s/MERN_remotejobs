@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex, Button } from 'components';
 import styled, { useTheme } from 'styled-components';
 import css from '@styled-system/css';
-import { compose, layout } from 'styled-system';
+import { compose, layout, space } from 'styled-system';
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -47,7 +47,7 @@ const Radio = ({ options, value, ...rest }) => {
 
 const ElementInput = styled('input')(css(
     {
-        p : 5,
+        py : 5,
         outline: 'none',
         border: 'none',
         fontFamily : 'body',
@@ -60,18 +60,30 @@ const ElementInput = styled('input')(css(
             color : 'text.1'
         }
     }),
-    compose(layout)
+    compose(layout, space)
     )
 
-const Input = ({ icon : Icon, before, after, as, icon, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
+const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfter, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
 
+    const handleIconBefore = eve => {
+        eve.preventDefault()
+        onIconClickBefore();
+    }
+
+    const handleIconAfter = eve => {
+        eve.preventDefault()
+        onIconClickAfter();
+    }
+ 
     return(
-        <Flex alignItems="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7}>
-            {before && <Button onClick={onIconClickBefore} p="0" variant="transparent.normal" minWidth="max-content">{Icon}</Button>}
+        <Flex alignItems="center" alignContent="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7} px="4">
+            {before && <Button onClick={handleIconBefore} p="0" variant="transparent.normal" minWidth="max-content">{IconBefore}</Button>}
             <ElementInput 
-              {...rest}
+                ml={before ? '5' : ''}
+                mr={after ? '5' : ''}
+                {...rest}
             />
-            {after && <Button onClick={onIconClickAfter}>{Icon}</Button>}
+            {after && <Button onClick={handleIconAfter}  p="0" variant="transparent.normal" minWidth="max-content">{IconAfter}</Button>}
         </Flex>
     )
 }
