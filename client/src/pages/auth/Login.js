@@ -121,7 +121,7 @@ const Login = () => {
                             <StackVertical gap={6}>
                                 <Input 
                                     type="email" 
-                                    placeholder="Your email" 
+                                    placeholder="Your Email" 
                                     name="email" 
                                     value={email} 
                                     onChange={handleChange} 
@@ -141,7 +141,10 @@ const Login = () => {
                                     iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
                                 />
                             </StackVertical>
-                            <Button lay="lg" width="100%" mt={8}>Login</Button>
+                            <Flex justifyContent="flex-end" mt={5}>
+                                <Link to="/auth/forgotpassword" p='0' color="text.1">Forgot password?</Link>    
+                            </Flex>  
+                            <Button lay="lg" width="100%" mt={6}>Login</Button>
                      </View>
                      <Flex alignItems="center" justifyContent="center" py={7}>
                          <Text color="text.1">Don't have an account yet? &nbsp;</Text> <Link to="/auth/register" p={0} minWidth={'max-content'}>Sign Up</Link>

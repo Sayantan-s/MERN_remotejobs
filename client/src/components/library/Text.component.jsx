@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, layout, space, typography, variant } from 'styled-system'
+import { color, layout, space, typography, variant, position } from 'styled-system'
 
 const variants = {
     body: {
@@ -33,7 +33,8 @@ const Text = styled.p(
     color,
     typography,
     space,
-    layout
+    layout,
+	position
 )
 
 Text.defaultProps = {

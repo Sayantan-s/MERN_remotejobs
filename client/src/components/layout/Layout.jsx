@@ -9,9 +9,9 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            { !(pathname.endsWith('login') || pathname.endsWith('register')) && <Header />}
+            { !pathname.startsWith('/auth') && <Header />}
                 {children}
-            { !(pathname.endsWith('login') || pathname.endsWith('register')) && <Footer />}
+            { !pathname.startsWith('/auth') && <Footer />}
         </>
     )
 }

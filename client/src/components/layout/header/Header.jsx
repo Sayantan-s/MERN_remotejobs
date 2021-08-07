@@ -35,7 +35,7 @@ const Header = () => {
                     <Link to="/" color={"text.3"}>
                         Home
                     </Link>
-                    <Link to="/find-jobs" color={"text.3"}>
+                    <Link to="/find-jobs" color={"text.3"} >
                         Find jobs
                     </Link>
                     <Link to="/applied-jobs" color={"text.3"}>

@@ -9,6 +9,7 @@ import Register from "pages/auth/Register";
 import Login from "pages/auth/Login";
 import { AuthContext, NavHeightContext } from 'context'
 import Qna from "pages/Qna";
+import ForgotPassword from "pages/auth/ForgotPassword";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
                   <Register />
                 </PrivateRoute>
                 <Route path="/auth/login" component={Login} />
+                <Route path="/auth/forgotpassword" component={ForgotPassword} />
               </Switch>
           </Layout>
          </NavHeightContext>

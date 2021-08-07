@@ -63,7 +63,7 @@ const ElementInput = styled('input')(css(
     compose(layout, space)
     )
 
-const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfter, width, simpleInput,onIconClickAfter,onIconClickBefore,  ...rest }) => {
+const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfter, width, simpleInput,onIconClickAfter,onIconClickBefore, danger,  ...rest }) => {
 
     const handleIconBefore = eve => {
         eve.preventDefault()
@@ -76,15 +76,18 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
     }
  
     return(
-        <Flex alignItems="center" alignContent="center" width={width} {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7} px="4">
-            {before && <Button onClick={handleIconBefore} p="0" variant="transparent.normal" minWidth="max-content">{IconBefore}</Button>}
-            <ElementInput 
-                ml={before ? '5' : ''}
-                mr={after ? '5' : ''}
-                {...rest}
-            />
-            {after && <Button onClick={handleIconAfter}  p="0" variant="transparent.normal" minWidth="max-content">{IconAfter}</Button>}
-        </Flex>
+        <View width={width}>
+            <Flex alignItems="center" alignContent="center" {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7} px="4">
+                {before && <Button onClick={handleIconBefore} p="0" variant="transparent.normal" minWidth="max-content">{IconBefore}</Button>}
+                <ElementInput 
+                    ml={before ? '5' : ''}
+                    mr={after ? '5' : ''}
+                    {...rest}
+                />
+                {after && <Button onClick={handleIconAfter}  p="0" variant="transparent.normal" minWidth="max-content">{IconAfter}</Button>}
+            </Flex>
+           {danger && <Text mt={2} color={'danger.2'}>{danger}</Text>}
+        </View>
     )
 }
 
