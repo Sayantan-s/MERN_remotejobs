@@ -17,16 +17,14 @@ const ForgotPassword = () => {
         position="relative" display="flex" 
         alignItems="center"
         justifyContent="center">
-            <Link variant="primary.normal" lay="xl" to="/company" position="absolute" top="5" right="5">
-                 Create Company Account 
+             <Link to="/"  m="4rem auto" position="absolute" top="0">
+                     <Logo />
+                     <Text color="text.4" ml={4}>
+                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Dev</Text> 
+                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Find.</Text>
+                     </Text>
             </Link>
             <View>
-                 <Link to="/"  m="4rem auto">
-                     <Logo />
-                     <Text color="text.4" fontSize="m" fontWeight="semibold" ml={3}>
-                         LOCOJOBS
-                     </Text>
-                 </Link>
                  <View p="7" boxShadow={`0px 10px 20px ${theme.colors.blue[2]}50`} borderRadius={5}>
                      <Heading level={4} textAlign="center">
                          Forgot Password?

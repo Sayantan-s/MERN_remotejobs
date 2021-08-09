@@ -109,7 +109,7 @@ const size = {
   xl : {
     minWidth : '16rem',
     px : '1.8rem',
-    py : '1.2rem'
+    py : '1.6rem'
   }
 
 }
