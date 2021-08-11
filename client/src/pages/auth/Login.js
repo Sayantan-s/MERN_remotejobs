@@ -11,6 +11,7 @@ import Lock from 'assets/icons/Lock';
 import Show from 'assets/icons/Show';
 import Hide from 'assets/icons/Hide';
 import Email from 'assets/icons/Email';
+import ArrowRight from 'assets/icons/ArrowRight';
 
 const Login = () => {
     const [ form, handleChange, submitHandler ] = useForm({
@@ -68,8 +69,9 @@ const Login = () => {
         position="relative" display="flex" 
         alignItems="center"
         justifyContent="center">
-            <Link variant="outline.normal" lay="xl" to="/company" position="absolute" top="5" right="10">
+            <Link variant="primary.normal" lay="xl" to="/company" position="absolute" top="5" right="10" borderRadius="13">
                 Register Company
+                <ArrowRight size={'2.5rem'} fill={theme.colors.blue[0]} />
            </Link>
            <Link to="/"  m="4rem auto" position="absolute" top="0">
                      <Logo />
