@@ -1,6 +1,9 @@
 const { model, Schema } = require('mongoose');
 
 const companySchema = new Schema({
+    _id : {
+        type : Schema.Types.ObjectId
+    },
     logo : {
         type : String,
         unique : true
@@ -35,9 +38,17 @@ const companySchema = new Schema({
     isDefault : {
         type : Boolean,
         default : true
-    }
+    },
+
+    jobs : [
+        {
+            type : Schema.Types.ObjectId,
+            ref : 'Job'
+        }
+    ]
+
 })
 
-const Company = model('company', companySchema, 'company' );
+const Company = model('Company', companySchema, 'company' );
 
 module.exports = Company;

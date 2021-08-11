@@ -1,21 +1,61 @@
 GET http://localhost:6000/api/jobs
 
+
+###
+
+POST http://localhost:5000/api/jobs
+Content-Type: application/json 
+
+{
+    "company" : {
+        "name" : "Twitter",
+        "thumbnail" : "https://cdn.svgporn.com/logos/twitter.svg",
+        "tagline" :  "Life’s not about a job, it’s about purpose." 
+    },
+    "roleInfo" : {
+        "role" : "UX Web Designer",
+        "jobtype" : "Full-time",
+        "salary": "$170k-$280k",
+        "location" : "Dublin",
+        "roleOverview" : "You will play a key role in pitching, creating, and delivering a compelling web experience for our business customers on business.twitter.com. You will collaborate cross-functionally and apply your web CMS and design experience to drive projects that are critical to the success of our business. \n The ideal candidate will have an outstanding design sense, strong work ethic, and willingness to tackle projects big and small. You should have excellent communication skills and a desire to always grow. This role will evolve and change. Must be willing to grow and evolve with the role, including bringing new ideas to the team to help share our message.",   
+        "mainResponsibilities" : [
+                "Drive site UI and UX strategy and execution.",
+                "Collaborate cross-functionally and implement site design changes that improve site discoverability, accessibility and engagement.", 
+                "Maintain Twitter brand visual consistency and voice in all work.",
+                "Pitch concepts, scope work, and deliver assets on time.",
+                "Create page mockups and templates.",
+                "Create visual-functional prototypes to test design ideas.",
+                "Create assets and intended for mobile and web."    
+        ],
+        "skillsReq" : [
+                "Demonstrated track record of designing assets and experiences on web",
+                "Experience with Adobe Experience Manager or a similar CMS",
+                "Project management experience, ability to manage projects across multiple global business units on tight deadlines",
+                "Hands-on experience working on global websites with regional stakeholders.", 
+                "Understanding of user experience, usability, and website design",
+                "Hands-on UX/UI experience creating UI components in Figma",
+                "High degree of technical expertise in the Adobe Creative Suite, especially Illustrator, and Photoshop",
+                "A commitment to quality, accuracy, and consistency, including adherence to brand standards"
+        ]
+    }
+}
+
 ###
 
 POST http://localhost:5000/api/companies
-
 Content-Type: application/json 
+
 {
-    "logo" : "https://cdn.svgporn.com/logos/twitter.svg", 
-    "name" : "Twitter", 
-    "typeOfCorporation" : "Social-networking", 
-    "info" : "Twitter is an open social network that people use to converse with each other in short messages, known as tweets. Whether it's sharing breaking news, posting updates about their company or following their favourite celebrities, people are using Twitter to connect with others and to discover new things every day.",
+    "logo" : "https://cdn.svgporn.com/logos/buildkite-icon.svg", 
+    "name" : "Buildkite", 
+    "typeOfCorporation" : "SaaS", 
+    "info" : "Buildkite is a platform for running fast, secure, and scalable continuous integration pipelines on your own infrastructure.",
     "size" : {
-        "minSize" : 200,
-        "maxSize" : 1001
+        "minSize" : 11,
+        "maxSize" : 50
     }, 
-    "address" : "3500 Deer Creek Road Palo Alto, CA 94304, United States of America", 
-    "raised" : 721000000
+    "address" : "Fitzroy, Victoria, Australia", 
+    "raised" : 23500000
 }
 
 ###
@@ -28,3 +68,4 @@ Content-Type: application/application/json
     "password" : "fghli",
     "phone" : "9163456288"
 }
+

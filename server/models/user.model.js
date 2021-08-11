@@ -16,11 +16,6 @@ const userSchema = new Schema({
         type : String,
         required : true
     },
-    confirmPassword : String,
-    phone : {
-        type : Number,
-        required : true
-    },
     type : {
         type : String,
         required : true,
@@ -33,6 +28,6 @@ userSchema.pre('save', async function(next){
     next();
 })
 
-const User = model('users', userSchema, 'user');
+const User = model('User', userSchema, 'user');
 
 module.exports = User;
