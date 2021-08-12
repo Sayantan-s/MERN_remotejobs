@@ -8,8 +8,7 @@ router
 .get(async (req, res, next) => {
 
     const data = await Jobs.find().select(`
-                        company.thumbnail 
-                        company.tagline 
+                        company
                         roleInfo.role 
                         roleInfo.location 
                         roleInfo.jobtype `).sort({ createdAt : -1 }).limit(4);

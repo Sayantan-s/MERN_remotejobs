@@ -20,7 +20,8 @@ const RecentPositions = () => {
     console.log(jobs)
 
     return (
-        <View width="desktop" py="9" m="0 auto">
+        <View as="section" bg="blue.1" py={13}>
+            <View width="desktop" m="0 auto">
             <Flex alignItems="center" justifyContent="space-between">
                 <Flex flexDirection="column">
                     <Text as="span" fontSize="m" color="text.4">
@@ -41,14 +42,15 @@ const RecentPositions = () => {
                                 </g>
                             </svg>
                 </Link>
-            </Flex>
-            <StackVertical mt={8} gap={7}>
-                {
-                    jobs?.map(({ _id, company, roleInfo }) => (
-                        <HomeJobCards key={_id} {...company} {...roleInfo} />
-                    ))
-                }
-            </StackVertical> 
+                </Flex>
+                <StackVertical mt={12} gap={7}>
+                    {
+                        jobs?.map(({ _id, company, roleInfo }) => (
+                            <HomeJobCards key={_id} {...company} {...roleInfo} />
+                        ))
+                    }
+                </StackVertical> 
+            </View>
         </View>
     )
 }

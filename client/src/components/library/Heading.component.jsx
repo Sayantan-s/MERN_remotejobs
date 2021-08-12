@@ -32,18 +32,18 @@ const variants = {
         fontSize : 'm'
     },
     5 : {
-        color : 'text.2',
-        fontWeight : 'bold',
+        color : 'text.3',
+        fontWeight : 'semibold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'm'
+        fontSize : 'ms'
     },
     6 : {
         color : 'text.2',
-        fontWeight : 'bold',
+        fontWeight : 'semibold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'm'
+        fontSize : 's'
     }
 }
 

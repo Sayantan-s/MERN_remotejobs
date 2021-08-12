@@ -3,7 +3,7 @@ import React from 'react'
 
 const SponseredCompanies = () => {
     return (
-        <View width="desktop" m="0 auto" py="9">
+        <View width="desktop" m="0 auto" py={12}>
             <Heading level={3} textAlign="center">
                 More than <Text as={'span'} color="blue.5" fontSize="l" fontWeight="bold">20,000</Text> companies sponsership with us
             </Heading>
