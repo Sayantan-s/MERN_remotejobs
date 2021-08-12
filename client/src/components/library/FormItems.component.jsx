@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex, Button } from 'components';
 import styled, { useTheme } from 'styled-components';
 import css from '@styled-system/css';
-import { compose, layout, space } from 'styled-system';
+import { compose, layout, space, variant, border, color } from 'styled-system';
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -57,7 +57,7 @@ const ElementInput = styled('input')(css(
         fontWeight: 'regular',
         bg: 'transparent',
         '::placeholder' : {
-            color : 'text.1'
+            color : 'text.1' 
         }
     }),
     compose(layout, space)
@@ -77,7 +77,8 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
  
     return(
         <View width={width}>
-            <Flex alignItems="center" alignContent="center" {...( !simpleInput && {border:"1", borderColor:"text.0"} )} borderRadius={7} px="4">
+            <Flex alignItems="center" alignContent="center" {...( !simpleInput && {border:"1", borderColor: danger ? 'danger.1' : "text.0" } )} 
+                {...( danger && { bg : 'danger.0' } )} borderRadius={7} px="4">
                 {before && <Button onClick={handleIconBefore} p="0" variant="transparent.normal" minWidth="max-content">{IconBefore}</Button>}
                 <ElementInput 
                     ml={before ? '5' : ''}
@@ -86,7 +87,7 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
                 />
                 {after && <Button onClick={handleIconAfter}  p="0" variant="transparent.normal" minWidth="max-content">{IconAfter}</Button>}
             </Flex>
-           {danger && <Text mt={2} color={'danger.2'}>{danger}</Text>}
+           {danger && <Text ml={4} mt={3} color={'danger.3'}>{danger}</Text>}
         </View>
     )
 }

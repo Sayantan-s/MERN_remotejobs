@@ -14,10 +14,16 @@ import { useTheme } from 'styled-components';
 import http from 'utils/http';
 
 const Register = () => {
-    const [ form, handleChange, submitHandler ] = useForm({
+    const [ form, handleChange ] = useForm({
             email : '',
             name : '',
             password : ''
+    })
+
+    const [ danger, setDanger ] = useState({
+        email : '',
+        name : '', 
+        password : ''
     })
 
     const theme = useTheme();
@@ -30,6 +36,29 @@ const Register = () => {
 
     const history = useHistory();
 
+    const validator = (key, val) => {
+
+        let error = '';
+
+        if(val.trim() === ''){
+            error = `${key} cannot be empty!`
+        }
+
+        else if(key === 'name' && val.length < 3){
+            error = `Please provide a proper name!`
+        }
+
+        else if(key === 'email' && !val.includes('@')){
+            error = `Please enter your name correctly!`
+        }
+
+        else if(key === 'password' && (val.length < 6 || val.length > 12)){
+            error = `The password should be 7-12 characters long. `
+        }
+
+        return error
+    }
+
     const onSubmitHanlder = async eve => {
         eve.preventDefault();
         let data = {};
@@ -39,6 +68,11 @@ const Register = () => {
                 ...data,
                 [key]: value
             };
+            const error = validator(key, value);
+            setDanger(prevState =>({
+                ...prevState,
+                [key] : error
+            }))
         }
         const res = await http({
             url: '/auth/register',
@@ -57,9 +91,9 @@ const Register = () => {
             }})
             history.push('/find-jobs');
         }
-        //console.log(res)
-        //console.log(AuthState.state)
     } 
+
+
     return (
        <Page
        maxWidth="100%" 
@@ -125,7 +159,8 @@ const Register = () => {
                                     value={name} 
                                     onChange={handleChange} 
                                     before
-                                    iconBefore={<User size={'2.5rem'} fill={theme.colors.text[1]}/>} 
+                                    danger={danger.name}
+                                    iconBefore={<User size={'2.5rem'} fill={theme.colors[danger.name ? 'danger' : 'text'][1]}/>} 
                                 />
                                 <Input 
                                     type="email" 
@@ -134,7 +169,8 @@ const Register = () => {
                                     value={email} 
                                     onChange={handleChange}
                                     before
-                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors.text[1]}/>} 
+                                    danger={danger.email}
+                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors[danger.email ? 'danger' : 'text'][1]}/>} 
                                     />
                                 <Input 
                                     type={!toggle ? "password" : "text"} 
@@ -143,7 +179,8 @@ const Register = () => {
                                     value={password} 
                                     onChange={handleChange} 
                                     before
-                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    danger={danger.password}
+                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors[danger.email ? 'danger' : 'text'][1]}/>}
                                     after
                                     onIconClickAfter={handleToggle}
                                     iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
