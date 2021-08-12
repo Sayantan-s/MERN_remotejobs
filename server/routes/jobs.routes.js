@@ -6,13 +6,15 @@ const Company = require('../models/Company.model');
 router
 .route('/')
 .get(async (req, res, next) => {
-    return res.status(200).send({
-        data : [
-            {
-                role : 'UI/UX designer'
-            }
-        ]
-    })
+
+    const data = await Jobs.find().select(`
+                        company.thumbnail 
+                        company.tagline 
+                        roleInfo.role 
+                        roleInfo.location 
+                        roleInfo.jobtype `).sort({ createdAt : -1 }).limit(4);
+
+    return res.status(200).send({ data })
 })
 .post(async(req,res, next) => {
     try {

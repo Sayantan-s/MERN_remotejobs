@@ -17,7 +17,7 @@ const HomeCompanyCards = ({ logo, info, typeOfCorporation }) => {
        <Flex width={[4/12]} bg="blue.0" p="6" borderRadius={6} flexDirection="column" justifyContent="space-between" height="23rem">
            <View>
                 <View>
-                        <img src={logo} alt="logo_company" width="40" />
+                        <img src={logo} alt="logo_company" height="40" />
                 </View>
                 <CompanyIntro color="text.3" mt="6"> 
                     {info}

@@ -1,10 +1,23 @@
-import { Flex, Heading, Link, Text, View } from 'components/index'
-import React from 'react'
+import HomeJobCards from 'components/elements/HomeJobCards.component';
+import { Flex, Link, StackVertical, Text, View } from 'components/index'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
+import http from 'utils/http';
 
 const RecentPositions = () => {
 
     const theme = useTheme();
+
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        (async() => {
+            const { data } = await http.get('/jobs');
+            setJobs(data.data)
+        })()
+    },[])
+
+    console.log(jobs)
 
     return (
         <View width="desktop" py="9" m="0 auto">
@@ -27,8 +40,15 @@ const RecentPositions = () => {
                                     </g>
                                 </g>
                             </svg>
-                    </Link> 
+                </Link>
             </Flex>
+            <StackVertical mt={8} gap={7}>
+                {
+                    jobs?.map(({ _id, company, roleInfo }) => (
+                        <HomeJobCards key={_id} {...company} {...roleInfo} />
+                    ))
+                }
+            </StackVertical> 
         </View>
     )
 }

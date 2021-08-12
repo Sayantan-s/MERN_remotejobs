@@ -1,9 +1,6 @@
 const { model, Schema } = require('mongoose');
 
 const companySchema = new Schema({
-    _id : {
-        type : Schema.Types.ObjectId
-    },
     logo : {
         type : String,
         unique : true

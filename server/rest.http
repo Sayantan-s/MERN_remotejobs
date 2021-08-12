@@ -1,4 +1,4 @@
-GET http://localhost:6000/api/jobs
+GET http://localhost:5000/api/jobs
 
 
 ###
@@ -8,34 +8,31 @@ Content-Type: application/json
 
 {
     "company" : {
-        "name" : "Twitter",
-        "thumbnail" : "https://cdn.svgporn.com/logos/twitter.svg",
-        "tagline" :  "Life’s not about a job, it’s about purpose." 
+        "name" : "Customer.io",
+        "thumbnail" : "https://cdn.svgporn.com/logos/customerio-icon.svg",
+        "tagline" :  "People-first company that empowers you to succeed." 
     },
     "roleInfo" : {
-        "role" : "UX Web Designer",
+        "role" : "Mobile Engineer",
         "jobtype" : "Full-time",
-        "salary": "$170k-$280k",
-        "location" : "Dublin",
-        "roleOverview" : "You will play a key role in pitching, creating, and delivering a compelling web experience for our business customers on business.twitter.com. You will collaborate cross-functionally and apply your web CMS and design experience to drive projects that are critical to the success of our business. \n The ideal candidate will have an outstanding design sense, strong work ethic, and willingness to tackle projects big and small. You should have excellent communication skills and a desire to always grow. This role will evolve and change. Must be willing to grow and evolve with the role, including bringing new ideas to the team to help share our message.",   
+        "salary": "$50k-$70k",
+        "location" : "Berlin",
+        "roleOverview" : "We're looking for a Mobile Engineer with a background in building mobile apps to help us create tools that improve the lives of your fellow app developers. \n As a Mobile Engineer at Customer.io, you will guide our mobile SDK engineering efforts as well as help us shape our roadmap with genuine empathy for mobile developers. You'll create the tools that mobile app companies use to trigger messages (push notifications, in-app messages, sms, emails, etc) without getting bogged down with high-cost coordination between marketing and engineering.",   
         "mainResponsibilities" : [
-                "Drive site UI and UX strategy and execution.",
-                "Collaborate cross-functionally and implement site design changes that improve site discoverability, accessibility and engagement.", 
-                "Maintain Twitter brand visual consistency and voice in all work.",
-                "Pitch concepts, scope work, and deliver assets on time.",
-                "Create page mockups and templates.",
-                "Create visual-functional prototypes to test design ideas.",
-                "Create assets and intended for mobile and web."    
+                "Be a technical contributor to the team that builds and maintains the mobile SDKs that help mobile app companies integrate with us.",
+                "Work closely with our frontend and backend engineers to connect the mobile SDKs into our product. If you're familiar with Ember or Go, there's flexibility to contribute across multiple parts of our stack.",
+                "Keep up to date with the latest iOS or Android platform capabilities, partnering with product management to help guide a roadmap that factors in the needs of developers.",
+                "Learn, practice, and share with your coworkers through code review, team collaboration, and training to help improve our collective knowledge and best practices together.",
+                "Be a model and mentor for writing well-architected, well-tested, and easy to understand code."
+
         ],
         "skillsReq" : [
-                "Demonstrated track record of designing assets and experiences on web",
-                "Experience with Adobe Experience Manager or a similar CMS",
-                "Project management experience, ability to manage projects across multiple global business units on tight deadlines",
-                "Hands-on experience working on global websites with regional stakeholders.", 
-                "Understanding of user experience, usability, and website design",
-                "Hands-on UX/UI experience creating UI components in Figma",
-                "High degree of technical expertise in the Adobe Creative Suite, especially Illustrator, and Photoshop",
-                "A commitment to quality, accuracy, and consistency, including adherence to brand standards"
+                "Experience shipping code in a production environment on iOS or Android apps, but you don't need to be an expert in both.",
+                "Capable of building and owning major production components from the ground up.",
+                "A product focus. You're comfortable jumping between customer viewpoint and technical architecture to help us make tough tradeoffs.",
+                "Excellent written and verbal communication skills, bonus if you've developed those while working with a distributed team.",
+                "Ideally located in UTC -4 to -7 to maximize working hours overlap with your squad.",
+                "(Bonus - not required!) Shout if you've worked in Go or Ember and are excited about working across multiple levels of our tech stack."
         ]
     }
 }
@@ -46,16 +43,16 @@ POST http://localhost:5000/api/companies
 Content-Type: application/json 
 
 {
-    "logo" : "https://cdn.svgporn.com/logos/buildkite-icon.svg", 
-    "name" : "Buildkite", 
-    "typeOfCorporation" : "SaaS", 
-    "info" : "Buildkite is a platform for running fast, secure, and scalable continuous integration pipelines on your own infrastructure.",
+    "logo" : "https://cdn.svgporn.com/logos/customerio-icon.svg", 
+    "name" : "Customer.io", 
+    "typeOfCorporation" : "SaaP", 
+    "info" : "Customer.io is an automated messaging platform for tech-savvy marketers who want more control and flexibility to craft and send data-driven emails, push notifications, and SMS messages.",
     "size" : {
-        "minSize" : 11,
-        "maxSize" : 50
+        "minSize" : 101,
+        "maxSize" : 250
     }, 
-    "address" : "Fitzroy, Victoria, Australia", 
-    "raised" : 23500000
+    "address" : "Portland, Oregon, United States", 
+    "raised" : 110058500
 }
 
 ###
