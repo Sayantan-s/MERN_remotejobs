@@ -32,7 +32,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => 
                 </Text>
             </StackVertical>
             <StackVertical width={[2/12]} gap={4}>
-               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/find-jobs/${name}-${role}`)} width="max-content">
+               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/jobs/${name}_${role}`)} width="max-content">
                    {'Apply'.toUpperCase()} 
                    <StyledArrow alignItems="center" justifyContent="center">
                         <ArrowRight size="2rem" fill={theme.colors.blue[6]}/>

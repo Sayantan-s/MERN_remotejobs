@@ -10,6 +10,7 @@ import Login from "pages/auth/Login";
 import { AuthContext, NavHeightContext } from 'context'
 import Qna from "pages/Qna";
 import ForgotPassword from "pages/auth/ForgotPassword";
+import Job from "pages/dynamic/Job";
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
           <Layout>
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/find-jobs" component={Jobs} />
+                <Route path="/jobs" component={Jobs} />
+                <Route path="/jobs/:id" component={Job} />
                 <Route path="/applied-jobs" component={AppliedJobs} />
                 <Route path="/qna" component={Qna} />
                 <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
