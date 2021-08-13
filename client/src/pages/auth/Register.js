@@ -7,23 +7,38 @@ import { Input, Button, View, Text, Flex } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
-import {useForm, useToggle} from 'hooks';
+import {useForm, useToggle, useAuthValidate} from 'hooks';
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import http from 'utils/http';
 
 const Register = () => {
-    const [ form, handleChange ] = useForm({
+    const [ form, handleChange, submitForm, danger ] = useForm({
+        state : {
             email : '',
             name : '',
             password : ''
-    })
-
-    const [ danger, setDanger ] = useState({
-        email : '',
-        name : '', 
-        password : ''
+        },
+        validation : {
+            name : {
+                shouldNotBeEmpty : '',
+                len : {
+                    min : 3,
+                }
+            },
+            email : {
+                shouldNotBeEmpty : '', 
+                contains : '@'
+            },
+            password : {
+                shouldNotBeEmpty : '', 
+                len : {
+                    min : 5,
+                    max : 12
+                }
+            }
+        }
     })
 
     const theme = useTheme();
@@ -36,62 +51,30 @@ const Register = () => {
 
     const history = useHistory();
 
-    const validator = (key, val) => {
+    const onSubmitHanlder = eve => submitForm(eve,async(data, error) => {
 
-        let error = '';
+        if(!error){
 
-        if(val.trim() === ''){
-            error = `${key} cannot be empty!`
+            const res = await http({
+                url: '/auth/register',
+                method : 'POST',
+                data
+            })
+
+            if(res.status === 201){
+                AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                    expiry: res.data.expiry,
+                    role : res.data.role,
+                    token : {
+                        access : res.data.access_token,
+                        refresh: res.data.refresh_token
+                    }
+                }})
+                history.push('/jobs');
+            }
         }
 
-        else if(key === 'name' && val.length < 3){
-            error = `Please provide a proper name!`
-        }
-
-        else if(key === 'email' && !val.includes('@')){
-            error = `Please enter your name correctly!`
-        }
-
-        else if(key === 'password' && (val.length < 6 || val.length > 12)){
-            error = `The password should be 7-12 characters long. `
-        }
-
-        return error
-    }
-
-    const onSubmitHanlder = async eve => {
-        eve.preventDefault();
-        let data = {};
-        const formData = new FormData(eve.target);
-        for (let [key, value] of formData.entries()) {
-            data = {
-                ...data,
-                [key]: value
-            };
-            const error = validator(key, value);
-            setDanger(prevState =>({
-                ...prevState,
-                [key] : error
-            }))
-        }
-        const res = await http({
-            url: '/auth/register',
-            method : 'POST',
-            data
-        })
-
-        if(res.status === 201){
-            AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                expiry: res.data.expiry,
-                role : res.data.role,
-                token : {
-                    access : res.data.access_token,
-                    refresh: res.data.refresh_token
-                }
-            }})
-            history.push('/find-jobs');
-        }
-    } 
+    }) 
 
 
     return (
@@ -150,7 +133,7 @@ const Register = () => {
                         OR
                     </Text>
                     <View
-                    as="form" onSubmit={onSubmitHanlder} width="m"  >
+                    as="form" onSubmit={eve => onSubmitHanlder(eve)} width="m"  >
                             <StackVertical gap={6}>
                                 <Input 
                                     type="text" 
