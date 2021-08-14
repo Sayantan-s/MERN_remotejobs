@@ -54,6 +54,12 @@ const jobSchema = new Schema({
                 required : true
             }
         ]
+    },
+    tags : {
+        type : Array,
+        required : true,
+        min : 3,
+        max : 10
     }
 
 },{ timestamps : true })

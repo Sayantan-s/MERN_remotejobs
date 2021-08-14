@@ -1,12 +1,12 @@
 import { View } from 'components/index'
 import React from 'react'
 
-const JobSeacrhSidebar = () => {
+const JobSearchSidebar = () => {
     return (
-        <View>
-            Sidebar
+        <View width={[2/10]} >
+     
         </View>
     )
 }
 
-export default JobSeacrhSidebar
+export default JobSearchSidebar

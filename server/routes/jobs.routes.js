@@ -7,13 +7,27 @@ router
 .route('/')
 .get(async (req, res, next) => {
 
-    const data = await Jobs.find().select(`
-                        company
-                        roleInfo.role 
-                        roleInfo.location 
-                        roleInfo.jobtype `).sort({ createdAt : -1 }).limit(4);
+    const { limit, home } = req.query;
 
-    return res.status(200).send({ data })
+    try{
+        if(home === "true"){
+            const data = await Jobs.find().select(`
+                            company
+                            roleInfo.role 
+                            roleInfo.location 
+                            roleInfo.jobtype `).sort({ createdAt : -1 }).limit(+limit);
+    
+            return res.status(200).send({ data });
+        }
+    
+        const data = await Jobs.find().select(`-__v`);
+    
+        return res.status(200).send({ data })
+    }
+    catch(err){
+        next(err)
+    }
+
 })
 .post(async(req,res, next) => {
     try {
