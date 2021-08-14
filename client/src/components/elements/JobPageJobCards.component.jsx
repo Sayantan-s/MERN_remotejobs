@@ -13,7 +13,7 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 `
 
-const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary, tags }) => {
+const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary, tags, createdAt }) => {
 
     const theme = useTheme();
 
@@ -22,7 +22,7 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
     const [jobsTags, setTags] = useState([]);
     
     useEffect(() => {
-        if(tags.length > 2){
+        if(tags.length > 3){
             for(let i = 1; i <= 3; i++){
                 setTags(prevState => ([
                     ...prevState,
@@ -34,8 +34,6 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
             setTags(tags)
         }
     },[])
-
-    console.log(jobsTags)
 
     return (
        <View bg="white" boxShadow={`0px 15px 20px ${theme.colors.blue[2]}30`} p={8} borderRadius={6}>
@@ -73,7 +71,7 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
            <RoleOverview mt={6}>
                 {roleOverview}
             </RoleOverview>
-            <Flex mt={7}>
+            <Flex mt={7} alignItems="center" justifyContent="space-between">
                 <Stack gap={4} alignItems="center">
                     {
                         jobsTags?.map(tag => 
@@ -83,7 +81,7 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
                             )
                         .reverse()
                     }
-                   {tags.length > 2 && 
+                   {tags.length > 3 && 
                    <Flex 
                         as="span" 
                         borderRadius="50%" 
@@ -95,6 +93,9 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
                         justifyContent="center"
                    >+{tags.length - jobsTags.length}</Flex>}
                 </Stack>
+                <Text as="span" color="text.1" fontSize="ms">
+                    {new Date(createdAt).toDateString().split(' ').filter((_,id) => id !== 0).map((x,id) => id === 1 ? `${x},`: x).join(' ')}
+                </Text>
             </Flex>
        </View>
     )

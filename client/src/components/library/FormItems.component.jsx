@@ -92,13 +92,13 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
     )
 }
 
-const CheckBoxGroup = () => {
+const CheckBoxGroup = ({ checked,bg }) => {
     const theme = useTheme();
     return (
           <svg viewBox="0 0 24 24" fill="none">
-          <circle cx={12} cy={12} r={12} fill={theme.colors.blue[1]} />
+          <circle cx={12} cy={12} r={12} fill={bg} />
           {
-              1 && <path
+              checked && <path
               d="M7 13l3 3 7-7"
               stroke={theme.colors.blue[4]}
               strokeWidth={1.5}

@@ -16,9 +16,9 @@ const JobSearchJobs = ({ jobs }) => {
                     Sort by
                 </Button>
            </Flex>
-           <StackVertical gap={6} overflowY="scroll" mt={6}>
+           <StackVertical gap={7} overflowY="scroll" mt={6}>
             {
-                jobs?.map(({ _id, company, roleInfo, tags }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} />)
+                jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} createdAt={createdAt} />)
             }
            </StackVertical>
        </View>

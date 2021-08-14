@@ -4,6 +4,7 @@ import { Text, View, Flex, StackVertical, Heading, Button } from 'components/ind
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
+import Tilt from 'react-parallax-tilt'
 
 const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => {
 
@@ -16,7 +17,8 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => 
     const history = useHistory();
 
     return (
-        <Flex bg="blue.0" alignItems="center" as="fig" p="8" borderRadius={6}>
+        <Tilt tiltAxis={'x'} gyroscope={true} tiltMaxAngleY={10}>
+            <Flex bg="blue.0" alignItems="center" as="fig" p="8" borderRadius={6}>
             <View width={[2.3/12]}>
                     <img src={thumbnail} alt="logo_company" height="40" />
             </View>
@@ -43,6 +45,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => 
                </Text>
             </StackVertical>
         </Flex>
+        </Tilt>
     )
 }
 

@@ -11,7 +11,8 @@ const Jobs = () => {
 
     useEffect(() => {
         (async() => {
-            const { data, status } = await http.get('/jobs');
+            const { data, status, headers } = await http.get('/jobs');
+            console.log(headers);
             if (status === 200) setJobs(data.data);
         })()
     },[])

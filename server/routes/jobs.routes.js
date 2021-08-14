@@ -22,6 +22,8 @@ router
     
         const data = await Jobs.find().select(`-__v`);
     
+        res.header()
+        
         return res.status(200).send({ data })
     }
     catch(err){
