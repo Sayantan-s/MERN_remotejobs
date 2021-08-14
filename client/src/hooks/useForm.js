@@ -5,7 +5,7 @@ const useForm = ({ state, validation }) => {
     const [form, setForm] = useState(state);
 
     const [ err, setErr, validator ] = useAuthValidate({
-        requirements : validation
+        requirements : validation || {}
      });
 
     let handleChange;
@@ -18,6 +18,11 @@ const useForm = ({ state, validation }) => {
             setForm(prevState => ({
                 ...prevState,
                 [name] : value
+            }))
+
+            setErr(prevState => ({
+                ...prevState,
+                [name] : ''
             }))
 
         }

@@ -22,18 +22,16 @@ const useAuthValidate = ({ requirements }) => {
             error = req.errorMsg || `${key} cannot be empty!`
         }
 
-        else if(req.len){
-            if(req.len.hasOwnProperty('min')){
-                error = req.errorMsg || `${key} should not be lesser than ${req.len.min}`; 
-            }
+        else if(req.len && req.len.min && val < req.len.min){
+            error = req.errorMsg || `${key} should not be lesser than ${req.len.min}`; 
+        }
 
-            else if(req.len.hasOwnProperty('max')){
-                error = req.errorMsg || `${key} should not be more than ${req.len.max}`; 
-            }
+        else if(req.len && req.len.max && val > req.len.max){
+            error = req.errorMsg || `${key} should not be more than ${req.len.max}`; 
+        }
 
-            else if(req.len.hasOwnProperty('min') && req.len.hasOwnProperty('max')){
-                error = req.errorMsg || `${key} should be ${req.len.min}-${req.len.max} long.`
-            }
+        else if((req.len && req.len.min && val < req.len.min) && (req.len && req.len.max && val > req.len.max)){
+            error = req.errorMsg || `${key} should be ${req.len.min}-${req.len.max} long.`
         }
     
         else if(req.contains && val.includes(req.contains)){

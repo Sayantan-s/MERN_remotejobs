@@ -14,7 +14,7 @@ import { useTheme } from 'styled-components';
 import http from 'utils/http';
 
 const Register = () => {
-    const [ form, handleChange, submitForm, danger ] = useForm({
+    const [ form, handleChange, submitForm, err ] = useForm({
         state : {
             email : '',
             name : '',
@@ -22,17 +22,17 @@ const Register = () => {
         },
         validation : {
             name : {
-                shouldNotBeEmpty : '',
+                shouldNotBeEmpty : true,
                 len : {
                     min : 3,
                 }
             },
             email : {
-                shouldNotBeEmpty : '', 
+                shouldNotBeEmpty : true, 
                 contains : '@'
             },
             password : {
-                shouldNotBeEmpty : '', 
+                shouldNotBeEmpty : true, 
                 len : {
                     min : 5,
                     max : 12
@@ -51,16 +51,13 @@ const Register = () => {
 
     const history = useHistory();
 
-    const onSubmitHanlder = eve => submitForm(eve,async(data, error) => {
-
+    const onSubmitHanlder = eve => submitForm(eve, async(data, error) => {
         if(!error){
-
             const res = await http({
                 url: '/auth/register',
                 method : 'POST',
                 data
             })
-
             if(res.status === 201){
                 AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
                     expiry: res.data.expiry,
@@ -73,9 +70,7 @@ const Register = () => {
                 history.push('/jobs');
             }
         }
-
     }) 
-
 
     return (
        <Page
@@ -89,8 +84,8 @@ const Register = () => {
            <Link to="/"  m="4rem auto" position="absolute" top="0">
                      <Logo />
                      <Text color="text.4" ml={4}>
-                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Dev</Text> 
-                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Find.</Text>
+                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
+                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
                      </Text>
             </Link>
            <View>
@@ -133,7 +128,7 @@ const Register = () => {
                         OR
                     </Text>
                     <View
-                    as="form" onSubmit={eve => onSubmitHanlder(eve)} width="m"  >
+                    as="form" onSubmit={onSubmitHanlder} width="m"  >
                             <StackVertical gap={6}>
                                 <Input 
                                     type="text" 
@@ -142,8 +137,8 @@ const Register = () => {
                                     value={name} 
                                     onChange={handleChange} 
                                     before
-                                    danger={danger.name}
-                                    iconBefore={<User size={'2.5rem'} fill={theme.colors[danger.name ? 'danger' : 'text'][1]}/>} 
+                                    danger={err.name}
+                                    iconBefore={<User size={'2.5rem'} fill={theme.colors[err.name ? 'danger' : 'text'][1]}/>} 
                                 />
                                 <Input 
                                     type="email" 
@@ -152,8 +147,8 @@ const Register = () => {
                                     value={email} 
                                     onChange={handleChange}
                                     before
-                                    danger={danger.email}
-                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors[danger.email ? 'danger' : 'text'][1]}/>} 
+                                    danger={err.email}
+                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors[err.email ? 'danger' : 'text'][1]}/>} 
                                     />
                                 <Input 
                                     type={!toggle ? "password" : "text"} 
@@ -162,11 +157,14 @@ const Register = () => {
                                     value={password} 
                                     onChange={handleChange} 
                                     before
-                                    danger={danger.password}
-                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors[danger.email ? 'danger' : 'text'][1]}/>}
+                                    danger={err.password}
+                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>}
                                     after
                                     onIconClickAfter={handleToggle}
-                                    iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    iconAfter={!toggle ? 
+                                        <Show size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/> : 
+                                        <Hide size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>
+                                    }
                                 />
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Sign Up</Button>

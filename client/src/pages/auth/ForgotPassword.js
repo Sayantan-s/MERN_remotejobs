@@ -7,7 +7,9 @@ import { useTheme } from 'styled-components'
 
 const ForgotPassword = () => {
 
-    const [ email, handleChange, onSubmitHandler ] = useForm();
+    const [ email, handleChange, onSubmitHandler ] = useForm({
+        state : ''
+    });
 
     const theme = useTheme();
 
@@ -20,8 +22,8 @@ const ForgotPassword = () => {
              <Link to="/"  m="4rem auto" position="absolute" top="0">
                      <Logo />
                      <Text color="text.4" ml={4}>
-                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Dev</Text> 
-                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Find.</Text>
+                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
+                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
                      </Text>
             </Link>
             <View>

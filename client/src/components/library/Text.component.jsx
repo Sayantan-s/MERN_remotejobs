@@ -27,7 +27,8 @@ const variants = {
 
 const Text = styled.p(
     {
-        margin: 0
+        margin: 0,
+		lineHeight: 1.5
     },
     variant({ variants }),
     color,

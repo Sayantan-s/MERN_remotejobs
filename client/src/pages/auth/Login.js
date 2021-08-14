@@ -14,9 +14,20 @@ import Email from 'assets/icons/Email';
 import ArrowRight from 'assets/icons/ArrowRight';
 
 const Login = () => {
-    const [ form, handleChange, submitHandler ] = useForm({
-        email : '',
-        password : ''
+    const [ form, handleChange, onSubmit, err ] = useForm({
+        state : {
+            email : '',
+            password : ''
+        },
+        validation : {
+            email : {
+                shouldNotBeEmpty : true, 
+                contains : '@'
+            },
+            password : {
+                shouldNotBeEmpty : true, 
+            }
+        }
     })
     const { email, password  } = form
 
@@ -28,40 +39,33 @@ const Login = () => {
 
     const [ toggle, handleToggle] = useToggle();
 
-    const onSubmitHanlder = async eve => {
-        eve.preventDefault();
-        let data = {};
-        const formData = new FormData(eve.target);
-        for (let [key, value] of formData.entries()) {
-            data = {
-                ...data,
-                [key]: value
-            };
-        }
-        try {
-            const res = await http({
-                url: '/auth/login',
-                method : 'POST',
-                data
-            })
-    
-            if(res.status === 200){
-                AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                    expiry: res.data.expiry,
-                    role : res.data.role,
-                    token : {
-                        access : res.data.access_token,
-                        refresh: res.data.refresh_token
-                    }
-                }})
-                history.push('/find-jobs');
+    const onSubmitHanlder = eve =>  onSubmit(eve, async (data, error) => {
+        if(!error){
+            try {
+                const res = await http({
+                    url: '/auth/login',
+                    method : 'POST',
+                    data
+                })
+        
+                if(res.status === 200){
+                    AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                        expiry: res.data.expiry,
+                        role : res.data.role,
+                        token : {
+                            access : res.data.access_token,
+                            refresh: res.data.refresh_token
+                        }
+                    }})
+                    history.push('/find-jobs');
+                }
+        
+                console.log(res);
+            } catch (error) {
+                console.log(error.response.data)
             }
-    
-            console.log(res);
-        } catch (error) {
-            console.log(error.response.data)
         }
-    } 
+    })
 
     return (
         <Page
@@ -76,8 +80,8 @@ const Login = () => {
            <Link to="/"  m="4rem auto" position="absolute" top="0">
                      <Logo />
                      <Text color="text.4" ml={4}>
-                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Dev</Text> 
-                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Find.</Text>
+                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
+                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
                      </Text>
             </Link>
             <View>
@@ -129,7 +133,8 @@ const Login = () => {
                                     value={email} 
                                     onChange={handleChange} 
                                     before
-                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors.text[1]}/>} 
+                                    danger={err.email}
+                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors[err.email ? 'danger' : 'text'][1]}/>}
                                 />
                                 <Input 
                                     type={!toggle ? "password" : "text"} 
@@ -138,10 +143,13 @@ const Login = () => {
                                     value={password} 
                                     onChange={handleChange} 
                                     before
-                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>}
                                     after
                                     onIconClickAfter={handleToggle}
-                                    iconAfter={!toggle ? <Show size={'2.5rem'} fill={theme.colors.text[1]}/> : <Hide size={'2.5rem'} fill={theme.colors.text[1]}/>}
+                                    danger={err.password}
+                                    iconAfter={!toggle ? 
+                                        <Show size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/> : 
+                                        <Hide size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>}
                                 />
                             </StackVertical>
                             <Flex justifyContent="flex-end" mt={5}>

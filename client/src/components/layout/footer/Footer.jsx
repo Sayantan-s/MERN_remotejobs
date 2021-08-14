@@ -32,7 +32,7 @@ const Footer = () => {
         ]
     ]
     return (
-       <Bottom as="footer" bg="blue.1" pt={9} pb={8}>
+       <Bottom as="footer" pt={13} pb={12}>
             <View width={['desktop']} m="0 auto">
                 <Flex alignItems="start">
                     <Link to="/">

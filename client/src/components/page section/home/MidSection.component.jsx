@@ -32,7 +32,7 @@ align-items: center;
 
 const MidSection = () => {
     return (
-        <View width="desktop" m="0 auto" py={13}>
+        <View maxWidth="desktop" m="0 auto" py={13}>
             <Flex justifyContent="center" alignItems="center">
                 <View>
                     <View>
