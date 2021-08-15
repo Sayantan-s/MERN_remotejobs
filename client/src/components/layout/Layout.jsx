@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
         <>
             { !pathname.startsWith('/auth') && <Header />}
                 {children}
-            { !pathname.startsWith('/auth') && <Footer />}
+            { !(pathname.startsWith('/auth') || pathname.startsWith('/jobs')) && <Footer />}
         </>
     )
 }
