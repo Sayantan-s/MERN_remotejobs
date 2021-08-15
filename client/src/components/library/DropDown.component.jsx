@@ -1,10 +1,11 @@
-import { Menu } from '@headlessui/react'
+import { Listbox } from '@headlessui/react'
 import css from '@styled-system/css';
 import { Flex, View } from 'components/index';
-import styled from 'styled-components';
+import { useState } from 'react';
+import styled, { useTheme } from 'styled-components';
 import { background, color, compose, typography } from 'styled-system';
 
-const StyledMenuButton = styled(Menu.Button)(
+const StyledButton = styled(Listbox.Button)(
     css({
         position: 'flex',
         outline: 'none',
@@ -17,37 +18,55 @@ const StyledMenuButton = styled(Menu.Button)(
     compose(color, background, typography)
 )
 
+const people = [
+    { id: 1, name: 'Durward Reynolds', disabled: false },
+    { id: 2, name: 'Kenton Towne', disabled: false },
+    { id: 3, name: 'Therese Wunsch', disabled: false },
+    { id: 4, name: 'Benedict Kessler', disabled: true },
+    { id: 5, name: 'Katelyn Rohan', disabled: false },
+  ]
+
+const StyledOption = styled(Listbox.Option)(css({
+    cursor: 'pointer',
+    color: 'text.1',
+    '&:hover' : {
+        bg: 'blue.0',
+        color : 'blue.6'
+    }
+}))
+
 const MyDropdown = ({ btnbg, btncolor }) => {
 
+    const [selectedPerson, setSelectedPerson] = useState(people[0])
+
+    const theme = useTheme();
+
   return (
-    <Menu as={View} position="relative">
-      <StyledMenuButton bg={btnbg || 'transparent'} color={btncolor} fontSize="ms">More</StyledMenuButton>
-      <Menu.Items as={Flex} flexDirection="column" alignItems="center" position="absolute" bg="white">
-        <Menu.Item>
-          {({ active }) => (
-            <a
-              className={`${active && 'bg-blue-500'}`}
-              href="/account-settings"
-            >
-              Account settings
-            </a>
-          )}
-        </Menu.Item>
-        <Menu.Item>
-          {({ active }) => (
-            <a
-              className={`${active && 'bg-blue-500'}`}
-              href="/account-settings"
-            >
-              Documentation
-            </a>
-          )}
-        </Menu.Item>
-        <Menu.Item disabled>
-          <span className="opacity-75">Invite a friend (coming soon!)</span>
-        </Menu.Item>
-      </Menu.Items>
-    </Menu>
+    <Listbox as={View} position="relative" value={selectedPerson} onChange={setSelectedPerson}>
+      <StyledButton  bg={btnbg || 'transparent'} color={btncolor}>{selectedPerson.name}</StyledButton>
+      <Listbox.Options as={Flex} 
+      borderRadius={6} 
+      bg={'white'} 
+      width="sm"  
+      boxShadow={`0px 15px 20px ${theme.colors.blue[2]}50`} 
+      flexDirection="column" 
+      position="absolute"
+      mt={4} 
+      >
+        {people.map((person) => (
+          <StyledOption
+            as={View}
+            px={5}
+            py={4}
+            key={person.id}
+            value={person}
+            disabled={person.disabled}
+          >
+            {person.name}
+          </StyledOption>
+        ))}
+      </Listbox.Options>
+    </Listbox>
   )
 }
 

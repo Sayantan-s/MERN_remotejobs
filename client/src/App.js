@@ -30,7 +30,7 @@ function App() {
           <Layout>
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/jobs" component={Jobs} />
+                <Route exact path="/jobs" component={Jobs} />
                 <Route path="/jobs/:id" component={Job} />
                 <Route path="/applied-jobs" component={AppliedJobs} />
                 <Route path="/qna" component={Qna} />

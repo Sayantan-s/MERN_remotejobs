@@ -17,7 +17,7 @@ const JobSearchJobs = ({ jobs }) => {
                     <Dropdown btncolor="text.3"/>
                 </Flex>
            </Flex>
-           <StackVertical gap={7} height="100vh" overflowY="scroll">
+           <StackVertical gap={7} height="100vh" overflowY="scroll" borderRadius={6}>
                 {
                     jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} createdAt={createdAt} />)
                 }

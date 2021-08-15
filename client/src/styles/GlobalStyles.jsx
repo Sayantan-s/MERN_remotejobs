@@ -10,6 +10,7 @@ html{
     font-size: 62.5%;
 }
 body{
+    user-select: none;
     font-family: ${props => props.theme.fonts.body};
     overflow-x : hidden;
     max-width: 100vw;
