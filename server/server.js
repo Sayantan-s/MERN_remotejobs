@@ -14,8 +14,10 @@ const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
 const AuthUtils = require("./helpers/AuthUtils");
 const ApiError = require("./helpers/ApiError");
+const headers = require('./middlewares/helpers')
 const csrf= require("csurf");
 const qnaRoute = require("./routes/qna.routes");
+const crypto = require('crypto');
 
 
 // DATABASE CONNECTION
@@ -34,6 +36,11 @@ const middlewares = [
         cookie : true
     })*/
 ]
+
+app.use((req,res,next) => {
+    res.setHeader('X-Access-Token', crypto.randomBytes(64).toString('hex'));
+    next();
+})
 
 app.use(middlewares)
 
