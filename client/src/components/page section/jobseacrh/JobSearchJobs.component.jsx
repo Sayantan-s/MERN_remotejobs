@@ -12,14 +12,14 @@ const JobSearchJobs = ({ jobs }) => {
                 <Text as="span" fontSize="ms">
                     Showing {jobs.length} results
                 </Text>
-                <Button variant="transparent.normal" color="text.1">
+                <Text as="span" color="text.1">
                     Sort by
-                </Button>
+                </Text>
            </Flex>
            <StackVertical gap={7} overflowY="scroll" mt={6}>
-            {
-                jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} createdAt={createdAt} />)
-            }
+                {
+                    jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} createdAt={createdAt} />)
+                }
            </StackVertical>
        </View>
     )

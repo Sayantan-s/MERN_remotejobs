@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex, Button } from 'components';
 import styled, { useTheme } from 'styled-components';
 import css from '@styled-system/css';
 import { compose, layout, space, variant, border, color } from 'styled-system';
+import {useToggle} from 'hooks';
+import { StackVertical } from 'components/index';
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -92,23 +94,65 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
     )
 }
 
-const CheckBoxGroup = ({ checked,bg }) => {
-    const theme = useTheme();
+const StyledCheckBox = styled(Flex)(css({
+    cursor: 'pointer',
+    maxWidth: 'max-content'
+}))
+
+const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor }) => {
+
+    let checkboxRef = useRef(null);
+
+    const [ toggle, handleToggle ] = useToggle();
+
+    const [ inputState, setState ] = useState(false);
+
+    useEffect(() => {
+        checkboxRef.checked = toggle;
+        setState(!toggle);
+    },[handleToggle])
+
     return (
-          <svg viewBox="0 0 24 24" fill="none">
-          <circle cx={12} cy={12} r={12} fill={bg} />
-          {
-              checked && <path
-              d="M7 13l3 3 7-7"
-              stroke={theme.colors.blue[4]}
-              strokeWidth={1.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              />
-          }
-      </svg>
+          <StyledCheckBox alignItems="center" onClick={handleToggle}>
+                <View size={size}>
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx={12} cy={12} r={12} fill={toggle ? checkedBg : uncheckedBg} />
+                        {
+                            toggle && <path
+                            d="M7 13l3 3 7-7"
+                            stroke={color}
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            />
+                        }
+                    </svg>
+                </View>
+                <Text ml={4} color={textColor}>{ name }</Text>
+                <input type="checkbox" id="vehicle1" name={name} value={inputState ? value : ''} ref={ele => checkboxRef = ele} style={{ display: 'none' }}/>
+          </StyledCheckBox>
     )
 }
 
-export { Radio, CheckBoxGroup, Input }
+const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textColor }) => {
+    return (
+        <StackVertical gap={gap}>
+            {
+                data.map((inp, id) => (
+                    <Checkbox 
+                        key={id}
+                        checkedBg={checkedBg} 
+                        uncheckedBg={uncheckedBg} 
+                        color={color} 
+                        size={size}
+                        textColor={textColor}
+                        {...inp} 
+                    />
+                ))
+            }
+        </StackVertical>
+    )
+}
+
+export { Radio, Checkbox, Input, CheckboxGroup }
 
