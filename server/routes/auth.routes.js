@@ -2,6 +2,7 @@ const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
+const { getGoogleOAuthURL } = require('../helpers/init_GoogleOAuth');
 
 const router = require('express').Router();
 
@@ -87,6 +88,12 @@ router.post('/login',async(req, res, next) => {
 
 router.post('/logout',async(req, res, next) => {
     return res.send({ message: "Hello logout" });
+})
+
+router.get('/google-auth', async(req, res, next) => {
+    res.status(200).send({
+        url : getGoogleOAuthURL()
+    })
 })
 
 module.exports = router 

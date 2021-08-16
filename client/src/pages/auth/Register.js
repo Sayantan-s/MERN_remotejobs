@@ -8,7 +8,7 @@ import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import {useForm, useToggle, useAuthValidate} from 'hooks';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import http from 'utils/http';
@@ -51,6 +51,8 @@ const Register = () => {
 
     const history = useHistory();
 
+    const [ oauthurl, setOAuthUrl ] = useState('');
+
     const onSubmitHandler = eve => submitForm(eve, async(data, error) => {
         if(!error){
             const res = await http({
@@ -66,7 +68,15 @@ const Register = () => {
                 history.push('/jobs');
             }
         }
-    }) 
+    })
+    
+    useEffect(() => {
+        (async()=> {
+            const res = await http.get('/auth/google-auth');
+            const { url } = res.data;
+            setOAuthUrl(url)
+        })()
+    },[])
 
     return (
        <Page
@@ -92,7 +102,14 @@ const Register = () => {
                     <Text textAlign="center" mt={6}>
                         Create an account to continue!
                     </Text>
-                    <Button variant="secondary" bg={`${theme.colors.blue[1]}50`} mx="auto" mt={7} width="100%">
+                    <Button 
+                        disabled={!oauthurl}
+                        onClick={() => window.location.href = oauthurl} 
+                        variant="secondary" 
+                        bg={`${theme.colors.blue[1]}50`} 
+                        mx="auto" 
+                        mt={7} 
+                        width="100%">
                         <svg
                             width={24.43}
                             height={25.00}
