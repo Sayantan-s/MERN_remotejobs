@@ -1,13 +1,15 @@
 import { Listbox } from '@headlessui/react'
 import css from '@styled-system/css';
-import { Flex, View } from 'components/index';
+import ChevronDown from 'assets/icons/ChevronDown';
+import { Flex, Text, View } from 'components/index';
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { background, color, compose, typography } from 'styled-system';
 
 const StyledButton = styled(Listbox.Button)(
     css({
-        position: 'flex',
+        display: 'flex',
+        alignItems: 'center',
         outline: 'none',
         border: 'none',
         fontFamily: 'body',
@@ -29,21 +31,27 @@ const people = [
 const StyledOption = styled(Listbox.Option)(css({
     cursor: 'pointer',
     color: 'text.1',
+    px:5,
+    py:4,
+    listStyle: 'none',
     '&:hover' : {
         bg: 'blue.0',
         color : 'blue.6'
     }
 }))
 
-const MyDropdown = ({ btnbg, btncolor }) => {
+const MyDropdown = ({ btnbg, btncolor, data, btnicon : BtnIcon = ChevronDown }) => {
 
-    const [selectedPerson, setSelectedPerson] = useState(people[0])
+    const [selectedPerson, setSelectedPerson] = useState(data[0])
 
     const theme = useTheme();
 
   return (
     <Listbox as={View} position="relative" value={selectedPerson} onChange={setSelectedPerson}>
-      <StyledButton  bg={btnbg || 'transparent'} color={btncolor}>{selectedPerson.name}</StyledButton>
+      <StyledButton  bg={btnbg || 'transparent'}>
+        <Text as="span" mr={3} color={btncolor}>{selectedPerson.value}</Text>
+        <BtnIcon size="2rem" fill={theme.colors.text[3]} />
+      </StyledButton>
       <Listbox.Options as={Flex} 
       borderRadius={6} 
       bg={'white'} 
@@ -53,16 +61,13 @@ const MyDropdown = ({ btnbg, btncolor }) => {
       position="absolute"
       mt={4} 
       >
-        {people.map((person) => (
+        {data.map(x => (
           <StyledOption
-            as={View}
-            px={5}
-            py={4}
-            key={person.id}
-            value={person}
-            disabled={person.disabled}
+            key={x.id}
+            value={x}
+            disabled={x.disabled}
           >
-            {person.name}
+            {x.value}
           </StyledOption>
         ))}
       </Listbox.Options>

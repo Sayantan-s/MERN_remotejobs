@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import React from 'react'
+import http from "utils/http";
 
 export const AuthContext = createContext();
 
@@ -22,9 +23,11 @@ const reducer = (state = authState, { type, payload }) => {
             };
         case "AUTHENTICATION_SUCESSFULL":
 
-            const { expiry, role } = payload;
+            const { access_token } = payload;
+
+            http.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
     
-            localStorage.setItem('user_meta', JSON.stringify({  expiry, role }));
+            //localStorage.setItem('user_meta', JSON.stringify({  expiry, role }));
 
             return {
                 ...state,

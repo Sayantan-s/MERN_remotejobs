@@ -20,7 +20,7 @@ const Jobs = () => {
     return (
        <View maxWidth="desktop" m="0 auto">
            <JobSearchHeader />
-            <Stack py={12} gap={10}>
+            <Stack pt={12} pb={8} gap={10}>
                 <JobSearchSidebar />
                 <JobSearchJobs jobs={jobs}/>
             </Stack>

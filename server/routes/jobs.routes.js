@@ -35,12 +35,8 @@ router
         const { company, roleInfo  } = req.body;
 
         const rolePresence = await Jobs.exists({ 
-            company : {
-                name : company.name
-            },
-            roleInfo : {
-                role : roleInfo.role
-            }
+            "company.name" : company.name,
+            "roleInfo.role" : roleInfo.role
         })
 
         if(rolePresence) return next(ApiError.customError(403, 'Job already exists for the company!'));

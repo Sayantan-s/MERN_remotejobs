@@ -13,8 +13,15 @@ const JobSearchJobs = ({ jobs }) => {
                     Showing {jobs.length} results
                 </Text>
                 <Flex alignItems="center">
-                    <Text as="span" color="text.1" fontSize="ms">  Sort by : &nbsp;</Text>
-                    <Dropdown btncolor="text.3"/>
+                    <Text as="span" color="text.1">  Sort by : &nbsp;</Text>
+                    <Dropdown btncolor="text.3" data={[
+                        {
+                            id: 1, value: 'Newest Post', disabled: false,
+                        },
+                        {
+                            id: 2, value: 'Oldest Post', disabled: false
+                        }
+                    ]}/>
                 </Flex>
            </Flex>
            <StackVertical gap={7} height="100vh" overflowY="scroll" borderRadius={6}>

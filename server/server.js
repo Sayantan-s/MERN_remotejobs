@@ -2,22 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require('cors')
 const cookieParser= require("cookie-parser");
+const csrf= require("csurf");
+const crypto = require('crypto');
 
 
-const { PORT, MONGODB_DB } = require("./config/index");
+
+const { PORT } = require("./config/index");
 
 const authRoutes = require("./routes/auth.routes");
 const jobsRoutes = require("./routes/jobs.routes");
 const companyRoutes = require("./routes/company.routes");
 
-const { connectDb } = require("./helpers/connectToDatabase");
 const { PageNotFoundError, PageError } = require("./middlewares/error");
-const AuthUtils = require("./helpers/AuthUtils");
-const ApiError = require("./helpers/ApiError");
-const headers = require('./middlewares/helpers')
-const csrf= require("csurf");
 const qnaRoute = require("./routes/qna.routes");
-const crypto = require('crypto');
 
 
 // DATABASE CONNECTION
@@ -26,6 +23,11 @@ require('./helpers/init_mongo');
 
 const app = express();
 const port = PORT || 8000;
+
+app.use((req,res,next) => {
+    console.log(req.headers);
+    next();
+})
 
 const middlewares = [
     morgan('dev'),
@@ -37,27 +39,7 @@ const middlewares = [
     })*/
 ]
 
-app.use((req,res,next) => {
-    res.setHeader('X-Access-Token', crypto.randomBytes(64).toString('hex'));
-    next();
-})
-
 app.use(middlewares)
-
-/*app.use(async (req, res, next) => {
-    console.log(req.cookies.token)
-    const { token } = req.cookies;
-    const metaData = await AuthUtils.decode_JWT({ token })
-    if(!metaData){
-        return next(ApiError.customError(401, 'User unAuthorized!'))
-    }
-    req.user = metaData;
-    next();
-})
-
-app.get('/api/csrf', (req, res ) => {
-    res.send({ csrfToken : req.csrfToken() });
-})*/
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);

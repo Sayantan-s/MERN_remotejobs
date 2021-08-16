@@ -8,7 +8,7 @@ const router = require('express').Router();
 router.post('/register',async(req, res, next) => {
     try {
 
-        const { error,name, email, password, phone } = await registerValidator.validateAsync(req.body);
+        const { error,name, email, password } = await registerValidator.validateAsync(req.body);
 
         if(error){
             return next(error);
@@ -18,7 +18,7 @@ router.post('/register',async(req, res, next) => {
 
         if(isAlreadyAUser) return next(ApiError.customError(409, "Someone's already using this email!"))
 
-        const user = await User.create({ name, email, password, phone });
+        const user = await User.create({ name, email, password });
 
         if(!user) return next(ApiError.customError(400, 'Failed to create your account!')); 
 
@@ -31,9 +31,7 @@ router.post('/register',async(req, res, next) => {
 
         const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
 
-        res.cookie('token', access_token, {
-            httpOnly : true
-        })
+        res.setHeader(`x-access-token`, access_token);
         
         return res.status(201).send({ 
             message : 'user created',
@@ -74,9 +72,7 @@ router.post('/login',async(req, res, next) => {
 
         const { exp, role } = await AuthUtils.decode_JWT({ token : access_token });
 
-        res.cookie('token', access_token, {
-            httpOnly : true
-        })
+        res.setHeader(`x-access-token`, access_token)
 
         return res.send({
             message : 'user successfully logged in!', 

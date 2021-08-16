@@ -51,7 +51,7 @@ const Register = () => {
 
     const history = useHistory();
 
-    const onSubmitHanlder = eve => submitForm(eve, async(data, error) => {
+    const onSubmitHandler = eve => submitForm(eve, async(data, error) => {
         if(!error){
             const res = await http({
                 url: '/auth/register',
@@ -60,13 +60,9 @@ const Register = () => {
             })
             if(res.status === 201){
                 AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                    expiry: res.data.expiry,
-                    role : res.data.role,
-                    token : {
-                        access : res.data.access_token,
-                        refresh: res.data.refresh_token
-                    }
+                    access_token : res.headers['x-access-token']
                 }})
+
                 history.push('/jobs');
             }
         }
@@ -128,7 +124,7 @@ const Register = () => {
                         OR
                     </Text>
                     <View
-                    as="form" onSubmit={onSubmitHanlder} width="m"  >
+                    as="form" onSubmit={onSubmitHandler} width="m"  >
                             <StackVertical gap={6}>
                                 <Input 
                                     type="text" 

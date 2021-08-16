@@ -34,7 +34,7 @@ const useAuthValidate = ({ requirements }) => {
             error = req.errorMsg || `${key} should be ${req.len.min}-${req.len.max} long.`
         }
     
-        else if(req.contains && val.includes(req.contains)){
+        else if(req.contains && !val.includes(req.contains)){
             error = req.errorMsg || `Please enter your ${key} correctly!`
         }
 

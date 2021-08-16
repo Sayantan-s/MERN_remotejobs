@@ -16,6 +16,7 @@ const userSchema = new Schema({
         type : String,
         required : true
     },
+    dp : String,
     type : {
         type : String,
         required : true,
