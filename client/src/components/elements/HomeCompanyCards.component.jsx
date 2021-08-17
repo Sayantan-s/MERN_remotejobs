@@ -1,5 +1,5 @@
 import css from '@styled-system/css'
-import { View, Text, Flex, Button } from 'components'
+import { View, Text, Flex, Button, Image } from 'components'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -9,16 +9,14 @@ const HomeCompanyCards = ({ logo, info, typeOfCorporation }) => {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     `
 
     return (
        <Flex width={[4/12]} bg="blue.0" p="6" borderRadius={6} flexDirection="column" justifyContent="space-between" height="23rem">
            <View>
-                <View>
-                        <img src={logo} alt="logo_company" height="40" />
-                </View>
+                <Image.Thumbnail src={logo} alt="logo_company" thumbheight="40" />
                 <CompanyIntro color="text.3" mt="6"> 
                     {info}
                 </CompanyIntro>

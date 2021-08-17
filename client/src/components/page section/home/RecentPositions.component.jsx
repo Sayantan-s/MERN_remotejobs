@@ -55,7 +55,7 @@ const RecentPositions = () => {
                 <StackVertical mt={12} gap={7}>
                     {
                         jobs?.map(({ _id, company, roleInfo }) => (
-                            <HomeJobCards key={_id} {...company} {...roleInfo} />
+                            <HomeJobCards key={_id} {...company} {...roleInfo} id={_id} />
                         ))
                     }
                 </StackVertical> 

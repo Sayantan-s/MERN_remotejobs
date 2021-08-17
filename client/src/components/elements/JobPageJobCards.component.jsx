@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Stack, Text, View } from 'components/index'
+import { Button, Flex, Heading, Stack, Text, View, Image } from 'components/index'
 import React, { useEffect, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
 import Location from 'assets/icons/Location'
@@ -13,7 +13,7 @@ display: -webkit-box;
 -webkit-box-orient: vertical;
 `
 
-const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary, tags, createdAt }) => {
+const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary, tags, createdAt, id }) => {
 
     const theme = useTheme();
 
@@ -38,10 +38,8 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
     return (
        <View bg="white" boxShadow={`0px 15px 20px ${theme.colors.blue[2]}30`} p={8} borderRadius={6}>
             <Flex justifyContent="space-between" alignItems="center">
-                <View>
-                    <img src={thumbnail} alt={name} height="55" />
-                </View>
-                <Button width="5rem" height="5rem" p={'0px'} minWidth={'max-content'} variant="secondary.normal" onClick={() => history.push(`/jobs/${name}_${role}`)}>
+                <Image.Thumbnail src={thumbnail} alt={name} thumbheight="55"  />
+                <Button width="5rem" height="5rem" p={'0px'} minWidth={'max-content'} variant="secondary.normal" onClick={() => history.push(`/jobs/${name}_${id}`)}>
                     <ArrowRight size="2.5rem" fill={theme.colors.blue[6]} />
                 </Button>
             </Flex>

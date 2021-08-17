@@ -25,8 +25,12 @@ const reducer = (state = authState, { type, payload }) => {
 
             const { access_token } = payload;
 
+            const decodedPayload = JSON.parse(atob(access_token.split(".")[1]));
+
             http.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
-    
+            
+            console.log(decodedPayload);
+
             //localStorage.setItem('user_meta', JSON.stringify({  expiry, role }));
 
             return {

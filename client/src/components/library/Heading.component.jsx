@@ -8,14 +8,14 @@ const variants = {
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'xxl'
+        fontSize : 'xl'
     },
     2 : {
         color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
         lineHeight : 'heading',
-        fontSize : 'xl'
+        fontSize : 'semil'
     },
     3 : {
         color : 'text.4',

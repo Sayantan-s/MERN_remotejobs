@@ -1,12 +1,12 @@
 import css from '@styled-system/css'
 import ArrowRight from 'assets/icons/ArrowRight'
-import { Text, View, Flex, StackVertical, Heading, Button } from 'components/index'
+import { Text, View, Flex, StackVertical, Heading, Button, Image } from 'components/index'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
 import Tilt from 'react-parallax-tilt'
 
-const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => {
+const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, id }) => {
 
     const theme = useTheme();
 
@@ -20,7 +20,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => 
         <Tilt tiltAxis={'x'} gyroscope={true} tiltMaxAngleY={10}>
             <Flex bg="blue.0" alignItems="center" as="fig" p="8" borderRadius={6}>
             <View width={[2.3/12]}>
-                    <img src={thumbnail} alt="logo_company" height="40" />
+                    <Image.Thumbnail src={thumbnail} alt="logo_company" thumbheight="40" />
             </View>
             <StackVertical width={[7.7/12]} gap={4}>
                 <Text as="span" as="span" bg="success.0" color="success.4">
@@ -34,7 +34,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name }) => 
                 </Text>
             </StackVertical>
             <StackVertical width={[2/12]} gap={4}>
-               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/jobs/${name}_${role}`)} width="max-content">
+               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/jobs/${name}_${id}`)} width="max-content">
                    {'Apply'.toUpperCase()} 
                    <StyledArrow alignItems="center" justifyContent="center">
                         <ArrowRight size="2rem" fill={theme.colors.blue[6]}/>

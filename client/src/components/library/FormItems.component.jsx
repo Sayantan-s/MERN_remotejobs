@@ -99,7 +99,7 @@ const StyledCheckBox = styled(Flex)(css({
     maxWidth: 'max-content'
 }))
 
-const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor }) => {
+const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor, isOption }) => {
 
     let checkboxRef = useRef(null);
 
@@ -118,9 +118,9 @@ const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor 
                     <svg viewBox="0 0 24 24" fill="none">
                         <circle cx={12} cy={12} r={12} fill={toggle ? checkedBg : uncheckedBg} />
                         {
-                            toggle && <path
+                            isOption || toggle && <path
                             d="M7 13l3 3 7-7"
-                            stroke={color}
+                            stroke={isOption ? (toggle ? color : uncheckedBg) : color}
                             strokeWidth={1.5}
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -138,7 +138,7 @@ const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textCol
     return (
         <StackVertical gap={gap}>
             {
-                data.map((inp, id) => (
+                data?.map((inp, id) => (
                     <Checkbox 
                         key={id}
                         checkedBg={checkedBg} 

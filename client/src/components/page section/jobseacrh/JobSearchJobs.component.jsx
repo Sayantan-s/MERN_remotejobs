@@ -26,7 +26,16 @@ const JobSearchJobs = ({ jobs }) => {
            </Flex>
            <StackVertical gap={7} height="100vh" overflowY="scroll" borderRadius={6}>
                 {
-                    jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => <JobPageJobCards key={_id} {...company} {...roleInfo} tags={tags} createdAt={createdAt} />)
+                    jobs?.map(({ _id, company, roleInfo, tags, createdAt }) => 
+                        <JobPageJobCards 
+                            key={_id} 
+                            id={_id} 
+                            {...company} 
+                            {...roleInfo} 
+                            tags={tags} 
+                            createdAt={createdAt} 
+                        />
+                    )
                 }
            </StackVertical>
        </View>

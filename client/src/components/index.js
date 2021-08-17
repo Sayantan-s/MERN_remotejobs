@@ -5,9 +5,10 @@ import Dropdown from "./library/DropDown.component";
 import Text from './library/Text.component';
 import Link from "./library/Link.component";
 import Heading from "./library/Heading.component";
-import { Flex, Page, Stack, StackVertical, Divider, Image } from './library/Primitives.component';
+import { Flex, Page, Stack, StackVertical, Divider } from './library/Primitives.component';
 import { Radio, Input, Checkbox, CheckboxGroup } from './library/FormItems.component';
 import Logo from "./constants/Logo";
+import * as Image from './library/Image.component'
 
 import Header from "./layout/header/Header";
 import Footer from "./layout/footer/Footer";

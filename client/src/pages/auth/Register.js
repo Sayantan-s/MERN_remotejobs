@@ -55,17 +55,22 @@ const Register = () => {
 
     const onSubmitHandler = eve => submitForm(eve, async(data, error) => {
         if(!error){
-            const res = await http({
-                url: '/auth/register',
-                method : 'POST',
-                data
-            })
-            if(res.status === 201){
-                AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                    access_token : res.headers['x-access-token']
-                }})
-
-                history.push('/jobs');
+            try{
+                const res = await http({
+                    url: '/auth/register',
+                    method : 'POST',
+                    data
+                })
+                if(res.status === 201){
+                    AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
+                        access_token : res.headers['x-access-token']
+                    }})
+    
+                    history.push('/jobs');
+                }
+            }
+            catch(err){
+                console.log(err.response);
             }
         }
     })

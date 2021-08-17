@@ -1,0 +1,27 @@
+import css from "@styled-system/css"
+import { View } from "components"
+import styled from "styled-components"
+
+export const Picture = ({ src, alt, ...rest }) => {
+	const Img = styled.img(css({
+		position: 'absolute',
+		objectFit: 'cover',
+		width: '100%',
+		height: '100%',
+		left: 0,
+		top: 0
+	}))
+	
+	return(
+	<View {...rest} position="relative" overflow="hidden">
+		<Img src={src} alt={alt} />
+ 	</View>
+)}
+
+export const Thumbnail = ({ src, alt, thumbwidth, thumbheight, ...rest }) => {
+    return (
+		<View {...rest}>
+			<img src={src} alt={alt} width={thumbwidth || 'auto'} height={thumbheight || 'auto'}/>
+		</View>
+	 )
+}
