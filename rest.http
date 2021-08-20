@@ -1,0 +1,72 @@
+GET http://localhost:5000/api/jobs
+
+
+###
+
+POST http://localhost:5000/api/jobs
+Content-Type: application/json 
+
+{
+    "company" : {
+        "name" : "Customer.io",
+        "thumbnail" : "https://cdn.svgporn.com/logos/customerio-icon.svg",
+        "tagline" :  "People-first company that empowers you to succeed." 
+    },
+    "roleInfo" : {
+        "role" : "Mobile Engineer",
+        "jobtype" : "Full-time",
+        "salary": "$50k-$70k",
+        "location" : "Berlin",
+        "roleOverview" : "We're looking for a Mobile Engineer with a background in building mobile apps to help us create tools that improve the lives of your fellow app developers. \n As a Mobile Engineer at Customer.io, you will guide our mobile SDK engineering efforts as well as help us shape our roadmap with genuine empathy for mobile developers. You'll create the tools that mobile app companies use to trigger messages (push notifications, in-app messages, sms, emails, etc) without getting bogged down with high-cost coordination between marketing and engineering.",   
+        "mainResponsibilities" : [
+                "Be a technical contributor to the team that builds and maintains the mobile SDKs that help mobile app companies integrate with us.",
+                "Work closely with our frontend and backend engineers to connect the mobile SDKs into our product. If you're familiar with Ember or Go, there's flexibility to contribute across multiple parts of our stack.",
+                "Keep up to date with the latest iOS or Android platform capabilities, partnering with product management to help guide a roadmap that factors in the needs of developers.",
+                "Learn, practice, and share with your coworkers through code review, team collaboration, and training to help improve our collective knowledge and best practices together.",
+                "Be a model and mentor for writing well-architected, well-tested, and easy to understand code."
+
+        ],
+        "skillsReq" : [
+                "Experience shipping code in a production environment on iOS or Android apps, but you don't need to be an expert in both.",
+                "Capable of building and owning major production components from the ground up.",
+                "A product focus. You're comfortable jumping between customer viewpoint and technical architecture to help us make tough tradeoffs.",
+                "Excellent written and verbal communication skills, bonus if you've developed those while working with a distributed team.",
+                "Ideally located in UTC -4 to -7 to maximize working hours overlap with your squad.",
+                "(Bonus - not required!) Shout if you've worked in Go or Ember and are excited about working across multiple levels of our tech stack."
+        ]
+    }
+}
+
+###
+
+POST http://localhost:5000/api/companies
+Content-Type: application/json 
+
+{
+    "logo" : "https://cdn.svgporn.com/logos/customerio-icon.svg", 
+    "name" : "Customer.io", 
+    "typeOfCorporation" : "SaaP", 
+    "info" : "Customer.io is an automated messaging platform for tech-savvy marketers who want more control and flexibility to craft and send data-driven emails, push notifications, and SMS messages.",
+    "size" : {
+        "minSize" : 101,
+        "maxSize" : 250
+    }, 
+    "address" : "Portland, Oregon, United States", 
+    "raised" : 110058500
+}
+
+###
+POST http://localhost:5000/api/auth/register
+
+Content-Type: application/application/json
+{
+    "name" : "Sayantan Samanta",
+    "email" : "sssamanta789@gmail.com",
+    "password" : "fghli",
+    "phone" : "9163456288"
+}
+
+###
+GET http://localhost:5000/api/companies
+
+

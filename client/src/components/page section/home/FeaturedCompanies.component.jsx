@@ -18,6 +18,9 @@ const FeaturedCompanies = () => {
     },[])
 
 
+    console.log(companies)
+
+
     return (
        <View bg="blue.1" py={12}>
            <View maxWidth={['desktop']} m="0 auto">

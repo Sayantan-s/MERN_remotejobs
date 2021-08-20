@@ -126,6 +126,32 @@ const JobSearchSidebar = () => {
                 />
             </View>
             <View>
+                <Heading level={5} mb={6}>
+                    Department
+                </Heading>
+                <CheckboxGroup
+                    uncheckedBg={theme.colors.blue[1]} 
+                    checkedBg={theme.colors.blue[6]} 
+                    color={theme.colors.blue[1]} 
+                    size="2.3rem"
+                    gap={6}
+                    data={[
+                        {
+                            name : 'Technology',
+                            value : 'technology'
+                        },
+                        {
+                            name : 'Design',
+                            value : 'design'
+                        },
+                        {
+                            name : 'Sales & Marketing',
+                            value : 'sales'
+                        }
+                    ]}
+                />
+            </View>
+            <View>
                 <Button width="100%">
                     Apply filters
                 </Button>
