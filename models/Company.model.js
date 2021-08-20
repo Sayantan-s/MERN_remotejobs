@@ -37,6 +37,26 @@ const companySchema = new Schema({
         default : true
     },
 
+    social: [
+        {
+            name : {
+                type : String,
+                required : true
+            },
+            link : {
+                type : String,
+                required : true,
+                unique : true
+            }
+
+        }
+    ],
+
+    established : {
+        type : Date,
+        required : true
+    },
+
     jobs : [
         {
             type : Types.ObjectId,

@@ -38,8 +38,8 @@ const Header = () => {
                     <Link to="/jobs" color={"text.3"} >
                         Find jobs
                     </Link>
-                    <Link to="/applied-jobs" color={"text.3"}>
-                        Applied jobs
+                    <Link to="/companies" color={"text.3"}>
+                        Companies
                     </Link>
                 </Stack>
                <Stack gap={5}>

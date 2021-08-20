@@ -5,7 +5,7 @@ import React from 'react'
 const CTA = () => {
     return (
        <View py={13}>
-           <Heading level={1} textAlign="center">
+           <Heading level={1} textAlign="center" fontSize="xxl">
                Get The <Text as="span" fontSize="xxl" fontWeight="bold" color="blue.6">Right Job</Text> <br/>
                You Deserve
            </Heading>

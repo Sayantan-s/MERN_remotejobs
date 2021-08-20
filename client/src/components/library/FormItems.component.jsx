@@ -118,9 +118,15 @@ const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor,
                     <svg viewBox="0 0 24 24" fill="none">
                         <circle cx={12} cy={12} r={12} fill={toggle ? checkedBg : uncheckedBg} />
                         {
-                            isOption || toggle && <path
+                            isOption ? <path
                             d="M7 13l3 3 7-7"
-                            stroke={isOption ? (toggle ? color : uncheckedBg) : color}
+                            stroke={(isOption && toggle) ? uncheckedBg : checkedBg} // isOption && toggle ? (toggle ? uncheckedBg : checkedBg) : uncheckedBg
+                            strokeWidth={1.5}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            /> : <path
+                            d="M7 13l3 3 7-7"
+                            stroke={toggle && uncheckedBg} // isOption && toggle ? (toggle ? uncheckedBg : checkedBg) : uncheckedBg
                             strokeWidth={1.5}
                             strokeLinecap="round"
                             strokeLinejoin="round"

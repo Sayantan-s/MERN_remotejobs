@@ -83,13 +83,13 @@ const Job = () => {
                             roleInfo?.mainResponsibilities?.map((resp,_id) => (
                                 <Checkbox
                                     key={_id}
-                                    checkedBg={theme.colors.success[4]} 
-                                    uncheckedBg={theme.colors.success[1]} 
-                                    color={theme.colors.text[1]} 
+                                    checkedBg={theme.colors.success[3]} 
+                                    uncheckedBg={theme.colors.success[0]} 
+                                    color={theme.colors.white} 
                                     size={'2rem'}  
                                     name={resp}
                                     value={resp}
-                                    isOption={true}
+                                    isOption
                                 />
                             ))
                         }
@@ -104,8 +104,8 @@ const Job = () => {
                             roleInfo?.skillsReq?.map((resp,_id) => (
                                 <Checkbox
                                     key={_id}
-                                    checkedBg={theme.colors.success[4]} 
-                                    uncheckedBg={theme.colors.success[1]} 
+                                    checkedBg={theme.colors.success[3]} 
+                                    uncheckedBg={theme.colors.success[0]} 
                                     color={theme.colors.text[1]} 
                                     size={'2rem'}  
                                     name={resp}

@@ -64,11 +64,11 @@ const theme = {
             '#ff0000'
         ],
         success : [
-            '#effce7', 
             '#d6f8c4', 
-            '#bdf3a0', 
+            '#bdf3a0',
             '#8ceb59', 
-            '#5be212'
+            '#52cb10', 
+            '#44aa0e'
         ],
         blue: [
             '#f5f6ff', 
