@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server"
+    "build-client" : "cd client && npm run build",
+    "install-client": "cd client && npm i",
+    "heroku-postbuild" : "npm run install-client && npm run build-client",
+    "start": "nodemon server",
+    "client": "cd client && npm start",
+    "dev" : "concurrently -n 'server,client' -c 'red,green'  \"nodemon server.js\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +20,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
+    "concurrently": "^6.2.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
