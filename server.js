@@ -29,7 +29,7 @@ const port = PORT || 5000;
 const middlewares = [
     morgan('dev'),
     express.json(),
-    cors({ origin : 'http://localhost:3000' }),
+    cors(),
     cookieParser(),
     /*csrf({
         cookie : true
