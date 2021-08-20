@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Page, View, Text, Button, Flex } from 'components'
 import { QuesAns } from 'components/elements'
 import { NavContext } from 'context'
-import data from '../mockdata.json'
 import { useTheme } from 'styled-components'
 import http from 'utils/http'
 

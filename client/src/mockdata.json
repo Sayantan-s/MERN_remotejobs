@@ -1,0 +1,41 @@
+{
+    "data" : [
+        {   
+            "type" : "mcq",
+            "question" : "JavaScript _________ when there is an indefinite or an infinite value during an arithmetic computation.",
+            "correct" : "Displays “Infinity”",
+            "options" : [
+                "Prints an exception error",
+                "Prints an overflow error",
+                "Displays “Infinity”",
+                "Prints the value as such"
+            ],
+            "company" : "Snapchat"
+        },
+        {
+            "type" : "mcq",
+            "question" : "The type of a variable that is volatile is _______________",
+            "correct" : "Mutable variable",
+            "options" : [
+                "Volatile variable",
+                "Immutable variable",
+                "Mutable variable", 
+                "Dynamic variable"
+            ],
+            "company" : "Google"
+        },
+        {
+            "type" : "mcq",
+            "question" : "Which of the following is not considered as an error in JavaScript?",
+            "correct" : "Division by zero",
+            "options" : [
+                "Syntax error",
+                "Missing of semicolons",
+                "Division by zero",
+                "Missing of Bracket"
+            ],
+            "company" : "Miro"
+        }
+    ]
+}
+
