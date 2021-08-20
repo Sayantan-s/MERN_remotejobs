@@ -9,10 +9,6 @@ const path = require('path')
 
 const crypto = require('crypto');
 
-console.log(path.join('../',__dirname))
-
-
-
 const { PORT } = require("./config/index");
 
 const authRoutes = require("./routes/auth.routes");

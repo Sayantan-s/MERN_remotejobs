@@ -1,18 +1,10 @@
-const { db } = require('../helpers/connectToDatabase');
-
 const router = require('express').Router();
+const Qna = require('../models/Qna.model')
 
 router.route('/')
-.get(async (req, res) => {
+.get(async (req, res, next) => {
     try {
-        const getQuestions = await db('questions').aggregate([
-            {
-                $project : {
-                    company : 0,
-                    correct : 0
-                }
-            }
-        ]).toArray() 
+        const getQuestions = await Qna.find()
 
         res.send({ data : getQuestions });
     } catch (error) {

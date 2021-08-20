@@ -18,7 +18,7 @@ const Qna = () => {
    const handleTraverse = traverse => {
         switch(traverse){
             case "NEXT":
-                if(qid >= data.data.length - 1){
+                if(qid >= qnas.length - 1){
                     return;
                  }
                 return setId(prevId => prevId + 1);
