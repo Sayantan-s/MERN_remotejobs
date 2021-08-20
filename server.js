@@ -52,7 +52,7 @@ app.use(PageNotFoundError);
 app.use(PageError);
 
 if(process.env.NODE_ENV === 'production'){
-    
+    app.use(express.static(''))
 }
 
 app.listen(port, _=> {
