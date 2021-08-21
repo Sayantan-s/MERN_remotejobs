@@ -3,7 +3,7 @@ import { View, Text, Flex, Button, Image } from 'components'
 import React from 'react'
 import styled from 'styled-components'
 
-const HomeCompanyCards = ({ logo, info, typeOfCorporation }) => {
+const HomeCompanyCards = ({ logo, info, typeOfCorporation, jobs }) => {
 
     const CompanyIntro = styled(Text)`
     overflow: hidden;
@@ -23,7 +23,7 @@ const HomeCompanyCards = ({ logo, info, typeOfCorporation }) => {
            </View>
            <Flex alignItems="center" justifyContent="space-between">
                <Button variant="secondary.normal">
-                    12 jobs
+                    {jobs} jobs
                </Button>
                <Text as="span" fontSize="s">
                     {typeOfCorporation} &middot; Dublin

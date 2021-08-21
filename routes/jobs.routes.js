@@ -15,7 +15,9 @@ router
                             company
                             roleInfo.role 
                             roleInfo.location 
-                            roleInfo.jobtype `).sort({ createdAt : -1 }).limit(+limit);
+                            roleInfo.jobtype,
+                            createdAt
+                             `).sort({ createdAt : -1 }).limit(+limit);
     
             return res.status(200).send({ data });
         }

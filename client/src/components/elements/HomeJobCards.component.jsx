@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
 import Tilt from 'react-parallax-tilt'
 
-const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, id }) => {
+const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, _id, createdAt }) => {
 
     const theme = useTheme();
 
@@ -16,6 +16,8 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, id })
 
     const history = useHistory();
 
+    console.log()
+
     return (
         <Tilt tiltAxis={'x'} gyroscope={true} tiltMaxAngleY={10}>
             <Flex bg="blue.0" alignItems="center" as="fig" p="8" borderRadius={6}>
@@ -23,9 +25,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, id })
                     <Image.Thumbnail src={thumbnail} alt="logo_company" thumbheight="40" />
             </View>
             <StackVertical width={[7.7/12]} gap={4}>
-                <Text as="span" as="span" bg="success.0" color="success.4">
-                    New
-                </Text>
+                {(((new Date() - new Date(createdAt)) / (1000 * 60 * 60 * 24))) < 9 && <Text>New</Text>}
                 <Heading level={4} fontWeight="semibold">
                     {role}
                 </Heading>
@@ -34,7 +34,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, id })
                 </Text>
             </StackVertical>
             <StackVertical width={[2/12]} gap={4}>
-               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/jobs/${name}_${id}`)} width="max-content">
+               <Button variant="secondary.normal" m="0 auto" onClick={() => history.push(`/jobs/${name}_${_id}`)} width="max-content">
                    {'Apply'.toUpperCase()} 
                    <StyledArrow alignItems="center" justifyContent="center">
                         <ArrowRight size="2rem" fill={theme.colors.blue[6]}/>

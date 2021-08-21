@@ -54,8 +54,8 @@ const RecentPositions = () => {
                 </Flex>
                 <StackVertical mt={12} gap={7}>
                     {
-                        jobs?.map(({ _id, company, roleInfo }) => (
-                            <HomeJobCards key={_id} {...company} {...roleInfo} id={_id} />
+                        jobs?.map(({ company, roleInfo, ...data }) => (
+                            <HomeJobCards key={data._id} {...company} {...roleInfo} {...data} />
                         ))
                     }
                 </StackVertical> 

@@ -12,7 +12,7 @@ const FeaturedCompanies = () => {
 
     useEffect(() => {
         (async() => {
-            const { data } = await http.get('/companies');
+            const { data } = await http.get('/companies?page=1&skip=3');
             setCompanies(data.data);
         })()
     },[])

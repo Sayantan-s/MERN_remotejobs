@@ -10,6 +10,10 @@ const companySchema = new Schema({
         unique : true,
         required : true
     },
+    tagline : {
+        type : String,
+        required : true
+    },
     typeOfCorporation : {
         type : String,
         required : true
@@ -30,6 +34,11 @@ const companySchema = new Schema({
             required : true
         }
     },
+    website : {
+        type : String,
+        required : true,
+        unique : true
+    },
     raised : Number,
     address : String,
     isDefault : {
@@ -37,23 +46,21 @@ const companySchema = new Schema({
         default : true
     },
 
-    social: [
-        {
-            name : {
-                type : String,
-                required : true
-            },
-            link : {
-                type : String,
-                required : true,
-                unique : true
-            }
+    culture : {
+        youtube : {
+            type : String,
+            required : true,
+            unique : true
+        },
 
+        videoThumbnail : {
+            type : String,
+            required : true,
         }
-    ],
+    },
 
     established : {
-        type : Date,
+        type : Number,
         required : true
     },
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { View }from 'components';
-import { background, compose, layout, system, color, space } from 'styled-system';
+import { View, Text }from 'components';
+import { compose, layout, system, color, space } from 'styled-system';
 import { forwardRef } from 'react';
 import css from '@styled-system/css';
 
@@ -77,5 +77,15 @@ const Image = ({ src, alt, ...rest }) => {
  	</View>
 )}
 
+
+//BADGE
+
+const Badge = ({ children, ...rest}) => (
+	<View {...rest}>
+		<Text as="span">
+			{children}
+		</Text>
+	</View>
+)
 
 export { Flex, Page, Stack, StackVertical, Divider, Image }

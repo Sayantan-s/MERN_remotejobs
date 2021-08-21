@@ -43,16 +43,23 @@ POST http://localhost:5000/api/companies
 Content-Type: application/json 
 
 {
-    "logo" : "https://cdn.svgporn.com/logos/customerio-icon.svg", 
-    "name" : "Customer.io", 
-    "typeOfCorporation" : "SaaP", 
-    "info" : "Customer.io is an automated messaging platform for tech-savvy marketers who want more control and flexibility to craft and send data-driven emails, push notifications, and SMS messages.",
+    "logo" : "https://cdn.svgporn.com/logos/google-icon.svg", 
+    "name" : "Google", 
+    "typeOfCorporation" : "Software", 
+    "tagline" : "Build Create Design Code for everyone",
+    "info" : "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
     "size" : {
-        "minSize" : 101,
-        "maxSize" : 250
+        "minSize" : 10001,
+        "maxSize" : 130000
     }, 
-    "address" : "Portland, Oregon, United States", 
-    "raised" : 110058500
+    "address" : "Mountain View, California, United States", 
+    "raised" : 131133000000,
+    "culture" : {
+        "youtube" : "https://www.youtube.com/watch?v=n_Cn8eFo7u8",
+        "videoThumbnail" : "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+    },
+    "established" : 1998,
+    "website" : "https://www.google.com" 
 }
 
 ###

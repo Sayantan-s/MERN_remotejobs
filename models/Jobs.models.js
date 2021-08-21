@@ -37,12 +37,12 @@ const jobSchema = new Schema({
             min : {
                 type : Number,
                 required : true,
-                min: 10,
+                min: 400,
             },
             max : {
                 type : Number,
                 required : true,
-                min: 20
+                min: 1000
             }
         },
 

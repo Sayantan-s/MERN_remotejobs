@@ -1,5 +1,4 @@
 const ApiError = require('../helpers/ApiError');
-const { db } = require('../helpers/connectToDatabase');
 const Company = require('../models/Company.model');
 const { company_validate } = require('../validator/job.validator');
 
@@ -8,12 +7,35 @@ const router = require('express').Router();
 router
 .route('/')
 .get(async(req,res,next) => {
+
+    let companies;
+
     try {
-        const companies = await Company
-        .find()
-        .populate("jobs")
-        .select('logo typeOfCorporation info jobs')
-        .limit(3);
+
+        if(req.query){
+
+            const { page, skip, limit } = req.query;
+
+            companies = await Company.aggregate([
+                { $project : { 
+                        logo: 1, 
+                        typeOfCorporation: 1, 
+                        info: 1, 
+                        jobs : { 
+                            $size : '$jobs' 
+                        } 
+                    }
+                },
+                { $limit : 3 }
+            ])
+    
+        }
+        else{
+            companies = await Company.find()
+            .populate("jobs")
+            .select('logo typeOfCorporation info jobs')
+        }
+
         if(!companies.length) return next(ApiError.customError(400, 'Sorry something went wrong!'));
         res.send({ data : companies })
     } catch (error) {
