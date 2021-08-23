@@ -1,6 +1,7 @@
 import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
-import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical } from 'components/index'
+import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button } from 'components/index'
+import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTheme } from 'styled-components'
@@ -21,12 +22,14 @@ const Job = () => {
                 if(status === 200) setData(data.data);
             }
             catch(err){
-                console.log(err);
+                console.log(err.response);
             }
         })()
     }, [id])
 
-    const { company, roleInfo } = jobData;  
+    console.log(jobData)
+
+    const { company, roleInfo, companyInfo } = jobData;  
 
     return (
         <Page>
@@ -50,72 +53,82 @@ const Job = () => {
                 <Text as={'pre'} fontSize="m">
                     {company?.name}
                 </Text>
-                <Heading level={2} mt={4}>
+                <Heading level={2} mt={4} maxWidth="xl">
                     {roleInfo?.role}
                 </Heading>
-                <Stack mt={6} gap={6} alignItems="center">
-                    <Flex alignItems="center" bg={`${theme.colors.text[0]}85`} px={4} py={2} borderRadius={6}>
-                        <SolidJob size={'2rem'} fill={theme.colors.text[2]} />
-                        <Text as="span" color="text.2" fontWeight="semibold" lineHeight={1} ml={4}> { roleInfo?.jobtype } </Text>
-                    </Flex>
-                    <Flex alignItems="center" bg={`${theme.colors.text[0]}85`} px={4} py={2} borderRadius={6}>
-                        <SolidLocation size={'2rem'} fill={theme.colors.text[2]} />
-                        <Text as="span" color="text.2" fontWeight="semibold" lineHeight={1} ml={4}> { roleInfo?.location } </Text>
-                    </Flex>
-                    <Flex alignItems="center" bg={`blue.1`} px={4} py={2} borderRadius={6}>
-                        <Text as="span" color={'blue.6'} fontWeight="semibold" lineHeight={1}> { roleInfo?.dept } </Text>
-                    </Flex>
-                </Stack>
-                <View mt={10}>
-                    <Heading level={3}>
-                        Working at {company?.name}
-                    </Heading>
-                    <Text mt={7}>
-                        {roleInfo?.roleOverview}
-                    </Text>
-                </View>
-                <View mt={10}>
-                    <Heading level={3}>
-                        What will you do as a {roleInfo?.role}?
-                    </Heading>
-                    <StackVertical gap={6} mt={7}>
-                        {
-                            roleInfo?.mainResponsibilities?.map((resp,_id) => (
-                                <Checkbox
-                                    key={_id}
-                                    checkedBg={theme.colors.success[3]} 
-                                    uncheckedBg={theme.colors.success[0]} 
-                                    color={theme.colors.white} 
-                                    size={'2rem'}  
-                                    name={resp}
-                                    value={resp}
-                                    isOption
-                                />
-                            ))
-                        }
-                    </StackVertical>
-                </View>
-                <View mt={10}>
-                    <Heading level={3}>
-                        Requirements
-                    </Heading>
-                    <StackVertical gap={6} mt={7}>
-                        {
-                            roleInfo?.skillsReq?.map((resp,_id) => (
-                                <Checkbox
-                                    key={_id}
-                                    checkedBg={theme.colors.success[3]} 
-                                    uncheckedBg={theme.colors.success[0]} 
-                                    color={theme.colors.text[1]} 
-                                    size={'2rem'}  
-                                    name={resp}
-                                    value={resp}
-                                    isOption={true}
-                                />
-                            ))
-                        }
-                    </StackVertical>
-                </View>
+                <Flex justifyContent="space-between" alignItems="flex-end">
+                    <Stack mt={6} gap={6} alignItems="center">
+                        <Flex alignItems="center" bg={`${theme.colors.text[0]}85`} px={4} py={2} borderRadius={6}>
+                            <SolidJob size={'2rem'} fill={theme.colors.text[2]} />
+                            <Text as="span" color="text.2" fontWeight="semibold" lineHeight={1} ml={4}> { roleInfo?.jobtype } </Text>
+                        </Flex>
+                        <Flex alignItems="center" bg={`${theme.colors.text[0]}85`} px={4} py={2} borderRadius={6}>
+                            <SolidLocation size={'2rem'} fill={theme.colors.text[2]} />
+                            <Text as="span" color="text.2" fontWeight="semibold" lineHeight={1} ml={4}> { roleInfo?.location } </Text>
+                        </Flex>
+                        <Flex alignItems="center" bg={`blue.1`} px={4} py={2} borderRadius={6}>
+                            <Text as="span" color={'blue.6'} fontWeight="semibold" lineHeight={1}> { roleInfo?.dept } </Text>
+                        </Flex>
+                    </Stack>
+                    <Button lay="xl">Apply Now</Button>
+                </Flex>
+                <Flex mt={10} justifyContent="space-between">
+                    <View flex="0.6">
+                        <View>
+                            <Heading level={3}>
+                                Working at {company?.name}
+                            </Heading>
+                            <Text mt={7}>
+                                {roleInfo?.roleOverview}
+                            </Text>
+                        </View>
+                        <View mt={10}>
+                            <Heading level={3}>
+                                What will you do as a {roleInfo?.role}?
+                            </Heading>
+                            <StackVertical gap={6} mt={7}>
+                                {
+                                    roleInfo?.mainResponsibilities?.map((resp,_id) => (
+                                        <Checkbox
+                                            key={_id}
+                                            checkedBg={theme.colors.success[3]} 
+                                            uncheckedBg={theme.colors.success[0]} 
+                                            color={theme.colors.white} 
+                                            size={'2rem'}  
+                                            name={resp}
+                                            value={resp}
+                                            isOption
+                                        />
+                                    ))
+                                }
+                            </StackVertical>
+                        </View>
+                        <View mt={10}>
+                            <Heading level={3}>
+                                Requirements
+                            </Heading>
+                            <StackVertical gap={6} mt={7}>
+                                {
+                                    roleInfo?.skillsReq?.map((resp,_id) => (
+                                        <Checkbox
+                                            key={_id}
+                                            checkedBg={theme.colors.success[3]} 
+                                            uncheckedBg={theme.colors.success[0]} 
+                                            color={theme.colors.text[1]} 
+                                            size={'2rem'}  
+                                            name={resp}
+                                            value={resp}
+                                            isOption={true}
+                                        />
+                                    ))
+                                }
+                            </StackVertical>
+                        </View>
+                    </View>
+                    <View flex="0.3">
+                        <CompanyDetailsbar data={companyInfo} />
+                    </View>
+                </Flex>
             </View>
         </Page>
     )

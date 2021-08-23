@@ -42,11 +42,7 @@ class AuthUtils{
     static async createAuthTokens({ payload }){
         const access_token = await AuthUtils.generate_JWT({ payload })
 
-        const refresh_token = await AuthUtils.generate_JWT({
-            payload,
-            expiry : '1yr',
-            SECRET : REFRESH_TOKEN
-        })
+        const refresh_token = this.generate_refreshToken()
 
         return { access_token, refresh_token }
     }

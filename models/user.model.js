@@ -17,7 +17,7 @@ const userSchema = new Schema({
         required : true
     },
     dp : String,
-    type : {
+    role : {
         type : String,
         required : true,
         default : 'user'
@@ -25,9 +25,14 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', async function(next){
-    this.password = await AuthUtils.hashPassword(this.password);
+    if(this.isNew){
+        this.password = await AuthUtils.hashPassword(this.password);
+    }
     next();
 })
+
+//userSchema.methods.isPasswordValid
+
 
 const User = model('User', userSchema, 'user');
 

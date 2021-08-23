@@ -1,8 +1,11 @@
+const { promisify } = require('util')
 const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
 const { getGoogleOAuthURL, getGoogleUser } = require('../helpers/init_GoogleOAuth');
+const client = require('../helpers/init_redis');
+
 
 const router = require('express').Router();
 
@@ -23,7 +26,7 @@ router.post('/register',async(req, res, next) => {
 
         if(!user) return next(ApiError.customError(400, 'Failed to create your account!')); 
 
-        const access_token = await AuthUtils.generate_JWT({
+        const { access_token, refresh_token } = await AuthUtils.createAuthTokens({
             payload : { 
                 _id : user._id,
                 role : user.type,
@@ -31,12 +34,19 @@ router.post('/register',async(req, res, next) => {
             }
         })
 
-        res.setHeader(`x-access-token`, access_token);
-        
-        return res.status(201).send({ message : 'Your account has been created successfully!' });    
+        console.log(refresh_token)
 
+        client.SET(user._id, refresh_token, err => {
+
+            if(err) return next(ApiError.customError(500, err.message));  
+            res.setHeader(`x-access-token`, access_token);
+            res.cookie('refresh', refresh_token);
+            res.status(201).send({ message : 'Your account has been created successfully!' }); 
+
+        });
+                
     } catch (error) {
-        next(error);
+        next(error); 
     }
 })
 
@@ -56,7 +66,7 @@ router.post('/login',async(req, res, next) => {
 
         if(!isPasswordValid) return next(ApiError.customError(403, 'Invalid email or password!'));
 
-        const access_token = await AuthUtils.generate_JWT({
+        const { access_token, refresh_token } = await AuthUtils.createAuthTokens({
             payload : {
                 _id : user._id,
                 role : user.type,
@@ -66,6 +76,8 @@ router.post('/login',async(req, res, next) => {
 
         res.setHeader(`x-access-token`, access_token)
 
+        res.cookie('refresh', refresh_token);
+
         res.status(200).send({ message : 'You are successfully logged in!' });
 
     } catch (error) {
@@ -74,6 +86,7 @@ router.post('/login',async(req, res, next) => {
 })
 
 router.post('/logout',async(req, res, next) => {
+    console.log(req.cookie)
     return res.send({ message: "Hello logout" });
 })
 

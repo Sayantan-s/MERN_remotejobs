@@ -1,5 +1,5 @@
 import css from "@styled-system/css"
-import { View } from "components"
+import { View, Flex } from "components"
 import styled from "styled-components"
 
 export const Picture = ({ src, alt, ...rest }) => {
@@ -20,8 +20,8 @@ export const Picture = ({ src, alt, ...rest }) => {
 
 export const Thumbnail = ({ src, alt, thumbwidth, thumbheight, ...rest }) => {
     return (
-		<View {...rest}>
+		<Flex alignItems="center" justifyContent="center" {...rest}>
 			<img src={src} alt={alt} width={thumbwidth || 'auto'} height={thumbheight || 'auto'}/>
-		</View>
+		</Flex>
 	 )
 }

@@ -75,6 +75,7 @@ router.get('/:id', async(req,res,next) => {
     try{
         const jobData = await Jobs
         .findOne({ _id : jobId })
+        .populate("companyInfo", "website typeOfCorporation size established raised")
         .select('-company.tagline -createdAt -updatedAt -__v -_id');
 
         if(!jobData) return next(ApiError.customError(404, "There is no such job!"));

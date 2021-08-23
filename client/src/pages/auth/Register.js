@@ -7,7 +7,7 @@ import { Input, Button, View, Text, Flex } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
-import {useForm, useToggle, useAuthValidate} from 'hooks';
+import { useForm, useToggle } from 'hooks';
 import React, { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
@@ -62,6 +62,7 @@ const Register = () => {
                     data
                 })
                 if(res.status === 201){
+
                     AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
                         access_token : res.headers['x-access-token']
                     }})

@@ -99,7 +99,7 @@ const StyledCheckBox = styled(Flex)(css({
     maxWidth: 'max-content'
 }))
 
-const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor, isOption }) => {
+const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOption }) => {
 
     let checkboxRef = useRef(null);
 
@@ -114,8 +114,8 @@ const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor,
 
     return (
           <StyledCheckBox alignItems="center" onClick={handleToggle}>
-                <View size={size}>
-                    <svg viewBox="0 0 24 24" fill="none">
+                <Flex alignItems="center">
+                    <svg viewBox="0 0 24 24" fill="none" width={size}>
                         <circle cx={12} cy={12} r={12} fill={toggle ? checkedBg : uncheckedBg} />
                         {
                             isOption ? <path
@@ -133,7 +133,7 @@ const Checkbox = ({ checkedBg, uncheckedBg, color, size, name, value, textColor,
                             />
                         }
                     </svg>
-                </View>
+                </Flex>
                 <Text ml={4} color={textColor}>{ name }</Text>
                 <input type="checkbox" id="vehicle1" name={name} value={inputState ? value : ''} ref={ele => checkboxRef = ele} style={{ display: 'none' }}/>
           </StyledCheckBox>
