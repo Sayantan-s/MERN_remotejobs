@@ -2,6 +2,7 @@ import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
 import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button } from 'components/index'
 import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
+import SimilarJobs from 'components/page section/jobDynamic/SimilarJobs.component'
 import SkillExpectation from 'components/page section/jobDynamic/SkillExpectation.component'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -28,9 +29,9 @@ const Job = () => {
         })()
     }, [id])
 
-    console.log(jobData)
+    console.log(jobData.similarJobs)
 
-    const { company, roleInfo, companyInfo } = jobData;  
+    const { company, roleInfo, companyInfo, similarJobs } = jobData;  
 
     return (
         <Page>
@@ -126,10 +127,11 @@ const Job = () => {
                             </StackVertical>
                         </View>
                     </View>
-                    <View flex="0.3">
+                    <StackVertical flex="0.3" gap={8}>
                         <CompanyDetailsbar data={companyInfo} />
                         <SkillExpectation requiredXP={roleInfo?.skillXP} company={companyInfo?.name}/>
-                    </View>
+                        <SimilarJobs data={similarJobs} />
+                    </StackVertical>
                 </Flex>
             </View>
         </Page>

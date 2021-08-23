@@ -12,7 +12,7 @@ const SkillExpectation = ({ requiredXP, company }) => {
     const [ xp, setXp ] = useState(22);
 
     return (
-        <View mt={8}>
+        <View>
             <Heading level={3}>
                 Skill XP
             </Heading>

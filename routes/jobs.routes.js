@@ -15,7 +15,7 @@ router
                             companyInfo
                             roleInfo.role 
                             roleInfo.location 
-                            roleInfo.jobtype,
+                            roleInfo.jobtype
                             createdAt
                              `).sort({ createdAt : -1 }).limit(+limit);
     
@@ -76,11 +76,25 @@ router.get('/:id', async(req,res,next) => {
         const jobData = await Jobs
         .findOne({ _id : jobId })
         .populate("companyInfo", "website typeOfCorporation size established raised name")
-        .select('-company.tagline -createdAt -updatedAt -__v -_id');
+        .select('-company.tagline -tags -createdAt -updatedAt -__v')
+        .lean();
 
         if(!jobData) return next(ApiError.customError(404, "There is no such job!"));
 
-        res.send({ data : jobData });
+        const findSimilarJobs = await Jobs.find({ 
+            "roleInfo.dept" : jobData.roleInfo.dept, 
+            _id : {
+                $ne : jobData._id
+            },
+            $expr : { $rand : {} }
+        })
+        .populate("companyInfo", "logo name")
+        .select('-company -tags -createdAt -updatedAt -__v')
+        .limit(2);
+
+        if(!findSimilarJobs) return next(ApiError.customError(401, "Something went wrong!"));
+
+        res.send({ data : { ...jobData, similarJobs : findSimilarJobs } });
     }
     catch(err){
         next(err)

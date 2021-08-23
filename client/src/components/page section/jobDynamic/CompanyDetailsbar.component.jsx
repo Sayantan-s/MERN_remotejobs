@@ -6,6 +6,7 @@ import Website from 'assets/icons/Website'
 import { Flex, Heading, Link, StackVertical, Text, View } from 'components/index'
 import React from 'react'
 import { useTheme } from 'styled-components'
+import Utilities from 'utils/Utilties'
 
 const CompanyDetailsbar = ({ data }) => {
 
@@ -20,7 +21,7 @@ const CompanyDetailsbar = ({ data }) => {
                 <Detail icon={Website} header={'Website'} name={
                     <Link as="a" href={data?.website}>{data?.website}</Link>
                 } />
-                <Detail icon={Raised} header={'Raised'} name={data?.raised} />
+                <Detail icon={Raised} header={'Raised'} name={"$" + Utilities.moneyConverter(data?.raised.toString())} />
                 <Detail icon={Employee} header={'Company Size'} name={`${data?.size.minSize} - ${data?.size.maxSize}`} />
            </StackVertical>
        </View>
