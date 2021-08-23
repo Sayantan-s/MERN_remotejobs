@@ -46,6 +46,13 @@ const jobSchema = new Schema({
             }
         },
 
+        skillXP : {
+            type : Number,
+            required : true,
+            min: 10,
+            max : 100
+        },
+
         dept : {
             type : String,
             required : true

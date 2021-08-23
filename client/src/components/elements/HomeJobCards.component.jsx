@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
 import Tilt from 'react-parallax-tilt'
 
-const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, _id, createdAt }) => {
+const HomeJobCards = ({ logo, role, tagline, location, jobtype, name, _id, createdAt }) => {
 
     const theme = useTheme();
 
@@ -22,7 +22,7 @@ const HomeJobCards = ({ thumbnail, role, tagline, location, jobtype, name, _id, 
         <Tilt tiltAxis={'x'} gyroscope={true} tiltMaxAngleY={10}>
             <Flex bg="blue.0" alignItems="center" as="fig" p="8" borderRadius={6}>
             <View width={[2.3/12]}>
-                    <Image.Thumbnail src={thumbnail} alt="logo_company" thumbheight="40" />
+                    <Image.Thumbnail src={logo} alt="logo_company" thumbheight="40" />
             </View>
             <StackVertical width={[7.7/12]} gap={4}>
                 {(((new Date() - new Date(createdAt)) / (1000 * 60 * 60 * 24))) < 9 && <Text>New</Text>}

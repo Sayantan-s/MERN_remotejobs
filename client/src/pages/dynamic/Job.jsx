@@ -2,6 +2,7 @@ import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
 import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button } from 'components/index'
 import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
+import SkillExpectation from 'components/page section/jobDynamic/SkillExpectation.component'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTheme } from 'styled-components'
@@ -127,6 +128,7 @@ const Job = () => {
                     </View>
                     <View flex="0.3">
                         <CompanyDetailsbar data={companyInfo} />
+                        <SkillExpectation requiredXP={roleInfo?.skillXP} company={companyInfo?.name}/>
                     </View>
                 </Flex>
             </View>

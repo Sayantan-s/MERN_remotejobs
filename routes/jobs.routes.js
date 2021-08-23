@@ -11,8 +11,8 @@ router
 
     try{
         if(home === "true"){
-            const data = await Jobs.find().select(`
-                            company
+            const data = await Jobs.find().populate("companyInfo", "logo name tagline").select(`
+                            companyInfo
                             roleInfo.role 
                             roleInfo.location 
                             roleInfo.jobtype,
@@ -75,7 +75,7 @@ router.get('/:id', async(req,res,next) => {
     try{
         const jobData = await Jobs
         .findOne({ _id : jobId })
-        .populate("companyInfo", "website typeOfCorporation size established raised")
+        .populate("companyInfo", "website typeOfCorporation size established raised name")
         .select('-company.tagline -createdAt -updatedAt -__v -_id');
 
         if(!jobData) return next(ApiError.customError(404, "There is no such job!"));

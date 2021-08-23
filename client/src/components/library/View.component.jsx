@@ -13,7 +13,7 @@ const View = styled.div(css({
     layout, 
     shadow, 
     position,
-    background
+    background,
   )
 )
 

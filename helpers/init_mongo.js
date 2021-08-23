@@ -11,7 +11,7 @@ mongoose.connect(MONGO_URI,{
 const db = mongoose.connection;
 
 db.on('connected',_ => {
-    console.log(`connected to db...`)
+    console.log(`connected to mongodb...`)
 })
 
 db.on('error', err => {

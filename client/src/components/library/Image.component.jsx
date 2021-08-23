@@ -20,7 +20,7 @@ export const Picture = ({ src, alt, ...rest }) => {
 
 export const Thumbnail = ({ src, alt, thumbwidth, thumbheight, ...rest }) => {
     return (
-		<Flex alignItems="center" justifyContent="center" {...rest}>
+		<Flex {...rest}>
 			<img src={src} alt={alt} width={thumbwidth || 'auto'} height={thumbheight || 'auto'}/>
 		</Flex>
 	 )

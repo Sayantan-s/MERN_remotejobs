@@ -43,7 +43,7 @@ const Detail = ({ icon: Icon, header, name }) => {
                 <Heading level={4}>
                     { header }
                 </Heading>
-                <Text as="span" lineHeight={0} mt={2}>
+                <Text as="span" lineHeight={0} mt={2} color="text.1">
                     { name }
                 </Text>
             </View>

@@ -22,7 +22,13 @@ const FeaturedCompanies = () => {
 
 
     return (
-       <View bg="blue.1" py={12}>
+       <View bg="blue.1" py={12}
+       backgroundSize="cover"
+       backgroundPosition="center"
+       backgroundImage={
+           `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='491' preserveAspectRatio='none' viewBox='0 0 1920 491'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1023%26quot%3b)' fill='none'%3e%3cpath d='M782.84 566.73C944.6 536.75 897.58 131.47 1274.87 129.74 1652.16 128.01 2011.01 252.25 2258.93 252.49' stroke='rgba(207%2c 210%2c 255%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M357.45 550.38C588.93 544.56 786.97 215.25 1220.83 215.03 1654.68 214.81 1864.59 376.36 2084.2 377.06' stroke='rgba(207%2c 210%2c 255%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M1126.73 499.84C1240.52 473.69 1207.82 171.48 1458.59 171.25 1709.36 171.02 1948.57 375.11 2122.31 377.47' stroke='rgba(207%2c 210%2c 255%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M451.54 518.23C692.86 514.93 911.45 231.02 1373.16 230.96 1834.88 230.9 2060.41 402.08 2294.79 402.81' stroke='rgba(207%2c 210%2c 255%2c 1)' stroke-width='2'%3e%3c/path%3e%3cpath d='M260.64 552.35C493.08 549.92 694.62 302.14 1155.24 298.93 1615.86 295.72 1821.38 113.34 2049.84 112.35' stroke='rgba(207%2c 210%2c 255%2c 1)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1023'%3e%3crect width='1920' height='491' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e")`
+       }
+       >
            <View maxWidth={['desktop']} m="0 auto">
                 <Flex justifyContent="space-between">
                     <Text as="span" fontSize="m" color="text.4">
