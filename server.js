@@ -43,12 +43,8 @@ app.use('/api/jobs', jobsRoutes);
 app.use('/api/companies', companyRoutes);
 app.use('/api/qna', qnaRoute)
 
-/*app.use(express.static('client/build'));
-app.get('*', (req,res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-})*/
+app.use(express.static('client/build'));
 
- 
 app.use(PageNotFoundError);
 app.use(PageError);
  
