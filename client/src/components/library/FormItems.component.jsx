@@ -6,6 +6,7 @@ import css from '@styled-system/css';
 import { compose, layout, space } from 'styled-system';
 import {useToggle} from 'hooks';
 import { StackVertical } from 'components/index';
+import { gsap } from 'gsap'
 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
@@ -114,6 +115,7 @@ const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOpti
         setState(!toggle);
     },[handleToggle])
 
+    
     return (
           <StyledCheckBox alignItems="center" onClick={handleToggle}>
                 <Flex alignItems="center">
