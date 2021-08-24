@@ -4,6 +4,7 @@ import styled, { useTheme } from 'styled-components'
 import Location from 'assets/icons/Location'
 import ArrowRight from 'assets/icons/ArrowRight'
 import { useHistory } from 'react-router'
+import Utilities from 'utils/Utilties'
 
 const RoleOverview = styled(Text)`
 overflow: hidden;
@@ -63,7 +64,7 @@ const JobPageJobCards = ({ thumbnail,name, role, location, roleOverview, salary,
                     </View>
                </Flex>
                <Text as="span" fontWeight="bold" fontSize="m" color="text.4">
-                   {salary}
+                ${Utilities.salaryMeter(salary.min)}k-${Utilities.salaryMeter(salary.max)}k
                </Text>
            </Flex>
            <RoleOverview mt={6}>

@@ -1,6 +1,7 @@
 import { Flex, Heading, Image, Link, Text, View } from 'components/index'
 import React from 'react'
 import styled, { useTheme } from 'styled-components'
+import Utilities from 'utils/Utilties'
 
 const CompanyIntro = styled(Text)`
     overflow: hidden;
@@ -20,15 +21,15 @@ const SimilarJobCard = ({ logo, role, roleOverview, jobtype, location, salary, i
            <Heading level={5} mt={5}>
                {role}
            </Heading>
-           <View mt={4}>
+           <View mt={4} color="text.1">
                 { jobtype } &middot; { location }
            </View>
-           <CompanyIntro mt={5}>
+           <CompanyIntro mt={5} color="text.1">
                {roleOverview}
            </CompanyIntro>
            <Flex mt={6} alignItems="center" justifyContent="space-between">
                <Text as="span" color="text.4" fontWeight="bold">
-                   {salary}
+                    ${Utilities.salaryMeter(salary.min)}k-${Utilities.salaryMeter(salary.max)}k
                </Text>
                <Link to={`/jobs/${name}_${id}`}>
                     Read More

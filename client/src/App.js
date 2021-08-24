@@ -32,7 +32,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/jobs" component={Jobs} />
                 <Route path="/jobs/:id" component={Job} />
-                <Route path="/applied-jobs" component={AppliedJobs} />
+                <Route path="/companies" component={AppliedJobs} />
                 <Route path="/qna" component={Qna} />
                 <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
                   <Register />
