@@ -16,7 +16,7 @@ const Company = () => {
                     toggle && 
                     <>
                         <path d="M15 10.38L16.12 9.25" stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M7.88086 12L10.6209 14.75L13.1709 12.21" stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />}
+                        <path d="M7.88086 12L10.6209 14.75L13.1709 12.21" stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </>
                 }
             </svg>

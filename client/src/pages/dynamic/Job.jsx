@@ -96,7 +96,7 @@ const Job = () => {
                                             checkedBg={theme.colors.success[3]} 
                                             uncheckedBg={theme.colors.success[0]} 
                                             color={theme.colors.white} 
-                                            size={'2rem'}  
+                                            size={'2.3rem'}  
                                             name={resp}
                                             value={resp}
                                             isOption
@@ -117,7 +117,7 @@ const Job = () => {
                                             checkedBg={theme.colors.success[3]} 
                                             uncheckedBg={theme.colors.success[0]} 
                                             color={theme.colors.text[1]} 
-                                            size={'2rem'}  
+                                            size={'2.3rem'}  
                                             name={resp}
                                             value={resp}
                                             isOption={true}
