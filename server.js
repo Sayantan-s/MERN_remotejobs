@@ -42,8 +42,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobsRoutes);
 app.use('/api/companies', companyRoutes);
 app.use('/api/qna', qnaRoute)
+app.use('/api/utils', require("./routes/utils.routes"))
 
-app.use(express.static('client/build'));
+//app.use(express.static('client/build'));
 
 app.use(PageNotFoundError);
 app.use(PageError);

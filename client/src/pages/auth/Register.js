@@ -4,6 +4,7 @@ import Lock from 'assets/icons/Lock';
 import Show from 'assets/icons/Show';
 import User from 'assets/icons/User';
 import { Input, Button, View, Text, Flex } from 'components';
+import CompanyRegistrationButton from 'components/elements/CompanyRegistrationButton.component';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
@@ -90,15 +91,15 @@ const Register = () => {
        position="relative" display="flex" 
        alignItems="center"
        justifyContent="center">
-           <Link variant="outline.normal" lay="xl" to="/company" position="absolute" top="5" right="10">
-                Register Company
-           </Link>
-           <Link to="/"  m="4rem auto" position="absolute" top="0">
-                     <Logo />
-                     <Text color="text.4" ml={4}>
-                         <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
-                         <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
-                     </Text>
+            <View position="absolute" bottom="10rem">
+                <CompanyRegistrationButton />
+            </View>
+            <Link to="/"  m="4rem auto" position="absolute" top="0">
+                        <Logo />
+                        <Text color="text.4" ml={4}>
+                            <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
+                            <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
+                        </Text>
             </Link>
            <View>
                 <View p="7" boxShadow={`0px 10px 20px ${theme.colors.blue[2]}50`} borderRadius={5}>
@@ -188,7 +189,7 @@ const Register = () => {
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Sign Up</Button>
                     </View>
-                    <Flex alignItems="center" justifyContent="center" py={7}>
+                    <Flex alignItems="center" justifyContent="center" mt={7}>
                         <Text color="text.1">Already have an account? &nbsp;</Text> <Link to="/auth/login" p={0} minWidth={'max-content'}>Sign In</Link>
                     </Flex>
                 </View>

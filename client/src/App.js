@@ -16,6 +16,13 @@ function App() {
 
   const { isAuthenticated } = useContext(AuthContext)
 
+  useEffect(() => {
+    (async() => {
+      const res = await http.get('/utils/refresh');
+      console.log(res)
+    })()
+  },[])
+
   /*useEffect(() => {
     (async() => {
       const res = await http.get('/csrf');

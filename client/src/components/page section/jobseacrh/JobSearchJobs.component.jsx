@@ -3,9 +3,6 @@ import { Button, Dropdown, Flex, StackVertical, Text, View } from 'components/in
 import React from 'react'
 
 const JobSearchJobs = ({ jobs }) => {
-
-    console.log(jobs)
-
     return (
        <View width={[8/10]}>
            <Flex  alignItems="center" justifyContent="space-between" pb={6} position="sticky">
