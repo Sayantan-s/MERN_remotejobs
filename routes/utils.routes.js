@@ -34,8 +34,6 @@ router.use('/refresh', async (req, res, next) => {
                 return next(ApiError.customError(401, 'User unAuthorized!'))
             };
     
-            client.set(userId +"", JSON.stringify(user));
-
             access_token = await AuthUtils.generate_JWT({ 
                 payload : {
                     _id : user._id,
@@ -44,11 +42,17 @@ router.use('/refresh', async (req, res, next) => {
                 }
             })
 
+            console.log("USING MONGO");
+
+            client.set(userId +"", JSON.stringify(user));
+
         }
         else{
             access_token = await AuthUtils.generate_JWT({ 
                 payload : JSON.parse(getPayloadFromCache)
             })
+
+            console.log("USING CACHE FROM REDIS");
         }
 
         res.setHeader(`x-access-token`, access_token);

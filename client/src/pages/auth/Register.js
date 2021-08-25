@@ -91,7 +91,7 @@ const Register = () => {
        position="relative" display="flex" 
        alignItems="center"
        justifyContent="center">
-            <View position="absolute" bottom="10rem">
+            <View position="absolute" top="1rem" right="3rem">
                 <CompanyRegistrationButton />
             </View>
             <Link to="/"  m="4rem auto" position="absolute" top="0">
