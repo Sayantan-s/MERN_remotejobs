@@ -11,7 +11,6 @@ import { AuthContext, NavHeightContext, AlertContext } from 'context'
 import Qna from "pages/Qna";
 import ForgotPassword from "pages/auth/ForgotPassword";
 import Job from "pages/dynamic/Job";
-import { NavContext } from "context/NavHeightContext";
 
 function App() {
 
