@@ -75,7 +75,7 @@ router.get('/:id', async(req,res,next) => {
     try{
         const jobData = await Jobs
         .findOne({ _id : jobId })
-        .populate("companyInfo", "website typeOfCorporation size established raised name")
+        .populate("companyInfo", "website typeOfCorporation size established raised name culture.videoThumbnail")
         .select('-company.tagline -tags -createdAt -updatedAt -__v')
         .lean();
 

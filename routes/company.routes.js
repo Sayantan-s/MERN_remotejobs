@@ -53,4 +53,17 @@ router
     }
 })
 
+router.get('/:company', async(req,res, next) => {
+    const { company } = req.params;
+    const [ name, _id ] = company.split('_');
+    try{
+        const data = await Company.findOne({ name }).populate("jobs")
+        if(!data) return next(ApiError.customError(409, "Something went wrong!"))
+        res.send({ data })
+    }
+    catch(err){
+        next(err)
+    }
+})
+
 module.exports = router;

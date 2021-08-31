@@ -1,6 +1,6 @@
 import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
-import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button } from 'components/index'
+import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button, Link } from 'components/index'
 import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
 import SimilarJobs from 'components/page section/jobDynamic/SimilarJobs.component'
 import SkillExpectation from 'components/page section/jobDynamic/SkillExpectation.component'
@@ -29,10 +29,10 @@ const Job = () => {
         })()
     }, [id])
 
-    console.log(jobData.similarJobs)
+    const { company, roleInfo, companyInfo, similarJobs, _id } = jobData; 
 
-    const { company, roleInfo, companyInfo, similarJobs } = jobData;  
-
+    console.log(jobData)
+    
     return (
         <Page>
             <View
@@ -42,7 +42,7 @@ const Job = () => {
                 backgroundSize="cover"
                 backgroundPosition="center" 
                 borderRadius={8} 
-                backgroundImage={`URL("https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80")`}>
+                backgroundImage={`URL(${companyInfo?.culture.videoThumbnail})`}>
                     <Image.Thumbnail src={company?.thumbnail} alt={company?.name} thumbwidth={80} thumbheight={80} bg="white" 
                         width="max-content" p={4} 
                         position="absolute" 
@@ -52,9 +52,9 @@ const Job = () => {
                     />
             </View>
             <View my={12} px={10}>
-                <Text as={'pre'} fontSize="m">
+                <Link fontSize="m" to={`/company/${company?.name}_${_id}`} p="0" color="text.1">
                     {company?.name}
-                </Text>
+                </Link>
                 <Heading level={2} mt={4} maxWidth="xl">
                     {roleInfo?.role}
                 </Heading>

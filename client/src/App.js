@@ -11,6 +11,8 @@ import { AuthContext, NavHeightContext, AlertContext } from 'context'
 import Qna from "pages/Qna";
 import ForgotPassword from "pages/auth/ForgotPassword";
 import Job from "pages/dynamic/Job";
+import Company from "pages/dynamic/Company";
+
 
 function App() {
 
@@ -22,7 +24,6 @@ function App() {
     (async() => {
       try{
         const res = await http.get('/utils/refresh');
-        console.log(res)
       }
       catch(err){
         dispatchToast({
@@ -55,7 +56,6 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route exact path="/jobs" component={Jobs} />
-                  <Route path="/jobs/:id" component={Job} />
                   <Route path="/companies" component={AppliedJobs} />
                   <Route path="/qna" component={Qna} />
                   <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
@@ -63,6 +63,8 @@ function App() {
                   </PrivateRoute>
                   <Route path="/auth/login" component={Login} />
                   <Route path="/auth/forgotpassword" component={ForgotPassword} />
+                  <Route path="/jobs/:id" component={Job} />
+                  <Route path="/company/:company" component={Company} />
                 </Switch>
             </Layout>
             <Toasts toasts={toasts} />

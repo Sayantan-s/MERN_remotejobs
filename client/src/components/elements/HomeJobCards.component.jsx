@@ -6,13 +6,13 @@ import { useHistory } from 'react-router-dom'
 import styled, { useTheme } from 'styled-components'
 import Tilt from 'react-parallax-tilt'
 
+export const StyledArrow = styled(Flex)(css({
+    transform: 'rotate(-45deg)'
+}))
+
 const HomeJobCards = ({ logo, role, tagline, location, jobtype, name, _id, createdAt }) => {
 
     const theme = useTheme();
-
-    const StyledArrow = styled(Flex)(css({
-        transform: 'rotate(-45deg)'
-    }))
 
     const history = useHistory();
 
