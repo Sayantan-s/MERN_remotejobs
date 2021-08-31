@@ -17,11 +17,11 @@ router.use('/refresh', async (req, res, next) => {
 
     try{
         if(!refresh){
-            next(ApiError.customError(401, 'User unAuthorized!'))
+            next(ApiError.customError(401, 'You are not logged in!'))
         }
         const userId = await client.get(refresh + "");
         if(!userId){
-            return next(ApiError.customError(401, 'User unAuthorized!'))
+            return next(ApiError.customError(401, 'You are not logged in!'))
         };
 
         const getPayloadFromCache = await client.get(userId + "");
@@ -31,7 +31,7 @@ router.use('/refresh', async (req, res, next) => {
             const user = await User.findOne({ _id : userId }).select('role name').lean();
     
             if(!user){
-                return next(ApiError.customError(401, 'User unAuthorized!'))
+                return next(ApiError.customError(401, 'You are not logged in!'))
             };
     
             access_token = await AuthUtils.generate_JWT({ 

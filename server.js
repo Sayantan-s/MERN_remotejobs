@@ -11,13 +11,7 @@ const crypto = require('crypto');
 
 const { PORT } = require("./config/index");
 
-const authRoutes = require("./routes/auth.routes");
-const jobsRoutes = require("./routes/jobs.routes");
-const companyRoutes = require("./routes/company.routes");
-
 const { PageNotFoundError, PageError } = require("./middlewares/error");
-const qnaRoute = require("./routes/qna.routes");
-
 
 // DATABASE CONNECTION
 
@@ -38,17 +32,17 @@ const middlewares = [
 
 app.use(middlewares)
 
-app.use('/api/auth', authRoutes);
-app.use('/api/jobs', jobsRoutes);
-app.use('/api/companies', companyRoutes);
-app.use('/api/qna', qnaRoute)
+app.use('/api/auth', require("./routes/auth.routes"));
+app.use('/api/jobs', require("./routes/jobs.routes"));
+app.use('/api/companies', require("./routes/company.routes"));
+app.use('/api/qna', require("./routes/qna.routes"))
 app.use('/api/utils', require("./routes/utils.routes"))
 
-app.use(express.static('client/build'));
+//app.use(express.static('client/build'));
 
 app.use(PageNotFoundError);
-app.use(PageError);
- 
+app.use(PageError); 
+  
 app.listen(port, _=> {
     console.log('====================================');
     console.log(`server : ${process.pid} @ we are live on port ${port}`.toUpperCase());

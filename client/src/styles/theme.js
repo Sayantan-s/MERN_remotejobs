@@ -57,11 +57,12 @@ const theme = {
         ],
         background: '#f5f6ff',
         danger : [
-            '#ffe6e6', 
-            '#ffbfbf', 
-            '#ff9999', 
-            '#ff4d4d', 
-            '#ff0000'
+            '#fff4f4', 
+            '#ffc7c7', 
+            '#ffa5a5', 
+            '#ff6262', 
+            '#ff1f1f', 
+            '#e61c1c'
         ],
         success : [
             '#d6f8c4', 

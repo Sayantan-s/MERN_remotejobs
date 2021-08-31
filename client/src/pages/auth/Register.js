@@ -6,7 +6,7 @@ import User from 'assets/icons/User';
 import { Input, Button, View, Text, Flex } from 'components';
 import CompanyRegistrationButton from 'components/elements/CompanyRegistrationButton.component';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
-import { AuthContext } from 'context';
+import { AlertContext, AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import { useForm, useToggle } from 'hooks';
 import React, { useContext, useEffect, useState } from 'react'
@@ -48,7 +48,9 @@ const Register = () => {
 
     const { email, name, password  } = form
 
-    const AuthState = useContext(AuthContext)
+    const AuthState = useContext(AuthContext);
+
+    const { dispatchToast } = useContext(AlertContext);
 
     const history = useHistory();
 
@@ -72,7 +74,11 @@ const Register = () => {
                 }
             }
             catch(err){
-                console.log(err.response);
+                dispatchToast({
+                    variant : 'danger',
+                    text : err.response.data.message,
+                    hasIcon : true
+                })
             }
         }
     })

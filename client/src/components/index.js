@@ -7,6 +7,9 @@ import Link from "./library/Link.component";
 import Heading from "./library/Heading.component";
 import { Flex, Page, Stack, StackVertical, Divider } from './library/Primitives.component';
 import { Radio, Input, Checkbox, CheckboxGroup } from './library/FormItems.component';
+import Toast from "./library/Toast.component";
+import Toasts from "./elements/Toasts.components";
+import Portal from "./utils/Portal.component";
 import Logo from "./constants/Logo";
 import * as Image from './library/Image.component'
 
@@ -17,4 +20,4 @@ import Layout from "./layout/Layout";
 
 import QuesAns from "./elements/QuesAns.component";
 
-export { View, Button, Text, Link, Flex, Page, Stack, StackVertical, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns, Heading, Input, Divider, Image, Checkbox, CheckboxGroup, Dropdown }
+export { View, Button, Text, Link, Flex, Page, Stack, StackVertical, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns, Heading, Input, Divider, Image, Checkbox, CheckboxGroup, Dropdown, Portal, Toast, Toasts  }

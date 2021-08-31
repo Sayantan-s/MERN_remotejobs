@@ -1,4 +1,4 @@
-import { AuthenticationContext } from 'context';
+import { AuthenticationContext, ToastContext } from 'context';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Styles from 'styles';
@@ -8,9 +8,11 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <AuthenticationContext>
-      <Styles>
-        <App />
-      </Styles>
+      <ToastContext>
+        <Styles>
+          <App />
+        </Styles>
+      </ToastContext>
     </AuthenticationContext>
   </React.StrictMode>,
   document.getElementById('root') 

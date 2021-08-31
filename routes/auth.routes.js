@@ -55,7 +55,7 @@ router.post('/login',async(req, res, next) => {
         if(error)
             return next(error);
         
-        const user = await User.findOne({ email }).select('password type -__v').lean();
+        const user = await User.findOne({ email }).select('password type').lean();
         
         if(!isAlreadyAUser) return next(ApiError.customError(403, "Invalid email or password!"))
 
@@ -71,10 +71,9 @@ router.post('/login',async(req, res, next) => {
             }
         })
 
-        res.setHeader(`x-access-token`, access_token)
-
+        res.setHeader(`x-access-token`, access_token);
         res.cookie('refresh', refresh_token);
-
+        client.set(refresh_token + "", user._id + "", redis.print);
         res.status(200).send({ message : 'You are successfully logged in!' });
 
     } catch (error) {

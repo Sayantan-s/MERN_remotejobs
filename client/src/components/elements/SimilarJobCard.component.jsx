@@ -34,7 +34,7 @@ const SimilarJobCard = ({ logo, role, roleOverview, jobtype, location, salary, i
                <Link to={`/jobs/${name}_${id}`}>
                     Read More
                </Link>
-           </Flex>
+           </Flex> 
        </View>
     )
 }
