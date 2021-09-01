@@ -12,7 +12,9 @@ const companySchema = new Schema({
     },
     tagline : {
         type : String,
-        required : true
+        required : true,
+        max: 53,
+        min : 40
     },
     typeOfCorporation : {
         type : String,
@@ -20,7 +22,9 @@ const companySchema = new Schema({
     },
     info : {
         type : String,
-        required : true
+        required : true,
+        max: 185,
+        min : 120
     },
     size : {
         minSize : {

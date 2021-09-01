@@ -1,6 +1,10 @@
+import css from '@styled-system/css';
 import useToggle from 'hooks/useToggle';
 import React from 'react'
-import { useTheme } from 'styled-components'
+import { NavLink } from 'react-router-dom';
+import styled, { useTheme } from 'styled-components'
+
+
 
 const Company = () => {
 
@@ -30,3 +34,4 @@ const Company = () => {
 }
 
 export default Company
+

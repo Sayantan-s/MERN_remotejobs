@@ -16,11 +16,12 @@ const theme = {
 		'16rem',
 	],
     sizes : {
-       sm : '20rem',
-       m : '40rem',
-       l : '60rem',
-       xl : '80rem',
-       desktop : '130rem'
+        xs : '10rem',
+        sm : '20rem',
+        m : '40rem',
+        l : '60rem',
+        xl : '80rem',
+        desktop : '130rem'
     },
     fontSizes: {
         xxl: '8rem',

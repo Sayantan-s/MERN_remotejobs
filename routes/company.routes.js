@@ -57,7 +57,17 @@ router.get('/:company', async(req,res, next) => {
     const { company } = req.params;
     const [ name, _id ] = company.split('_');
     try{
-        const data = await Company.findOne({ name }).populate("jobs")
+        const data = await Company
+        .findOne({ name })
+        .populate({
+            path : 'jobs',
+            select : 'roleInfo.role roleInfo.jobtype roleInfo.location ',
+            populate : {
+                path : 'companyInfo',
+                select : 'logo name -_id'
+            }
+        }).limit(3)
+
         if(!data) return next(ApiError.customError(409, "Something went wrong!"))
         res.send({ data })
     }

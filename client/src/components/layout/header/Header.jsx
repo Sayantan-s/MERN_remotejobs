@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { Logo, View, Flex, Link, Stack } from 'components'
 import { AuthContext } from 'context'
 import { LOGOUT_USER } from 'context/types/Auth.types'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { NavContext } from 'context/NavHeightContext'
+import styled from 'styled-components'
+import css from '@styled-system/css'
 
 const Header = () => {
 
@@ -31,16 +33,17 @@ const Header = () => {
                 <Logo />
             </Link>
             <Flex alignItems="center" justifyContent="space-between" width="100%" ml="6">
-                <Stack gap={5} ml={4}>
-                    <Link to="/" color={"text.3"}>
+                <Stack gap={9} ml={4}>
+                    
+                    <StyledNavLinks to="/" color={"text.3"} exact={true}>
                         Home
-                    </Link>
-                    <Link to="/jobs" color={"text.3"} >
-                        Find jobs
-                    </Link>
-                    <Link to="/companies" color={"text.3"}>
+                    </StyledNavLinks>
+                    <StyledNavLinks to="/jobs" color={"text.3"} >
+                        Find Jobs
+                    </StyledNavLinks>
+                    <StyledNavLinks to="/companies" color={"text.3"}>
                         Companies
-                    </Link>
+                    </StyledNavLinks>
                 </Stack>
                <Stack gap={5}>
                     {
@@ -63,3 +66,22 @@ const Header = () => {
 }
 
 export default Header
+
+const StyledNavLinks = styled(NavLink).attrs({ activeClassName : "active" })(css({
+    color : "text.4",
+    textDecoration : 'none',
+    fontWeight : 'semibold',
+    position : 'relative',
+    '&.active' : {
+        color : 'blue.5',
+    },
+    '&::after' : {
+        content : ' ',
+        position : "absolute",
+        width : "100%",
+        height : "3px",
+        bg: "red",
+        bottom: 0,
+        left: 0
+    }
+}))
