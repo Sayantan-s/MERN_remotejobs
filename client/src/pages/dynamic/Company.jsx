@@ -87,5 +87,3 @@ const Company = () => {
 }
 
 export default Company
-
-//                <Image src={data?.culture.videoThumbnail} alt={company?.name} /> 
