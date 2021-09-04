@@ -50,8 +50,6 @@ const JobFilterContext = ({ children }) => {
         checkedValues : []
     })
 
-    console.log(jobType.checkedValues)
-
     const [ dept, setDept ] = useState({
         data : [
             {
@@ -69,6 +67,11 @@ const JobFilterContext = ({ children }) => {
         ],
         checkedValues : []
     })
+    
+    const filterJobsController = jobs => {
+        const [ min, max ] = range;
+        return jobs.filter(job => job.roleInfo.salary.max > min || job.roleInfo.salary.max > max)
+    }
 
     return (
         <FilterContext.Provider value={{
@@ -76,7 +79,8 @@ const JobFilterContext = ({ children }) => {
             onRangeChange : val => setRange(val),
             experience, setExperience,
             jobType, setJobType,
-            dept, setDept
+            dept, setDept,
+            dispatchJobFilter : jobs => filterJobsController(jobs)
          }}>
             { children }
         </FilterContext.Provider>

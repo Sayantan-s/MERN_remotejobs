@@ -110,11 +110,13 @@ const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOpti
 
     useEffect(() => {
         checkboxRef.checked = toggle;
-        getValue(prevState => ({
-            ...prevState,
-            checkedValues: toggle ? prevState.checkedValues.concat(checkboxRef.value) : 
-            prevState.checkedValues.filter(val => val !== value) 
-        }))
+        if(!isOption){
+            getValue(prevState => ({
+                ...prevState,
+                checkedValues: toggle ? prevState.checkedValues.concat(checkboxRef.value) : 
+                prevState.checkedValues.filter(val => val !== value) 
+            }))
+        }
     },[handleToggle])
 
     

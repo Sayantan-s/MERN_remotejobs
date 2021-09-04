@@ -12,7 +12,7 @@ const JobSearchSidebar = () => {
     const { range, onRangeChange, experience, setExperience, jobType, setJobType,  dept, setDept } = useContext(FilterContext)
 
     return (
-        <StackVertical width={[2/10]} gap={9} overflowY="scroll" >
+        <StackVertical width={[2/10]} gap={9} overflowY="scroll" px={6}>
             <View>
                 <Heading level={5} mb={6}>
                     Job Type
