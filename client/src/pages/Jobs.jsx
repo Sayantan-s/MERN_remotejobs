@@ -4,6 +4,7 @@ import JobSearchHeader from 'components/page section/jobseacrh/JobSearchHeader.c
 import JobSearchJobs from 'components/page section/jobseacrh/JobSearchJobs.component'
 import React, { useEffect, useState } from 'react'
 import http from 'utils/http'
+import { JobFilterContext } from 'context'
 
 const Jobs = () => {
 
@@ -11,18 +12,20 @@ const Jobs = () => {
 
     useEffect(() => {
         (async() => {
-            const { data, status, headers } = await http.get('/jobs');
+            const { data, status } = await http.get('/jobs');
             if (status === 200) setJobs(data.data);
         })()
     },[])
 
     return (
        <View maxWidth="desktop" m="0 auto">
-           <JobSearchHeader />
-            <Stack pt={12} pb={8} gap={10}>
-                <JobSearchSidebar />
-                <JobSearchJobs jobs={jobs}/>
-            </Stack>
+           <JobFilterContext>
+                <JobSearchHeader />
+                <Stack pt={12} pb={8} gap={10}>
+                    <JobSearchSidebar />
+                    <JobSearchJobs jobs={jobs}/>
+                </Stack>
+           </JobFilterContext>
        </View>
     )
 }

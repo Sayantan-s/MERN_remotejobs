@@ -1,14 +1,15 @@
 import { CheckboxGroup, Flex, Heading, StackVertical, Text, View } from 'components/index'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
 import { Range } from 'react-range';
 import Button from 'components/library/Button.component';
+import { FilterContext } from 'context';
 
 const JobSearchSidebar = () => {
 
     const theme = useTheme(); 
 
-    const [ range, setRange ] = useState([40000, 200000]);
+    const { range, onRangeChange, experience, setExperience, jobType, setJobType,  dept, setDept } = useContext(FilterContext)
 
     return (
         <StackVertical width={[2/10]} gap={9} overflowY="scroll" >
@@ -22,28 +23,8 @@ const JobSearchSidebar = () => {
                     color={theme.colors.blue[1]} 
                     size="2.3rem"
                     gap={6}
-                    data={[
-                        {
-                            name : 'Full Time Job',
-                            value : 'Full Time'
-                        },
-                        {
-                            name : 'Part Time Job',
-                            value : 'Part Time'
-                        },
-                        {
-                            name : 'Internship Job',
-                            value : 'Internship'
-                        },
-                        {
-                            name : 'Remote Job',
-                            value : 'Remote'
-                        },
-                        {
-                            name : 'Contract',
-                            value : 'Contract'
-                        }
-                    ]}
+                    data={jobType.data}
+                    setCheckedValue={setJobType}
                 />
             </View>
             <StackVertical gap={6}>
@@ -64,7 +45,7 @@ const JobSearchSidebar = () => {
                         min={200}
                         max={300000}
                         values={range}
-                        onChange={(values) => setRange(values)}
+                        onChange={onRangeChange}
                         renderTrack={({ props, children }) => (
                             <div
                               {...props}
@@ -109,20 +90,8 @@ const JobSearchSidebar = () => {
                     color={theme.colors.blue[1]} 
                     size="2.3rem"
                     gap={6}
-                    data={[
-                        {
-                            name : 'Entry/Junior',
-                            value : 'Entry'
-                        },
-                        {
-                            name : 'Middle',
-                            value : 'Middle'
-                        },
-                        {
-                            name : 'Senior',
-                            value : 'Senior'
-                        }
-                    ]}
+                    data={experience.data}
+                    setCheckedValue={setExperience}
                 />
             </View>
             <View>
@@ -135,20 +104,8 @@ const JobSearchSidebar = () => {
                     color={theme.colors.blue[1]} 
                     size="2.3rem"
                     gap={6}
-                    data={[
-                        {
-                            name : 'Technology',
-                            value : 'technology'
-                        },
-                        {
-                            name : 'Design',
-                            value : 'design'
-                        },
-                        {
-                            name : 'Sales & Marketing',
-                            value : 'sales'
-                        }
-                    ]}
+                    data={dept.data}
+                    setCheckedValue={setDept}
                 />
             </View>
             <View>

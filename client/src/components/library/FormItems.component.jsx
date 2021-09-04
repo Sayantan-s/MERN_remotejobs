@@ -100,19 +100,21 @@ const StyledCheckBox = styled(Flex)(css({
     maxWidth: 'max-content'
 }))
 
-const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOption }) => {
+const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOption, getValue }) => {
 
     let checkboxRef = useRef(null);
 
     const [ toggle, handleToggle ] = useToggle();
 
-    const [ inputState, setState ] = useState(false);
-
     let optionRef = useRef(null);
 
     useEffect(() => {
         checkboxRef.checked = toggle;
-        setState(!toggle);
+        getValue(prevState => ({
+            ...prevState,
+            checkedValues: toggle ? prevState.checkedValues.concat(checkboxRef.value) : 
+            prevState.checkedValues.filter(val => val !== value) 
+        }))
     },[handleToggle])
 
     
@@ -138,13 +140,14 @@ const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOpti
                     </svg> 
                     }
                 </Flex>
-                <Text ml={4} color={textColor}>{ name }</Text>
-                <input type="checkbox" id="vehicle1" name={name} value={inputState ? value : ''} ref={ele => checkboxRef = ele} style={{ display: 'none' }}/>
+                <Text as="span" ml={4} color={textColor}>{ name }</Text>
+                <input type="checkbox" id="vehicle1" name={name} value={toggle ? value : ''} ref={ele => checkboxRef = ele} style={{ display: 'none' }}/>
           </StyledCheckBox>
     )
 }
 
-const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textColor, isOption }) => {
+const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textColor, isOption, setCheckedValue }) => {
+
     return (
         <StackVertical gap={gap}>
             {
@@ -157,6 +160,7 @@ const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textCol
                         size={size}
                         textColor={textColor}
                         isOption={isOption}
+                        getValue={setCheckedValue}
                         {...inp} 
                     />
                 ))
