@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 const useFetch = ({
-    initialState : []
+    initialState : [],
+    forAuth = false
 }) => {
     const [data, setData] = useState(initialState);
 
     useEffect(() => {
         (async() => {
-            const { data, status, headers } = await http.get('/jobs');
+            const { data, status, ...(forAuth && headers) } = await http.get('/jobs');
             if (status === 200) setData(data.data);
         })()
     },[])

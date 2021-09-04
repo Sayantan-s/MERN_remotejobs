@@ -1,6 +1,6 @@
 import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
-import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button, Link } from 'components/index'
+import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button, Link, CheckboxGroup } from 'components/index'
 import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
 import SimilarJobs from 'components/page section/jobDynamic/SimilarJobs.component'
 import SkillExpectation from 'components/page section/jobDynamic/SkillExpectation.component'
@@ -31,7 +31,16 @@ const Job = () => {
 
     const { company, roleInfo, companyInfo, similarJobs, _id } = jobData; 
 
-    console.log(jobData)
+    const mainResponsibilities = roleInfo?.mainResponsibilities.map(responsibility => ({
+        name : responsibility, 
+        value: responsibility
+    }))
+
+    const skillsReq = roleInfo?.skillsReq.map(info => ({
+        name : info, 
+        value: info
+    }))
+
     
     return (
         <Page>
@@ -89,20 +98,15 @@ const Job = () => {
                                 What will you do as a {roleInfo?.role}?
                             </Heading>
                             <StackVertical gap={6} mt={7}>
-                                {
-                                    roleInfo?.mainResponsibilities?.map((resp,_id) => (
-                                        <Checkbox
-                                            key={_id}
-                                            checkedBg={theme.colors.success[3]} 
-                                            uncheckedBg={theme.colors.success[0]} 
-                                            color={theme.colors.white} 
-                                            size={'2.3rem'}  
-                                            name={resp}
-                                            value={resp}
-                                            isOption
-                                        />
-                                    ))
-                                }
+                                <CheckboxGroup
+                                    checkedBg={theme.colors.success[3]} 
+                                    uncheckedBg={theme.colors.success[0]} 
+                                    color={theme.colors.white} 
+                                    isOption
+                                    size="2.3rem"
+                                    gap={6}
+                                    data={mainResponsibilities}
+                                />
                             </StackVertical>
                         </View>
                         <View mt={10}>
@@ -110,20 +114,15 @@ const Job = () => {
                                 Requirements
                             </Heading>
                             <StackVertical gap={6} mt={7}>
-                                {
-                                    roleInfo?.skillsReq?.map((resp,_id) => (
-                                        <Checkbox
-                                            key={_id}
-                                            checkedBg={theme.colors.success[3]} 
-                                            uncheckedBg={theme.colors.success[0]} 
-                                            color={theme.colors.text[1]} 
-                                            size={'2.3rem'}  
-                                            name={resp}
-                                            value={resp}
-                                            isOption={true}
-                                        />
-                                    ))
-                                }
+                                <CheckboxGroup
+                                    checkedBg={theme.colors.success[3]} 
+                                    uncheckedBg={theme.colors.success[0]} 
+                                    color={theme.colors.white} 
+                                    isOption
+                                    size="2.3rem"
+                                    gap={6}
+                                    data={skillsReq}
+                                />
                             </StackVertical>
                         </View>
                     </View>

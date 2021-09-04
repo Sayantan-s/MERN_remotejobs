@@ -2,7 +2,7 @@ import { Flex, Input, View, Button } from 'components'
 import React from 'react'
 import { useTheme } from 'styled-components'
 
-const HomeSearchBar = () => {
+const HomeSearchBar = ({ hitApi }) => {
 
     const theme = useTheme();
 
