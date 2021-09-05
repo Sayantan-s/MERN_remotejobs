@@ -7,9 +7,9 @@ const Progress = styled(View)(css({
     position: "relative"
 }))
 
-const SkillExpectation = ({ requiredXP, company }) => {
+const SkillExpectation = ({ requiredXP, company, userSkillXp }) => {
 
-    const [ xp, setXp ] = useState(22);
+    const { checkedValues, length} = userSkillXp
 
     return (
         <View>
@@ -35,8 +35,8 @@ const SkillExpectation = ({ requiredXP, company }) => {
             <View mt={6}>
                 <View>
                     <Progress>
-                        <View bg="danger.0" width="100%" position="absolute" height="0.8rem" borderRadius={3} />
-                        <View bg="danger.4" width={`${xp}%`} position="absolute" height="0.8rem" borderRadius={3}/>
+                        <View {...(!checkedValues.length && { border : "1px solid", borderColor : "danger.1", bg : "danger.0"})} width="100%" position="absolute" height="0.8rem" borderRadius={3} />
+                        <View bg="danger.4" width={`${Math.ceil((checkedValues.length / length) * 100)}%`} position="absolute" height="0.8rem" borderRadius={3}/>
                     </Progress>
                 </View>
                 <Flex justifyContent="space-between" pt={6}>
@@ -44,7 +44,7 @@ const SkillExpectation = ({ requiredXP, company }) => {
                         Your current Skill XP is &#8594;
                     </Text>
                     <Text as="span" color="text.4" fontWeight="bold">
-                        {xp}%
+                        {Math.ceil((checkedValues.length / length) * 100)}%
                     </Text>
                 </Flex>
             </View>

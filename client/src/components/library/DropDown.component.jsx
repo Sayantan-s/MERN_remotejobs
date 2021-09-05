@@ -2,9 +2,10 @@ import { Listbox } from '@headlessui/react'
 import css from '@styled-system/css';
 import ChevronDown from 'assets/icons/ChevronDown';
 import { Flex, Text, View } from 'components/index';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { background, color, compose, typography } from 'styled-system';
+import { gsap } from 'gsap'
 
 const StyledButton = styled(Listbox.Button)(
     css({
@@ -46,13 +47,35 @@ const MyDropdown = ({ btnbg, btncolor, data, btnicon : BtnIcon = ChevronDown }) 
 
     const theme = useTheme();
 
+    let dropdownRef = useRef(null);
+
+    const [ animationState, setAnimation ] = useState(false);
+
+    useEffect(() => {
+
+        let optionList = document.querySelector(".optionlist");
+
+        console.log(optionList)
+
+        gsap.from(
+          optionList,{
+            y: -10,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power4',
+          }
+        )
+    },[])
+
   return (
     <Listbox as={View} position="relative" value={selectedPerson} onChange={setSelectedPerson}>
       <StyledButton  bg={btnbg || 'transparent'}>
         <Text as="span" mr={3} color={btncolor}>{selectedPerson.value}</Text>
         <BtnIcon size="2rem" fill={theme.colors.text[3]} />
       </StyledButton>
-      <Listbox.Options as={Flex} 
+      <Listbox.Options
+      className={"optionlist"} 
+      as={Flex} 
       borderRadius={6} 
       bg={'white'} 
       width="sm"  

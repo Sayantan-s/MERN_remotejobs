@@ -1,11 +1,12 @@
 import SolidJob from 'assets/icons/solid/SolidJob'
 import SolidLocation from 'assets/icons/solid/SolidLocation'
-import { Page, Image, View, Text, Heading, Flex, Stack, Checkbox, StackVertical, Button, Link, CheckboxGroup } from 'components/index'
+import { Page, Image, View, Text, Heading, Flex, Stack, StackVertical, Button, Link, CheckboxGroup } from 'components/index'
 import CompanyDetailsbar from 'components/page section/jobDynamic/CompanyDetailsbar.component'
 import SimilarJobs from 'components/page section/jobDynamic/SimilarJobs.component'
 import SkillExpectation from 'components/page section/jobDynamic/SkillExpectation.component'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { AlertContext } from 'context/ToastContext'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import http from 'utils/http'
 
@@ -14,6 +15,10 @@ const Job = () => {
     const { id } = useParams();
 
     const theme = useTheme();
+
+    const history = useHistory();
+
+    const { dispatchToast } = useContext(AlertContext);  
 
     const [ jobData, setData ] = useState({});
 
@@ -27,19 +32,42 @@ const Job = () => {
                 console.log(err.response);
             }
         })()
-    }, [id])
+    }, [])
 
-    const { company, roleInfo, companyInfo, similarJobs, _id } = jobData; 
-
-    const mainResponsibilities = roleInfo?.mainResponsibilities.map(responsibility => ({
+    const { company, roleInfo, companyInfo, similarJobs, _id } = jobData;
+    
+    const mainResponsibilities = roleInfo?.mainResponsibilities?.map(responsibility => ({
         name : responsibility, 
         value: responsibility
     }))
 
-    const skillsReq = roleInfo?.skillsReq.map(info => ({
+    const skillsReq = roleInfo?.skillsReq?.map(info => ({
         name : info, 
         value: info
     }))
+
+    const [ countXp, setXp ] = useState({
+        checkedValues : [],
+        length : []
+    });
+    
+    useEffect(() => {
+        setXp(prevState => ({
+            ...prevState,
+            length : skillsReq?.length + mainResponsibilities?.length
+        }))
+    },[jobData])
+
+    const applyTojobHandler = () => {
+        if(Math.ceil((countXp.checkedValues.length / countXp.length) * 100) < roleInfo?.skillXP){
+            return dispatchToast({
+                variant : 'danger',
+                text : "You don't fullfill the eligibilty criteria!",
+                hasIcon : true
+            })
+        }
+        return history.push('/qna');
+    }
 
     
     return (
@@ -81,7 +109,7 @@ const Job = () => {
                             <Text as="span" color={'blue.6'} fontWeight="semibold" lineHeight={1}> { roleInfo?.dept } </Text>
                         </Flex>
                     </Stack>
-                    <Button lay="xl">Apply Now</Button>
+                    <Button lay="xl" onClick={applyTojobHandler}>Apply Now</Button>
                 </Flex>
                 <Flex mt={10} justifyContent="space-between">
                     <View flex="0.6">
@@ -97,7 +125,7 @@ const Job = () => {
                             <Heading level={3}>
                                 What will you do as a {roleInfo?.role}?
                             </Heading>
-                            <StackVertical gap={6} mt={7}>
+                            <View mt={7}>
                                 <CheckboxGroup
                                     checkedBg={theme.colors.success[3]} 
                                     uncheckedBg={theme.colors.success[0]} 
@@ -106,14 +134,15 @@ const Job = () => {
                                     size="2.3rem"
                                     gap={6}
                                     data={mainResponsibilities}
+                                    setCheckedValue={setXp}
                                 />
-                            </StackVertical>
+                            </View>
                         </View>
                         <View mt={10}>
                             <Heading level={3}>
                                 Requirements
                             </Heading>
-                            <StackVertical gap={6} mt={7}>
+                            <View mt={7}>
                                 <CheckboxGroup
                                     checkedBg={theme.colors.success[3]} 
                                     uncheckedBg={theme.colors.success[0]} 
@@ -122,13 +151,14 @@ const Job = () => {
                                     size="2.3rem"
                                     gap={6}
                                     data={skillsReq}
+                                    setCheckedValue={setXp}
                                 />
-                            </StackVertical>
+                            </View>
                         </View>
                     </View>
                     <StackVertical flex="0.3" gap={8}>
                         <CompanyDetailsbar data={companyInfo} />
-                        <SkillExpectation requiredXP={roleInfo?.skillXP} company={companyInfo?.name}/>
+                        <SkillExpectation requiredXP={roleInfo?.skillXP} company={companyInfo?.name} userSkillXp={countXp}/>
                         <SimilarJobs data={similarJobs} />
                     </StackVertical>
                 </Flex>

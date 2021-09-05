@@ -7,7 +7,7 @@ const Toasts = ({ toasts = [] }) => {
             {
                 toasts.length && <Portal as={StackVertical} gap={5} id="toasts" position="fixed" bottom="8" right="8">
                     {
-                        toasts.map(toast => <Toast toast={toast}/>)
+                        toasts.map(toast => <Toast key={toast.text} toast={toast}/>)
                     }
                 </Portal>
             }

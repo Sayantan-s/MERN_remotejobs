@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { Text, View, Flex, Button } from 'components';
 import styled, { useTheme } from 'styled-components';
@@ -100,7 +100,7 @@ const StyledCheckBox = styled(Flex)(css({
     maxWidth: 'max-content'
 }))
 
-const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOption, getValue }) => {
+const Checkbox = forwardRef(({ checkedBg, uncheckedBg, size, name, value, textColor, isOption, getValue }, ref) => {
 
     let checkboxRef = useRef(null);
 
@@ -110,18 +110,16 @@ const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOpti
 
     useEffect(() => {
         checkboxRef.checked = toggle;
-        if(!isOption){
-            getValue(prevState => ({
-                ...prevState,
-                checkedValues: toggle ? prevState.checkedValues.concat(checkboxRef.value) : 
-                prevState.checkedValues.filter(val => val !== value) 
-            }))
-        }
+        getValue(prevState => ({
+            ...prevState,
+            checkedValues: toggle ? prevState.checkedValues.concat(checkboxRef.value) : 
+            prevState.checkedValues.filter(val => val !== value)
+        }))
+        
     },[handleToggle])
 
-    
     return (
-          <StyledCheckBox alignItems="center" onClick={handleToggle}>
+          <StyledCheckBox alignItems="center" onClick={handleToggle} ref={ref}>
                 <Flex alignItems="center">
                     {isOption ? 
                         <svg width={size} height={size} ref={ele => optionRef = ele} viewBox="0 0 24 24" fill={toggle ? checkedBg : uncheckedBg} xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +144,7 @@ const Checkbox = ({ checkedBg, uncheckedBg, size, name, value, textColor, isOpti
                 <input type="checkbox" id="vehicle1" name={name} value={toggle ? value : ''} ref={ele => checkboxRef = ele} style={{ display: 'none' }}/>
           </StyledCheckBox>
     )
-}
+})
 
 const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textColor, isOption, setCheckedValue }) => {
 
@@ -172,22 +170,3 @@ const CheckboxGroup = ({ checkedBg, uncheckedBg, color, size, gap, data, textCol
 }
 
 export { Radio, Checkbox, Input, CheckboxGroup }
-
- {/*<svg viewBox="0 0 24 24" fill="none" width={size}>
-                        <circle cx={12} cy={12} r={12} fill={toggle ? checkedBg : uncheckedBg} />
-                        {
-                            isOption ? <path
-                            d="M7 13l3 3 7-7"
-                            stroke={(isOption && toggle) ? uncheckedBg : checkedBg} // isOption && toggle ? (toggle ? uncheckedBg : checkedBg) : uncheckedBg
-                            strokeWidth={1.5}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            /> : <path
-                            d="M7 13l3 3 7-7"
-                            stroke={toggle && uncheckedBg} // isOption && toggle ? (toggle ? uncheckedBg : checkedBg) : uncheckedBg
-                            strokeWidth={1.5}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            />
-                        }
-                    </svg>*/}
