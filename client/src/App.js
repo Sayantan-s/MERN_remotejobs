@@ -56,12 +56,12 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route exact path="/jobs" component={Jobs} />
-                  <Route path="/companies" component={AppliedJobs} />
-                  <Route path="/qna" component={Qna} />
+                  <Route path="/:company/:job/qna" component={Qna} />
                   <PrivateRoute path="/auth/register" condition={!isAuthenticated()} redirectTo="/">
                     <Register />
                   </PrivateRoute>
                   <Route path="/auth/login" component={Login} />
+                  <Route path="/auth/companies" component={AppliedJobs} />
                   <Route path="/auth/forgotpassword" component={ForgotPassword} />
                   <Route path="/jobs/:id" component={Job} />
                   <Route path="/company/:company" component={Company} />

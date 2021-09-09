@@ -89,7 +89,7 @@ const Input = ({ iconBefore : IconBefore, before, after, as, iconAfter: IconAfte
                 />
                 {after && <Button onClick={handleIconAfter}  p="0" variant="transparent.normal" minWidth="max-content">{IconAfter}</Button>}
             </Flex>
-           {danger && <Text ml={4} mt={3} color={'danger.3'}>{danger}</Text>}
+           {danger && <Text ml={4} mt={3} color={'danger.3'} fontSize="1.3rem">{danger}</Text>}
         </View>
     )
 }

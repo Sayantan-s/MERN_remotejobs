@@ -1,4 +1,3 @@
-import css from '@styled-system/css'
 import { View, Text, Flex, Button, Image } from 'components'
 import React from 'react'
 import styled from 'styled-components'

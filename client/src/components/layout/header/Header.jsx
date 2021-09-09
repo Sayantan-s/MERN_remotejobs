@@ -33,17 +33,16 @@ const Header = () => {
                 <Logo />
             </Link>
             <Flex alignItems="center" justifyContent="space-between" width="100%" ml="6">
-                <Stack gap={9} ml={4}>
-                    
+                <Stack gap={9} ml={4} alignItems="center">
                     <StyledNavLinks to="/" color={"text.3"} exact={true}>
                         Home
                     </StyledNavLinks>
                     <StyledNavLinks to="/jobs" color={"text.3"} >
                         Find Jobs
                     </StyledNavLinks>
-                    <StyledNavLinks to="/companies" color={"text.3"}>
-                        Companies
-                    </StyledNavLinks>
+                    <Link to="/companies" variant="secondary.normal">
+                        Post a job
+                    </Link>
                 </Stack>
                <Stack gap={5}>
                     {

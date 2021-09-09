@@ -12,6 +12,7 @@ import Toasts from "./elements/Toasts.components";
 import Portal from "./utils/Portal.component";
 import Logo from "./constants/Logo";
 import * as Image from './library/Image.component'
+import TextField from "./library/TextField.component";
 
 import Header from "./layout/header/Header";
 import Footer from "./layout/footer/Footer";
@@ -20,4 +21,4 @@ import Layout from "./layout/Layout";
 
 import QuesAns from "./elements/QuesAns.component";
 
-export { View, Button, Text, Link, Flex, Page, Stack, StackVertical, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns, Heading, Input, Divider, Image, Checkbox, CheckboxGroup, Dropdown, Portal, Toast, Toasts  }
+export { View, Button, Text, Link, Flex, Page, Stack, StackVertical, Radio, PrivateRoute, Logo, Header, Footer, Layout, QuesAns, Heading, Input, Divider, Image, Checkbox, CheckboxGroup, Dropdown, Portal, Toast, Toasts, TextField  }

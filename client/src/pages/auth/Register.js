@@ -4,8 +4,7 @@ import Lock from 'assets/icons/Lock';
 import Show from 'assets/icons/Show';
 import User from 'assets/icons/User';
 import { Input, Button, View, Text, Flex } from 'components';
-import CompanyRegistrationButton from 'components/elements/CompanyRegistrationButton.component';
-import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
+import { Heading, Link, Logo, Page, StackVertical, TextField } from 'components/index';
 import { AlertContext, AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import { useForm, useToggle } from 'hooks';
@@ -97,12 +96,9 @@ const Register = () => {
        position="relative" display="flex" 
        alignItems="center"
        justifyContent="center">
-            <View position="absolute" top="1rem" right="3rem">
-                <CompanyRegistrationButton />
-            </View>
             <Link to="/"  m="4rem auto" position="absolute" top="0">
                         <Logo />
-                        <Text color="text.4" ml={4}>
+                        <Text color="text.4" ml={4} letterSpacing="2px">
                             <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
                             <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
                         </Text>
@@ -156,7 +152,8 @@ const Register = () => {
                     <View
                     as="form" onSubmit={onSubmitHandler} width="m"  >
                             <StackVertical gap={6}>
-                                <Input 
+                                <TextField 
+                                    variant={err.name ? "danger" : "normal"}
                                     type="text" 
                                     placeholder="Your Name" 
                                     name="name" 
@@ -164,33 +161,32 @@ const Register = () => {
                                     onChange={handleChange} 
                                     before
                                     danger={err.name}
-                                    iconBefore={<User size={'2.5rem'} fill={theme.colors[err.name ? 'danger' : 'text'][1]}/>} 
+                                    iconBefore={User} 
                                 />
-                                <Input 
+                                 <TextField 
+                                    variant={err.email ? "danger" : "normal"}
                                     type="email" 
                                     placeholder="Your Email" 
                                     name="email" 
                                     value={email} 
-                                    onChange={handleChange}
+                                    onChange={handleChange} 
                                     before
                                     danger={err.email}
-                                    iconBefore={<Email size={'2.5rem'} fill={theme.colors[err.email ? 'danger' : 'text'][1]}/>} 
-                                    />
-                                <Input 
+                                    iconBefore={Email}
+                                />
+                                 <TextField 
+                                    variant={err.password ? "danger" : "normal"}
                                     type={!toggle ? "password" : "text"} 
-                                    placeholder="Create Password" 
-                                    name={"password"} 
+                                    placeholder="Password" 
+                                    name="password" 
                                     value={password} 
                                     onChange={handleChange} 
                                     before
-                                    danger={err.password}
-                                    iconBefore={<Lock size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>}
+                                    iconBefore={Lock}
                                     after
                                     onIconClickAfter={handleToggle}
-                                    iconAfter={!toggle ? 
-                                        <Show size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/> : 
-                                        <Hide size={'2.5rem'} fill={theme.colors[err.password ? 'danger' : 'text'][1]}/>
-                                    }
+                                    danger={err.password}
+                                    iconAfter={toggle ? Hide : Show}
                                 />
                             </StackVertical>
                             <Button lay="lg" width="100%" mt={8}>Sign Up</Button>

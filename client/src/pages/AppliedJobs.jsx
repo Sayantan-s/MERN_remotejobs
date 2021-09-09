@@ -1,6 +1,8 @@
 import css from '@styled-system/css';
+import Email from 'assets/icons/Email';
+import TextField from 'components/library/TextField.component';
 import useToggle from 'hooks/useToggle';
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components'
 
@@ -11,6 +13,10 @@ const Company = () => {
     const theme = useTheme();
 
     const [ toggle, handleToggle ] = useToggle();
+
+    const [ email, setEmail ] = useState();
+    
+    const handleChange = eve => setEmail(eve.target.value);
 
     return (
         <div>
@@ -29,6 +35,17 @@ const Company = () => {
                 <path d="M15 10.38L16.12 9.25"  stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M7.88086 12L10.6209 14.75L13.1709 12.21"  stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
+            <TextField 
+                variant="normal"
+                type="email" 
+                placeholder="Your Email" 
+                name="email" 
+                value={email} 
+                onChange={handleChange} 
+                before
+                danger={""}
+                iconBefore={Email}
+            />
         </div>
     )
 }
