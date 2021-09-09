@@ -3,6 +3,7 @@
       ["module-resolver", {
         "root": ["./src"],
         "alias": {
+          "animations" : "./animations",
           "components" : "./components",
           "styles" : "./styles",
           "utils" : "./utils",

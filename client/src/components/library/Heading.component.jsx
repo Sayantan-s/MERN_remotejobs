@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components';
 import { color, layout, space, typography, variant, flex } from 'styled-system';
+import { motion } from 'framer-motion';
 
 const variants = {
     1 : {
@@ -49,7 +50,7 @@ const variants = {
 
 const Base = forwardRef(({
     level,
-    as: Component = `h${level}`,
+    as: Component = motion[`h${level}`],
     ...rest
 }, ref) => <Component {...rest} ref={ref}/>);
 

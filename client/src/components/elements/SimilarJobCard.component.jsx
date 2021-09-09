@@ -16,7 +16,7 @@ const SimilarJobCard = ({ logo, role, roleOverview, jobtype, location, salary, i
     const theme = useTheme();
 
     return (
-       <View p={6} boxShadow={`0px 15px 20px ${theme.colors.blue[2]}30`} borderRadius={5}>
+       <View p={6} bg="white" boxShadow={`0px 15px 20px ${theme.colors.blue[2]}30`} borderRadius={5}>
            <Image.Thumbnail  src={logo} alt="logo_company" thumbheight="40" thumbWidth="40"/> 
            <Heading level={5} mt={5}>
                {role}

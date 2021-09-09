@@ -5,7 +5,6 @@ import { Flex, Text, View } from 'components/index';
 import { useState, useRef, useEffect } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { background, color, compose, typography } from 'styled-system';
-import { gsap } from 'gsap'
 
 const StyledButton = styled(Listbox.Button)(
     css({
@@ -50,22 +49,6 @@ const MyDropdown = ({ btnbg, btncolor, data, btnicon : BtnIcon = ChevronDown }) 
     let dropdownRef = useRef(null);
 
     const [ animationState, setAnimation ] = useState(false);
-
-    useEffect(() => {
-
-        let optionList = document.querySelector(".optionlist");
-
-        console.log(optionList)
-
-        gsap.from(
-          optionList,{
-            y: -10,
-            opacity: 0,
-            duration: 1.5,
-            ease: 'power4',
-          }
-        )
-    },[])
 
   return (
     <Listbox as={View} position="relative" value={selectedPerson} onChange={setSelectedPerson}>

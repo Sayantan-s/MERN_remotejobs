@@ -22,6 +22,14 @@ function App() {
 
   useEffect(() => {
     (async() => {
+      const res = await http.get('/csrf');
+      const { csrfToken } = res.data;
+      http.defaults.headers['X-CSRF-token'] = csrfToken;
+    })()
+  },[])
+
+  useEffect(() => {
+    (async() => {
       try{
         const res = await http.get('/utils/refresh');
       }
@@ -34,14 +42,6 @@ function App() {
       } 
     })()
   },[])
-
-  /*useEffect(() => {
-    (async() => {
-      const res = await http.get('/csrf');
-      const { csrfToken } = res.data;
-      http.defaults.headers['X-CSRF-token'] = csrfToken;
-    })()
-  },[])*/
 
   /*useEffect(() => {
     

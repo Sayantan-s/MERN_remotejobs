@@ -25,7 +25,7 @@ const HomeJobCards = ({ logo, role, tagline, location, jobtype, name, _id, creat
                     <Image.Thumbnail src={logo} alt="logo_company" thumbheight="40" />
             </View>
             <StackVertical width={[7.7/12]} gap={4}>
-                {(((new Date() - new Date(createdAt)) / (1000 * 60 * 60 * 24))) < 9 && <Text>New</Text>}
+                {(((new Date() - new Date(createdAt)) / (1000 * 60 * 60 * 24))) < 9 && <Text as="span">New</Text>}
                 <Heading level={4} fontWeight="semibold">
                     {role}
                 </Heading>

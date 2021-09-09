@@ -6,8 +6,7 @@ import css from '@styled-system/css';
 import { compose, layout, space } from 'styled-system';
 import {useToggle} from 'hooks';
 import { StackVertical } from 'components/index';
-import { gsap } from 'gsap'
-
+ 
 const Radio = ({ options, value, ...rest }) => {
   let [val, setValue] = useState(value)
 
@@ -106,8 +105,6 @@ const Checkbox = forwardRef(({ checkedBg, uncheckedBg, size, name, value, textCo
 
     const [ toggle, handleToggle ] = useToggle();
 
-    let optionRef = useRef(null);
-
     useEffect(() => {
         checkboxRef.checked = toggle;
         getValue(prevState => ({
@@ -122,7 +119,7 @@ const Checkbox = forwardRef(({ checkedBg, uncheckedBg, size, name, value, textCo
           <StyledCheckBox alignItems="center" onClick={handleToggle} ref={ref}>
                 <Flex alignItems="center">
                     {isOption ? 
-                        <svg width={size} height={size} ref={ele => optionRef = ele} viewBox="0 0 24 24" fill={toggle ? checkedBg : uncheckedBg} xmlns="http://www.w3.org/2000/svg">
+                        <svg width={size} height={size} viewBox="0 0 24 24" fill={toggle ? checkedBg : uncheckedBg} xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6C2.75 7.67 2 9.75 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C10.57 2 9.2 2.3 7.97 2.85"  stroke={toggle ? checkedBg : uncheckedBg} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             <path d="M15 10.38L16.12 9.25"  stroke={toggle ? uncheckedBg : checkedBg} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             <path d="M7.88086 12L10.6209 14.75L13.1709 12.21"  stroke={toggle ? uncheckedBg : checkedBg} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

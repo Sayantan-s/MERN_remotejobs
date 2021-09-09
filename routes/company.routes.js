@@ -61,10 +61,10 @@ router.get('/:company', async(req,res, next) => {
         .findOne({ name })
         .populate({
             path : 'jobs',
-            select : 'roleInfo.role roleInfo.jobtype roleInfo.location ',
+            select : 'roleInfo.role roleInfo.jobtype roleInfo.location roleInfo._id ',
             populate : {
                 path : 'companyInfo',
-                select : 'logo name -_id'
+                select : 'logo name'
             }
         }).limit(3)
 
