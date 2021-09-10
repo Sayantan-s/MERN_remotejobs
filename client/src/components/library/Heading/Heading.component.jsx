@@ -15,7 +15,7 @@ const variants = {
         color : 'text.4',
         fontWeight : 'bold',
         fontFamily : 'body',
-        lineHeight : 'heading',
+        lineHeight : 'heading', 
         fontSize : 'semil'
     },
     3 : {

@@ -1,5 +1,8 @@
 import css from '@styled-system/css';
+import ArrowRight from 'assets/icons/ArrowRight';
 import Email from 'assets/icons/Email';
+import { Button, Flex, Heading, Link, Logo, Page, View } from 'components/index';
+import Text from 'components/library/Text.component';
 import TextField from 'components/library/TextField.component';
 import useToggle from 'hooks/useToggle';
 import React, { useState } from 'react'
@@ -12,41 +15,25 @@ const Company = () => {
 
     const theme = useTheme();
 
-    const [ toggle, handleToggle ] = useToggle();
-
-    const [ email, setEmail ] = useState();
-    
-    const handleChange = eve => setEmail(eve.target.value);
-
     return (
-        <div>
-            <svg onClick={handleToggle} width={60} height={60} viewBox="0 0 24 24" fill={toggle ? theme.colors.blue[6] : theme.colors.blue[0]} xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 12.96V15C2 20 4 22 9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9" stroke={toggle ? theme.colors.blue[6] : theme.colors.text[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                { 
-                    toggle && 
-                    <>
-                        <path d="M15 10.38L16.12 9.25" stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M7.88086 12L10.6209 14.75L13.1709 12.21" stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </>
-                }
-            </svg>
-            <svg width={60} height={60} viewBox="0 0 24 24" fill={theme.colors.blue[6]} xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 6C2.75 7.67 2 9.75 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C10.57 2 9.2 2.3 7.97 2.85"  stroke={theme.colors.blue[6]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15 10.38L16.12 9.25"  stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M7.88086 12L10.6209 14.75L13.1709 12.21"  stroke={theme.colors.blue[0]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <TextField 
-                variant="normal"
-                type="email" 
-                placeholder="Your Email" 
-                name="email" 
-                value={email} 
-                onChange={handleChange} 
-                before
-                danger={""}
-                iconBefore={Email}
-            />
-        </div>
+       <Page height={'100vh'} maxWidth={["full"]} as={Flex}>
+           <View
+            position="relative"
+            background={`linear-gradient(60deg, ${theme.colors.blue[6]}80, ${theme.colors.blue[6]}), url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)`}
+            backgroundSize="cover"
+            backgroundPosition="center"
+            bg={'blue.6'} flex="50%">
+               <Heading level={1} color="text.0" fontWeight="bold" fontSize="xxl" mt={10} ml={10}>
+                   Find the candidates exactly your Company needs.
+               </Heading>
+               <Link to="/jobs" variant="secondary.normal" lay="xl" borderRadius={10} alignItems="center" position="absolute" bottom="10" right="10">
+                    <Text color="blue.6" as="span" mr="3" fontWeight="semibold">Apply for Jobs</Text>
+                    <ArrowRight size="2.5rem" fill={theme.colors.blue[6]}/>
+               </Link>
+           </View>
+           <View flex="50%">
+           </View>
+       </Page>
     )
 }
 

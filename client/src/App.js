@@ -43,12 +43,6 @@ function App() {
     })()
   },[])
 
-  /*useEffect(() => {
-    
-  },[])*/
-
-
- 
   return (
       <Router>
          <NavHeightContext>

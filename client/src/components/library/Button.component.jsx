@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { variant, color, compose, space, typography, layout, border, position, shadow } from 'styled-system'
+import { variant, color, compose, space, typography, layout, border, position, shadow, flex } from 'styled-system'
 import css from '@styled-system/css'
 
 const variants = {
@@ -110,7 +110,7 @@ const size = {
     minWidth : '16rem',
     px : '1.8rem',
     py : '1.6rem'
-  }
+  },
 
 }
 
@@ -136,7 +136,8 @@ const Button = styled('button')(css({
     layout,
     border,
     position,
-    shadow
+    shadow,
+    flex
   )
 )
 

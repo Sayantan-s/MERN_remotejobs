@@ -4,7 +4,7 @@ import Button from './library/Button.component';
 import Dropdown from "./library/DropDown.component";
 import Text from './library/Text.component';
 import Link from "./library/Link.component";
-import Heading from "./library/Heading.component";
+import Heading from "./library/Heading/Heading.component";
 import { Flex, Page, Stack, StackVertical, Divider } from './library/Primitives.component';
 import { Radio, Input, Checkbox, CheckboxGroup } from './library/FormItems.component';
 import Toast from "./library/Toast.component";
@@ -12,11 +12,11 @@ import Toasts from "./elements/Toasts.components";
 import Portal from "./utils/Portal.component";
 import Logo from "./constants/Logo";
 import * as Image from './library/Image.component'
-import TextField from "./library/TextField.component";
+import TextField from "./library/TextField.component"; 
 
 import Header from "./layout/header/Header";
 import Footer from "./layout/footer/Footer";
-import Layout from "./layout/Layout";
+import Layout from "./layout/Layout";  
 
 
 import QuesAns from "./elements/QuesAns.component";
