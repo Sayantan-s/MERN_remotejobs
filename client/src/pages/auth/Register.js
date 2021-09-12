@@ -8,44 +8,44 @@ import { Heading, Link, Logo, Page, StackVertical, TextField } from 'components/
 import { AlertContext, AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import { useForm, useToggle } from 'hooks';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import http from 'utils/http';
 
 const Register = () => {
-    const [ form, handleChange, submitForm, err ] = useForm({
-        state : {
-            email : '',
-            name : '',
-            password : ''
+    const [form, handleChange, submitForm, err] = useForm({
+        state: {
+            email: '',
+            name: '',
+            password: ''
         },
-        validation : {
-            name : {
-                shouldNotBeEmpty : true,
-                len : {
-                    min : 3,
+        validation: {
+            name: {
+                shouldNotBeEmpty: true,
+                len: {
+                    min: 3
                 }
             },
-            email : {
-                shouldNotBeEmpty : true, 
-                contains : '@'
+            email: {
+                shouldNotBeEmpty: true,
+                contains: '@'
             },
-            password : {
-                shouldNotBeEmpty : true, 
-                len : {
-                    min : 5,
-                    max : 12
+            password: {
+                shouldNotBeEmpty: true,
+                len: {
+                    min: 5,
+                    max: 12
                 }
             }
         }
-    })
+    });
 
     const theme = useTheme();
 
-    const [ toggle, handleToggle ] = useToggle();
+    const [toggle, handleToggle] = useToggle();
 
-    const { email, name, password  } = form
+    const { email, name, password } = form;
 
     const AuthState = useContext(AuthContext);
 
@@ -53,57 +53,65 @@ const Register = () => {
 
     const history = useHistory();
 
-    const [ oauthurl, setOAuthUrl ] = useState('');
+    const [oauthurl, setOAuthUrl] = useState('');
 
-    const onSubmitHandler = eve => submitForm(eve, async(data, error) => {
-        if(!error){
-            try{
-                const res = await http({
-                    url: '/auth/register',
-                    method : 'POST',
-                    data
-                })
-                if(res.status === 201){
+    const onSubmitHandler = (eve) =>
+        submitForm(eve, async (data, error) => {
+            if (!error) {
+                try {
+                    const res = await http({
+                        url: '/auth/register',
+                        method: 'POST',
+                        data
+                    });
+                    if (res.status === 201) {
+                        AuthState.dispatch({
+                            type: AUTHENTICATION_SUCESSFULL,
+                            payload: {
+                                access_token: res.headers['x-access-token']
+                            }
+                        });
 
-                    AuthState.dispatch({ type : AUTHENTICATION_SUCESSFULL, payload : {
-                        access_token : res.headers['x-access-token']
-                    }})
-    
-                    history.push('/jobs');
+                        history.push('/jobs');
+                    }
+                } catch (err) {
+                    dispatchToast({
+                        variant: 'danger',
+                        text: err.response.data.message,
+                        hasIcon: true
+                    });
                 }
             }
-            catch(err){
-                dispatchToast({
-                    variant : 'danger',
-                    text : err.response.data.message,
-                    hasIcon : true
-                })
-            }
-        }
-    })
-    
+        });
+
     useEffect(() => {
-        (async()=> {
+        (async () => {
             const res = await http.get('/auth/google-auth');
             const { url } = res.data;
-            setOAuthUrl(url)
-        })()
-    },[])
+            setOAuthUrl(url);
+        })();
+    }, []);
 
     return (
-       <Page
-       maxWidth="100%" 
-       position="relative" display="flex" 
-       alignItems="center"
-       justifyContent="center">
-            <Link to="/"  m="4rem auto" position="absolute" top="0">
-                        <Logo />
-                        <Text color="text.4" ml={4} letterSpacing="2px">
-                            <Text as="span" fontSize="m" fontWeight="bold" color='text.4'>Job</Text> 
-                            <Text as="span" fontSize="m" fontWeight="normal" color='text.4'>Seek.</Text>
-                        </Text>
+        <Page
+            maxWidth="100%"
+            position="relative"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+        >
+            <Link to="/" m="4rem auto" position="absolute" top="0">
+                <Logo />
+                <Text color="text.4" ml={4} letterSpacing="2px">
+                    <Text as="span" fontSize="m" fontWeight="bold" color="text.4">
+                        Job
+                    </Text>
+                    <Text as="span" fontSize="m" fontWeight="normal" color="text.4">
+                        Seek.
+                    </Text>
+                </Text>
             </Link>
-           <View>
+            <View>
                 <View p="7" boxShadow={`0px 10px 20px ${theme.colors.blue[2]}50`} borderRadius={5}>
                     <Heading level={4} textAlign="center">
                         Getting Started
@@ -111,20 +119,22 @@ const Register = () => {
                     <Text textAlign="center" mt={6}>
                         Create an account to continue!
                     </Text>
-                    <Button 
+                    <Button
                         disabled={!oauthurl}
-                        onClick={() => window.location.href = oauthurl} 
-                        variant="secondary" 
-                        bg={`${theme.colors.blue[1]}50`} 
-                        mx="auto" 
-                        mt={7} 
-                        width="100%">
+                        onClick={() => (window.location.href = oauthurl)}
+                        variant="secondary"
+                        bg={`${theme.colors.blue[1]}50`}
+                        mx="auto"
+                        mt={7}
+                        width="100%"
+                    >
                         <svg
                             width={24.43}
-                            height={25.00}
+                            height={25.0}
                             viewBox="0 0 256 262"
                             xmlns="http://www.w3.org/2000/svg"
-                            preserveAspectRatio="xMidYMid">
+                            preserveAspectRatio="xMidYMid"
+                        >
                             <path
                                 d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
                                 fill="#4285F4"
@@ -149,55 +159,59 @@ const Register = () => {
                     <Text fontSize="ms" color="text.1" textAlign="center" my={7}>
                         OR
                     </Text>
-                    <View
-                    as="form" onSubmit={onSubmitHandler} width="m"  >
-                            <StackVertical gap={6}>
-                                <TextField 
-                                    variant={err.name ? "danger" : "normal"}
-                                    type="text" 
-                                    placeholder="Your Name" 
-                                    name="name" 
-                                    value={name} 
-                                    onChange={handleChange} 
-                                    before
-                                    danger={err.name}
-                                    iconBefore={User} 
-                                />
-                                 <TextField 
-                                    variant={err.email ? "danger" : "normal"}
-                                    type="email" 
-                                    placeholder="Your Email" 
-                                    name="email" 
-                                    value={email} 
-                                    onChange={handleChange} 
-                                    before
-                                    danger={err.email}
-                                    iconBefore={Email}
-                                />
-                                 <TextField 
-                                    variant={err.password ? "danger" : "normal"}
-                                    type={!toggle ? "password" : "text"} 
-                                    placeholder="Password" 
-                                    name="password" 
-                                    value={password} 
-                                    onChange={handleChange} 
-                                    before
-                                    iconBefore={Lock}
-                                    after
-                                    onIconClickAfter={handleToggle}
-                                    danger={err.password}
-                                    iconAfter={toggle ? Hide : Show}
-                                />
-                            </StackVertical>
-                            <Button lay="lg" width="100%" mt={8}>Sign Up</Button>
+                    <View as="form" onSubmit={onSubmitHandler} width="m">
+                        <StackVertical gap={6}>
+                            <TextField
+                                variant={err.name ? 'danger' : 'normal'}
+                                type="text"
+                                placeholder="Your Name"
+                                name="name"
+                                value={name}
+                                onChange={handleChange}
+                                before
+                                danger={err.name}
+                                iconBefore={User}
+                            />
+                            <TextField
+                                variant={err.email ? 'danger' : 'normal'}
+                                type="email"
+                                placeholder="Your Email"
+                                name="email"
+                                value={email}
+                                onChange={handleChange}
+                                before
+                                danger={err.email}
+                                iconBefore={Email}
+                            />
+                            <TextField
+                                variant={err.password ? 'danger' : 'normal'}
+                                type={!toggle ? 'password' : 'text'}
+                                placeholder="Password"
+                                name="password"
+                                value={password}
+                                onChange={handleChange}
+                                before
+                                iconBefore={Lock}
+                                after
+                                onIconClickAfter={handleToggle}
+                                danger={err.password}
+                                iconAfter={toggle ? Hide : Show}
+                            />
+                        </StackVertical>
+                        <Button lay="lg" width="100%" mt={8}>
+                            Sign Up
+                        </Button>
                     </View>
                     <Flex alignItems="center" justifyContent="center" mt={7}>
-                        <Text color="text.1">Already have an account? &nbsp;</Text> <Link to="/auth/login" p={0} minWidth={'max-content'}>Sign In</Link>
+                        <Text color="text.1">Already have an account? &nbsp;</Text>{' '}
+                        <Link to="/auth/login" p={0} minWidth={'max-content'}>
+                            Sign In
+                        </Link>
                     </Flex>
                 </View>
-           </View>
-       </Page>
-    )
-}
+            </View>
+        </Page>
+    );
+};
 
-export default Register
+export default Register;

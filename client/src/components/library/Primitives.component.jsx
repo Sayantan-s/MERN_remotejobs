@@ -1,91 +1,82 @@
 import styled from 'styled-components';
-import { View, Text }from 'components';
+import { View, Text } from 'components';
 import { compose, layout, system, color, space } from 'styled-system';
 import { forwardRef } from 'react';
 import css from '@styled-system/css';
 
-
 // FLEX
 const Flex = styled(View)({
     display: 'flex'
-})
-
-
+});
 
 //PAGE
 
-const Page = forwardRef(({  cuttSpace = 0 , ...rest }) => <View minHeight={`calc(100vh - ${cuttSpace}px)`} {...rest} />)
+const Page = forwardRef(({ cuttSpace = 0, ...rest }) => (
+    <View minHeight={`calc(100vh - ${cuttSpace}px)`} {...rest} />
+));
 
 Page.defaultProps = {
-    maxWidth : 'desktop',
-    m : '0 auto'
-}
+    maxWidth: 'desktop',
+    m: '0 auto'
+};
 
 //STACK
 
 const Stack = styled(View)(
-	system({
-		gap: {
-			property: '&& > * + *',
-			scale: 'space',
-			transform: (value, scale) => ({ marginLeft: scale[value] }),
-		},
-	})
+    system({
+        gap: {
+            property: '&& > * + *',
+            scale: 'space',
+            transform: (value, scale) => ({ marginLeft: scale[value] })
+        }
+    })
 );
 
 Stack.defaultProps = {
     display: 'flex'
-}
-
+};
 
 const StackVertical = styled(View)(
-	system({
-		gap: {
-			property: '&& > * + *',
-			scale: 'space',
-			transform: (value, scale) => ({ marginTop: scale[value] }),
-		},
-	})
+    system({
+        gap: {
+            property: '&& > * + *',
+            scale: 'space',
+            transform: (value, scale) => ({ marginTop: scale[value] })
+        }
+    })
 );
 
 //DIVIDER
 
+const Divider = styled.hr(compose(layout, color, space));
 
-const Divider = styled.hr(
-	compose(
-		layout,
-		color,
-		space
-	)
-)
-
-//Image 
+//Image
 
 const Image = ({ src, alt, ...rest }) => {
-	const Img = styled.img(css({
-		position: 'absolute',
-		objectFit: 'cover',
-		width: '100%',
-		height: '100%',
-		left: 0,
-		top: 0
-	}))
-	
-	return(
-	<View {...rest} position="relative" overflow="hidden">
-		<Img src={src} alt={alt} />
- 	</View>
-)}
+    const Img = styled.img(
+        css({
+            position: 'absolute',
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            left: 0,
+            top: 0
+        })
+    );
 
+    return (
+        <View {...rest} position="relative" overflow="hidden">
+            <Img src={src} alt={alt} />
+        </View>
+    );
+};
 
 //BADGE
 
-const Badge = ({ children, ...rest}) => (
-	<View {...rest}>
-		<Text as="span">
-			{children}
-		</Text>
-	</View>
-)
+const Badge = ({ children, ...rest }) => (
+    <View {...rest}>
+        <Text as="span">{children}</Text>
+    </View>
+);
 
-export { Flex, Page, Stack, StackVertical, Divider, Image }
+export { Flex, Page, Stack, StackVertical, Divider, Image };

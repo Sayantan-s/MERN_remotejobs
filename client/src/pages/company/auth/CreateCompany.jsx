@@ -1,12 +1,8 @@
-import React from 'react'
-import { View } from 'components'
+import React from 'react';
+import { View } from 'components';
 
 const CreateCompany = () => {
-    return (
-       <View>
-           
-       </View>
-    )
-}
+    return <View></View>;
+};
 
-export default CreateCompany
+export default CreateCompany;

@@ -1,18 +1,17 @@
 const Joi = require('joi');
 
 const registerValidator = Joi.object({
-    name : Joi.string().required(),
+    name: Joi.string().required(),
 
-    email : Joi.string().email().required(),
+    email: Joi.string().email().required(),
 
-    password : Joi.string().required()
+    password: Joi.string().required()
 });
 
 const loginValidator = Joi.object({
+    email: Joi.string().email().required(),
 
-    email : Joi.string().email().required(),
+    password: Joi.string().required()
+});
 
-    password : Joi.string().required() 
-})
-
-module.exports =  { registerValidator, loginValidator } 
+module.exports = { registerValidator, loginValidator };

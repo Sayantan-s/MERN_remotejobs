@@ -1,15 +1,13 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from 'react';
 
 const useToggle = () => {
-
     const [toggle, setToggle] = useState(false);
 
     const handleToggle = useCallback(() => {
-        setToggle(!toggle)
-    },[toggle])
+        setToggle(!toggle);
+    }, [toggle]);
 
-    return [toggle, handleToggle]
+    return [toggle, handleToggle];
+};
 
-}
-
-export default useToggle
+export default useToggle;

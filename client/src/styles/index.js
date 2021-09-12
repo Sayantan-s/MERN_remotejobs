@@ -1,3 +1,3 @@
-import Styles from "./Styles"
+import Styles from './Styles';
 
-export default Styles
+export default Styles;

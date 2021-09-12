@@ -1,23 +1,17 @@
-import { View } from 'components/index'
-import React, { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { View } from 'components/index';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const Portal = ({ id, children, as: Component = View, ...rest }) => {
-
-    const [ hasMounted, setHasMounted ] = useState(false);
+    const [hasMounted, setHasMounted] = useState(false);
 
     useEffect(() => {
-        setHasMounted(true)
-    },[])
+        setHasMounted(true);
+    }, []);
 
-    if(!hasMounted) return null;
+    if (!hasMounted) return null;
 
-    return createPortal(
-        <Component {...rest}>
-            { children }
-        </Component>,
-        document.getElementById(id)
-    )
-}
+    return createPortal(<Component {...rest}>{children}</Component>, document.getElementById(id));
+};
 
-export default Portal
+export default Portal;

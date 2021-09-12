@@ -4,18 +4,18 @@ import ReactDOM from 'react-dom';
 import Styles from 'styles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
- 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <AuthenticationContext>
-      <ToastContext>
-        <Styles>
-          <App />
-        </Styles>
-      </ToastContext>
-    </AuthenticationContext>
-  </React.StrictMode>,
-  document.getElementById('root') 
+    <React.StrictMode>
+        <AuthenticationContext>
+            <ToastContext>
+                <Styles>
+                    <App />
+                </Styles>
+            </ToastContext>
+        </AuthenticationContext>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

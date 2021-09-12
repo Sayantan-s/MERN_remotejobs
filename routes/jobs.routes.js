@@ -4,103 +4,105 @@ const ApiError = require('../helpers/ApiError');
 const Company = require('../models/Company.model');
 
 router
-.route('/')
-.get(async (req, res, next) => {
+    .route('/')
+    .get(async (req, res, next) => {
+        const { limit, home } = req.query;
 
-    const { limit, home } = req.query;
-
-    try{
-        if(home === "true"){
-            const data = await Jobs.find().populate("companyInfo", "logo name tagline").select(`
+        try {
+            if (home === 'true') {
+                const data = await Jobs.find()
+                    .populate('companyInfo', 'logo name tagline')
+                    .select(
+                        `
                             companyInfo
                             roleInfo.role 
                             roleInfo.location 
                             roleInfo.jobtype
                             createdAt
-                             `).sort({ createdAt : -1 }).limit(+limit);
-    
+                             `
+                    )
+                    .sort({ createdAt: -1 })
+                    .limit(+limit);
+
+                return res.status(200).send({ data });
+            }
+
+            const data = await Jobs.find().select(`-__v`);
+
             return res.status(200).send({ data });
+        } catch (err) {
+            next(err);
         }
-    
-        const data = await Jobs.find().select(`-__v`);
-            
-        return res.status(200).send({ data })
-    }
-    catch(err){
-        next(err)
-    }
+    })
+    .post(async (req, res, next) => {
+        try {
+            const { company, roleInfo } = req.body;
 
-})
-.post(async(req,res, next) => {
-    try {
+            const rolePresence = await Jobs.exists({
+                'company.name': company.name,
+                'roleInfo.role': roleInfo.role
+            });
 
-        const { company, roleInfo  } = req.body;
+            if (rolePresence)
+                return next(ApiError.customError(403, 'Job already exists for the company!'));
 
-        const rolePresence = await Jobs.exists({ 
-            "company.name" : company.name,
-            "roleInfo.role" : roleInfo.role
-        })
+            const createJob = await Jobs.create({ company, roleInfo });
 
-        if(rolePresence) return next(ApiError.customError(403, 'Job already exists for the company!'));
+            if (!createJob)
+                return next(ApiError.customError(409, 'Failed to create the job, try again!'));
 
-        const createJob = await Jobs.create({ company, roleInfo })
+            const comp = await Company.findOne({
+                name: createJob.company.name
+            });
 
-        if(!createJob) return next(ApiError.customError(409, 'Failed to create the job, try again!'));
+            if (!comp) {
+                await Jobs.findByIdAndDelete(createJob._id);
+                return next(ApiError.customError(409, 'Something went wrong, try again!'));
+            }
 
-        const comp = await Company.findOne({ 
-            name : createJob.company.name
-        })
+            comp.jobs.push(createJob._id);
 
-        if(!comp){
-            await Jobs.findByIdAndDelete(createJob._id);
-            return next(ApiError.customError(409, 'Something went wrong, try again!'));
+            await comp.save();
+
+            res.status(201).send({ message: 'Job Successfully Created!' });
+        } catch (error) {
+            next(error);
         }
+    });
 
-        comp.jobs.push(createJob._id);
-
-        await comp.save();
-        
-        res.status(201).send({ message : 'Job Successfully Created!' });
-    } catch (error) {
-        next(error)
-    }
-})
-
-
-router.get('/:id', async(req,res,next) => {
+router.get('/:id', async (req, res, next) => {
     const { id } = req.params;
 
     const jobId = id.split('_')[1];
 
-    try{
-        const jobData = await Jobs
-        .findOne({ _id : jobId })
-        .populate("companyInfo", "website typeOfCorporation size established raised name culture.videoThumbnail")
-        .select('-company.tagline -tags -createdAt -updatedAt -__v')
-        .lean();
+    try {
+        const jobData = await Jobs.findOne({ _id: jobId })
+            .populate(
+                'companyInfo',
+                'website typeOfCorporation size established raised name culture.videoThumbnail'
+            )
+            .select('-company.tagline -tags -createdAt -updatedAt -__v')
+            .lean();
 
-        if(!jobData) return next(ApiError.customError(404, "There is no such job!"));
+        if (!jobData) return next(ApiError.customError(404, 'There is no such job!'));
 
-        const findSimilarJobs = await Jobs.find({ 
-            "roleInfo.dept" : jobData.roleInfo.dept, 
-            _id : {
-                $ne : jobData._id
+        const findSimilarJobs = await Jobs.find({
+            'roleInfo.dept': jobData.roleInfo.dept,
+            _id: {
+                $ne: jobData._id
             },
-            $expr : { $rand : {} }
+            $expr: { $rand: {} }
         })
-        .populate("companyInfo", "logo name")
-        .select('-company -tags -createdAt -updatedAt -__v')
-        .limit(2);
+            .populate('companyInfo', 'logo name')
+            .select('-company -tags -createdAt -updatedAt -__v')
+            .limit(2);
 
-        if(!findSimilarJobs) return next(ApiError.customError(401, "Something went wrong!"));
+        if (!findSimilarJobs) return next(ApiError.customError(401, 'Something went wrong!'));
 
-        res.send({ data : { ...jobData, similarJobs : findSimilarJobs } });
+        res.send({ data: { ...jobData, similarJobs: findSimilarJobs } });
+    } catch (err) {
+        next(err);
     }
-    catch(err){
-        next(err)
-    }
-
-})
-
+});
 
 module.exports = router;

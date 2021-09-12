@@ -1,31 +1,29 @@
-import { useState } from "react";
-import useAuthValidate from "./useAuthValidate";
+import { useState } from 'react';
+import useAuthValidate from './useAuthValidate';
 
 const useForm = ({ state, validation }) => {
     const [form, setForm] = useState(state);
 
-    const [ err, setErr, validator ] = useAuthValidate({
-        requirements : validation || {}
-     });
+    const [err, setErr, validator] = useAuthValidate({
+        requirements: validation || {}
+    });
 
     let handleChange;
 
-    if(typeof form === "object"){
-        handleChange = eve => {
-
+    if (typeof form === 'object') {
+        handleChange = (eve) => {
             const { name, value } = eve.target;
 
-            setForm(prevState => ({
+            setForm((prevState) => ({
                 ...prevState,
-                [name] : value
-            }))
+                [name]: value
+            }));
 
-            setErr(prevState => ({
+            setErr((prevState) => ({
                 ...prevState,
-                [name] : ''
-            }))
-
-        }
+                [name]: ''
+            }));
+        };
         const formSubmitHandler = (eve, cb) => {
             eve.preventDefault();
             let data = {};
@@ -40,22 +38,21 @@ const useForm = ({ state, validation }) => {
                     [key]: value
                 };
                 const error = validator({ key, val: value });
-                if(error) errorStatus = true;
-                setErr(prevState => ({
+                if (error) errorStatus = true;
+                setErr((prevState) => ({
                     ...prevState,
-                    [key] : error
-                }))
-
+                    [key]: error
+                }));
             }
             return cb(data, errorStatus);
-        }
+        };
 
-        return [ form, handleChange, formSubmitHandler, err ];
+        return [form, handleChange, formSubmitHandler, err];
     }
 
-    handleChange = eve => eve.target.value;
+    handleChange = (eve) => eve.target.value;
 
     return [form, handleChange];
-}
+};
 
 export default useForm;

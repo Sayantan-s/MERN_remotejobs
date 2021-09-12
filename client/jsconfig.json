@@ -3,11 +3,11 @@
         "target": "es6",
         "baseUrl": "./src",
         "paths": {
-            "components" : ["./components"],
-            "animations" : ["./animations"],
-            "styles" : ["./styles"],
-            "utils" : ["./utils"],
-            "hooks" : ["./hooks"]
+            "components": ["./components"],
+            "animations": ["./animations"],
+            "styles": ["./styles"],
+            "utils": ["./utils"],
+            "hooks": ["./hooks"]
         }
     }
 }

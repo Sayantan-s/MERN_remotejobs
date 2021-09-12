@@ -1,5 +1,5 @@
-import useToggle from "./useToggle";
-import useForm from "./useForm";
-import useAuthValidate from "./useAuthValidate";
+import useToggle from './useToggle';
+import useForm from './useForm';
+import useAuthValidate from './useAuthValidate';
 
-export { useToggle, useForm, useAuthValidate }
+export { useToggle, useForm, useAuthValidate };

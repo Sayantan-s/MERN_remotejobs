@@ -1,8 +1,8 @@
-import axios from "../../node_modules/axios/index";
+import axios from '../../node_modules/axios/index';
 
 export default axios.create({
-    baseURL : '/api',
-    headers : {
+    baseURL: '/api',
+    headers: {
         'Content-Type': 'application/json'
     }
-})
+});

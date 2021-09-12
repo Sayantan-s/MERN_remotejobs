@@ -1,6 +1,6 @@
 const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
-const { promisify } = require('util')
+const { promisify } = require('util');
 const redis = require('redis');
 const User = require('../models/user.model');
 
@@ -15,58 +15,53 @@ router.use('/refresh', async (req, res, next) => {
 
     let access_token;
 
-    try{
-        if(!refresh){
-            next(ApiError.customError(401, 'You are not logged in!'))
+    try {
+        if (!refresh) {
+            next(ApiError.customError(401, 'You are not logged in!'));
         }
-        const userId = await client.get(refresh + "");
-        if(!userId){
-            return next(ApiError.customError(401, 'You are not logged in!'))
-        };
+        const userId = await client.get(refresh + '');
+        if (!userId) {
+            return next(ApiError.customError(401, 'You are not logged in!'));
+        }
 
-        const getPayloadFromCache = await client.get(userId + "");
+        const getPayloadFromCache = await client.get(userId + '');
 
-        if(!getPayloadFromCache){
+        if (!getPayloadFromCache) {
+            const user = await User.findOne({ _id: userId }).select('role name').lean();
 
-            const user = await User.findOne({ _id : userId }).select('role name').lean();
-    
-            if(!user){
-                return next(ApiError.customError(401, 'You are not logged in!'))
-            };
-    
-            access_token = await AuthUtils.generate_JWT({ 
-                payload : {
-                    _id : user._id,
-                    role : user.type,
-                    name : user.name
+            if (!user) {
+                return next(ApiError.customError(401, 'You are not logged in!'));
+            }
+
+            access_token = await AuthUtils.generate_JWT({
+                payload: {
+                    _id: user._id,
+                    role: user.type,
+                    name: user.name
                 }
-            })
+            });
 
-            console.log("USING MONGO");
+            console.log('USING MONGO');
 
-            client.set(userId +"", JSON.stringify(user));
+            client.set(userId + '', JSON.stringify(user));
+        } else {
+            access_token = await AuthUtils.generate_JWT({
+                payload: JSON.parse(getPayloadFromCache)
+            });
 
-        }
-        else{
-            access_token = await AuthUtils.generate_JWT({ 
-                payload : JSON.parse(getPayloadFromCache)
-            })
-
-            console.log("USING CACHE FROM REDIS");
+            console.log('USING CACHE FROM REDIS');
         }
 
         res.setHeader(`x-access-token`, access_token);
 
-        res.status(201).send({ message : 'Generated new access tokens!' });
-
+        res.status(201).send({ message: 'Generated new access tokens!' });
+    } catch (err) {
+        next(err);
     }
-    catch(err){
-        next(err)
-    }
-})
+});
 
-router.get('/csrf', (req, res ) => {
-    res.send({ csrfToken : req.csrfToken() });
-})
+router.get('/csrf', (req, res) => {
+    res.send({ csrfToken: req.csrfToken() });
+});
 
 module.exports = router;
