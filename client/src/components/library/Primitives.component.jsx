@@ -12,7 +12,12 @@ const Flex = styled(View)({
 //PAGE
 
 const Page = forwardRef(({ cuttSpace = 0, ...rest }) => (
-    <View minHeight={`calc(100vh - ${cuttSpace}px)`} {...rest} />
+    <View
+        {...(cuttSpace
+            ? { minHeight: `calc(100vh - ${cuttSpace}px)` }
+            : { height: '100vh', width: '100%' })}
+        {...rest}
+    />
 ));
 
 Page.defaultProps = {

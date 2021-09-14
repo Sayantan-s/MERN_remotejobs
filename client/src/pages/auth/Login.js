@@ -137,7 +137,7 @@ const Login = () => {
                     <View as="form" onSubmit={onSubmitHanlder} width="m">
                         <StackVertical gap={6}>
                             <TextField
-                                variant={err.email ? 'danger' : 'normal'}
+                                variant={err.email ? 'primary.danger' : 'primary.normal'}
                                 type="email"
                                 placeholder="Your Email"
                                 name="email"
@@ -148,7 +148,7 @@ const Login = () => {
                                 iconBefore={Email}
                             />
                             <TextField
-                                variant={err.password ? 'danger' : 'normal'}
+                                variant={err.password ? 'primary.danger' : 'primary.normal'}
                                 type={!toggle ? 'password' : 'text'}
                                 placeholder="Password"
                                 name="password"

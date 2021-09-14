@@ -41,7 +41,8 @@ const Job = () => {
             } catch (err) {
                 console.log(err.response);
             }
-        })();
+        })()
+
     }, []);
 
     const { company, roleInfo, companyInfo, similarJobs, _id } = jobData;
@@ -76,11 +77,11 @@ const Job = () => {
                 hasIcon: true
             });
         }
-        return history.push('/qna');
+        return history.push('/' + company?.name + '/' + roleInfo?.role + '/' + 'test');
     };
 
     return (
-        <Page>
+        <Page maxHeight={'100vh'}>
             <View
                 position="relative"
                 px={10}
@@ -201,7 +202,7 @@ const Job = () => {
                             </View>
                         </View>
                     </View>
-                    <StackVertical flex="0.3" gap={8}>
+                    <StackVertical flex="0.3" gap={8} position="sticky">
                         <CompanyDetailsbar data={companyInfo} />
                         <SkillExpectation
                             requiredXP={roleInfo?.skillXP}

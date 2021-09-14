@@ -47,7 +47,7 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/jobs" component={Jobs} />
-                        <Route path="/:company/:job/qna" component={Qna} />
+                        <Route path="/:company/:job/test" component={Qna} />
                         <PrivateRoute
                             path="/auth/register"
                             condition={!isAuthenticated()}
@@ -60,6 +60,13 @@ function App() {
                         <Route path="/auth/forgotpassword" component={ForgotPassword} />
                         <Route path="/jobs/:id" component={Job} />
                         <Route path="/company/:company" component={Company} />
+                        <PrivateRoute
+                            path="/company/post-job"
+                            condition={!isAuthenticated()}
+                            redirectTo="/auth/companies"
+                        >
+                            <Register />
+                        </PrivateRoute>
                     </Switch>
                 </Layout>
                 {toasts && <Toasts toasts={toasts} />}

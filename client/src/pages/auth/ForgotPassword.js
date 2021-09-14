@@ -41,6 +41,7 @@ const ForgotPassword = () => {
                     </Text>
                     <View as="form" onSubmit={onSubmitHandler} width="m" mt={6}>
                         <Input
+                            variant={'primary.normal'}
                             type="email"
                             placeholder="Your Email"
                             name="email"

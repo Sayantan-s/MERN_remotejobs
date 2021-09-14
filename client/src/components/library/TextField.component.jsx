@@ -5,36 +5,79 @@ import styled from 'styled-components';
 import { compose, layout, space, variant } from 'styled-system';
 
 const variants = {
-    normal: {
-        borderColor: 'text.0',
-        'input, textarea': {
-            color: 'text.2',
-            resize: 'none',
-            '::placeholder': {
-                color: 'text.1'
+    primary: {
+        normal: {
+            border: 1,
+            borderColor: 'text.0',
+            'input, textarea': {
+                color: 'text.2',
+                resize: 'none',
+                '::placeholder': {
+                    color: 'text.1'
+                }
+            },
+            button: {
+                svg: {
+                    g: {
+                        fill: 'text.1'
+                    }
+                }
             }
         },
-        button: {
-            svg: {
-                g: {
-                    fill: 'text.1'
+        danger: {
+            border: 1,
+            borderColor: 'danger.1',
+            bg: 'danger.0',
+            'input, textarea': {
+                color: 'danger.1',
+                '::placeholder': {
+                    color: 'danger.1'
+                }
+            },
+            button: {
+                svg: {
+                    g: {
+                        fill: 'danger.1'
+                    }
                 }
             }
         }
     },
-    danger: {
-        borderColor: 'danger.1',
-        bg: 'danger.0',
-        'input, textarea': {
-            color: 'danger.1',
-            '::placeholder': {
-                color: 'danger.1'
+    underline: {
+        normal: {
+            borderBottom: 1,
+            borderColor: 'text.0',
+            'input, textarea': {
+                color: 'text.2',
+                resize: 'none',
+                '::placeholder': {
+                    fontStyle: 'oblique',
+                    color: 'text.1'
+                }
+            },
+            button: {
+                svg: {
+                    g: {
+                        fill: 'text.1'
+                    }
+                }
             }
         },
-        button: {
-            svg: {
-                g: {
-                    fill: 'danger.1'
+        danger: {
+            borderBottom: 1,
+            borderColor: 'danger.1',
+            bg: 'danger.0',
+            'input, textarea': {
+                color: 'danger.1',
+                '::placeholder': {
+                    color: 'danger.1'
+                }
+            },
+            button: {
+                svg: {
+                    g: {
+                        fill: 'danger.1'
+                    }
                 }
             }
         }
@@ -47,7 +90,6 @@ const Input = styled(Flex)(
     css({
         alignItems: 'center',
         alignContent: 'center',
-        border: 1,
         borderRadius: 7,
         px: 4,
         button: {
@@ -81,7 +123,7 @@ const TextField = (
         onIconClickAfter,
         onIconClickBefore,
         danger,
-        variant,
+        variant = 'primary.normal',
         label,
         ...rest
     },

@@ -65,7 +65,7 @@ const Company = () => {
         <>
             <Stack gap={5}>
                 <TextField
-                    variant="normal"
+                    variant="primary.normal"
                     type="text"
                     placeholder="e.g. Google"
                     name="email"
@@ -78,7 +78,7 @@ const Company = () => {
                     width="100%"
                 />
                 <TextField
-                    variant="normal"
+                    variant="primary.normal"
                     type="number"
                     placeholder="$ 25,000,00..."
                     name="email"
@@ -92,7 +92,7 @@ const Company = () => {
                 />
             </Stack>
             <TextField
-                variant="normal"
+                variant="primary.normal"
                 type="text"
                 placeholder="e.g. Building for a...."
                 name="email"
@@ -104,7 +104,7 @@ const Company = () => {
                 label="Moto"
             />
             <TextField
-                variant="normal"
+                variant="primary.normal"
                 as="textarea"
                 rows="5"
                 placeholder="e.g. Market Square, 1355 Market St #900, San..."
@@ -121,7 +121,7 @@ const Company = () => {
         <>
             <Stack gap={5}>
                 <TextField
-                    variant="normal"
+                    variant="primary.normal"
                     type="number"
                     placeholder="e.g. 2008"
                     name="email"
@@ -134,7 +134,7 @@ const Company = () => {
                     width="100%"
                 />
                 <DataList
-                    variant="normal"
+                    variant="primary.normal"
                     type="text"
                     placeholder="e.g. Software"
                     name="email"
@@ -158,7 +158,7 @@ const Company = () => {
             </Stack>
             <Stack gap={5}>
                 <DataList
-                    variant="normal"
+                    variant="primary.normal"
                     type="text"
                     placeholder="e.g. 10-50"
                     name="email"
@@ -178,7 +178,7 @@ const Company = () => {
                     ]}
                 />
                 <TextField
-                    variant="normal"
+                    variant="primary.normal"
                     type="number"
                     placeholder="www.kimbpo.c..."
                     name="email"
@@ -192,7 +192,7 @@ const Company = () => {
                 />
             </Stack>
             <TextField
-                variant="normal"
+                variant="primary.normal"
                 rows="5"
                 as="textarea"
                 placeholder="e.g. An American company that operates an online mar..."
@@ -212,7 +212,7 @@ const Company = () => {
                 OR
             </Text>
             <TextField
-                variant="normal"
+                variant="primary.normal"
                 type="number"
                 placeholder="https://images.unsplash.com/ph......."
                 name="email"
@@ -224,7 +224,7 @@ const Company = () => {
                 width="100%"
             />
             <TextField
-                variant="normal"
+                variant="primary.normal"
                 type="url"
                 placeholder="https://www.youtube.com/watch?j..."
                 name="email"
@@ -269,9 +269,9 @@ const Company = () => {
                 </Link>
             </View>
             <View flex="50%">
-                <View position="absolute" top="7" right="10">
+                <Link to="/" position="absolute" top="7" right="10">
                     <Logo />
-                </View>
+                </Link>
                 <View maxWidth="l" m="0 auto" mt={13}>
                     <StackVertical gap={6} as="form" onSubmit={(eve) => eve.preventDefault()}>
                         <View m="0 auto" mb={10} width="max-content">

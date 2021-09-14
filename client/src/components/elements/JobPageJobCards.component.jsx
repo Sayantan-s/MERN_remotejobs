@@ -1,10 +1,13 @@
-import { Button, Flex, Heading, Stack, Text, View, Image } from 'components/index';
+import { Button, Flex, Heading, Stack, Text, View, Image, Link } from 'components/index';
 import React, { useEffect, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import Location from 'assets/icons/Location';
 import ArrowRight from 'assets/icons/ArrowRight';
 import { useHistory } from 'react-router';
 import Utilities from 'utils/Utilties';
+import { NavLink } from 'react-router-dom';
+import css from '@styled-system/css';
+import Linkto from 'assets/icons/Broken/Linkto';
 
 const RoleOverview = styled(Text)`
     overflow: hidden;
@@ -13,6 +16,30 @@ const RoleOverview = styled(Text)`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 `;
+
+const StyledLink = styled(NavLink)(css({
+    textDecoration : 'none',
+    color : 'text.1',
+    display: "flex",
+    alignItems: "center",
+    fontSize : 'ms',
+    '&:hover' : {
+        color : 'text.2'
+    },
+    '&:hover svg' : {
+        path : {
+            stroke: 'text.2',
+            strokeWidth : 2
+        }
+    },
+    'svg' : {
+        mr: 4,
+        'path' : {
+            stroke : 'text.1',
+            strokeWidth : 2
+        }
+    }
+}))
 
 const JobPageJobCards = ({
     thumbnail,
@@ -68,9 +95,10 @@ const JobPageJobCards = ({
                             {role}
                         </Heading>
                         <Flex mt={4}>
-                            <Text as="span" color="text.1" fontSize="ms">
+                            <StyledLink to={`/company/${name}`}>
+                            <Linkto size="2rem"/>
                                 {name}
-                            </Text>
+                            </StyledLink>
                             <Flex alignItems="center" width={'100%'} ml={6}>
                                 <Location size="2.5rem" fill={theme.colors.text[1]} />
                                 <Text as="span" color="text.1" fontSize="ms" ml={3}>

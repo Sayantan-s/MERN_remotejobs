@@ -39,7 +39,7 @@ const Header = () => {
                         <StyledNavLinks to="/jobs" color={'text.3'}>
                             Find Jobs
                         </StyledNavLinks>
-                        <Link to="/companies" variant="secondary.normal">
+                        <Link to="/auth/companies" variant="secondary.normal">
                             Post a job
                         </Link>
                     </Stack>

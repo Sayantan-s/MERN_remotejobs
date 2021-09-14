@@ -9,10 +9,13 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            {!pathname.startsWith('/auth') && <Header />}
+            {!(pathname.startsWith('/auth') || /test$/.test(pathname)) && <Header />}
             {children}
-            {!(pathname.startsWith('/auth') || pathname.startsWith('/jobs')) ||
-                (pathname === /^qna/ && <Footer />)}
+            {!(
+                pathname.startsWith('/auth') ||
+                pathname.startsWith('/jobs') ||
+                /test$/.test(pathname)
+            ) && <Footer />}
         </>
     );
 };

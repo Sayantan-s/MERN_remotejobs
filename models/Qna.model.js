@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 const qnaSchema = new Schema({
     type: {
         type: String,
+        enum: {
+            values: ['radio', 'lat', 'checkbox'],
+            message: '{VALUE} of question is not supported'
+        },
         required: true
     },
     question: {
@@ -17,14 +21,22 @@ const qnaSchema = new Schema({
         type: Array,
         required: true
     },
-    company: {
-        type: String,
+    company_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Company',
         required: true
     },
-    addExplanations: {
-        type: Boolean,
-        default: false,
-        required: true
+    explanations: {
+        add: {
+            type: Boolean,
+            default: false,
+            required: true
+        },
+        optional: {
+            type: Boolean,
+            default: false,
+            required: true
+        }
     }
 });
 

@@ -162,7 +162,7 @@ const Register = () => {
                     <View as="form" onSubmit={onSubmitHandler} width="m">
                         <StackVertical gap={6}>
                             <TextField
-                                variant={err.name ? 'danger' : 'normal'}
+                                variant={err.name ? 'primary.danger' : 'primary.normal'}
                                 type="text"
                                 placeholder="Your Name"
                                 name="name"
@@ -173,7 +173,7 @@ const Register = () => {
                                 iconBefore={User}
                             />
                             <TextField
-                                variant={err.email ? 'danger' : 'normal'}
+                                variant={err.email ? 'primary.danger' : 'primary.normal'}
                                 type="email"
                                 placeholder="Your Email"
                                 name="email"
@@ -184,7 +184,7 @@ const Register = () => {
                                 iconBefore={Email}
                             />
                             <TextField
-                                variant={err.password ? 'danger' : 'normal'}
+                                variant={err.password ? 'primary.danger' : 'primary.normal'}
                                 type={!toggle ? 'password' : 'text'}
                                 placeholder="Password"
                                 name="password"
