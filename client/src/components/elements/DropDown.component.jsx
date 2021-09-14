@@ -77,7 +77,7 @@ const MyDropdown = ({ btnbg, btncolor, data, btnicon: BtnIcon = ChevronDown }) =
                 ))}
             </Listbox.Options>
         </Listbox>
-    ); 
+    );
 };
 
 export default MyDropdown;

@@ -5,14 +5,7 @@ const Toasts = ({ toasts }) => {
     return (
         <>
             {toasts.length && (
-                <Portal
-                    as={StackVertical}
-                    gap={5}
-                    id="toasts"
-                    position="fixed"
-                    bottom="7"
-                    left="8"
-                >
+                <Portal as={StackVertical} gap={5} id="toasts" position="fixed" bottom="7" left="8">
                     {toasts.map((toast) => (
                         <Toast key={toast.text} toast={toast} />
                     ))}

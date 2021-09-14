@@ -7,7 +7,7 @@ import { compose, layout, space } from 'styled-system';
 import { useToggle } from 'hooks';
 import { StackVertical } from 'components/index';
 
-const Radio = ({ options, value, ...rest }) => {
+const Radio = ({ options, value, uncheckedBg, checkedBg, size, ...rest }) => {
     let [val, setValue] = useState(value);
 
     const theme = useTheme();
@@ -35,22 +35,35 @@ const Radio = ({ options, value, ...rest }) => {
                         <Option alignItems="center">
                             <View size={30}>
                                 <svg
-                                    id="visual"
+                                    width={size}
+                                    height={size}
                                     viewBox="0 0 24 24"
-                                    width={36}
-                                    height={36}
+                                    fill={checked ? checkedBg : uncheckedBg}
                                     xmlns="http://www.w3.org/2000/svg"
-                                    xmlnsXlink="http://www.w3.org/1999/xlink"
-                                    version="1.1"
                                 >
-                                    <g transform="translate(11.572985150758472 11.909436947096392)">
-                                        <path
-                                            d="M8.4 -4.8C9.8 -2.3 9.2 1.3 7.5 4.1C5.8 6.8 2.9 8.7 0 8.7C-2.9 8.7 -5.8 6.8 -7.2 4.3C-8.7 1.7 -8.7 -1.7 -7.2 -4.2C-5.8 -6.7 -2.9 -8.3 0.3 -8.5C3.5 -8.7 6.9 -7.3 8.4 -4.8"
-                                            fill={checked ? theme.colors.blue[4] : 'none'}
-                                            stroke={theme.colors.blue[2]}
-                                            strokeWidth={2}
-                                        />
-                                    </g>
+                                    <path
+                                        d="M4 6C2.75 7.67 2 9.75 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C10.57 2 9.2 2.3 7.97 2.85"
+                                        stroke={checkedBg}
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                   { checked && <>
+                                    <path
+                                        d="M15 10.38L16.12 9.25"
+                                        stroke={checked ? uncheckedBg : checkedBg}
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M7.88086 12L10.6209 14.75L13.1709 12.21"
+                                        stroke={checked ? uncheckedBg : checkedBg}
+                                        strokeWidth="1.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                   </> }
                                 </svg>
                             </View>
                             <Text ml={4} fontSize={'l'}>

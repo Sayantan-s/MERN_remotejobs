@@ -54,12 +54,12 @@ const Company = () => {
 
     const [formSteps, setSteps] = useState(1);
 
-    const handleSteps = () =>{
-        if(formSteps >= 3) return;
+    const handleSteps = () => {
+        if (formSteps >= 3) return;
         setSteps((prevStep) => prevStep + 1);
-    }
+    };
 
-    console.log(formSteps)
+    console.log(formSteps);
 
     const Step_1 = (
         <>
@@ -174,7 +174,7 @@ const Company = () => {
                         { id: 2, value: '10-50', disabled: false },
                         { id: 3, value: '50-200', disabled: false },
                         { id: 4, value: '500-1001', disabled: true },
-                        { id: 5, value: '1001-10000', disabled: false },
+                        { id: 5, value: '1001-10000', disabled: false }
                     ]}
                 />
                 <TextField
@@ -204,7 +204,6 @@ const Company = () => {
             />
         </>
     );
-    
 
     const Step_3 = (
         <>
@@ -213,29 +212,29 @@ const Company = () => {
                 OR
             </Text>
             <TextField
-                    variant="normal"
-                    type="number"
-                    placeholder="https://images.unsplash.com/ph......."
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    before
-                    danger={err.email}
-                    iconBefore={Email}
-                    width="100%"
+                variant="normal"
+                type="number"
+                placeholder="https://images.unsplash.com/ph......."
+                name="email"
+                value={email}
+                onChange={handleChange}
+                before
+                danger={err.email}
+                iconBefore={Email}
+                width="100%"
             />
             <TextField
-                    variant="normal"
-                    type="url"
-                    placeholder="https://www.youtube.com/watch?j..."
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    before
-                    danger={err.email}
-                    iconBefore={Email}
-                    label="Youtube video url"
-                    width="100%"
+                variant="normal"
+                type="url"
+                placeholder="https://www.youtube.com/watch?j..."
+                name="email"
+                value={email}
+                onChange={handleChange}
+                before
+                danger={err.email}
+                iconBefore={Email}
+                label="Youtube video url"
+                width="100%"
             />
         </>
     );
@@ -274,7 +273,7 @@ const Company = () => {
                     <Logo />
                 </View>
                 <View maxWidth="l" m="0 auto" mt={13}>
-                    <StackVertical gap={6} as="form" onSubmit={eve => eve.preventDefault()}>
+                    <StackVertical gap={6} as="form" onSubmit={(eve) => eve.preventDefault()}>
                         <View m="0 auto" mb={10} width="max-content">
                             <Image.Thumbnail
                                 borderRadius="50%"
@@ -295,7 +294,7 @@ const Company = () => {
                     fontWeight="bold"
                     onClick={handleSteps}
                 >
-                   { formSteps === 3 ? "Register your company" : "Next" }
+                    {formSteps === 3 ? 'Register your company' : 'Next'}
                 </Button>
             </View>
         </Page>

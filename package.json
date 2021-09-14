@@ -36,6 +36,7 @@
         "csurf": "^1.11.0",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
+        "formik": "^2.2.9",
         "googleapis": "^84.0.0",
         "joi": "^17.4.0",
         "jsonwebtoken": "^8.5.1",
@@ -43,6 +44,7 @@
         "mongoose": "^5.13.3",
         "morgan": "^1.10.0",
         "react-dropzone": "^11.3.4",
-        "redis": "^3.1.2"
+        "redis": "^3.1.2",
+        "yup": "^0.32.9"
     }
 }

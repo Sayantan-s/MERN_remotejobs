@@ -1,7 +1,11 @@
 import React, { forwardRef } from 'react';
 import { View, Heading, Radio as RadioGroup, Flex, Text, Button } from 'components';
+import { useTheme } from 'styled-components'
 
 const QuesAns = forwardRef(({ question, value, options, type, addExplanations, ...rest }, ref) => {
+
+    const theme = useTheme()
+
     return (
         <View
             ml="6"
@@ -15,6 +19,9 @@ const QuesAns = forwardRef(({ question, value, options, type, addExplanations, .
             {addExplanations && <Text>Hellooooooo</Text>}
             <RadioGroup
                 value={value || ''}
+                checkedBg={theme.colors.success[3]}
+                uncheckedBg={theme.colors.success[0]}
+                size="4rem"
                 options={
                     options || [
                         'the head tag',
