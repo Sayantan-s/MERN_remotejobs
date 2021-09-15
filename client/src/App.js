@@ -14,7 +14,7 @@ import Job from 'pages/dynamic/Job';
 import Company from 'pages/dynamic/Company';
 
 function App() {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuth } = useContext(AuthContext);
 
     const { toasts, dispatchToast } = useContext(AlertContext);
 
@@ -48,25 +48,12 @@ function App() {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/jobs" component={Jobs} />
                         <Route path="/:company/:job/test" component={Qna} />
-                        <PrivateRoute
-                            path="/auth/register"
-                            condition={!isAuthenticated()}
-                            redirectTo="/"
-                        >
-                            <Register />
-                        </PrivateRoute>
+                        <Route path="/auth/register" component={Register} />
                         <Route path="/auth/login" component={Login} />
                         <Route path="/auth/companies" component={AppliedJobs} />
                         <Route path="/auth/forgotpassword" component={ForgotPassword} />
                         <Route path="/jobs/:id" component={Job} />
                         <Route path="/company/:company" component={Company} />
-                        <PrivateRoute
-                            path="/company/post-job"
-                            condition={!isAuthenticated()}
-                            redirectTo="/auth/companies"
-                        >
-                            <Register />
-                        </PrivateRoute>
                     </Switch>
                 </Layout>
                 {toasts && <Toasts toasts={toasts} />}

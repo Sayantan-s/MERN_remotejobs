@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
+const helmet = require('helmet');
 
 const { PORT } = require('./config/index');
 
@@ -16,15 +17,18 @@ const app = express();
 const port = PORT || 5000;
 
 const middlewares = [
+    helmet(),
     morgan('dev'),
     express.json(),
     cors({
-        origin: 'http://localhost:3000'
+        origin: 'http://localhost:3000',
+        maxAge: 1000 * 60 * 60 * 24 * 365
+
     }),
     cookieParser(),
-    csrf({
-        cookie: true
-    })
+    /*csrf({
+        cookie: true,
+    })*/
 ];
 
 app.use(middlewares);

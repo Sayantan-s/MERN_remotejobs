@@ -41,8 +41,7 @@ const Job = () => {
             } catch (err) {
                 console.log(err.response);
             }
-        })()
-
+        })();
     }, []);
 
     const { company, roleInfo, companyInfo, similarJobs, _id } = jobData;

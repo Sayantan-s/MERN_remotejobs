@@ -2,72 +2,57 @@ import React, { useContext, useState } from 'react';
 import http from 'utils/http';
 import { Input, Button, View, Text, Flex, TextField } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
-import { AuthContext } from 'context';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
 import { useForm, useToggle } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
+import { Formik, Form } from 'formik';
+import { AlertContext, AuthContext } from 'context';
+import * as Yup from 'yup';
 import Lock from 'assets/icons/Lock';
 import Show from 'assets/icons/Show';
 import Hide from 'assets/icons/Hide';
 import Email from 'assets/icons/Email';
 const Login = () => {
-    const [form, handleChange, onSubmit, err] = useForm({
-        state: {
-            email: '',
-            password: ''
-        },
-        validation: {
-            email: {
-                shouldNotBeEmpty: true,
-                contains: '@'
-            },
-            password: {
-                shouldNotBeEmpty: true
-            }
-        }
-    });
-    const { email, password } = form;
-
     const theme = useTheme();
 
     const history = useHistory();
 
     const AuthState = useContext(AuthContext);
 
+    const { dispatchToast } = useContext(AlertContext);
+
+
     const [toggle, handleToggle] = useToggle();
 
-    const onSubmitHanlder = (eve) =>
-        onSubmit(eve, async (data, error) => {
-            if (!error) {
-                try {
-                    const res = await http({
-                        url: '/auth/login',
-                        method: 'POST',
-                        data
-                    });
+    const onSubmit = async (data) => {
+        console.log(data);
+        try {
+            const res = await http({
+                url: '/auth/login',
+                method: 'POST',
+                data
+            });
 
-                    if (res.status === 200) {
-                        AuthState.dispatch({
-                            type: AUTHENTICATION_SUCESSFULL,
-                            payload: {
-                                expiry: res.data.expiry,
-                                role: res.data.role,
-                                token: {
-                                    access: res.data.access_token,
-                                    refresh: res.data.refresh_token
-                                }
-                            }
-                        });
-                        history.push('/find-jobs');
+            if (res.status === 200) {
+                AuthState.dispatch({
+                    type: AUTHENTICATION_SUCESSFULL,
+                    payload: {
+                        access_token: res.headers['x-access-token']
                     }
-
-                    console.log(res);
-                } catch (error) {
-                    console.log(error.response.data);
-                }
+                });
+                history.push('/find-jobs');
             }
-        });
+
+            console.log(res);
+        } catch (err) {
+            dispatchToast({
+                variant: 'danger',
+                text: err.response.data.message,
+                hasIcon: true
+            });
+        }
+    };
 
     return (
         <Page
@@ -134,43 +119,54 @@ const Login = () => {
                     <Text fontSize="ms" color="text.1" textAlign="center" my={7}>
                         OR
                     </Text>
-                    <View as="form" onSubmit={onSubmitHanlder} width="m">
-                        <StackVertical gap={6}>
-                            <TextField
-                                variant={err.email ? 'primary.danger' : 'primary.normal'}
-                                type="email"
-                                placeholder="Your Email"
-                                name="email"
-                                value={email}
-                                onChange={handleChange}
-                                before
-                                danger={err.email}
-                                iconBefore={Email}
-                            />
-                            <TextField
-                                variant={err.password ? 'primary.danger' : 'primary.normal'}
-                                type={!toggle ? 'password' : 'text'}
-                                placeholder="Password"
-                                name="password"
-                                value={password}
-                                onChange={handleChange}
-                                before
-                                iconBefore={Lock}
-                                after
-                                onIconClickAfter={handleToggle}
-                                danger={err.password}
-                                iconAfter={toggle ? Hide : Show}
-                            />
-                        </StackVertical>
-                        <Flex justifyContent="flex-end" mt={5}>
-                            <Link to="/auth/forgotpassword" p="0" color="text.1">
-                                Forgot password?
-                            </Link>
-                        </Flex>
-                        <Button lay="lg" width="100%" mt={6}>
-                            Login
-                        </Button>
-                    </View>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: ''
+                        }}
+                        validationSchema={Yup.object().shape({
+                            email: Yup.string()
+                                .email('Invalid email')
+                                .required(`Your email should'nt be empty`),
+                            password: Yup.string()
+                                .min(7, `Password strength too low`)
+                                .required(`Password should'nt be empty`)
+                        })}
+                        onSubmit={onSubmit}
+                    >
+                        <View as={Form} width={'m'} autoComplete="new-password">
+                            <StackVertical gap={6}>
+                                <TextField
+                                    variant={'primary.normal'}
+                                    type="email"
+                                    placeholder="Your Email"
+                                    name="email"
+                                    before
+                                    iconBefore={Email}
+                                />
+                                <TextField
+                                    variant={'primary.normal'}
+                                    type={!toggle ? 'password' : 'text'}
+                                    placeholder="Password"
+                                    name="password"
+                                    before
+                                    iconBefore={Lock}
+                                    after
+                                    onIconClickAfter={handleToggle}
+                                    iconAfter={toggle ? Hide : Show}
+                                />
+                            </StackVertical>
+                            <Flex justifyContent="flex-end" mt={5}>
+                                <Link to="/auth/forgotpassword" p="0" color="text.1">
+                                    Forgot password?
+                                </Link>
+                            </Flex>
+                            <Button lay="lg" width="100%" mt={6}>
+                                Login
+                            </Button>
+                        </View>
+                    </Formik>
+
                     <Flex alignItems="center" justifyContent="center" py={7}>
                         <Text color="text.1">Don't have an account yet? &nbsp;</Text>{' '}
                         <Link to="/auth/register" p={0} minWidth={'max-content'}>

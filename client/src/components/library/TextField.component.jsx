@@ -3,6 +3,7 @@ import { Button, Flex, Text, View } from 'components/index';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { compose, layout, space, variant } from 'styled-system';
+import { Field, ErrorMessage } from 'formik';
 
 const variants = {
     primary: {
@@ -122,7 +123,6 @@ const TextField = (
         simpleInput,
         onIconClickAfter,
         onIconClickBefore,
-        danger,
         variant = 'primary.normal',
         label,
         ...rest
@@ -138,6 +138,7 @@ const TextField = (
         eve.preventDefault();
         return onIconClickAfter?.();
     };
+
     return (
         <View width={width} ref={ref}>
             {label && (
@@ -156,7 +157,7 @@ const TextField = (
                         <IconBefore />
                     </Button>
                 )}
-                <ElementInput ml={before ? '5' : ''} mr={after ? '5' : ''} {...rest} />
+                <Field as={ElementInput} autoComplete="new-password" ml={before ? '5' : ''} mr={after ? '5' : ''} {...rest} />
                 {after && (
                     <Button
                         onClick={handleIconAfter}
@@ -168,11 +169,14 @@ const TextField = (
                     </Button>
                 )}
             </Input>
-            {danger && (
-                <Text ml={4} mt={3} color={'danger.3'} fontSize="1.2rem">
-                    {danger}
-                </Text>
-            )}
+            <ErrorMessage
+                name={rest.name}
+                component={Text}
+                ml={4}
+                mt={3}
+                color={'danger.3'}
+                fontSize="1.2rem"
+            />
         </View>
     );
 };

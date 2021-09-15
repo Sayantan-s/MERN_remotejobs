@@ -12,40 +12,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import http from 'utils/http';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 const Register = () => {
-    const [form, handleChange, submitForm, err] = useForm({
-        state: {
-            email: '',
-            name: '',
-            password: ''
-        },
-        validation: {
-            name: {
-                shouldNotBeEmpty: true,
-                len: {
-                    min: 3
-                }
-            },
-            email: {
-                shouldNotBeEmpty: true,
-                contains: '@'
-            },
-            password: {
-                shouldNotBeEmpty: true,
-                len: {
-                    min: 5,
-                    max: 12
-                }
-            }
-        }
-    });
-
     const theme = useTheme();
 
     const [toggle, handleToggle] = useToggle();
-
-    const { email, name, password } = form;
 
     const AuthState = useContext(AuthContext);
 
@@ -55,34 +28,32 @@ const Register = () => {
 
     const [oauthurl, setOAuthUrl] = useState('');
 
-    const onSubmitHandler = (eve) =>
-        submitForm(eve, async (data, error) => {
-            if (!error) {
-                try {
-                    const res = await http({
-                        url: '/auth/register',
-                        method: 'POST',
-                        data
-                    });
-                    if (res.status === 201) {
-                        AuthState.dispatch({
-                            type: AUTHENTICATION_SUCESSFULL,
-                            payload: {
-                                access_token: res.headers['x-access-token']
-                            }
-                        });
-
-                        history.push('/jobs');
+    const onSubmit = async (data) => {
+        console.log(data);
+        try {
+            const res = await http({
+                url: '/auth/register',
+                method: 'POST',
+                data
+            });
+            if (res.status === 201) {
+                AuthState.dispatch({
+                    type: AUTHENTICATION_SUCESSFULL,
+                    payload: {
+                        access_token: res.headers['x-access-token']
                     }
-                } catch (err) {
-                    dispatchToast({
-                        variant: 'danger',
-                        text: err.response.data.message,
-                        hasIcon: true
-                    });
-                }
+                });
+
+                history.push('/jobs');
             }
-        });
+        } catch (err) {
+            dispatchToast({
+                variant: 'danger',
+                text: err.response.data.message,
+                hasIcon: true
+            });
+        }
+    };
 
     useEffect(() => {
         (async () => {
@@ -159,49 +130,61 @@ const Register = () => {
                     <Text fontSize="ms" color="text.1" textAlign="center" my={7}>
                         OR
                     </Text>
-                    <View as="form" onSubmit={onSubmitHandler} width="m">
-                        <StackVertical gap={6}>
-                            <TextField
-                                variant={err.name ? 'primary.danger' : 'primary.normal'}
-                                type="text"
-                                placeholder="Your Name"
-                                name="name"
-                                value={name}
-                                onChange={handleChange}
-                                before
-                                danger={err.name}
-                                iconBefore={User}
-                            />
-                            <TextField
-                                variant={err.email ? 'primary.danger' : 'primary.normal'}
-                                type="email"
-                                placeholder="Your Email"
-                                name="email"
-                                value={email}
-                                onChange={handleChange}
-                                before
-                                danger={err.email}
-                                iconBefore={Email}
-                            />
-                            <TextField
-                                variant={err.password ? 'primary.danger' : 'primary.normal'}
-                                type={!toggle ? 'password' : 'text'}
-                                placeholder="Password"
-                                name="password"
-                                value={password}
-                                onChange={handleChange}
-                                before
-                                iconBefore={Lock}
-                                after
-                                onIconClickAfter={handleToggle}
-                                danger={err.password}
-                                iconAfter={toggle ? Hide : Show}
-                            />
-                        </StackVertical>
-                        <Button lay="lg" width="100%" mt={8}>
-                            Sign Up
-                        </Button>
-                    </View>
+                    <Formik
+                        initialValues={{
+                            name: '',
+                            email: '',
+                            password: ''
+                        }}
+                        validationSchema={Yup.object().shape({
+                            name: Yup.string()
+                                .min(2, 'Too Short!')
+                                .max(50, 'Too Long!')
+                                .required(`Your name should'nt be empty`),
+                            email: Yup.string()
+                                .email('Invalid email')
+                                .required(`Your email should'nt be empty`),
+                            password: Yup.string()
+                                .min(7, `Password strength too low`)
+                                .required(`Password should'nt be empty`)
+                        })}
+                        onSubmit={onSubmit}
+                    >
+                        <View as={Form} width={'m'} autoComplete="new-password">
+                            <StackVertical gap={6}>
+                                <TextField
+                                    variant={'primary.normal'}
+                                    type="text"
+                                    placeholder="Your Name"
+                                    name="name"
+                                    before
+                                    iconBefore={User}
+                                />
+                                <TextField
+                                    variant={'primary.normal'}
+                                    type="email"
+                                    placeholder="Your Email"
+                                    name="email"
+                                    before
+                                    iconBefore={Email}
+                                />
+                                <TextField
+                                    variant={'primary.normal'}
+                                    type={!toggle ? 'password' : 'text'}
+                                    placeholder="Password"
+                                    name="password"
+                                    before
+                                    iconBefore={Lock}
+                                    after
+                                    onIconClickAfter={handleToggle}
+                                    iconAfter={toggle ? Hide : Show}
+                                />
+                            </StackVertical>
+                            <Button lay="lg" width="100%" mt={8}>
+                                Sign Up
+                            </Button>
+                        </View>
+                    </Formik>
                     <Flex alignItems="center" justifyContent="center" mt={7}>
                         <Text color="text.1">Already have an account? &nbsp;</Text>{' '}
                         <Link to="/auth/login" p={0} minWidth={'max-content'}>

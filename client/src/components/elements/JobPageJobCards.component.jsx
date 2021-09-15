@@ -17,29 +17,31 @@ const RoleOverview = styled(Text)`
     -webkit-box-orient: vertical;
 `;
 
-const StyledLink = styled(NavLink)(css({
-    textDecoration : 'none',
-    color : 'text.1',
-    display: "flex",
-    alignItems: "center",
-    fontSize : 'ms',
-    '&:hover' : {
-        color : 'text.2'
-    },
-    '&:hover svg' : {
-        path : {
-            stroke: 'text.2',
-            strokeWidth : 2
+const StyledLink = styled(NavLink)(
+    css({
+        textDecoration: 'none',
+        color: 'text.1',
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: 'ms',
+        '&:hover': {
+            color: 'text.2'
+        },
+        '&:hover svg': {
+            path: {
+                stroke: 'text.2',
+                strokeWidth: 2
+            }
+        },
+        svg: {
+            mr: 4,
+            path: {
+                stroke: 'text.1',
+                strokeWidth: 2
+            }
         }
-    },
-    'svg' : {
-        mr: 4,
-        'path' : {
-            stroke : 'text.1',
-            strokeWidth : 2
-        }
-    }
-}))
+    })
+);
 
 const JobPageJobCards = ({
     thumbnail,
@@ -96,7 +98,7 @@ const JobPageJobCards = ({
                         </Heading>
                         <Flex mt={4}>
                             <StyledLink to={`/company/${name}`}>
-                            <Linkto size="2rem"/>
+                                <Linkto size="2rem" />
                                 {name}
                             </StyledLink>
                             <Flex alignItems="center" width={'100%'} ml={6}>

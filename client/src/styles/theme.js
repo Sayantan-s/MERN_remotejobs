@@ -59,7 +59,6 @@ const theme = {
 
 export default theme;
 
-
 /*  "50": "#F0F2F4",
       "100": "#D6DAE1",
       "200": "#BBC2CD",

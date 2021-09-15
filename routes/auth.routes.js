@@ -1,15 +1,9 @@
-const { promisify } = require('util');
 const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
 const { getGoogleOAuthURL, getGoogleUser } = require('../helpers/init_GoogleOAuth');
-const redis = require('redis');
-
-const client = redis.createClient();
-
-client.get = promisify(client.get).bind(client);
-
+const client = require('../helpers/helper');
 const router = require('express').Router();
 
 router.post('/register', async (req, res, next) => {
@@ -37,10 +31,13 @@ router.post('/register', async (req, res, next) => {
             }
         });
 
-        res.setHeader(`x-access-token`, access_token);
-        res.cookie('refresh', refresh_token);
-        client.set(refresh_token + '', user._id + '', redis.print);
-        res.status(201).send({ message: 'Your account has been created successfully!' });
+        client.set(refreshToken, user._id, (err, reply) => {
+            if (err) return ApiError.customError(400, 'Failed to create account!');
+            console.log(reply);
+            res.setHeader(`x-access-token`, access_token);
+            res.cookie('refresh', refresh_token);
+            res.status(201).send({ message: 'Your account has been created successfully!' });
+        });
     } catch (error) {
         next(error);
     }

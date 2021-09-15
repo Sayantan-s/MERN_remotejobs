@@ -30,7 +30,7 @@ const reducer = (state = authState, { type, payload }) => {
 
             console.log(decodedPayload);
 
-            //localStorage.setItem('user_meta', JSON.stringify({  expiry, role }));
+            localStorage.setItem('user_meta', JSON.stringify({ access_token }));
 
             return {
                 ...state,
@@ -68,7 +68,7 @@ const AuthenticationContext = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ state, dispatch, isAuthenticated }}>
+        <AuthContext.Provider value={{ state, dispatch, isAuth: isAuthenticated() }}>
             {children}
         </AuthContext.Provider>
     );

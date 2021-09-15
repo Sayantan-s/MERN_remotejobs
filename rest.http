@@ -3,63 +3,75 @@ GET http://localhost:5000/api/jobs
 
 ###
 
-POST http://localhost:5000/api/jobs
+POST http://localhost:8000/api/jobs
 Content-Type: application/json 
 
 {
     "company" : {
-        "name" : "Customer.io",
-        "thumbnail" : "https://cdn.svgporn.com/logos/customerio-icon.svg",
-        "tagline" :  "People-first company that empowers you to succeed." 
+        "name" : "Slack",
+        "thumbnail" : "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg",
+        "tagline" :  "Come and work where the future works" 
     },
     "roleInfo" : {
-        "role" : "Mobile Engineer",
+        "role" : "Product Designer",
         "jobtype" : "Full-time",
-        "salary": "$50k-$70k",
-        "location" : "Berlin",
-        "roleOverview" : "We're looking for a Mobile Engineer with a background in building mobile apps to help us create tools that improve the lives of your fellow app developers. \n As a Mobile Engineer at Customer.io, you will guide our mobile SDK engineering efforts as well as help us shape our roadmap with genuine empathy for mobile developers. You'll create the tools that mobile app companies use to trigger messages (push notifications, in-app messages, sms, emails, etc) without getting bogged down with high-cost coordination between marketing and engineering.",   
+        "salary": {
+            "min" : 100000,
+            "max" : 120000, 
+        },
+        "location" : "Remote",
+        "roleOverview" : "We're hiring a Product Designer to help craft the future of Slack. Designers here work across every stage of product development, from crafting the experience of new features, to prototyping and finding creative solutions, to the craft and finish of every detail in the product. On our design team, we appreciate designers who think deeply, speak clearly, work collaboratively, and have an excellent collection of animated GIFs. At Slack, we have a positive, diverse, and encouraging culture — we look for people who are curious, inventive, and work to be a little better every single day.",   
         "mainResponsibilities" : [
-                "Be a technical contributor to the team that builds and maintains the mobile SDKs that help mobile app companies integrate with us.",
-                "Work closely with our frontend and backend engineers to connect the mobile SDKs into our product. If you're familiar with Ember or Go, there's flexibility to contribute across multiple parts of our stack.",
-                "Keep up to date with the latest iOS or Android platform capabilities, partnering with product management to help guide a roadmap that factors in the needs of developers.",
-                "Learn, practice, and share with your coworkers through code review, team collaboration, and training to help improve our collective knowledge and best practices together.",
-                "Be a model and mentor for writing well-architected, well-tested, and easy to understand code."
-
+            "Work with design, product management, and engineering to generate ideas and turn them into a flawless product experience.",
+            "Work closely with senior designers on the team to define features and the overall direction of your product area.",
+            "Partner with engineering to ensure a high-quality implementation and user experience.",
+            "Use the Slack design system in order to craft flows, prototypes, sketches, and high-fidelity visuals for your features.",
+            "Improve your team’s work by asking for and offering feedback from other product designers and cross-functional teammates."        
         ],
         "skillsReq" : [
-                "Experience shipping code in a production environment on iOS or Android apps, but you don't need to be an expert in both.",
-                "Capable of building and owning major production components from the ground up.",
-                "A product focus. You're comfortable jumping between customer viewpoint and technical architecture to help us make tough tradeoffs.",
-                "Excellent written and verbal communication skills, bonus if you've developed those while working with a distributed team.",
-                "Ideally located in UTC -4 to -7 to maximize working hours overlap with your squad.",
-                "(Bonus - not required!) Shout if you've worked in Go or Ember and are excited about working across multiple levels of our tech stack."
-        ]
-    }
+                "2+ years of experience in an individual contributor role on a product design team for desktop or mobile",
+                "An outstanding portfolio, showcasing a foundation in typography, interaction, and visual design.",
+                "Solid understanding of how to craft usable, accessible, and modular designs that can scale to millions of users.",
+                "Experience working and collaborating with complementary diverse teams in a multi-faceted, rapid-growth environment.",
+                "Experience working with product managers to execute on the strategy for product features.",
+                "Experience with prototyping as a means to explore and convey design solutions.",
+                "Excellent communication skills (bonus points if you love to use emoji)"
+
+        ],
+        "dept" : "Design",
+        "skillXP" : 80
+    },
+    "tags" : [
+        "Full time", 
+        "Design",
+        "visual design"
+    ],
+    "companyInfo" : "61425c1206d9ec76fa841ed3"
 }
 
 ###
 
-POST http://localhost:5000/api/companies
+POST http://localhost:8000/api/companies
 Content-Type: application/json 
 
 {
-    "logo" : "https://cdn.svgporn.com/logos/google-icon.svg", 
-    "name" : "Google", 
+    "logo" : "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg", 
+    "name" : "Slack", 
     "typeOfCorporation" : "Software", 
-    "tagline" : "Build Create Design Code for everyone",
-    "info" : "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, cloud computing, software, and hardware.",
+    "tagline" : "Come and work where the future works",
+    "info" : "Slack Technologies, Inc. operates as a software company. The Company designs and develops a communication platform that provides real-time messaging, file sharing, archiving, and searching services for teams. Slack Technologies serves clients worldwide.",
     "size" : {
-        "minSize" : 10001,
-        "maxSize" : 130000
+        "minSize" : 5000,
+        "maxSize" : 10001
     }, 
-    "address" : "Mountain View, California, United States", 
-    "raised" : 131133000000,
+    "address" : "San Francisco, United States", 
+    "raised" : 18559805920,
     "culture" : {
-        "youtube" : "https://www.youtube.com/watch?v=n_Cn8eFo7u8",
-        "videoThumbnail" : "https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+        "youtube" : "https://www.youtube.com/watch?v=ZDs056YM4fc",
+        "videoThumbnail" : "https://images.unsplash.com/photo-1574790398664-0cb03682ed1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
     },
-    "established" : 1998,
-    "website" : "https://www.google.com" 
+    "established" : 2009,
+    "website" : "www.slack.com" 
 }
 
 ###
