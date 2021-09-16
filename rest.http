@@ -8,45 +8,44 @@ Content-Type: application/json
 
 {
     "company" : {
-        "name" : "Slack",
-        "thumbnail" : "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg",
-        "tagline" :  "Come and work where the future works" 
+        "name" : "Spotify",
+        "thumbnail" : "https://cdn.worldvectorlogo.com/logos/spotify-2.svg",
+        "tagline" :  "Wait! where's your coffee?" 
     },
     "roleInfo" : {
-        "role" : "Product Designer",
+        "role" : "Podcast Account Director",
         "jobtype" : "Full-time",
         "salary": {
             "min" : 100000,
-            "max" : 120000, 
+            "max" : 120000
         },
         "location" : "Remote",
-        "roleOverview" : "We're hiring a Product Designer to help craft the future of Slack. Designers here work across every stage of product development, from crafting the experience of new features, to prototyping and finding creative solutions, to the craft and finish of every detail in the product. On our design team, we appreciate designers who think deeply, speak clearly, work collaboratively, and have an excellent collection of animated GIFs. At Slack, we have a positive, diverse, and encouraging culture — we look for people who are curious, inventive, and work to be a little better every single day.",   
+        "roleOverview" : "We are looking for an outstanding Podcast Sales Specialist to join our growing team. We’re looking for someone with a proven record of revenue generation and a deep interest in podcasts and audio innovation to be a part of our expansion in Canada.  We want someone who loves podcasts and knows how to communicate their value to clients and partners. We are building the podcast business and you will be a partner for the sales team, a voice in the market from both a sales and tactical execution perspective. You should be confident, work hard, but also know how to have fun.  Above all, your work will impact the way the world engages in audio experiences.",   
         "mainResponsibilities" : [
-            "Work with design, product management, and engineering to generate ideas and turn them into a flawless product experience.",
-            "Work closely with senior designers on the team to define features and the overall direction of your product area.",
-            "Partner with engineering to ensure a high-quality implementation and user experience.",
-            "Use the Slack design system in order to craft flows, prototypes, sketches, and high-fidelity visuals for your features.",
-            "Improve your team’s work by asking for and offering feedback from other product designers and cross-functional teammates."        
+            "Work across multiple agency departments, i.e. radio, digital, branded content and innovation teams, to sell through and deliver successful podcast campaigns",
+            "Coordinate with the communications planning team and strategic planners, account directors, and buyers to create successful ad campaigns",
+            "Work fluidly with internal teams and help to ensure that our podcasts are ready for monetization at scale",
+            "Work closely with internal teams on operations to ensure local podcasts are set up for monetization",
+            "Partner internally with sales support, marketing and Spotify Studios teams to maximize revenue for Spotify and our partners",
+            "Attend/lead client meetings to present in-depth sales narrative, data, insights & research"
         ],
         "skillsReq" : [
-                "2+ years of experience in an individual contributor role on a product design team for desktop or mobile",
-                "An outstanding portfolio, showcasing a foundation in typography, interaction, and visual design.",
-                "Solid understanding of how to craft usable, accessible, and modular designs that can scale to millions of users.",
-                "Experience working and collaborating with complementary diverse teams in a multi-faceted, rapid-growth environment.",
-                "Experience working with product managers to execute on the strategy for product features.",
-                "Experience with prototyping as a means to explore and convey design solutions.",
-                "Excellent communication skills (bonus points if you love to use emoji)"
-
+                "You have 6+ years of experience in a media agency/online sales role; digital and podcast sales preferred.",
+                "Understanding of selling a network and specific audiences",
+                "You have knowledge of online and offline media and have the ability to be creative with audio and digital client solutions",
+                "You are operationally proficient and can dig into the details at a campaign level", 
+                "You have strong negotiation skills and the ability to present effectively and close the deal",
+                "You have the ability to build a pipeline and proven track record of exceeding goals",
+                "You have dexterity in creating reports and presentations using Excel, PowerPoint, Keynote, etc."
         ],
-        "dept" : "Design",
-        "skillXP" : 80
+        "dept" : "Sales & Marketing",
+        "skillXP" : 90
     },
     "tags" : [
-        "Full time", 
-        "Design",
-        "visual design"
-    ],
-    "companyInfo" : "61425c1206d9ec76fa841ed3"
+        "Sales",
+        "Excel",
+        "Full time"
+    ]
 }
 
 ###
@@ -55,23 +54,23 @@ POST http://localhost:8000/api/companies
 Content-Type: application/json 
 
 {
-    "logo" : "https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg", 
-    "name" : "Slack", 
-    "typeOfCorporation" : "Software", 
-    "tagline" : "Come and work where the future works",
-    "info" : "Slack Technologies, Inc. operates as a software company. The Company designs and develops a communication platform that provides real-time messaging, file sharing, archiving, and searching services for teams. Slack Technologies serves clients worldwide.",
+    "logo" : "https://cdn.worldvectorlogo.com/logos/spotify-2.svg", 
+    "name" : "Spotify", 
+    "typeOfCorporation" : "Internet", 
+    "tagline" : "Wait! where's your coffee?",
+    "info" : "Spotify is a digital music, podcast, and video service that gives you access to millions of songs and other content from creators all over the world. Basic functions such as playing music are totally free,build collections of music and podcasts.",
     "size" : {
-        "minSize" : 5000,
-        "maxSize" : 10001
+        "minSize" : 200,
+        "maxSize" : 501
     }, 
-    "address" : "San Francisco, United States", 
-    "raised" : 18559805920,
+    "address" : "Stockholm, Sweden", 
+    "raised" : 7700000000,
     "culture" : {
-        "youtube" : "https://www.youtube.com/watch?v=ZDs056YM4fc",
-        "videoThumbnail" : "https://images.unsplash.com/photo-1574790398664-0cb03682ed1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
+        "youtube" : "https://www.youtube.com/watch?v=Vvo-2MrSgFE",
+        "videoThumbnail" : "https://images.pexels.com/photos/340103/pexels-photo-340103.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
     },
-    "established" : 2009,
-    "website" : "www.slack.com" 
+    "established" : 2006,
+    "website" : "https://www.spotify.com" 
 }
 
 ###

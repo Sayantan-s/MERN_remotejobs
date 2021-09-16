@@ -22,7 +22,6 @@ const Login = () => {
 
     const { dispatchToast } = useContext(AlertContext);
 
-
     const [toggle, handleToggle] = useToggle();
 
     const onSubmit = async (data) => {

@@ -157,7 +157,13 @@ const TextField = (
                         <IconBefore />
                     </Button>
                 )}
-                <Field as={ElementInput} autoComplete="new-password" ml={before ? '5' : ''} mr={after ? '5' : ''} {...rest} />
+                <Field
+                    as={ElementInput}
+                    autoComplete="new-password"
+                    ml={before ? '5' : ''}
+                    mr={after ? '5' : ''}
+                    {...rest}
+                />
                 {after && (
                     <Button
                         onClick={handleIconAfter}

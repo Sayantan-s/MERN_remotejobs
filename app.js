@@ -23,9 +23,8 @@ const middlewares = [
     cors({
         origin: 'http://localhost:3000',
         maxAge: 1000 * 60 * 60 * 24 * 365
-
     }),
-    cookieParser(),
+    cookieParser()
     /*csrf({
         cookie: true,
     })*/

@@ -35,8 +35,15 @@ router
         }
     })
     .post(async (req, res, next) => {
+        console.log(req.body);
         try {
             const { company, roleInfo } = req.body;
+
+            const comp = await Company.findOne({
+                name: company.name
+            });
+
+            if (!comp) next(ApiError.customError(404, 'There is no such company registered!'));
 
             const rolePresence = await Jobs.exists({
                 'company.name': company.name,
@@ -44,21 +51,11 @@ router
             });
 
             if (rolePresence)
-                return next(ApiError.customError(403, 'Job already exists for the company!'));
+                next(ApiError.customError(403, 'Job already exists for the company!'));
 
-            const createJob = await Jobs.create({ company, roleInfo });
+            const createJob = await Jobs.create({ company, roleInfo, companyInfo: comp._id });
 
-            if (!createJob)
-                return next(ApiError.customError(409, 'Failed to create the job, try again!'));
-
-            const comp = await Company.findOne({
-                name: createJob.company.name
-            });
-
-            if (!comp) {
-                await Jobs.findByIdAndDelete(createJob._id);
-                return next(ApiError.customError(409, 'Something went wrong, try again!'));
-            }
+            if (!createJob) next(ApiError.customError(409, 'Failed to create the job, try again!'));
 
             comp.jobs.push(createJob._id);
 

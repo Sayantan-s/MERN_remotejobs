@@ -22,9 +22,32 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import { useForm } from 'hooks';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 const Company = () => {
     const theme = useTheme();
+
+    const [companyData, setCompanyData] = useState({
+        logo: '',
+        name: '',
+        email: '',
+        tagline: '',
+        typeOfCorporation : '',
+        info : '',
+        size : {
+            minSize : 0,
+            maxSize : 0
+        },
+        website : '',
+        raised : '',
+        address : '',
+        culture: {
+            youtube: '',
+            videoThumbnail: ''
+        },
+    });
+
     const [{ email }, handleChange, submitForm, err] = useForm({
         state: {
             email: '',
@@ -61,62 +84,71 @@ const Company = () => {
 
     console.log(formSteps);
 
-    const Step_1 = (
-        <>
-            <Stack gap={5}>
-                <TextField
-                    variant="primary.normal"
-                    type="text"
-                    placeholder="e.g. Google"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    before
-                    danger={err.email}
-                    iconBefore={Email}
-                    label="Company Name"
-                    width="100%"
-                />
-                <TextField
-                    variant="primary.normal"
-                    type="number"
-                    placeholder="$ 25,000,00..."
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    before
-                    danger={err.email}
-                    iconBefore={Email}
-                    label="Net Worth."
-                    width="100%"
-                />
-            </Stack>
-            <TextField
-                variant="primary.normal"
-                type="text"
-                placeholder="e.g. Building for a...."
-                name="email"
-                value={email}
-                onChange={handleChange}
-                before
-                danger={err.email}
-                iconBefore={Email}
-                label="Moto"
-            />
-            <TextField
-                variant="primary.normal"
-                as="textarea"
-                rows="5"
-                placeholder="e.g. Market Square, 1355 Market St #900, San..."
-                name="email"
-                value={email}
-                onChange={handleChange}
-                danger={err.email}
-                label="Address"
-            />
-        </>
-    );
-
+    const Step_1 = () => {
+        return (
+            <Formik
+                initialValues={{
+                    name: '',
+                    tagline: '',
+                    typeOfCorporation : '',
+                    info : '',
+                }}
+                validationSchema={Yup.object().shape({
+                    email: Yup.string()
+                        .email('Invalid email')
+                        .required(`Your email should'nt be empty`),
+                    password: Yup.string()
+                        .min(7, `Password strength too low`)
+                        .required(`Password should'nt be empty`)
+                })}
+                onSubmit={(values) => console.log(values)}
+            >
+                <View as={Form} width={'m'} autoComplete="new-password">
+                    <StackVertical gap={6}>
+                        <Stack gap={5}>
+                            <TextField
+                                variant="primary.normal"
+                                type="text"
+                                placeholder="e.g. Google"
+                                name="name"
+                                before
+                                iconBefore={Email}
+                                label="Company Name"
+                                width="100%"
+                            />
+                            <TextField
+                                variant="primary.normal"
+                                type="number"
+                                placeholder="$ 25,000,00..."
+                                name="email"
+                                before
+                                iconBefore={Email}
+                                label="Net Worth."
+                                width="100%"
+                            />
+                        </Stack>
+                        <TextField
+                            variant="primary.normal"
+                            type="text"
+                            placeholder="e.g. Building for a...."
+                            name="email"
+                            before
+                            iconBefore={Email}
+                            label="Moto"
+                        />
+                        <TextField
+                            variant="primary.normal"
+                            as="textarea"
+                            rows="5"
+                            placeholder="e.g. Market Square, 1355 Market St #900, San..."
+                            name="email"
+                            label="Address"
+                        />
+                    </StackVertical>
+                </View>
+            </Formik>
+        );
+    };
     const Step_2 = (
         <>
             <Stack gap={5}>
