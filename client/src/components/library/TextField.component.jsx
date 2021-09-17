@@ -1,9 +1,10 @@
 import css from '@styled-system/css';
-import { Button, Flex, Text, View } from 'components/index';
+import { Button, Flex, Text, View } from 'components';
 import React, { forwardRef } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { compose, layout, space, variant } from 'styled-system';
 import { Field, ErrorMessage } from 'formik';
+import { Broken } from 'assets/icons';
 
 const variants = {
     primary: {
@@ -125,6 +126,8 @@ const TextField = (
         onIconClickBefore,
         variant = 'primary.normal',
         label,
+        labelicon: IconLabel = Broken.ArrowRight,
+        hasIconLabel,
         ...rest
     },
     ref
@@ -139,12 +142,19 @@ const TextField = (
         return onIconClickAfter?.();
     };
 
+    const theme = useTheme();
+
     return (
         <View width={width} ref={ref}>
             {label && (
-                <Text as="label" color="text.3" fontSize="ms" fontWeight="semibold">
-                    {label}
-                </Text>
+                <Flex as="label" alignItems="center">
+                    <Text as="span" color="text.3" fontSize="ms" fontWeight="semibold" mr="2">
+                        {label}
+                    </Text>
+                    {hasIconLabel && (
+                        <IconLabel size="2rem" stroke={theme.colors.text[3]} strokeWidth="2" />
+                    )}
+                </Flex>
             )}
             <Input variant={variant} {...(label && { mt: 4 })}>
                 {before && (

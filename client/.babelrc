@@ -3,12 +3,12 @@
       ["module-resolver", {
         "root": ["./src"],
         "alias": {
+          "icons": "./assets/icons", 
           "animations" : "./animations",
           "components" : "./components",
           "styles" : "./styles",
           "utils" : "./utils",
-          "hooks" : "./hooks",
-          "icons": "./assets/icons"
+          "hooks" : "./hooks"
         }
       }]
     ]

@@ -12,6 +12,7 @@ import {
     flex
 } from 'styled-system';
 import css from '@styled-system/css';
+import { motion } from 'framer-motion';
 
 const variants = {
     primary: {
@@ -121,7 +122,7 @@ const size = {
     }
 };
 
-const Button = styled('button')(
+const Button = styled(motion.button)(
     css({
         appearance: 'button',
         border: 'none',

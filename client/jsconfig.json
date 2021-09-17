@@ -3,12 +3,13 @@
         "target": "es6",
         "baseUrl": "./src",
         "paths": {
-            "components": ["./components"],
             "icons": ["./assets/icons"],
+            "components": ["./components"],
             "animations": ["./animations"],
             "styles": ["./styles"],
             "utils": ["./utils"],
             "hooks": ["./hooks"]
         }
-    }
+    },
+    "exclude": ["node_modules"]
 }

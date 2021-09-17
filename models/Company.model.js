@@ -10,6 +10,11 @@ const companySchema = new Schema({
         unique: true,
         required: true
     },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     tagline: {
         type: String,
         required: true,
