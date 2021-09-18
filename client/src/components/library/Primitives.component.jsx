@@ -78,10 +78,12 @@ const Image = ({ src, alt, ...rest }) => {
 
 //BADGE
 
-const Badge = ({ children, ...rest }) => (
-    <View {...rest}>
-        <Text as="span">{children}</Text>
+const Badge = ({ children, variant, ...rest }) => (
+    <View {...rest} bg={`${variant}.0`} width="max-content" py="2" px="4" borderRadius={3}>
+        <Text as="span" color={`${variant}.4`}>
+            {children}
+        </Text>
     </View>
 );
 
-export { Flex, Page, Stack, StackVertical, Divider, Image };
+export { Flex, Page, Stack, StackVertical, Divider, Image, Badge };

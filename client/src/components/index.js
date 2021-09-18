@@ -5,7 +5,7 @@ import Dropdown from './elements/DropDown.component';
 import Text from './library/Text.component';
 import Link from './library/Link.component';
 import Heading from './library/Heading/Heading.component';
-import { Flex, Page, Stack, StackVertical, Divider } from './library/Primitives.component';
+import { Flex, Page, Stack, StackVertical, Divider, Badge } from './library/Primitives.component';
 import { Radio, Input, Checkbox, CheckboxGroup } from './elements/FormItems.component';
 import Toast from './library/Toast.component';
 import Toasts from './elements/Toasts.components';
@@ -50,5 +50,6 @@ export {
     Toasts,
     TextField,
     DataList,
-    DropAndFileUpload
+    DropAndFileUpload,
+    Badge
 };

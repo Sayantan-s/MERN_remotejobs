@@ -16,7 +16,7 @@ import {
     DropAndFileUpload,
     Text
 } from 'components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -237,25 +237,21 @@ const Company = () => {
                         ...prevState,
                         size: { minSize: +min, maxSize: +max }
                     }));
-                }
-                else if (key === 'youtube' || key === 'videoThumbnail') {
+                } else if (key === 'youtube' || key === 'videoThumbnail') {
                     setCompanyData((prevState) => ({
                         ...prevState,
                         culture: {
                             [key]: values[key]
                         }
                     }));
-                }
-                else {
+                } else {
                     setCompanyData((prevState) => ({
                         ...prevState,
-                       [key] : value
+                        [key]: value
                     }));
                 }
             }
         }
-
-        console.log(companyData) // Handlesubmit stage.
     };
 
     return (
@@ -359,7 +355,10 @@ const Company = () => {
                                 .email('Not a valid email!')
                                 .required('You cannot leave the email empty!'),
                             youtube: Yup.string()
-                                .matches(/^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/, 'Not a valid youtube url!')
+                                .matches(
+                                    /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/,
+                                    'Not a valid youtube url!'
+                                )
                                 .url('Not a valid url!')
                                 .required(`Yotube url cannot be empty!`),
                             videoThumbnail: Yup.string().url('Not a valid website url!'),

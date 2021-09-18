@@ -133,4 +133,29 @@ const ArrowLeft = ({ fill, stroke, size, strokeWidth }) => (
     </svg>
 );
 
-export { Search, Linkto, ArrowRight, ArrowLeft };
+const Location = ({ fill, stroke, size, strokeWidth }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill={fill || 'none'}
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M15.1189 10.3114C15.1189 12.0314 13.7289 13.4314 11.9989 13.4314C10.2689 13.4314 8.87891 12.0414 8.87891 10.3114C8.87891 8.58141 10.2789 7.19141 11.9989 7.19141C12.3389 7.19141 12.6689 7.24141 12.9689 7.34141"
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+        <path
+            d="M5.98094 4.30006C10.3509 0.190061 18.8209 1.60006 20.3809 8.51006C21.5309 13.5901 18.3709 17.8901 15.6009 20.5501C13.5909 22.4901 10.4109 22.4901 8.39094 20.5501C5.63094 17.8801 2.46094 13.5801 3.62094 8.50006"
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+);
+
+export { Search, Linkto, ArrowRight, ArrowLeft, Location };
