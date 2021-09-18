@@ -16,7 +16,7 @@ import {
     DropAndFileUpload,
     Text
 } from 'components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -46,6 +46,7 @@ const Company = () => {
             videoThumbnail: ''
         }
     });
+
 
     const StepA = () => {
         return (
@@ -227,31 +228,34 @@ const Company = () => {
         return formSteps > 0 && setSteps((prevStep) => prevStep - 1);
     };
 
-    const handleSubmit = async ({ values }) => {
+    const onSubmit = async (values, handleSubmit, handleReset) => {
+        let dataSubmission = {}
+        //console.log(handleSubmit, handleReset)
         handleSteps({ action: 'INCREMENT' });
         if (formSteps === 2) {
             for (let [key, value] of Object.entries(values)) {
                 if (key === 'size') {
                     const [min, max] = value.split('-');
-                    setCompanyData((prevState) => ({
-                        ...prevState,
+                    dataSubmission = {
+                        ...dataSubmission,
                         size: { minSize: +min, maxSize: +max }
-                    }));
+                    }
                 } else if (key === 'youtube' || key === 'videoThumbnail') {
-                    setCompanyData((prevState) => ({
-                        ...prevState,
+                    dataSubmission = {
+                        ...dataSubmission,
                         culture: {
                             [key]: values[key]
                         }
-                    }));
+                    }
                 } else {
-                    setCompanyData((prevState) => ({
-                        ...prevState,
+                    dataSubmission = {
+                        ...dataSubmission,
                         [key]: value
-                    }));
+                    }
                 }
             }
         }
+        console.log(dataSubmission)
     };
 
     return (
@@ -283,7 +287,8 @@ const Company = () => {
                     <ArrowRight size="2.5rem" fill={theme.colors.blue[6]} />
                 </Link>
             </View>
-            <View flex="50%" position="relative">
+            <View 
+            flex="50%" position="relative">
                 <Flex
                     px="10"
                     position="absolute"
@@ -395,8 +400,10 @@ const Company = () => {
                                 .max(185, 'Too Long!')
                                 .required(`Company info is mandatory!`)
                         })}
+                        onSubmit={values => console.log("Hi!")}
                     >
-                        {(props) => {
+                        {({ values, handleSubmit, handleReset }) => {
+                           
                             return (
                                 <>
                                     <Form>
@@ -416,7 +423,7 @@ const Company = () => {
                                         bottom="7"
                                         right="10"
                                         lay="xl"
-                                        onClick={() => handleSubmit(props)}
+                                        onClick={() => onSubmit(values, handleSubmit, handleReset)}
                                     >
                                         {formSteps === 2 ? 'Register your company' : 'Next'}
                                     </Button>
