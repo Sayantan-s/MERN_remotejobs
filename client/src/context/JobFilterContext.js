@@ -1,9 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const FilterContext = createContext();
 
 const JobFilterContext = ({ children }) => {
     const [range, setRange] = useState([40000, 200000]);
+
+    const [keywords, setKeywords] = useState([]);
 
     const [jobType, setJobType] = useState({
         data: [
@@ -72,6 +74,8 @@ const JobFilterContext = ({ children }) => {
         return jobs.filter((job) => job.roleInfo.salary.max > min || job.roleInfo.salary.max > max);
     };
 
+    console.log(keywords);
+
     return (
         <FilterContext.Provider
             value={{
@@ -83,7 +87,9 @@ const JobFilterContext = ({ children }) => {
                 setJobType,
                 dept,
                 setDept,
-                dispatchJobFilter: (jobs) => filterJobsController(jobs)
+                dispatchJobFilter: (jobs) => filterJobsController(jobs),
+                keywords,
+                setKeywords
             }}
         >
             {children}

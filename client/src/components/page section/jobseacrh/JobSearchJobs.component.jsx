@@ -1,7 +1,7 @@
 import JobPageJobCards from 'components/elements/JobPageJobCards.component';
 import { Button, Dropdown, Flex, StackVertical, Text, View } from 'components/index';
 import { FilterContext } from 'context';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 const JobSearchJobs = ({ jobs }) => {
     const { dispatchJobFilter } = useContext(FilterContext);

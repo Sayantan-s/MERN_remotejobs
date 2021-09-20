@@ -80,7 +80,7 @@ const Job = () => {
     };
 
     return (
-        <Page maxHeight={'100vh'}>
+        <Page>
             <View
                 position="relative"
                 px={10}
@@ -201,7 +201,7 @@ const Job = () => {
                             </View>
                         </View>
                     </View>
-                    <StackVertical flex="0.3" gap={8} position="sticky">
+                    <StackVertical flex="0.3" gap={8}>
                         <CompanyDetailsbar data={companyInfo} />
                         <SkillExpectation
                             requiredXP={roleInfo?.skillXP}

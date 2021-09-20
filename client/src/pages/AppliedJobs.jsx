@@ -47,7 +47,6 @@ const Company = () => {
         }
     });
 
-
     const StepA = () => {
         return (
             <StackVertical gap={6}>
@@ -229,7 +228,7 @@ const Company = () => {
     };
 
     const onSubmit = async (values, handleSubmit, handleReset) => {
-        let dataSubmission = {}
+        let dataSubmission = {};
         //console.log(handleSubmit, handleReset)
         handleSteps({ action: 'INCREMENT' });
         if (formSteps === 2) {
@@ -239,23 +238,23 @@ const Company = () => {
                     dataSubmission = {
                         ...dataSubmission,
                         size: { minSize: +min, maxSize: +max }
-                    }
+                    };
                 } else if (key === 'youtube' || key === 'videoThumbnail') {
                     dataSubmission = {
                         ...dataSubmission,
                         culture: {
                             [key]: values[key]
                         }
-                    }
+                    };
                 } else {
                     dataSubmission = {
                         ...dataSubmission,
                         [key]: value
-                    }
+                    };
                 }
             }
         }
-        console.log(dataSubmission)
+        console.log(dataSubmission);
     };
 
     return (
@@ -287,8 +286,7 @@ const Company = () => {
                     <ArrowRight size="2.5rem" fill={theme.colors.blue[6]} />
                 </Link>
             </View>
-            <View 
-            flex="50%" position="relative">
+            <View flex="50%" position="relative">
                 <Flex
                     px="10"
                     position="absolute"
@@ -400,10 +398,12 @@ const Company = () => {
                                 .max(185, 'Too Long!')
                                 .required(`Company info is mandatory!`)
                         })}
-                        onSubmit={values => console.log("Hi!")}
                     >
-                        {({ values, handleSubmit, handleReset }) => {
-                           
+                        {(props) => {
+                            console.log(props);
+
+                            const { values, handleSubmit, handleReset } = props;
+
                             return (
                                 <>
                                     <Form>

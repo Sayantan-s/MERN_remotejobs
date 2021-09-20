@@ -6,6 +6,7 @@ import styled, { useTheme } from 'styled-components';
 import { css } from '@styled-system/css';
 import Play from 'assets/icons/Play';
 import HomeJobCards from 'components/elements/HomeJobCards.component';
+import CompanyPageJobCards from 'components/elements/CompanyPageJobCards.component';
 
 const PlayButton = styled(Button)(
     css({
@@ -41,12 +42,7 @@ const Company = () => {
 
     return (
         <View>
-            <View
-                py={10}
-                //backgroundSize="cover"
-                //backgroundPosition="center"
-                //backgroundImage={`URL("/gradients/2.jpg")`}>
-            >
+            <View py={10}>
                 <Flex
                     maxWidth="desktop"
                     m="0 auto"
@@ -92,8 +88,13 @@ const Company = () => {
                             minor changes, and yet always.
                         </Text>
                         <StackVertical gap={8} mt={10}>
-                            {data?.jobs.map(({ _id, companyInfo, roleInfo }) => (
-                                <HomeJobCards key={_id} {...companyInfo} {...roleInfo} />
+                            {data?.jobs.map(({ _id, companyInfo, roleInfo, ...data }) => (
+                                <CompanyPageJobCards
+                                    key={_id}
+                                    {...companyInfo}
+                                    {...roleInfo}
+                                    {...data}
+                                />
                             ))}
                         </StackVertical>
                     </View>

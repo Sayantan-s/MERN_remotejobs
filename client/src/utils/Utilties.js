@@ -10,4 +10,14 @@ export default class Utilities {
     static salaryMeter(salary) {
         return salary / Math.pow(10, 3);
     }
+
+    static moment(createdAt) {
+        const time = Math.ceil((Date.now() - new Date(createdAt)) / 1000 / 60 / 60 / 24);
+
+        if (time > 31) {
+            return `${12 - Math.ceil((365 - time) / 31)} month ago`;
+        } else if (time < 1) {
+            return `Added few hours ago`;
+        } else return `${time} days ago`;
+    }
 }

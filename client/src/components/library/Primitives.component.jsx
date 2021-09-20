@@ -78,8 +78,8 @@ const Image = ({ src, alt, ...rest }) => {
 
 //BADGE
 
-const Badge = ({ children, variant, ...rest }) => (
-    <View {...rest} bg={`${variant}.0`} width="max-content" py="2" px="4" borderRadius={3}>
+const Badge = ({ children, variant, bgLevel = 0, ...rest }) => (
+    <View {...rest} bg={`${variant}.${bgLevel}`} width="max-content" py="2" px="4" borderRadius={6}>
         <Text as="span" color={`${variant}.4`}>
             {children}
         </Text>

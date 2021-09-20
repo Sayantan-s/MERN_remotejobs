@@ -35,7 +35,13 @@ const HomeSearchBar = ({ hitApi }) => {
                 before
                 type="search"
                 placeholder="New York, USA"
-                iconBefore={<Broken.Location size="2.5rem" stroke={theme.colors.text[3]} strokeWidth={1.8} />}
+                iconBefore={
+                    <Broken.Location
+                        size="2.5rem"
+                        stroke={theme.colors.text[3]}
+                        strokeWidth={1.8}
+                    />
+                }
             />
             <Button borderRadius={10} lay="lg">
                 Search

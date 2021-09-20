@@ -84,7 +84,7 @@ const jobSchema = new Schema(
             type: Array,
             required: true,
             min: 3,
-            max: 10 
+            max: 10
         }
     },
     { timestamps: true }

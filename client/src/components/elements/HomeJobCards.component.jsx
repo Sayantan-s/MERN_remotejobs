@@ -5,7 +5,6 @@ import { useTheme } from 'styled-components';
 import Tilt from 'react-parallax-tilt';
 import { Broken } from 'assets/icons/index';
 
-
 const HomeJobCards = ({ logo, role, tagline, location, jobtype, name, _id, createdAt }) => {
     const theme = useTheme();
 

@@ -56,7 +56,8 @@ router.get('/:company', async (req, res, next) => {
         const data = await Company.findOne({ name })
             .populate({
                 path: 'jobs',
-                select: 'roleInfo.role roleInfo.jobtype roleInfo.location roleInfo._id ',
+                select: 'roleInfo.role roleInfo.jobtype roleInfo.location roleInfo._id, roleInfo.salary createdAt',
+                limit: 3,
                 populate: {
                     path: 'companyInfo',
                     select: 'logo name'

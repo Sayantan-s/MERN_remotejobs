@@ -8,6 +8,7 @@ import Utilities from 'utils/Utilties';
 import { NavLink } from 'react-router-dom';
 import css from '@styled-system/css';
 import Linkto from 'assets/icons/Broken/Linkto';
+import { Broken } from 'assets/icons/index';
 
 const RoleOverview = styled(Text)`
     overflow: hidden;
@@ -60,6 +61,16 @@ const JobPageJobCards = ({
 
     const [jobsTags, setTags] = useState([]);
 
+    const moment = () => {
+        const time = Math.ceil((Date.now() - new Date(createdAt)) / 1000 / 60 / 60 / 24);
+
+        if (time > 31) {
+            return `${12 - Math.ceil((365 - time) / 31)} month ago`;
+        } else if (time < 1) {
+            return `Added few hours ago`;
+        } else return `${time} days ago`;
+    };
+
     useEffect(() => {
         if (tags.length > 3) {
             for (let i = 1; i <= 3; i++) {
@@ -102,7 +113,11 @@ const JobPageJobCards = ({
                                 {name}
                             </StyledLink>
                             <Flex alignItems="center" width={'100%'} ml={6}>
-                                <Location size="2.5rem" fill={theme.colors.text[1]} />
+                                <Broken.Location
+                                    size="2.2rem"
+                                    stroke={theme.colors.text[1]}
+                                    strokeWidth={1.8}
+                                />
                                 <Text as="span" color="text.1" fontSize="ms" ml={3}>
                                     {location}
                                 </Text>
@@ -145,12 +160,7 @@ const JobPageJobCards = ({
                     )}
                 </Stack>
                 <Text as="span" color="text.1" fontSize="ms">
-                    {new Date(createdAt)
-                        .toDateString()
-                        .split(' ')
-                        .filter((_, id) => id !== 0)
-                        .map((x, id) => (id === 1 ? `${x},` : x))
-                        .join(' ')}
+                    {Utilities.moment(createdAt)}
                 </Text>
             </Flex>
         </View>

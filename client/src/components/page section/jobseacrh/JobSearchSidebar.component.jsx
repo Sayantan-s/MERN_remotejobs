@@ -12,7 +12,7 @@ const JobSearchSidebar = () => {
         useContext(FilterContext);
 
     return (
-        <StackVertical width={[2 / 10]} gap={9} overflowY="scroll" px={6}>
+        <StackVertical width={[2 / 10]} gap={9} overflowY="scroll" px={4} as="aside">
             <View>
                 <Heading level={5} mb={6}>
                     Job Type
@@ -52,7 +52,8 @@ const JobSearchSidebar = () => {
                                     height: '0.3rem',
                                     width: '100%',
                                     backgroundColor: theme.colors.blue[4],
-                                    borderRadius: '50rem'
+                                    borderRadius: '50rem',
+                                    zIndex: 1400
                                 }}
                             >
                                 {children}
@@ -69,7 +70,8 @@ const JobSearchSidebar = () => {
                                     border: `0.6rem solid ${theme.colors.blue[1]}`,
                                     boxShadow: `0px 8px 15px ${theme.colors.blue[6]}40`,
                                     borderRadius: '50%',
-                                    outline: 'none'
+                                    outline: 'none',
+                                    zIndex: 1400
                                 }}
                             />
                         )}

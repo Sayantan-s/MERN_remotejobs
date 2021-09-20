@@ -1,5 +1,6 @@
 import Employee from 'assets/icons/Employee';
 import Established from 'assets/icons/Established';
+import { Broken } from 'assets/icons/index';
 import Industry from 'assets/icons/Industry';
 import Raised from 'assets/icons/Raised';
 import Website from 'assets/icons/Website';
@@ -13,10 +14,14 @@ const CompanyDetailsbar = ({ data }) => {
         <View>
             <Heading level={3}>Company Details</Heading>
             <StackVertical mt={7} gap={7}>
-                <Detail icon={Industry} header={'Industry Type'} name={data?.typeOfCorporation} />
-                <Detail icon={Established} header={'Established'} name={data?.established} />
                 <Detail
-                    icon={Website}
+                    icon={Broken.Industry}
+                    header={'Industry Type'}
+                    name={data?.typeOfCorporation}
+                />
+                <Detail icon={Broken.Calender} header={'Established'} name={data?.established} />
+                <Detail
+                    icon={Broken.Website}
                     header={'Website'}
                     name={
                         <Link as="a" href={data?.website}>
@@ -25,12 +30,12 @@ const CompanyDetailsbar = ({ data }) => {
                     }
                 />
                 <Detail
-                    icon={Raised}
+                    icon={Broken.Raised}
                     header={'Raised'}
                     name={'$' + Utilities.moneyConverter(data?.raised.toString())}
                 />
                 <Detail
-                    icon={Employee}
+                    icon={Broken.CompanySize}
                     header={'Company Size'}
                     name={`${data?.size.minSize} - ${data?.size.maxSize}`}
                 />
@@ -54,7 +59,7 @@ const Detail = ({ icon: Icon, header, name }) => {
                 justifyContent="center"
                 borderRadius={7}
             >
-                <Icon size="3rem" fill={theme.colors.text[3]} />
+                <Icon size="3rem" stroke={theme.colors.text[3]} strokeWidth={1.7} />
             </Flex>
             <View ml={5}>
                 <Heading level={4}>{header}</Heading>

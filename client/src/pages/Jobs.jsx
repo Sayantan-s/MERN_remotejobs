@@ -2,7 +2,7 @@ import { Stack, View } from 'components/index';
 import JobSearchSidebar from 'components/page section/jobseacrh/JobSearchSidebar.component';
 import JobSearchHeader from 'components/page section/jobseacrh/JobSearchHeader.component';
 import JobSearchJobs from 'components/page section/jobseacrh/JobSearchJobs.component';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import http from 'utils/http';
 import { JobFilterContext } from 'context';
 
