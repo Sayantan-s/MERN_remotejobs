@@ -21,6 +21,7 @@ import DataList from './elements/DataList.component';
 
 import QuesAns from './elements/QuesAns.component';
 import DropAndFileUpload from './elements/DropAndFileUpload.component';
+import Backdrop from './utils/Backdrop.component';
 
 export {
     View,
@@ -51,5 +52,6 @@ export {
     TextField,
     DataList,
     DropAndFileUpload,
-    Badge
+    Badge,
+    Backdrop
 };

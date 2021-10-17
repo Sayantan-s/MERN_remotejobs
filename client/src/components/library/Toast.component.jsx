@@ -1,8 +1,7 @@
 import { Flex, Text } from 'components';
 import Danger from 'assets/icons/Danger';
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
-import css from '@styled-system/css';
+import { useTheme } from 'styled-components';
 
 const Toast = ({ toast }) => {
     const { variant, text, hasIcon } = toast;
@@ -26,6 +25,7 @@ const Toast = ({ toast }) => {
             width="m"
             borderRadius={6}
             boxShadow={`0px 15px 20px ${theme.colors.blue[4]}20`}
+            zIndex="600"
         >
             {hasIcon && (
                 <Flex

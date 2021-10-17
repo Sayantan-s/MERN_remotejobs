@@ -6,7 +6,7 @@ import { compose, layout, space, variant } from 'styled-system';
 import { Field, ErrorMessage } from 'formik';
 import { Broken } from 'assets/icons';
 
-const variants = {
+export const inpVariants = {
     primary: {
         normal: {
             border: 1,
@@ -111,7 +111,7 @@ const Input = styled(Flex)(
             bg: 'transparent'
         }
     }),
-    variant({ variants })
+    variant({ variants: inpVariants })
 );
 
 const TextField = (

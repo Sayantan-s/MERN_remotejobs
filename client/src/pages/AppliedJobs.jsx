@@ -69,7 +69,7 @@ const Company = () => {
                         name="raised"
                         before
                         iconBefore={Email}
-                        label="Net Worth."
+                        label="Net Worth"
                         width="100%"
                         hasIconLabel
                     />
