@@ -1,9 +1,9 @@
-const cores = require('os').cpus().length;
+//const cores = require('os').cpus().length;
 const cluster = require('cluster');
 const app = require('express')();
 
 if (cluster.isMaster) {
-    for (let i = 0; i < cores; i++) {
+    for (let i = 0; i < 2; i++) {
         cluster.fork();
     }
 

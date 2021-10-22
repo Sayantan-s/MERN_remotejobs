@@ -7,18 +7,17 @@ import Jobs from 'pages/Jobs';
 import AppliedJobs from 'pages/AppliedJobs';
 import Register from 'pages/auth/Register';
 import Login from 'pages/auth/Login';
-import { AuthContext, NavHeightContext, AlertContext } from 'context';
+import { NavHeightContext, AlertContext } from 'context';
 import Qna from 'pages/Qna';
 import ForgotPassword from 'pages/auth/ForgotPassword';
 import Job from 'pages/dynamic/Job';
 import Company from 'pages/dynamic/Company';
 
 function App() {
-    const { isAuth } = useContext(AuthContext);
 
-    const { toasts, dispatchToast } = useContext(AlertContext);
+    const { toasts } = useContext(AlertContext);
 
-    useEffect(() => {
+    /*useEffect(() => {
         (async () => {
             const res = await http.get('/csrf');
             const { csrfToken } = res.data;
@@ -38,7 +37,7 @@ function App() {
                 });
             }
         })();
-    }, []);
+    }, []);*/
 
     return (
         <Router>

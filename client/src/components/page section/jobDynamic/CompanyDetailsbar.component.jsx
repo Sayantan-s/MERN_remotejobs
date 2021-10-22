@@ -1,9 +1,4 @@
-import Employee from 'assets/icons/Employee';
-import Established from 'assets/icons/Established';
 import { Broken } from 'assets/icons/index';
-import Industry from 'assets/icons/Industry';
-import Raised from 'assets/icons/Raised';
-import Website from 'assets/icons/Website';
 import { Flex, Heading, Link, StackVertical, Text, View } from 'components/index';
 import React from 'react';
 import { useTheme } from 'styled-components';

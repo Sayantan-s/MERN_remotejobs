@@ -16,8 +16,6 @@ const FeaturedCompanies = () => {
         })();
     }, []);
 
-    console.log(companies);
-
     return (
         <View
             bg="blue.1"

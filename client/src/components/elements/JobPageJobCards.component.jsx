@@ -1,7 +1,6 @@
-import { Button, Flex, Heading, Stack, Text, View, Image, Link } from 'components/index';
+import { Button, Flex, Heading, Stack, Text, View, Image } from 'components/index';
 import React, { useEffect, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import Location from 'assets/icons/Location';
 import ArrowRight from 'assets/icons/ArrowRight';
 import { useHistory } from 'react-router';
 import Utilities from 'utils/Utilties';

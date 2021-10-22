@@ -1,6 +1,11 @@
 const redis = require('redis');
+const { REDIS_HOSTNAME, REDIS_PORT, REDIS_PASSWORD } = require('../config');
 
-const client = redis.createClient();
+const client = redis.createClient({
+    host: REDIS_HOSTNAME,
+    port: REDIS_PORT,
+    password: REDIS_PASSWORD
+});
 
 client.on('connect', () => console.log('Connecting to redis...'));
 

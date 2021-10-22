@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import css from '@styled-system/css';
 
 const Header = () => {
-    const { dispatch, isAuthenticated } = useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
 
     const heightRef = useRef(null);
 

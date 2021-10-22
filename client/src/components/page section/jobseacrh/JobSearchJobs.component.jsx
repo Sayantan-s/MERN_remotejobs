@@ -1,5 +1,5 @@
 import JobPageJobCards from 'components/elements/JobPageJobCards.component';
-import { Button, Dropdown, Flex, StackVertical, Text, View } from 'components/index';
+import { Dropdown, Flex, StackVertical, Text, View } from 'components/index';
 import { FilterContext } from 'context';
 import React, { useContext } from 'react';
 

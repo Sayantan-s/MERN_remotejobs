@@ -2,7 +2,7 @@ import { Listbox } from '@headlessui/react';
 import css from '@styled-system/css';
 import ChevronDown from 'assets/icons/ChevronDown';
 import { Flex, Text, View } from 'components/index';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { background, color, compose, typography } from 'styled-system';
 
@@ -20,13 +20,13 @@ const StyledButton = styled(Listbox.Button)(
     compose(color, background, typography)
 );
 
-const people = [
+/*const people = [
     { id: 1, name: 'Durward Reynolds', disabled: false },
     { id: 2, name: 'Kenton Towne', disabled: false },
     { id: 3, name: 'Therese Wunsch', disabled: false },
     { id: 4, name: 'Benedict Kessler', disabled: true },
     { id: 5, name: 'Katelyn Rohan', disabled: false }
-];
+];*/
 
 const StyledOption = styled(Listbox.Option)(
     css({
@@ -47,9 +47,9 @@ const MyDropdown = ({ btnbg, btncolor, data, btnicon: BtnIcon = ChevronDown }) =
 
     const theme = useTheme();
 
-    let dropdownRef = useRef(null);
+    //let dropdownRef = useRef(null);
 
-    const [animationState, setAnimation] = useState(false);
+    //const [animationState, setAnimation] = useState(false);
 
     return (
         <Listbox as={View} position="relative" value={selectedPerson} onChange={setSelectedPerson}>

@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const helmet = require('helmet');
 
-const { PORT } = require('./config/index');
+const { PORT } = require('./config');
 
 const { PageNotFoundError, PageError } = require('./middlewares/error');
 

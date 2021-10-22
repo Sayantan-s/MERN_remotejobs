@@ -1,6 +1,6 @@
 import css from '@styled-system/css';
 import { Flex, Heading, Text, View } from 'components/index';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Progress = styled(View)(

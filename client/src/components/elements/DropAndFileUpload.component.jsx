@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 const DropAndFileUpload = () => {
-    const [file, setFile] = useState('');
+    //const [file, setFile] = useState('');
 
     const onDrop = useCallback((acceptedFiles) => {
         console.log(acceptedFiles);

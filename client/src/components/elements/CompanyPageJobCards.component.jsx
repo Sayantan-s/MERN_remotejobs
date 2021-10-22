@@ -16,15 +16,15 @@ import Tilt from 'react-parallax-tilt';
 import { Broken } from 'assets/icons/index';
 import Utilities from 'utils/Utilties';
 
-const RoleOverview = styled(Text)`
+/*const RoleOverview = styled(Text)`
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-`;
+`;*/
 
-const CompanyPageJobCards = ({ logo, role, location, jobtype, name, _id, salary, createdAt }) => {
+const CompanyPageJobCards = ({ logo, role, location, jobtype, name, _id, salary }) => {
     const theme = useTheme();
 
     const history = useHistory();

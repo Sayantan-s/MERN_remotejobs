@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { Text, View, Flex, Button } from 'components';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import css from '@styled-system/css';
 import { compose, layout, space } from 'styled-system';
 import { useToggle } from 'hooks';

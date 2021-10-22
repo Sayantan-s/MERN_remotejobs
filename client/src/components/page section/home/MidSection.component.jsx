@@ -1,4 +1,3 @@
-import css from '@styled-system/css';
 import { Flex, Heading, Image, StackVertical, Text, View } from 'components/index';
 import React from 'react';
 import styled from 'styled-components';

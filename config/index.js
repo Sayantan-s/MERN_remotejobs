@@ -6,6 +6,9 @@ const {
     MONGODB_DB,
     ACCESS_TOKEN,
     REFRESH_TOKEN,
+    REDIS_HOSTNAME,
+    REDIS_PORT,
+    REDIS_PASSWORD
 } = process.env;
 
 module.exports = {
@@ -13,5 +16,8 @@ module.exports = {
     MONGO_URI,
     MONGODB_DB,
     ACCESS_TOKEN,
-    REFRESH_TOKEN
+    REFRESH_TOKEN,
+    REDIS_HOSTNAME,
+    REDIS_PORT,
+    REDIS_PASSWORD
 };

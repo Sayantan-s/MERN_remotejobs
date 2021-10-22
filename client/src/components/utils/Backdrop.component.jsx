@@ -11,7 +11,7 @@ const Backdrop = ({...rest}) => {
             {...rest}
             width="100vw"
             height="100vh"
-            bg={`${theme.colors.text[4]}40`}
+            bg={`${theme.colors.text[4]}90`}
             position="fixed"
             top="0"
             left="0"

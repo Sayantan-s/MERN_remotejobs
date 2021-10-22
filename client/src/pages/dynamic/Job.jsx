@@ -76,7 +76,7 @@ const Job = () => {
                 hasIcon: true
             });
         }
-        return history.push('/' + company?.name + '/' + roleInfo?.role + '/' + 'test');
+        return history.push(`/${company?.name}/${roleInfo?.role}/test`);
     };
 
     return (
@@ -88,8 +88,7 @@ const Job = () => {
                 backgroundSize="cover"
                 backgroundPosition="center"
                 borderRadius={8}
-                backgroundImage={`URL(${companyInfo?.culture.videoThumbnail})`}
-            >
+                backgroundImage={`URL(${companyInfo?.culture.videoThumbnail})`}>
                 <Image.Thumbnail
                     src={company?.thumbnail}
                     alt={company?.name}
@@ -120,16 +119,14 @@ const Job = () => {
                             bg={`${theme.colors.text[0]}85`}
                             px={4}
                             py={2}
-                            borderRadius={6}
-                        >
+                            borderRadius={6}>
                             <SolidJob size={'2rem'} fill={theme.colors.text[2]} />
                             <Text
                                 as="span"
                                 color="text.2"
                                 fontWeight="semibold"
                                 lineHeight={1}
-                                ml={4}
-                            >
+                                ml={4}>
                                 {' '}
                                 {roleInfo?.jobtype}{' '}
                             </Text>
@@ -139,16 +136,14 @@ const Job = () => {
                             bg={`${theme.colors.text[0]}85`}
                             px={4}
                             py={2}
-                            borderRadius={6}
-                        >
+                            borderRadius={6}>
                             <SolidLocation size={'2rem'} fill={theme.colors.text[2]} />
                             <Text
                                 as="span"
                                 color="text.2"
                                 fontWeight="semibold"
                                 lineHeight={1}
-                                ml={4}
-                            >
+                                ml={4}>
                                 {' '}
                                 {roleInfo?.location}{' '}
                             </Text>

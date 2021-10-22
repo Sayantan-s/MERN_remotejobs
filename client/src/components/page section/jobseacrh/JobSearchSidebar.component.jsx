@@ -1,6 +1,6 @@
 import { CheckboxGroup, Flex, Heading, StackVertical, Text, View } from 'components/index';
-import React, { useContext, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import React, { useContext } from 'react';
+import { useTheme } from 'styled-components';
 import { Range } from 'react-range';
 import Button from 'components/library/Button.component';
 import { FilterContext } from 'context';

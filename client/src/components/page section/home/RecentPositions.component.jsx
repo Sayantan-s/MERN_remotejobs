@@ -16,8 +16,6 @@ const RecentPositions = () => {
         })();
     }, []);
 
-    console.log(jobs);
-
     return (
         <View
             as="section"

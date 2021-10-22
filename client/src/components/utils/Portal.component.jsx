@@ -1,8 +1,8 @@
 import { View } from 'components/index';
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const Portal = ({ id, children, as: Component = View, ...rest }) => {
+const Portal = ({ id, children, as: Component = View, ...rest }, ref) => {
     const [hasMounted, setHasMounted] = useState(false);
 
     useEffect(() => {
@@ -11,7 +11,7 @@ const Portal = ({ id, children, as: Component = View, ...rest }) => {
 
     if (!hasMounted) return null;
 
-    return createPortal(<Component {...rest}>{children}</Component>, document.getElementById(id));
+    return createPortal(<Component {...rest} ref={ref}>{children}</Component>, document.getElementById(id));
 };
 
-export default Portal;
+export default forwardRef(Portal);

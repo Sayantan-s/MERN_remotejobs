@@ -1,7 +1,7 @@
 import css from '@styled-system/css';
 import { TextField } from 'components';
 import { Flex, View } from 'components/index';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 const StyledOption = styled(View)(

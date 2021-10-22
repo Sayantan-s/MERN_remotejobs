@@ -121,7 +121,6 @@ const TextField = (
         after,
         iconAfter: IconAfter,
         width,
-        simpleInput,
         onIconClickAfter,
         onIconClickBefore,
         variant = 'primary.normal',

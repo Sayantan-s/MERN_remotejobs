@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react';
-import { View, Heading, Radio as RadioGroup, Flex, Text, Button } from 'components';
+import { View, Heading, Radio as RadioGroup } from 'components';
 import { useTheme } from 'styled-components';
 import { TextField } from 'components/index';
 
