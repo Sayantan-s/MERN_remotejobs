@@ -2,7 +2,7 @@ const ApiError = require('../helpers/ApiError');
 const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
-const { getGoogleOAuthURL, getGoogleUser } = require('../helpers/init_GoogleOAuth');
+const { getGoogleOAuthURL, getGoogleUser } = require('../services/init_GoogleOAuth');
 const client = require('../helpers/helper');
 const router = require('express').Router();
 
@@ -31,7 +31,7 @@ router.post('/register', async (req, res, next) => {
             }
         });
 
-        client.set(refreshToken, user._id, (err, reply) => {
+        client.set(refresh_token, user._id, (err, reply) => {
             if (err) return ApiError.customError(400, 'Failed to create account!');
             console.log(reply);
             res.setHeader(`x-access-token`, access_token);
@@ -65,10 +65,13 @@ router.post('/login', async (req, res, next) => {
             }
         });
 
-        res.setHeader(`x-access-token`, access_token);
-        res.cookie('refresh', refresh_token);
-        client.set(refresh_token + '', user._id + '', redis.print);
-        res.status(200).send({ message: 'You are successfully logged in!' });
+        client.set(refresh_token, user._id, (err, reply) => {
+            if (err) return ApiError.customError(400, 'Failed to create account!');
+            console.log(reply);
+            res.setHeader(`x-access-token`, access_token);
+            res.cookie('refresh', refresh_token);
+            res.status(200).send({ message: 'You are successfully logged in!' });
+        });
     } catch (error) {
         next(error);
     }

@@ -28,14 +28,10 @@ const reducer = (state = authState, { type, payload }) => {
 
             http.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
 
-            console.log(decodedPayload);
-
-            localStorage.setItem('user_meta', JSON.stringify({ access_token }));
-
             return {
                 ...state,
                 loading: false,
-                data: payload,
+                data: decodedPayload,
                 error: ''
             };
         case 'AUTHENTICATION_FAILED':
@@ -46,7 +42,6 @@ const reducer = (state = authState, { type, payload }) => {
                 error: payload
             };
         case 'LOGOUT_USER':
-            localStorage.removeItem('user_meta');
 
             return {
                 ...state,

@@ -55,7 +55,7 @@ function App() {
                         <Route path="/company/:company" component={Company} />
                     </Switch>
                 </Layout>
-                {toasts && <Toasts toasts={toasts} />}
+                {toasts.length > 0 && <Toasts toasts={toasts} />}
             </NavHeightContext>
         </Router>
     );

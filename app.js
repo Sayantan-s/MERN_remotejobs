@@ -11,7 +11,9 @@ const { PageNotFoundError, PageError } = require('./middlewares/error');
 
 // DATABASE CONNECTION
 
-require('./helpers/init_mongo');
+require('./services/init_mongo');
+require('./services/init_redis');
+
 
 const app = express();
 const port = PORT || 5000;
@@ -22,7 +24,6 @@ const middlewares = [
     express.json(),
     cors({
         origin: 'http://localhost:3000',
-        maxAge: 1000 * 60 * 60 * 24 * 365
     }),
     cookieParser()
     /*csrf({

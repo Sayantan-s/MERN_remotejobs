@@ -29,7 +29,6 @@ const Register = () => {
     const [oauthurl, setOAuthUrl] = useState('');
 
     const onSubmit = async (data) => {
-        console.log(data);
         try {
             const res = await http({
                 url: '/auth/register',
@@ -69,8 +68,7 @@ const Register = () => {
             position="relative"
             display="flex"
             alignItems="center"
-            justifyContent="center"
-        >
+            justifyContent="center">
             <Link to="/" m="4rem auto" position="absolute" top="0">
                 <Logo />
                 <Text color="text.4" ml={4} letterSpacing="2px">
@@ -97,16 +95,14 @@ const Register = () => {
                         bg={`${theme.colors.blue[1]}50`}
                         mx="auto"
                         mt={7}
-                        width="100%"
-                    >
+                        width="100%">
                         {' '}
                         <svg
                             width={24}
                             height={24}
                             viewBox="0 0 48 48"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M0 16.1C0 10.4051 0 7.55764 1.12587 5.39026C2.07462 3.56382 3.56382 2.07462 5.39026 1.12587C7.55764 0 10.4051 0 16.1 0H31.9C37.5949 0 40.4424 0 42.6097 1.12587C44.4362 2.07462 45.9254 3.56382 46.8741 5.39026C48 7.55764 48 10.4051 48 16.1V31.9C48 37.5949 48 40.4424 46.8741 42.6097C45.9254 44.4362 44.4362 45.9254 42.6097 46.8741C40.4424 48 37.5949 48 31.9 48H16.1C10.4051 48 7.55764 48 5.39026 46.8741C3.56382 45.9254 2.07462 44.4362 1.12587 42.6097C0 40.4424 0 37.5949 0 31.9V16.1Z"
                                 fill="#1265BF"
@@ -149,8 +145,7 @@ const Register = () => {
                                 .min(7, `Password strength too low`)
                                 .required(`Password should'nt be empty`)
                         })}
-                        onSubmit={onSubmit}
-                    >
+                        onSubmit={(values) => onSubmit(values)}>
                         <View as={Form} width={'m'} autoComplete="new-password">
                             <StackVertical gap={6}>
                                 <TextField

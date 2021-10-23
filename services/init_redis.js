@@ -1,5 +1,6 @@
 const redis = require('redis');
 const { REDIS_HOSTNAME, REDIS_PORT, REDIS_PASSWORD } = require('../config');
+const { promisify } = require('util');
 
 const client = redis.createClient({
     host: REDIS_HOSTNAME,
@@ -17,4 +18,8 @@ client.on('end', () => console.log('Disconnected from redis...'));
 
 process.on('SIGINT', () => client.quit());
 
-module.exports = client;
+const GET_ASYNC_CACHE = promisify(client.get).bind(client);
+const SET_ASYNC_CACHE = promisify(client.set).bind(client);
+
+module.exports = {  client, GET_ASYNC_CACHE, SET_ASYNC_CACHE };
+ 
