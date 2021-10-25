@@ -35,6 +35,7 @@ const Register = () => {
                 method: 'POST',
                 data
             });
+            console.log(data)
             if (res.status === 201) {
                 AuthState.dispatch({
                     type: AUTHENTICATION_SUCESSFULL,
@@ -176,7 +177,7 @@ const Register = () => {
                                     iconAfter={toggle ? Hide : Show}
                                 />
                             </StackVertical>
-                            <Button lay="lg" width="100%" mt={8}>
+                            <Button lay="lg" width="100%" mt={8} type="submit">
                                 Sign Up
                             </Button>
                         </View>

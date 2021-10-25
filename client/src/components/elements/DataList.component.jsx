@@ -1,6 +1,7 @@
 import css from '@styled-system/css';
 import { TextField } from 'components';
 import { Flex, View } from 'components/index';
+import { useClickOutside } from 'hooks';
 import React, { useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
@@ -23,12 +24,19 @@ const DataList = ({ data = [], ...rest }) => {
 
     const inpRef = useRef(null);
 
+    const dropDownRef = useRef(null);
+
     const [showDropDown, setDropDown] = useState(false);
+
+    useClickOutside({
+        ref : dropDownRef,
+        callback: () => setDropDown(false)
+    })
 
     const handleDropDown = () => setDropDown(!showDropDown);
 
     return (
-        <View position="relative">
+        <View position="relative" ref={dropDownRef}>
             <TextField ref={inpRef} onFocus={handleDropDown} {...rest} />
             {showDropDown && (
                 <Flex

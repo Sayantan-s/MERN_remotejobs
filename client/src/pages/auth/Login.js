@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import http from 'utils/http';
-import { Input, Button, View, Text, Flex, TextField } from 'components';
+import { Button, View, Text, Flex, TextField } from 'components';
 import { Heading, Link, Logo, Page, StackVertical } from 'components/index';
 import { AUTHENTICATION_SUCESSFULL } from 'context/types/Auth.types';
-import { useForm, useToggle } from 'hooks';
+import { useToggle } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import { Formik, Form } from 'formik';
