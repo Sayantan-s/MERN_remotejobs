@@ -29,9 +29,14 @@ const DataList = ({ data = [], ...rest }) => {
     const [showDropDown, setDropDown] = useState(false);
 
     useClickOutside({
-        ref : dropDownRef,
+        ref: dropDownRef,
         callback: () => setDropDown(false)
-    })
+    });
+
+    const setDataListValue = (value) => {
+        inpRef.current.value = value;
+        setDropDown(false);
+    };
 
     const handleDropDown = () => setDropDown(!showDropDown);
 
@@ -49,10 +54,13 @@ const DataList = ({ data = [], ...rest }) => {
                     mt={4}
                     maxHeight="15rem"
                     overflowY="scroll"
-                    zIndex="100"
-                >
+                    zIndex="100">
                     {data.map((x) => (
-                        <StyledOption key={x.id} value={x} disabled={x.disabled}>
+                        <StyledOption
+                            key={x.id}
+                            value={x}
+                            disabled={x.disabled}
+                            onClick={() => setDataListValue(x.value)}>
                             {x.value}
                         </StyledOption>
                     ))}

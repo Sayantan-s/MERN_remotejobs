@@ -3,7 +3,7 @@ const AuthUtils = require('../helpers/AuthUtils');
 const User = require('../models/user.model');
 const { registerValidator, loginValidator } = require('../validator/auth.validator');
 const { getGoogleOAuthURL, getGoogleUser } = require('../services/init_GoogleOAuth');
-const client = require('../helpers/helper');
+const { client }  = require('../services/init_redis');
 const router = require('express').Router();
 
 router.post('/register', async (req, res, next) => {

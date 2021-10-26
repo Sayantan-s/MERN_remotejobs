@@ -3,6 +3,9 @@ import { StackVertical, Stack, TextField, Button } from 'components';
 import Email from 'assets/icons/Email';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import CompanyName from 'assets/icons/Bulk/CompanyName';
+import Networth from 'assets/icons/Bulk/Networth';
+import CompanyMoto from 'assets/icons/Bulk/CompanyMoto';
 
 const StepA = ({ proceed }) => {
     return (
@@ -40,7 +43,7 @@ const StepA = ({ proceed }) => {
                         placeholder="e.g. Google"
                         name="name"
                         before
-                        iconBefore={Email}
+                        iconBefore={CompanyName}
                         label="Company Name"
                         width="100%"
                         hasIconLabel
@@ -51,7 +54,7 @@ const StepA = ({ proceed }) => {
                         placeholder="$ 25,000,00..."
                         name="raised"
                         before
-                        iconBefore={Email}
+                        iconBefore={Networth}
                         label="Net Worth"
                         width="100%"
                         hasIconLabel
@@ -63,7 +66,7 @@ const StepA = ({ proceed }) => {
                     placeholder="e.g. Building for a...."
                     name="tagline"
                     before
-                    iconBefore={Email}
+                    iconBefore={CompanyMoto}
                     label="Company Moto"
                     hasIconLabel
                 />

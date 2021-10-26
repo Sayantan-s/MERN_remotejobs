@@ -1,8 +1,12 @@
 import React from 'react';
 import { StackVertical, Stack, TextField, DataList, Button } from 'components';
-import Email from 'assets/icons/Email';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import Email from 'assets/icons/Bulk/Email';
+import Calender from 'assets/icons/Bulk/Calender'
+import Employee from 'assets/icons/Bulk/Employee';
+import Industry from 'assets/icons/Bulk/Industry';
+import Website from 'assets/icons/Bulk/Website'
 
 const StepB = () => {
     return (
@@ -53,7 +57,7 @@ const StepB = () => {
                         placeholder="e.g. 2008"
                         name="established"
                         before
-                        iconBefore={Email}
+                        iconBefore={Calender}
                         label="Established on"
                         width="100%"
                         hasIconLabel
@@ -77,7 +81,7 @@ const StepB = () => {
                         placeholder="e.g. 10-50"
                         name="size"
                         before
-                        iconBefore={Email}
+                        iconBefore={Employee}
                         label="Employees"
                         width="100%"
                         hasIconLabel
@@ -95,7 +99,7 @@ const StepB = () => {
                         placeholder="e.g. Software"
                         name="typeOfCorporation"
                         before
-                        iconBefore={Email}
+                        iconBefore={Industry}
                         label="Industry"
                         hasIconLabel
                         data={[
@@ -113,7 +117,7 @@ const StepB = () => {
                         placeholder="www.kimbpo.c..."
                         name="website"
                         before
-                        iconBefore={Email}
+                        iconBefore={Website}
                         label="Website"
                         hasIconLabel
                     />

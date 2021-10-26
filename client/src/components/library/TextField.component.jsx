@@ -20,7 +20,7 @@ export const inpVariants = {
             },
             button: {
                 svg: {
-                    g: {
+                    ['path, g']: {
                         fill: 'text.1'
                     }
                 }
@@ -38,7 +38,7 @@ export const inpVariants = {
             },
             button: {
                 svg: {
-                    g: {
+                    ['path, g']: {
                         fill: 'danger.1'
                     }
                 }
@@ -59,7 +59,7 @@ export const inpVariants = {
             },
             button: {
                 svg: {
-                    g: {
+                    ['path, g']: {
                         fill: 'text.1'
                     }
                 }
@@ -77,7 +77,7 @@ export const inpVariants = {
             },
             button: {
                 svg: {
-                    g: {
+                    ['path, g']: {
                         fill: 'danger.1'
                     }
                 }

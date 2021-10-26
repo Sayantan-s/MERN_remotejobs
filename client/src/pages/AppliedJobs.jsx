@@ -50,13 +50,6 @@ const Company = () => {
 
     const [formSteps, setSteps] = useState(0);
 
-    const handleSteps = ({ action }) => {
-        if (action === 'INCREMENT') {
-            return formSteps < 2 && setSteps((prevStep) => prevStep + 1);
-        }
-        return formSteps > 0 && setSteps((prevStep) => prevStep - 1);
-    };
-
     const MultiStepForm = [
         <StepA proceed={setSteps} />,
         <StepB proceed={setSteps} />,
@@ -65,7 +58,6 @@ const Company = () => {
 
     const onSubmit = async (values, handleSubmit, handleReset) => {
         let dataSubmission = {};
-        handleSteps({ action: 'INCREMENT' });
         if (formSteps === 2) {
             for (let [key, value] of Object.entries(values)) {
                 if (key === 'size') {
@@ -140,7 +132,7 @@ const Company = () => {
                                     borderRadius={'50%'}
                                     position="absolute"
                                     left="0"
-                                    onClick={handleSteps}>
+                                    onClick={() => formSteps > 0 && setSteps((prevStep) => prevStep - 1)}>
                                     <Broken.ArrowLeft
                                         size="2.5rem"
                                         stroke={theme.colors.blue[6]}
