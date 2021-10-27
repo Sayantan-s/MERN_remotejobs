@@ -5,16 +5,26 @@ import * as Yup from 'yup';
 import CompanyName from 'assets/icons/Bulk/CompanyName';
 import Networth from 'assets/icons/Bulk/Networth';
 import CompanyMoto from 'assets/icons/Bulk/CompanyMoto';
+import { useLocalStorage } from 'hooks';
+
+const state = {
+    name: '',
+    raised: '',
+    tagline: '',
+    address: ''
+};
 
 const StepA = ({ proceed }) => {
+    const [persistedState, persistReducer] = useLocalStorage({
+        key: 'STEP-A',
+        initialValue: state
+    });
+
+    console.log(persistedState)
+
     return (
         <Formik
-            initialValues={{
-                name: '',
-                raised: '',
-                tagline: '',
-                address: ''
-            }}
+            initialValues={persistedState || state}
             validationSchema={Yup.object().shape({
                 name: Yup.string()
                     .min(2, 'Too Short!')
@@ -31,7 +41,7 @@ const StepA = ({ proceed }) => {
                 address: Yup.string().min(2, 'Too Short to be an address!')
             })}
             onSubmit={(values) => {
-                console.log(values);
+                persistReducer({ type: 'SET', payload: { key : 'STEP-A', data : JSON.stringify(values) } });
                 proceed((prevState) => prevState + 1);
             }}>
             <StackVertical gap={6} as={Form}>

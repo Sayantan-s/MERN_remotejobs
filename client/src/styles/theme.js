@@ -22,6 +22,7 @@ const theme = {
         4: '8rem',
         xs: '10rem',
         sm: '20rem',
+        ms : "30rem",
         m: '40rem',
         l: '60rem',
         xl: '70rem',

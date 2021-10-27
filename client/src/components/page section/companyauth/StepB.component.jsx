@@ -50,7 +50,7 @@ const StepB = ({ proceed }) => {
                     .required(`Company info is mandatory!`)
             })}
             onSubmit={values => {
-                console.log(values);
+                localStorage.setItem('Step-B', JSON.stringify(values))
                 proceed(prevState => prevState + 1);
             }}
             >

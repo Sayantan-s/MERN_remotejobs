@@ -12,6 +12,7 @@ import ForgotPassword from 'pages/auth/ForgotPassword';
 import Job from 'pages/dynamic/Job';
 import Company from 'pages/dynamic/Company';
 import CompanyAuthContext from 'context/CompanyAuthContext';
+import CompanyDashboard from 'pages/company/CompanyDashboard';
 
 function App() {
     const { toasts } = useContext(AlertContext);
@@ -23,6 +24,7 @@ function App() {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/jobs" component={Jobs} />
+                        <Route path="/home" component={CompanyDashboard} />
                         <Route path="/:company/:job/test" component={Qna} />
                         <Route path="/auth/register" component={Register} />
                         <Route path="/auth/login" component={Login} />

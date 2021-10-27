@@ -1,8 +1,8 @@
 import css from '@styled-system/css';
 import { Broken } from 'assets/icons/index';
-import { Flex, Input, View, Button, Portal, Backdrop } from 'components';
+import { Flex, Input, View, Button, Portal, Backdrop, TextField } from 'components';
 import { useClickOutside } from 'hooks';
-import React, { useState, forwardRef, useRef, useEffect } from 'react';
+import React, { useState, forwardRef, useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -102,20 +102,14 @@ const MacLikeSearch = forwardRef((_, ref) => {
                         alignItems="center"
                         p="5"
                         overflow="hidden">
-                        <Input
-                            type="search"
+                        <TextField
+                            variant="primary.transparent"
+                            type="text"
+                            placeholder="e.g. Keywords.."
                             name="jobsearch"
                             before
-                            placeholder="Job title or keyword"
+                            iconBefore={Broken.Search}
                             width={[1 / 2]}
-                            simpleInput
-                            iconBefore={
-                                <Broken.Search
-                                    size="2.4rem"
-                                    stroke={theme.colors.text[3]}
-                                    strokeWidth={1.8}
-                                />
-                            }
                         />
                         <View
                             as={'span'}
@@ -125,20 +119,14 @@ const MacLikeSearch = forwardRef((_, ref) => {
                             mx="3rem"
                             opacity="50%"
                         />
-                        <Input
-                            name="location"
-                            simpleInput
-                            width={[1 / 2]}
-                            before
-                            type="search"
+                        <TextField
+                            variant="primary.transparent"
+                            type="text"
                             placeholder="New York, USA"
-                            iconBefore={
-                                <Broken.Location
-                                    size="2.5rem"
-                                    stroke={theme.colors.text[3]}
-                                    strokeWidth={1.8}
-                                />
-                            }
+                            name="location"
+                            before
+                            iconBefore={Broken.Location}
+                            width={[1 / 2]}
                         />
                         <Button borderRadius={10} lay="lg">
                             Search

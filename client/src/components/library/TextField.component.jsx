@@ -8,6 +8,23 @@ import { Broken } from 'assets/icons';
 
 export const inpVariants = {
     primary: {
+        transparent: {
+            'input, textarea': {
+                color: 'text.2',
+                resize: 'none',
+                '::placeholder': {
+                    color: 'text.1'
+                }
+            },
+            button: {
+                svg: {
+                    path: {
+                        stroke: (props) => props.fill || 'text.4',
+                        strokeWidth: 1.5
+                    }
+                }
+            }
+        },
         normal: {
             border: 1,
             borderColor: 'text.0',
@@ -96,8 +113,8 @@ const Input = styled(Flex)(
         px: 4,
         button: {
             svg: {
-                width: '2.5rem',
-                height: '2.5rem'
+                width: (props) => props.size || '2.5rem',
+                height: (props) => props.size || '2.5rem'
             }
         },
         'input, textarea': {
@@ -127,6 +144,7 @@ const TextField = (
         label,
         labelicon: IconLabel = Broken.ArrowRight,
         hasIconLabel,
+        iconSize,
         ...rest
     },
     ref
@@ -161,8 +179,7 @@ const TextField = (
                         onClick={handleIconBefore}
                         p="0"
                         variant="transparent.normal"
-                        minWidth="max-content"
-                    >
+                        minWidth="max-content">
                         <IconBefore />
                     </Button>
                 )}
@@ -178,8 +195,7 @@ const TextField = (
                         onClick={handleIconAfter}
                         p="0"
                         variant="transparent.normal"
-                        minWidth="max-content"
-                    >
+                        minWidth="max-content">
                         <IconAfter />
                     </Button>
                 )}
