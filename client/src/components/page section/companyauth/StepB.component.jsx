@@ -8,7 +8,7 @@ import Employee from 'assets/icons/Bulk/Employee';
 import Industry from 'assets/icons/Bulk/Industry';
 import Website from 'assets/icons/Bulk/Website'
 
-const StepB = () => {
+const StepB = ({ proceed }) => {
     return (
         <Formik
             initialValues={{
@@ -48,7 +48,12 @@ const StepB = () => {
                     .min(140, 'Too Short!')
                     .max(185, 'Too Long!')
                     .required(`Company info is mandatory!`)
-            })}>
+            })}
+            onSubmit={values => {
+                console.log(values);
+                proceed(prevState => prevState + 1);
+            }}
+            >
             <StackVertical gap={6} as={Form}>
                 <Stack gap={5}>
                     <TextField

@@ -1,8 +1,9 @@
 import React from 'react';
 import { StackVertical, TextField, Text, DropAndFileUpload, Button } from 'components';
-import Email from 'assets/icons/Email';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import Img from 'assets/icons/Bulk/Img';
+import Youtube from 'assets/icons/Bulk/Youtube';
 
 const StepC = () => {
     return (
@@ -32,7 +33,7 @@ const StepC = () => {
                     placeholder="https://images.unsplash.com/ph......."
                     name="videoThumbnail"
                     before
-                    iconBefore={Email}
+                    iconBefore={Img}
                     width="100%"
                     hasIconLabel
                 />
@@ -42,7 +43,7 @@ const StepC = () => {
                     placeholder="https://www.youtube.com/watch?j..."
                     name="youtube"
                     before
-                    iconBefore={Email}
+                    iconBefore={Youtube}
                     label="Youtube video url"
                     width="100%"
                     hasIconLabel

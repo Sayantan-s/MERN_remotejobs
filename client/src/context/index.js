@@ -6,7 +6,7 @@ import NavHeightContext from './NavHeightContext';
 import ToastContext from './ToastContext';
 import { FilterContext } from './JobFilterContext';
 import JobFilterContext from './JobFilterContext';
-
+import CompanyAuthContext, { CompanyContext } from './CompanyAuthContext';
 export {
     AuthenticationContext,
     AuthContext,
@@ -15,5 +15,7 @@ export {
     NavHeightContext,
     ToastContext,
     FilterContext,
-    JobFilterContext
+    JobFilterContext,
+    CompanyAuthContext,
+    CompanyContext
 };

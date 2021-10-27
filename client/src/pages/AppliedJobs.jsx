@@ -1,5 +1,4 @@
 import ArrowRight from 'assets/icons/ArrowRight';
-import Email from 'assets/icons/Email';
 import {
     Button,
     Flex,
@@ -8,12 +7,7 @@ import {
     Logo,
     Page,
     View,
-    TextField,
-    StackVertical,
-    Stack,
     Image,
-    DataList,
-    DropAndFileUpload,
     Text
 } from 'components';
 import React, { useState } from 'react';

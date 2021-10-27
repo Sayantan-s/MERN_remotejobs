@@ -1,6 +1,5 @@
 import React from 'react';
 import { StackVertical, Stack, TextField, Button } from 'components';
-import Email from 'assets/icons/Email';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import CompanyName from 'assets/icons/Bulk/CompanyName';
