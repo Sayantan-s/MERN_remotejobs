@@ -1,22 +1,13 @@
 import ArrowRight from 'assets/icons/ArrowRight';
-import {
-    Button,
-    Flex,
-    Heading,
-    Link,
-    Logo,
-    Page,
-    View,
-    Image,
-    Text
-} from 'components';
-import React, { useState } from 'react';
+import { Button, Flex, Heading, Link, Logo, Page, View, Image, Text } from 'components';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { Broken } from 'assets/icons';
 import { AnimatePresence } from 'framer-motion';
 import StepA from 'components/page section/companyauth/StepA.component';
 import StepB from 'components/page section/companyauth/StepB.component';
 import StepC from 'components/page section/companyauth/StepC.component';
+import { useHistory } from 'react-router-dom';
 
 const Company = () => {
     const theme = useTheme();
@@ -50,7 +41,24 @@ const Company = () => {
         <StepC proceed={setSteps} />
     ];
 
-    const onSubmit = async (values, handleSubmit, handleReset) => {
+    const history = useHistory();
+
+    useEffect(() => {
+        history.listen((location) => {
+            const steps = ['A', 'B', 'C'];
+            const isRouteChangeAllowed = steps.some((step) =>
+                localStorage.getItem(`STEP-${steps[step]}`)
+            );
+            isRouteChangeAllowed &&
+                window.confirm('Are your sure?') &&
+                (() => {
+                    steps.forEach((step) => localStorage.removeItem(`STEP-${step}`));
+                    history.push(location.pathname);
+                })();
+        });
+    }, []);
+
+    const onSubmit = async (values /*handleSubmit, handleReset*/) => {
         let dataSubmission = {};
         if (formSteps === 2) {
             for (let [key, value] of Object.entries(values)) {
@@ -126,7 +134,9 @@ const Company = () => {
                                     borderRadius={'50%'}
                                     position="absolute"
                                     left="0"
-                                    onClick={() => formSteps > 0 && setSteps((prevStep) => prevStep - 1)}>
+                                    onClick={() =>
+                                        formSteps > 0 && setSteps((prevStep) => prevStep - 1)
+                                    }>
                                     <Broken.ArrowLeft
                                         size="2.5rem"
                                         stroke={theme.colors.blue[6]}
