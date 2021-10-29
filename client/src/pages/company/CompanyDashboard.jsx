@@ -1,11 +1,14 @@
-import Calender from 'components/elements/Calender.component';
-import { View } from 'components/index';
+import * as Calender  from 'components/elements/Calender.component'; 
+import { Stack } from 'components/library/Primitives.component';
 import React from 'react';
 
 const CompanyDashboard = () => {
-    return <View>
-        <Calender />
-    </View>;
+    return (
+        <Stack gap={4} alignItems={'flex-start'}>
+            <Calender.Day />
+            <Calender.Year />
+        </Stack>
+    );
 };
 
 export default CompanyDashboard;
